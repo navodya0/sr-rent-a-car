@@ -1,0 +1,7 @@
+[17-Mar-2025 07:03:57 UTC] PHP Fatal error:  Uncaught RuntimeException: SplFileInfo::getMTime(): stat failed for /home/slrcar/public_html/srilankarentacar.com/.well-known/acme-challenge in /home/slrcar/public_html/srilankarentacar.com/core/vendor/league/flysystem/src/Local/LocalFilesystemAdapter.php:211
+Stack trace:
+#0 /home/slrcar/public_html/srilankarentacar.com/core/vendor/league/flysystem/src/Local/LocalFilesystemAdapter.php(211): SplFileInfo->getMTime()
+#1 /home/slrcar/public_html/srilankarentacar.com/core/vendor/league/flysystem/src/DirectoryListing.php(33): League\Flysystem\Local\LocalFilesystemAdapter->listContents('.well-known/acm...', false)
+#2 /home/slrcar/public_html/srilankarentacar.com/core/vendor/league/flysystem/src/DirectoryListing.php(33): League\Flysystem\DirectoryListing::League\Flysystem\{closure}(Object(Generator))
+#3 /home/slrcar/public_html/srilankarentacar.com/core/src/Revolution/Sources/modMediaSource.php(397): League\Flysystem\DirectoryListing::League\Flysystem\{closure}(Object(Generator))
+#4 /home/slrcar/public_html/srilankar in /home/slrcar/public_html/srilankarentacar.com/core/vendor/league/flysystem/src/Local/LocalFilesystemAdapter.php on line 211

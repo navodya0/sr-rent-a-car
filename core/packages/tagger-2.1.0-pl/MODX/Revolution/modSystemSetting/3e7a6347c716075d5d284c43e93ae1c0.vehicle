@@ -1,0 +1,12 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'vehicle_class' => 'xPDO\\Transport\\xPDOObjectVehicle',
+  'guid' => '2f51ec24b7164e19521a5999959521b6',
+  'package' => '',
+  'class' => 'MODX\\Revolution\\modSystemSetting',
+  'signature' => '3e7a6347c716075d5d284c43e93ae1c0',
+  'native_key' => 'tagger.place_below_content_header',
+  'object' => '{"key":"tagger.place_below_content_header","value":1,"xtype":"combo-boolean","namespace":"tagger","area":"places","editedon":null}',
+);

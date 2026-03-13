@@ -1,0 +1,45 @@
+<?php  return '$host = "localhost";
+$user = "root";
+$pass = ""; 
+$dbname = "rentacar";
+
+$conn = new mysqli($host, $user, $pass, $dbname);
+
+if ($conn->connect_error) {
+    die("<h2 style=\'color:red;\'>❌ Database connection failed:</h2> " . $conn->connect_error);
+}
+
+$category = isset($_GET[\'car_category\']) ? htmlspecialchars($_GET[\'car_category\']) : \'\';
+if ($category === "") {
+    die("<p style=\'color:red;\'>❌ No car category specified.</p>");
+}
+
+$today = date(\'Y-m-d\');
+
+$stmt = $conn->prepare("
+    SELECT rate
+    FROM car_rental
+    WHERE car_category=? AND start_date <= ? AND (end_date >= ? OR end_date IS NULL)
+    ORDER BY start_date ASC
+    LIMIT 1
+");
+$stmt->bind_param("sss", $category, $today, $today);
+$stmt->execute();
+$result = $stmt->get_result();
+
+// Only show the per day rate, in white and bold
+echo "<div style=\'color:white; font-weight:bold; font-family:Cambria; font-size:14px;\'>";
+
+if ($result->num_rows > 0) {
+    $rateData = $result->fetch_assoc();
+    $rate = $rateData[\'rate\'];
+    echo "Rate on $today : € $rate";
+} else {
+    echo "No rate found for this category.";
+}
+
+echo "</div>";
+
+$conn->close();
+return;
+';

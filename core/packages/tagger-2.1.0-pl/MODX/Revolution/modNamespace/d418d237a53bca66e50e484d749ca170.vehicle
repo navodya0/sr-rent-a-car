@@ -1,0 +1,45 @@
+<?php return array (
+  'unique_key' => 'name',
+  'preserve_keys' => true,
+  'update_object' => true,
+  'resolve' => 
+  array (
+    0 => 
+    array (
+      'type' => 'file',
+      'body' => '{"source":"tagger-2.1.0-pl\\/MODX\\/Revolution\\/modNamespace\\/d418d237a53bca66e50e484d749ca170\\/0\\/","target":"return MODX_CORE_PATH . \'components\\/\';","name":"tagger"}',
+    ),
+    1 => 
+    array (
+      'type' => 'file',
+      'body' => '{"source":"tagger-2.1.0-pl\\/MODX\\/Revolution\\/modNamespace\\/d418d237a53bca66e50e484d749ca170\\/1\\/","target":"return MODX_ASSETS_PATH . \'components\\/\';","name":"tagger"}',
+    ),
+    2 => 
+    array (
+      'type' => 'php',
+      'body' => '{"type":"php","source":"tagger-2.1.0-pl\\/MODX\\/Revolution\\/modNamespace\\/d418d237a53bca66e50e484d749ca170.gpm.resolve.bootstrap.resolver","name":"gpm.resolve.bootstrap"}',
+    ),
+    3 => 
+    array (
+      'type' => 'file',
+      'body' => '{"source":"tagger-2.1.0-pl\\/MODX\\/Revolution\\/modNamespace\\/d418d237a53bca66e50e484d749ca170\\/3\\/","target":"return MODX_CORE_PATH . \'components\\/tagger\\/docs\\/\';","name":"README.md"}',
+    ),
+    4 => 
+    array (
+      'type' => 'file',
+      'body' => '{"source":"tagger-2.1.0-pl\\/MODX\\/Revolution\\/modNamespace\\/d418d237a53bca66e50e484d749ca170\\/4\\/","target":"return MODX_CORE_PATH . \'components\\/tagger\\/docs\\/\';","name":"LICENSE.md"}',
+    ),
+    5 => 
+    array (
+      'type' => 'file',
+      'body' => '{"source":"tagger-2.1.0-pl\\/MODX\\/Revolution\\/modNamespace\\/d418d237a53bca66e50e484d749ca170\\/5\\/","target":"return MODX_CORE_PATH . \'components\\/tagger\\/docs\\/\';","name":"CHANGELOG.md"}',
+    ),
+  ),
+  'vehicle_class' => 'xPDO\\Transport\\xPDOObjectVehicle',
+  'guid' => '4cca2b88f2c8cc6fd51aaa46df9252b4',
+  'package' => '',
+  'class' => 'MODX\\Revolution\\modNamespace',
+  'signature' => 'd418d237a53bca66e50e484d749ca170',
+  'native_key' => 'tagger',
+  'object' => '{"name":"tagger","path":"{core_path}components\\/tagger\\/","assets_path":"{assets_path}components\\/tagger\\/"}',
+);

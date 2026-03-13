@@ -1,0 +1,16 @@
+2026-03-03 09:28:42 - PHPMailer Script started
+2026-03-03 09:29:34 - PHPMailer Script started
+2026-03-03 09:29:34 - Attempting SMTP send...
+2026-03-03 09:29:38 - SMTP Mail sent ✅
+2026-03-03 09:32:01 - PHPMailer Script started
+2026-03-03 09:32:01 - Attempting SMTP send...
+2026-03-03 09:32:05 - SMTP Mail sent ✅
+2026-03-03 09:33:10 - PHPMailer Script started
+2026-03-03 09:33:10 - Attempting SMTP send...
+2026-03-03 09:33:14 - SMTP Mail sent ✅
+2026-03-03 09:33:39 - PHPMailer Script started
+2026-03-03 09:33:39 - Attempting SMTP send...
+2026-03-03 09:33:43 - SMTP Mail sent ✅
+2026-03-03 09:34:05 - PHPMailer Script started
+2026-03-03 09:34:05 - Attempting SMTP send...
+2026-03-03 09:34:09 - SMTP Mail sent ✅

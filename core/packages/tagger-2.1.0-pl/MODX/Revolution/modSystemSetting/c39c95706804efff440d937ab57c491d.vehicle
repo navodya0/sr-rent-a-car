@@ -1,0 +1,12 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'vehicle_class' => 'xPDO\\Transport\\xPDOObjectVehicle',
+  'guid' => 'ef625e944f95e353cf1909d7e3c80696',
+  'package' => '',
+  'class' => 'MODX\\Revolution\\modSystemSetting',
+  'signature' => 'c39c95706804efff440d937ab57c491d',
+  'native_key' => 'tagger.remove_accents_tag',
+  'object' => '{"key":"tagger.remove_accents_tag","value":1,"xtype":"combo-boolean","namespace":"tagger","area":"settings","editedon":null}',
+);

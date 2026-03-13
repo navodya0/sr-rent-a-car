@@ -1,0 +1,48 @@
+# Deny access to _all_ files in the core, including changelog.txt and error.log
+# Original borrowed from ownCloud
+
+# Apache 2.4 - Restrict access
+<IfModule mod_authz_core.c>
+    Require all denied
+</IfModule>
+
+# Apache 2.2 - Restrict access
+<IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+    Satisfy All
+</IfModule>
+
+# Prevent directory listing
+IndexIgnore *
+
+# Prevent direct access to .htaccess
+<Files .htaccess>
+    Order allow,deny
+    Deny from all
+</Files>
+# Enable Rewrite Engine
+RewriteEngine On
+
+# Prevent access to system folders
+RewriteRule ^(manager|connectors|core) - [L]
+
+# Ensure index.php is accessible
+RewriteRule ^index\.php$ - [L]
+
+RewriteEngine On
+RewriteBase /
+
+# Redirect dynamic URLs to static ones
+RewriteRule ^product/([0-9]+)$ product.php?id=$1 [L,QSA]
+
+# MODX-friendly URLs rule
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?q=$1 [L,QSA]
+
+
+
+
+
+
