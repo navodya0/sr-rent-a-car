@@ -231,7 +231,7 @@
       <div class="col-lg-7">
         <div class="travel-card big-card indian-card">
             <div class="card-overlay">
-                <span class="country-tag">Indian Travelers</span>
+                <a href="#" class="country-tag btn">Indian Travelers</a>
                 <p>We provide tailored vehicle rental services designed especially for Indian travelers visiting Sri Lanka.</p>
             </div>
         </div>

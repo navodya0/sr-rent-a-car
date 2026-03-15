@@ -2087,7 +2087,8 @@ fieldset:disabled a.btn {
     color: #fff;
     background-color: #5b0000;
     border-color: #0062cc;
-  width: 100%; }
+  /* width: 100%;  */
+}
   .btn-primary:focus, .btn-primary.focus {
     -webkit-box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
     box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5); }
@@ -16581,6 +16582,8 @@ color : #fff;
   display:flex;
   overflow:auto;
   scroll-snap-type:x mandatory;
+  border: 3px solid #004085;
+  box-shadow: 0 4px 10px rgb(9 28 51 / 40%);
 }
 .vehicleRow::-webkit-scrollbar{ height:8px; }
 .vehicleRow::-webkit-scrollbar-thumb{ background:rgba(0,0,0,.15); border-radius:99px; }
@@ -16629,7 +16632,7 @@ color : #fff;
 .vehicleCard__price strong{ font-weight:900; }
 
 .bg-whitee {
-    background: #f1f3f4 !important;
+    background: #fff !important;
 }
 
 .rentWidget__box{ gap:8px; }
