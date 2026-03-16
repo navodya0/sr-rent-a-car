@@ -1,23 +1,49 @@
 <?php  return 'require "assets/includes/db_connect.php";
 
-$vehicleId       = isset($_GET[\'vehicle_id\']) ? (int)$_GET[\'vehicle_id\'] : 0;
-$carCode         = isset($_GET[\'car_code\']) ? trim($_GET[\'car_code\']) : \'\';
-$pickupDateTime  = isset($_GET[\'pickup_datetime\']) ? trim($_GET[\'pickup_datetime\']) : \'\';
-$dropoffDateTime = isset($_GET[\'dropoff_datetime\']) ? trim($_GET[\'dropoff_datetime\']) : \'\';
-$pickupLocation  = isset($_GET[\'pickup_location\']) ? trim($_GET[\'pickup_location\']) : \'\';
-$dropoffLocation = isset($_GET[\'dropoff_location\']) ? trim($_GET[\'dropoff_location\']) : \'\';
-$days            = isset($_GET[\'days\']) ? (int)$_GET[\'days\'] : 0;
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+/**
+ * Save selected vehicle from POST
+ */
+if ($_SERVER[\'REQUEST_METHOD\'] === \'POST\') {
+    if (isset($_POST[\'vehicle_id\']) || isset($_POST[\'car_code\'])) {
+        $_SESSION[\'selected_vehicle\'] = [
+            \'vehicle_id\' => trim($_POST[\'vehicle_id\'] ?? \'\'),
+            \'car_code\'   => trim($_POST[\'car_code\'] ?? \'\'),
+        ];
+    }
+}
+
+$selectedVehicle = $_SESSION[\'selected_vehicle\'] ?? [];
+$search          = $_SESSION[\'rent_search\'] ?? [];
+
+$vehicleId = isset($selectedVehicle[\'vehicle_id\']) ? (int)$selectedVehicle[\'vehicle_id\'] : 0;
+$carCode   = trim($selectedVehicle[\'car_code\'] ?? \'\');
+
+$pickupDateTime  = trim($search[\'pickup_datetime\'] ?? \'\');
+$dropoffDateTime = trim($search[\'dropoff_datetime\'] ?? \'\');
+$pickupLocation  = trim($search[\'pickup_location\'] ?? \'\');
+$dropoffLocation = trim($search[\'dropoff_location\'] ?? \'\');
+
+// if dropoff is empty, use pickup location
+if ($dropoffLocation === \'\') {
+    $dropoffLocation = $pickupLocation;
+}
 
 if ($vehicleId <= 0 && $carCode === \'\') {
     return \'<p>Vehicle not selected.</p>\';
 }
 
-$pickupDate  = ($pickupDateTime && strtotime($pickupDateTime)) ? date(\'Y-m-d\', strtotime($pickupDateTime)) : \'\';
-$dropoffDate = ($dropoffDateTime && strtotime($dropoffDateTime)) ? date(\'Y-m-d\', strtotime($dropoffDateTime)) : \'\';
+$pickupDate  = ($pickupDateTime !== \'\' && strtotime($pickupDateTime)) ? date(\'Y-m-d\', strtotime($pickupDateTime)) : \'\';
+$dropoffDate = ($dropoffDateTime !== \'\' && strtotime($dropoffDateTime)) ? date(\'Y-m-d\', strtotime($dropoffDateTime)) : \'\';
 
-if ($days <= 0 && $pickupDate && $dropoffDate) {
+$days = 0;
+if ($pickupDate && $dropoffDate) {
     $start = strtotime($pickupDate);
     $end   = strtotime($dropoffDate);
+
     if ($start && $end && $end >= $start) {
         $days = max(1, (int)(($end - $start) / 86400) + 1);
     }
@@ -415,11 +441,173 @@ $out .= \'        <strong>Don’t miss out!</strong> Prices are currently lower 
 $out .= \'        Book now and save more.\';
 $out .= \'      </div>\';
 
-$out .= \'      <a href="javascript:void(0);" class="premiumContinueBtn">Continue to coverage</a>\';
+$step3Link = $modx->makeUrl(43, \'\', [
+    \'vehicle_id\'       => $vehicleId,
+    \'car_code\'         => $carCode,
+    \'pickup_datetime\'  => $pickupDateTime,
+    \'dropoff_datetime\' => $dropoffDateTime,
+    \'pickup_location\'  => $pickupLocation,
+    \'dropoff_location\' => $dropoffLocation,
+    \'days\'             => $days
+]);
+
+$step3Action = html_entity_decode($modx->makeUrl(43), ENT_QUOTES, \'UTF-8\');
+
+$out .= \'      <form action="\' . htmlspecialchars($step3Action, ENT_QUOTES, \'UTF-8\') . \'" method="post" id="js-step3-form">\';
+$out .= \'        <input type="hidden" name="vehicle_id" value="\' . (int)$vehicleId . \'">\';
+$out .= \'        <input type="hidden" name="car_code" value="\' . htmlspecialchars($carCode, ENT_QUOTES, \'UTF-8\') . \'">\';
+$out .= \'        <input type="hidden" name="pickup_datetime" value="\' . htmlspecialchars($pickupDateTime, ENT_QUOTES, \'UTF-8\') . \'">\';
+$out .= \'        <input type="hidden" name="dropoff_datetime" value="\' . htmlspecialchars($dropoffDateTime, ENT_QUOTES, \'UTF-8\') . \'">\';
+$out .= \'        <input type="hidden" name="pickup_location" value="\' . htmlspecialchars($pickupLocation, ENT_QUOTES, \'UTF-8\') . \'">\';
+$out .= \'        <input type="hidden" name="dropoff_location" value="\' . htmlspecialchars($dropoffLocation, ENT_QUOTES, \'UTF-8\') . \'">\';
+$out .= \'        <input type="hidden" name="days" value="\' . (int)$days . \'">\';
+$out .= \'        <input type="hidden" name="rental_amount" id="js-post-rental-amount" value="\' . htmlspecialchars($amount !== \'\' ? $amount : \'0.00\', ENT_QUOTES, \'UTF-8\') . \'">\';
+$out .= \'        <input type="hidden" name="security_deposit" id="js-post-security-deposit" value="\' . htmlspecialchars($securityDeposit !== \'\' ? $securityDeposit : \'0.00\', ENT_QUOTES, \'UTF-8\') . \'">\';
+$out .= \'        <input type="hidden" name="extras_total" id="js-post-extras-total" value="0.00">\';
+$out .= \'        <input type="hidden" name="grand_total" id="js-post-grand-total" value="\' . htmlspecialchars($baseTotal !== \'\' ? $baseTotal : \'0.00\', ENT_QUOTES, \'UTF-8\') . \'">\';
+$out .= \'        <input type="hidden" name="extras" id="js-post-extras" value="">\';
+$out .= \'        <button type="submit" class="premiumContinueBtn" id="js-step3-submit">Continue to coverage</button>\';
+$out .= \'      </form>\';
+
 $out .= \'    </div>\';
 $out .= \'  </aside>\';
 
 $out .= \'</div>\';
+
+
+$out .= \'<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const checks = document.querySelectorAll(".js-extra-check");
+  const extrasSummary = document.getElementById("js-extras-summary");
+  const extrasTotalEl = document.getElementById("js-extras-total");
+  const grandTotalEl = document.getElementById("js-grand-total");
+
+  const postRentalAmount = document.getElementById("js-post-rental-amount");
+  const postSecurityDeposit = document.getElementById("js-post-security-deposit");
+  const postExtrasTotal = document.getElementById("js-post-extras-total");
+  const postGrandTotal = document.getElementById("js-post-grand-total");
+  const postExtras = document.getElementById("js-post-extras");
+
+  const baseTotal = \' . json_encode((float)($baseTotal !== \'\' ? $baseTotal : 0)) . \';
+  const rentalAmount = \' . json_encode((float)($amount !== \'\' ? $amount : 0)) . \';
+  const securityDeposit = \' . json_encode((float)($securityDeposit !== \'\' ? $securityDeposit : 0)) . \';
+
+  function money(val) {
+    return "€" + Number(val).toFixed(2);
+  }
+
+  function updateExtraCard(label) {
+    const check = label.querySelector(".js-extra-check");
+    const qtyWrap = label.querySelector(".js-extra-qty-wrap");
+
+    if (check.checked) {
+      label.classList.add("is-selected");
+      if (qtyWrap) qtyWrap.style.display = "flex";
+    } else {
+      label.classList.remove("is-selected");
+      if (qtyWrap) qtyWrap.style.display = "none";
+    }
+  }
+
+  function getSelectedExtras() {
+    const selected = [];
+
+    checks.forEach((check) => {
+      const label = check.closest(".extraOption");
+      const qtyInput = label ? label.querySelector(".js-extra-qty") : null;
+      const qty = qtyInput ? parseInt(qtyInput.value, 10) || 1 : 1;
+      const price = parseFloat(check.getAttribute("data-price") || "0");
+      const extraId = check.value || "";
+      const titleEl = label ? label.querySelector(".extraOption__title") : null;
+      const title = titleEl ? titleEl.textContent.trim() : "";
+
+      if (check.checked) {
+        selected.push({
+          id: extraId,
+          name: title,
+          qty: qty,
+          price: price,
+          total: price * qty
+        });
+      }
+    });
+
+    return selected;
+  }
+
+  function updatePostFields(extrasTotal, grandTotal) {
+    if (postRentalAmount) postRentalAmount.value = Number(rentalAmount).toFixed(2);
+    if (postSecurityDeposit) postSecurityDeposit.value = Number(securityDeposit).toFixed(2);
+    if (postExtrasTotal) postExtrasTotal.value = Number(extrasTotal).toFixed(2);
+    if (postGrandTotal) postGrandTotal.value = Number(grandTotal).toFixed(2);
+    if (postExtras) postExtras.value = JSON.stringify(getSelectedExtras());
+  }
+
+  function calcTotals() {
+    let extrasTotal = 0;
+
+    checks.forEach((check) => {
+      const label = check.closest(".extraOption");
+      const qtyInput = label.querySelector(".js-extra-qty");
+      const qty = qtyInput ? parseInt(qtyInput.value, 10) || 1 : 1;
+      const price = parseFloat(check.getAttribute("data-price") || "0");
+
+      if (check.checked) {
+        extrasTotal += price * qty;
+      }
+
+      updateExtraCard(label);
+    });
+
+    if (extrasTotal > 0) {
+      extrasSummary.style.display = "";
+      extrasTotalEl.textContent = money(extrasTotal);
+    } else {
+      extrasSummary.style.display = "none";
+      extrasTotalEl.textContent = money(0);
+    }
+
+    const grandTotal = baseTotal + extrasTotal;
+    grandTotalEl.textContent = money(grandTotal);
+
+    updatePostFields(extrasTotal, grandTotal);
+  }
+
+  checks.forEach((check) => {
+    check.addEventListener("change", calcTotals);
+
+    const label = check.closest(".extraOption");
+    const minusBtn = label.querySelector(".js-extra-minus");
+    const plusBtn = label.querySelector(".js-extra-plus");
+    const qtyInput = label.querySelector(".js-extra-qty");
+
+    if (minusBtn && qtyInput) {
+      minusBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        let val = parseInt(qtyInput.value, 10) || 1;
+        val = Math.max(1, val - 1);
+        qtyInput.value = val;
+        calcTotals();
+      });
+    }
+
+    if (plusBtn && qtyInput) {
+      plusBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        let val = parseInt(qtyInput.value, 10) || 1;
+        if (val < 3) {
+          qtyInput.value = val + 1;
+          calcTotals();
+        }
+      });
+    }
+  });
+
+  calcTotals();
+});
+</script>\';
 
 $out .= \'<script>
 function openVehicleInfoModal() {

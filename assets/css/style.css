@@ -13263,7 +13263,7 @@ input:focus {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #0f6674;
+  background-color: #001c35;
   color: white;
   border: none;
   border-radius: 10%;
@@ -13274,7 +13274,9 @@ input:focus {
 }
 
 .back-to-top:hover {
-  background-color: #75808a;
+  background-color: #001c35;
+    color: white;
+      border: #001c35;
 }
 
 
@@ -14403,10 +14405,10 @@ font-size:14px;
   height:100%;
 }
 
-.blog-modern .post-card:hover{
+/* .blog-modern .post-card:hover{
   transform:translateY(-6px);
   box-shadow:0 16px 40px rgba(0,0,0,.12);
-}
+} */
 
 .blog-modern .post-media{
   position:relative;
@@ -14423,9 +14425,9 @@ font-size:14px;
   transition:transform .4s ease;
 }
 
-.blog-modern .post-card:hover .post-media img{
+/* .blog-modern .post-card:hover .post-media img{
   transform:scale(1.10);
-}
+} */
 
 /* gradient overlay on hover */
 .blog-modern .post-media::after{
@@ -14437,9 +14439,9 @@ font-size:14px;
   transition:opacity .25s ease;
 }
 
-.blog-modern .post-card:hover .post-media::after{
+/* .blog-modern .post-card:hover .post-media::after{
   opacity:1;
-}
+} */
 
 /* badge */
 .blog-modern .post-badge{
@@ -14456,7 +14458,7 @@ font-size:14px;
 }
 
 /* hover "read more" */
-.blog-modern .post-hover{
+/* .blog-modern .post-hover{
   position:absolute;
   left:14px;
   bottom:14px;
@@ -14467,12 +14469,12 @@ font-size:14px;
   transform:translateY(6px);
   transition:opacity .25s ease, transform .25s ease;
   z-index:2;
-}
+} */
 
-.blog-modern .post-card:hover .post-hover{
+/* .blog-modern .post-hover{
   opacity:1;
   transform:translateY(0);
-}
+} */
 
 .blog-modern .post-body{
   padding:16px 16px 18px;
@@ -18672,3 +18674,337 @@ color : #fff;
   opacity:1;
   visibility:visible;
 }
+
+
+.coveragePage__header {
+  margin-bottom: 26px;
+}
+
+.coveragePage__title {
+  font-size: 48px;
+  line-height: 1.05;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 8px;
+}
+
+.coveragePage__subtitle {
+  font-size: 18px;
+  color: #5b6b80;
+  margin: 0;
+}
+
+.coverageHeroSummary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  background: #fff;
+  border: 1px solid #dce5ef;
+  border-radius: 18px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.coverageHeroSummary__vehicle {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.coverageHeroSummary__image {
+  width: 110px;
+  height: auto;
+  display: block;
+}
+
+.coverageHeroSummary__name {
+  font-size: 24px;
+  font-weight: 800;
+  margin: 0 0 4px;
+}
+
+.coverageHeroSummary__meta {
+  color: #64748b;
+  font-size: 15px;
+}
+
+.coverageHeroSummary__amount {
+  text-align: right;
+}
+
+.coverageHeroSummary__amount span {
+  display: block;
+  color: #64748b;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.coverageHeroSummary__amount strong {
+  font-size: 26px;
+  font-weight: 800;
+}
+
+.coverageGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.coverageCard {
+  background: #fff;
+  border: 1px solid #dce5ef;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.coverageCard--risk {
+  border-color: #d5dce5;
+}
+
+.coverageCard--basic {
+  border-color: #bfd8ff;
+}
+
+.coverageCard--standard {
+  border-color: #bfe8ff;
+}
+
+.coverageCard--premium {
+  border-color: #b8f0da;
+}
+
+.coverageCard--full {
+  border: 2px solid #22a34a;
+}
+
+.coverageCard__top {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.coverageCard__intro {
+  flex: 1 1 auto;
+}
+
+.coverageCard__title {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.15;
+  margin: 0 0 10px;
+  color: #0f172a;
+}
+
+.coverageCard__desc {
+  font-size: 17px;
+  line-height: 1.5;
+  color: #1f2937;
+  margin: 0;
+}
+
+.coverageCard__imageWrap {
+  width: 150px;
+  flex: 0 0 150px;
+  text-align: right;
+}
+
+.coverageCard__image {
+  max-width: 100%;
+  height: auto;
+}
+
+.coverageCard__priceBox {
+  background: #f3f6fa;
+  border-radius: 14px;
+  padding: 18px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+}
+
+.coverageCard__price strong {
+  display: block;
+  font-size: 26px;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 4px;
+}
+
+.coverageCard__price span {
+  display: block;
+  font-size: 16px;
+  color: #334155;
+}
+
+.coverageCard__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #0071c2;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 16px;
+  padding: 14px 22px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.coverageCard__btn:hover {
+  color: #fff;
+}
+
+.coverageCard__features h4 {
+  font-size: 20px;
+  font-weight: 800;
+  margin: 0 0 12px;
+  color: #0f172a;
+}
+
+.coverageCard__features ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.coverageCard__features li {
+  position: relative;
+  padding-left: 34px;
+  margin-bottom: 12px;
+  font-size: 17px;
+  line-height: 1.45;
+  color: #111827;
+}
+
+.coverageCard__features li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #22a34a;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.coverageCard--risk .coverageCard__features li:before {
+  content: "!";
+  background: #f97316;
+}
+
+.coverageCard__footer {
+  border-radius: 12px;
+  padding: 16px 18px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.coverageCard__footer--success {
+  background: #e9f8ee;
+  color: #166534;
+  border: 1px solid #8dd8a7;
+}
+
+.coverageCard__footer--warning {
+  background: #fff7dd;
+  color: #8a5a00;
+  border: 1px solid #f0d06f;
+}
+
+@media (max-width: 1199px) {
+  .coverageGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  .coveragePage__title {
+    font-size: 34px;
+  }
+
+  .coverageHeroSummary {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .coverageHeroSummary__amount {
+    text-align: left;
+  }
+
+  .coverageCard__top,
+  .coverageCard__priceBox {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .coverageCard__imageWrap {
+    width: 100%;
+    flex: none;
+    text-align: left;
+  }
+}
+
+.coverageHeroSummary__info {
+  min-width: 0;
+}
+
+.coverageHeroSummary__extras {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.coverageHeroSummary__extrasTitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: #475569;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.coverageHeroSummary__extrasList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.coverageHeroSummary__extrasList li {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: #1f2937;
+  margin-bottom: 4px;
+}
+
+.coverageHeroSummary__extrasList strong {
+  white-space: nowrap;
+}
+
+.coverageHeroSummary__amountSub {
+  display: block;
+  margin-top: 6px;
+  font-size: 14px;
+  color: #64748b;
+}
+
+.coverageHeroSummary__amountSub--total {
+  font-weight: 700;
+  color: #0f172a;
+}
+

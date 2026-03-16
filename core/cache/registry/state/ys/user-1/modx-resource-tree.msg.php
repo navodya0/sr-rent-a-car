@@ -1,8 +1,4 @@
 <?php
 return array (
-  0 => '/root',
-  1 => '/root/web_0',
-  2 => '/root/web_0/web_40',
-  3 => '/root/web_0/web_42',
-  4 => '/root/web_0/web_41',
+  0 => '/root/web_0',
 );
