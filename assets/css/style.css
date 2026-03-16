@@ -11401,7 +11401,7 @@ padding: 1rem 0 0 0;
 label {
   display: block;
   /* opacity: 0.5; */
-  height: 50px;
+  /* height: 50px; */
   text-align: center;
   line-height: 50px;
   position: relative;
@@ -16823,7 +16823,7 @@ color : #fff;
   backdrop-filter: blur(6px);
   border: 1px solid rgba(255,255,255,0.2);
   color: #fff;
-  padding: 3px 14px;
+  padding: 0 14px;
   border-radius: 30px;
   font-size: 16px;
   font-weight: 600;
@@ -17396,4 +17396,1279 @@ color : #fff;
   background:#0b1f3a;
   color:#fff;
   transform:translateY(-2px);
+}
+
+.dealCard {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  border: 1px solid #d9dfe8;
+  border-radius: 14px;
+  background: #fff;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.dealCard__imageCol {
+  width: 180px;
+  min-width: 180px;
+  flex: 0 0 180px;
+}
+
+.dealCard__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.dealCard__content {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.dealCard__title {
+  margin: 0 0 12px;
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 700;
+  color: #111827;
+}
+
+.dealCard__specs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #4b5563;
+}
+
+.dealCard__priceCol {
+  width: 220px;
+  min-width: 220px;
+  flex: 0 0 220px;
+  border-left: 1px solid #d9dfe8;
+  padding-left: 24px;
+  text-align: center;
+}
+
+.dealCard__priceLabel {
+  font-size: 15px;
+  color: #6b7280;
+}
+
+.dealCard__priceValue {
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 6px;
+}
+
+.dealCard__btn {
+  display: inline-block;
+  background: #0071c2;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 4px 20px;
+}
+
+@media (max-width: 768px) {
+  .dealCard {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .dealCard__imageCol,
+  .dealCard__priceCol {
+    width: 100%;
+    min-width: 0;
+    flex: none;
+  }
+
+  .dealCard__priceCol {
+    border-left: 0;
+    border-top: 1px solid #d9dfe8;
+    padding-left: 0;
+    padding-top: 20px;
+    text-align: left;
+  }
+}
+
+.stepIndicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #0071c2, #0ea5e9);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 999px;
+  box-shadow: 0 8px 20px rgba(0, 113, 194, 0.18);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  user-select: none;
+}
+
+.stepIndicator:hover,
+.stepIndicator:focus {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(0, 113, 194, 0.24);
+  outline: none;
+}
+
+.stepIndicator__label {
+  font-size: 12px;
+  text-transform: uppercase;
+  opacity: 0.9;
+  letter-spacing: 0.08em;
+}
+
+.stepIndicator__number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: #fff;
+  color: #0071c2;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.stepIndicator__text {
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.stepIndicator.is-active {
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+}
+
+.stepIndicator.is-active .stepIndicator__number {
+  color: #16a34a;
+}
+
+@media (max-width: 767px) {
+  .stepIndicator {
+    margin-top: 10px;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+.bookingStepPage {
+  background: #f5f7fb;
+}
+
+.bookingSteps {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.bookingSteps__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #7a8797;
+  white-space: nowrap;
+}
+
+.bookingSteps__num {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 2px solid #cdd7e3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  background: #fff;
+}
+
+.bookingSteps__text {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.bookingSteps__item--done .bookingSteps__num,
+.bookingSteps__item--active .bookingSteps__num {
+  border-color: #0071c2;
+  background: #0071c2;
+  color: #fff;
+}
+
+.bookingSteps__item--done,
+.bookingSteps__item--active {
+  color: #0f172a;
+}
+
+.bookingSteps__line {
+  height: 3px;
+  width: 90px;
+  background: #d8e1eb;
+  border-radius: 999px;
+  flex: 0 0 90px;
+}
+
+.bookingSteps__line--active {
+  background: #0071c2;
+}
+
+.bookingStepTopbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.bookingStepTopbar__back {
+  color: #0071c2;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.bookingStepTopbar__next {
+  color: #475569;
+  font-weight: 600;
+}
+
+.premiumDealLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) 400px;
+  gap: 24px;
+  align-items: start;
+}
+
+.premiumDealCard,
+.premiumSummaryCard {
+  background: #fff;
+  border: 1px solid #dce5ef;
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+}
+
+.premiumDealCard {
+  padding: 14px;
+  margin-bottom: 10px;
+}
+
+.premiumDealCard--hero {
+  padding: 20px;
+}
+
+.premiumDealCard--soft {
+  background: linear-gradient(135deg, #f8fbff, #eef7ff);
+}
+
+.premiumDealCard__badges {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.premiumBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.premiumBadge--gold {
+  background: #f9cf4b;
+  color: #111827;
+}
+
+.premiumBadge--blue {
+  background: #dff0ff;
+  color: #0071c2;
+}
+
+.premiumDealHero {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: center;
+}
+
+.premiumDealHero__left {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.premiumDealHero__right {
+  width: 260px;
+  flex: 0 0 260px;
+  text-align: center;
+}
+
+.premiumDealHero__image {
+  max-width: 100%;
+  height: auto;
+  display: inline-block;
+}
+
+.premiumDealHero__title {
+  font-size: 30px;
+  line-height: 1.05;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.premiumDealHero__subtitle {
+  color: #5b6b80;
+  font-size: 18px;
+  margin-bottom: 18px;
+}
+
+.premiumSpecs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.premiumSpecs__item {
+  background: #f3f6fa;
+  border: 1px solid #e1e8f0;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.premiumBookingMeta {
+  display: grid;
+  gap: 8px;
+  color: #1f2937;
+}
+
+.premiumMuted {
+  color: #64748b;
+}
+
+.premiumSectionTitle {
+  font-size: 20px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.premiumIncludedList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.premiumIncludedList li {
+  position: relative;
+  padding-left: 36px;
+  margin-bottom: 14px;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.premiumIncludedList li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #16a34a;
+  font-weight: 800;
+  font-size: 26px;
+  line-height: 1;
+}
+
+.premiumCoverageBanner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.premiumCoverageBanner__text {
+  font-size: 18px;
+  color: #111827;
+}
+
+.premiumCoverageBanner__icon {
+  font-size: 56px;
+  line-height: 1;
+}
+
+.premiumSummaryCard {
+  padding: 18px;
+  position: sticky;
+  top: 20px;
+}
+
+.premiumSummaryCard__block {
+  background: #f3f6fa;
+  border-radius: 12px;
+  padding: 10px;
+  margin-bottom: 12px;
+}
+
+.premiumSummaryCard__heading {
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 10px;
+  color: #111827;
+}
+
+.premiumSummaryRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 16px;
+}
+
+.premiumSummaryRow strong {
+  white-space: nowrap;
+}
+
+.premiumSummaryCard__total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  background: #eef5fb;
+  border-radius: 12px;
+  padding: 18px 16px;
+  margin: 12px 0;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.premiumSummaryCard__total strong {
+  font-size: 24px;
+  color: #0f172a;
+  white-space: nowrap;
+}
+
+.premiumPriceAlert {
+  background: #fff8dd;
+  border: 1px solid #f2cf66;
+  border-radius: 12px;
+  padding: 16px;
+  color: #5b4b00;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 18px;
+}
+
+.premiumContinueBtn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background: #064069;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 20px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  box-shadow: 0 12px 24px rgba(0, 113, 194, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.premiumContinueBtn:hover {
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 16px 28px rgba(0, 113, 194, 0.25);
+}
+
+@media (max-width: 1199px) {
+  .premiumDealLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .premiumSummaryCard {
+    position: static;
+  }
+}
+
+@media (max-width: 767px) {
+  .premiumDealHero {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+
+  .premiumDealHero__right {
+    width: 100%;
+    flex: none;
+  }
+
+  .premiumDealHero__title {
+    font-size: 34px;
+  }
+
+  .bookingStepTopbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .bookingSteps__line {
+    width: 50px;
+    flex-basis: 50px;
+  }
+}
+
+.premiumSummaryCard__extras {
+  margin-top: 12px;
+}
+
+.premiumSummaryCard__heading {
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: #111827;
+}
+
+.extrasList {
+  display: grid;
+  gap: 10px;
+}
+
+.extraOption {
+  position: relative;
+  display: block;
+  border: 1px solid #cfd9e3;
+  border-radius: 12px;
+  background: #fff;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  overflow: hidden;
+}
+
+.extraOption:hover {
+  border-color: #0071c2;
+  box-shadow: 0 4px 12px rgba(0, 113, 194, 0.08);
+}
+
+.extraOption.is-selected {
+  border: 2px solid #0071c2;
+  background: #f4faff;
+}
+
+.extraOption__checkbox {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.extraOption__main {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+}
+
+.extraOption__checkWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.extraOption__fakebox {
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  border: 2px solid #1f2937;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  flex: 0 0 20px;
+}
+
+.extraOption.is-selected .extraOption__fakebox {
+  background: #0071c2;
+  border-color: #0071c2;
+}
+
+.extraOption.is-selected .extraOption__fakebox:after {
+  content: "✓";
+  color: #fff;
+  font-weight: 800;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.extraOption__info {
+  min-width: 0;
+}
+
+.extraOption__title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.2;
+  margin-bottom: 2px;
+}
+
+.extraOption__descInline {
+  font-size: 11px;
+  font-weight: 500;
+  color: #64748b;
+}
+
+.extraOption__price {
+  font-size: 12px;
+  color: #334155;
+  line-height: 1.3;
+}
+
+.extraOption__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.extraQty {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.extraQty__btn {
+  width: 30px;
+  height: 30px;
+  border: 2px solid #0071c2;
+  color: #0071c2;
+  background: #fff;
+  border-radius: 50%;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.extraQty__input {
+  width: 38px;
+  height: 38px;
+  border: 1px solid #cfd9e3;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: #111827;
+  background: #fff;
+}
+
+.extrasNote {
+  margin: 10px 0 0;
+  color: #5b6b80;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+@media (max-width: 1199px) {
+  .premiumSummaryCard__extras {
+    margin-top: 16px;
+  }
+}
+
+.premiumSectionTitle--sm {
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+.premiumInfoList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.premiumInfoList li {
+  position: relative;
+  padding-left: 22px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  line-height: 1.55;
+  color: #1f2937;
+}
+
+.premiumInfoList li:before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #0071c2;
+  font-weight: 800;
+}
+
+.premiumConditionsBtn {
+  margin-top: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #0071c2;
+  background: #fff;
+  color: #0071c2;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 6px 20px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.premiumConditionsBtn:hover {
+  background: #0071c2;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.rentalModal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+}
+
+.rentalModal.is-open {
+  display: block;
+}
+
+.rentalModal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+}
+
+.rentalModal__dialog {
+  position: relative;
+  width: min(760px, calc(100vw - 32px));
+  max-height: calc(100vh - 40px);
+  overflow: auto;
+  margin: 20px auto;
+  background: #fff;
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.25);
+}
+
+.rentalModal__close {
+  position: absolute;
+  right: 14px;
+  top: 10px;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  background: transparent;
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+  color: #334155;
+}
+
+.rentalModal__title {
+  font-size: 28px;
+  font-weight: 800;
+  margin: 0 0 18px;
+  color: #0f172a;
+}
+
+.rentalModal__section h4 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 10px;
+  color: #0f172a;
+}
+
+.rentalModal__section p,
+.rentalModal__section li {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #334155;
+}
+
+.rentalModal__section ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.rentalModal__content {
+  display: grid;
+  gap: 22px;
+}
+
+.rentalModal__section h4 {
+  font-size: 22px;
+  font-weight: 800;
+  margin: 0 0 12px;
+  color: #0f172a;
+}
+
+.rentalModal__section h5 {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 14px 0 8px;
+  color: #1f2937;
+}
+
+.rentalModal__section p {
+  font-size: 15px;
+  line-height: 1.65;
+  color: #334155;
+  margin: 0 0 10px;
+}
+
+.rentalModal__section ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.rentalModal__section li {
+  font-size: 15px;
+  line-height: 1.65;
+  color: #334155;
+  margin-bottom: 8px;
+}
+
+/* ===== Premium Theme ===== */
+
+
+.section-padding {
+  padding: 40px 0;
+}
+
+.premium-section {
+  background: linear-gradient(180deg, #ffffff 0%, #fbfbfd 100%);
+}
+
+.premium-light-bg {
+  background: #f8f6f2;
+}
+
+.premium-dark-section {
+  background: linear-gradient(135deg, #081120 0%, #0f1b31 60%, #16243f 100%);
+  padding: 100px 0;
+}
+
+.premium-highlight-section {
+  background: linear-gradient(135deg, #0b1c39 0%, #14294d 100%);
+  padding: 100px 0;
+}
+
+.premium-cta-section {
+  background: linear-gradient(135deg, #071325 0%, #0b1c39 100%);
+  padding: 40px 0;
+}
+
+.premium-hero {
+  position: relative;
+  padding: 180px 0 120px;
+  background-size: cover;
+  background-position: center;
+}
+
+.premium-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(5, 10, 20, 0.45), rgba(5, 10, 20, 0.82));
+}
+
+.premium-hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.premium-tag,
+.section-eyebrow {
+  display: inline-block;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #c8a96a;
+}
+
+.premium-title {
+  font-size: 56px;
+  line-height: 1.1;
+  font-weight: 700;
+  color: #fff;
+}
+
+.premium-subtitle {
+  max-width: 760px;
+  margin: 0 auto 20px;
+  font-size: 18px;
+  color: rgba(255,255,255,0.88);
+  line-height: 1.8;
+}
+
+.premium-breadcrumbs,
+.premium-breadcrumbs a,
+.premium-breadcrumbs span {
+  color: rgba(255,255,255,0.8);
+}
+
+.premium-heading {
+  font-size: 40px;
+  line-height: 1.2;
+  font-weight: 700;
+  color: #0b1c39;
+  margin-bottom: 20px;
+}
+
+.premium-text {
+  font-size: 16px;
+  line-height: 1.9;
+  color: #5b6472;
+  margin-bottom: 16px;
+  text-align: justify;
+}
+
+.text-gold {
+  color: #d4af6a !important;
+}
+
+/* ===== Images ===== */
+.premium-image-wrap {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 30px 70px rgba(11, 28, 57, 0.18);
+}
+
+.premium-img {
+  width: 100%;
+  display: block;
+  border-radius: 24px;
+  transform: scale(1.01);
+}
+
+/* ===== Buttons ===== */
+.btn-premium-luxury {
+  background: linear-gradient(135deg, #d4af6a 0%, #b88a3b 100%);
+  color: #fff;
+  border: none;
+  padding: 14px 30px;
+  border-radius: 999px;
+  font-weight: 600;
+  box-shadow: 0 15px 35px rgba(184, 138, 59, 0.25);
+  transition: all 0.3s ease;
+}
+
+.btn-premium-luxury:hover {
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px rgba(184, 138, 59, 0.35);
+}
+
+.btn-outline-premium {
+  border: 1px solid #d4af6a;
+  color: #0b1c39;
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-weight: 600;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-premium:hover {
+  background: #0b1c39;
+  color: #fff;
+  border-color: #0b1c39;
+}
+
+.btn-light-premium {
+  background: #fff;
+  color: #0b1c39;
+  border-radius: 999px;
+  padding: 15px 34px;
+  font-weight: 600;
+  border: none;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+}
+
+.btn-light-premium:hover {
+  color: #0b1c39;
+  transform: translateY(-2px);
+}
+
+/* ===== Cards ===== */
+.luxury-card,
+.benefit-card,
+.permit-card,
+.faq-item {
+  background: rgba(255,255,255,0.96);
+  border-radius: 22px;
+  padding: 32px 24px;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(212, 175, 106, 0.12);
+  transition: all 0.3s ease;
+}
+
+.faq-item {
+  padding: 9px 24px !important;
+}
+
+.luxury-card:hover,
+.benefit-card:hover,
+.permit-card:hover,
+.faq-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 25px 55px rgba(15, 23, 42, 0.12);
+}
+
+.luxury-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(212, 175, 106, 0.18);
+  backdrop-filter: blur(8px);
+  color: #fff;
+}
+
+.luxury-card h5,
+.benefit-card h5 {
+  font-weight: 600;
+  margin-bottom: 14px;
+  color: white;
+  font-size: 16px;
+}
+
+.benefit-card h5 {
+  color: black !important;
+}
+
+.luxury-card p {
+  color: rgba(255,255,255,0.82);
+}
+
+.benefit-card p,
+.faq-answer {
+  color: #5b6472;
+}
+
+.permit-card p {
+  color: black;
+  font-weight: 800;
+}
+
+.luxury-icon {
+  font-size: 34px;
+  color: #d4af6a;
+  margin-bottom: 20px;
+}
+
+/* ===== Lists ===== */
+.premium-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.premium-list li {
+  position: relative;
+  padding-left: 34px;
+  margin-bottom: 16px;
+  color: #4b5563;
+  line-height: 1.8;
+}
+
+.premium-list li::before {
+  content: "✦";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #c8a96a;
+  font-weight: bold;
+}
+
+/* ===== FAQ ===== */
+.faq-item {
+  margin-bottom: 20px;
+}
+
+.faq-question {
+  font-size: 18px;
+  font-weight: 600;
+  color: #0b1c39;
+  margin-bottom: 10px;
+}
+
+.faq-answer {
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+/* ===== Utility ===== */
+.text-white {
+  color: #fff !important;
+}
+
+.text-light {
+  color: rgba(255,255,255,0.82) !important;
+}
+
+.gap-3 {
+  gap: 1rem;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 991px) {
+  .premium-title {
+    font-size: 40px;
+  }
+
+  .premium-heading {
+    font-size: 30px;
+  }
+
+  .section-padding,
+  .premium-dark-section,
+  .premium-highlight-section,
+  .premium-cta-section {
+    padding: 40px 0;
+  }
+}
+
+.premiumModal { display:none; position:fixed; inset:0; z-index:9999; }
+.premiumModal.is-active { display:block; }
+
+.premiumModal__backdrop{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+}
+
+.premiumModal__content{
+  position:relative;
+  max-width:480px;
+  margin:10vh auto;
+  background:#fff;
+  border-radius:16px;
+  padding:28px;
+  z-index:2;
+}
+
+.premiumModal__close{
+  position:absolute;
+  top:10px;
+  right:14px;
+  background:none;
+  border:none;
+  font-size:26px;
+  cursor:pointer;
+}
+
+.premiumDealHero__subtitle {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.premiumSimilarInfo {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.premiumInfoTrigger {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.premiumInfoIcon {
+  width: 18px;
+  height: 20px;
+  display: block;
+}
+
+.premiumDealHero__subtitleWrap{
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+
+.premiumInfoTooltip{
+  position:relative;
+  display:inline-flex;
+  margin-bottom: 18px;
+}
+
+.premiumInfoTrigger{
+  background:none;
+  border:none;
+  cursor:pointer;
+  padding:0;
+  display:flex;
+  align-items:center;
+}
+
+/* Tooltip box */
+
+.premiumTooltipBox{
+  position:absolute;
+  bottom:120%;
+  left:50%;
+  transform:translateX(-50%);
+  width:280px;
+
+  background:#0f1b31;
+  color:#fff;
+  padding:16px;
+  border-radius:8px;
+
+  font-size:14px;
+  line-height:1.5;
+
+  box-shadow:0 10px 25px rgba(0,0,0,0.25);
+
+  opacity:0;
+  visibility:hidden;
+  transition:all .2s ease;
+  z-index:999;
+}
+
+/* arrow */
+
+.premiumTooltipBox::after{
+  content:"";
+  position:absolute;
+  top:100%;
+  left:50%;
+  transform:translateX(-50%);
+  border-width:6px;
+  border-style:solid;
+  border-color:#0f1b31 transparent transparent transparent;
+}
+
+.premiumTooltipBox p{
+  font-size: 12px;
+  margin-bottom: 0;
+}
+
+/* show tooltip */
+
+.premiumInfoTooltip:hover .premiumTooltipBox,
+.premiumInfoTooltip:focus-within .premiumTooltipBox{
+  opacity:1;
+  visibility:visible;
 }

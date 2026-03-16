@@ -1,3 +1,4 @@
+<?php
 require "assets/includes/db_connect.php";
 
 $vehicleId       = isset($_GET['vehicle_id']) ? (int)$_GET['vehicle_id'] : 0;
@@ -568,3 +569,4 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>';
 
 return $out;
+return;
