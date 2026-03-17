@@ -1,3 +1,4 @@
+<?php
 require "assets/includes/db_connect.php";
 
 if (session_status() === PHP_SESSION_NONE) {
@@ -252,6 +253,7 @@ $out .= '          <input type="hidden" name="extras" value="' . htmlspecialchar
 
 $out .= '              <hr>';
 
+
 $out .= '          <div class="driverFormSection mt-4">';
 $out .= '            <h3 class="driverFormSection__title">Payment option</h3>';
 $out .= '            <div class="row">';
@@ -387,3 +389,4 @@ $out .= '<script>
 </script>';
 
 return $out;
+return;
