@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 4.5.2, created on 2026-03-16 12:07:47
+/* Smarty version 4.5.2, created on 2026-03-18 05:15:00
   from 'C:\xampp\htdocs\srilankarentacar.com\manager\templates\default\element\snippet\update.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.5.2',
-  'unifunc' => 'content_69b7e4832bc4c4_60017033',
+  'unifunc' => 'content_69ba26c4954d87_84431725',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_69b7e4832bc4c4_60017033 (Smarty_Internal_Template $_smarty_tpl) {
+function content_69ba26c4954d87_84431725 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div id="modx-panel-snippet-div"></div>
 <?php echo $_smarty_tpl->tpl_vars['onSnipFormPrerender']->value;
 }

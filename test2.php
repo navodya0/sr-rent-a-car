@@ -1,3 +1,5 @@
+<?php
+
 require "assets/includes/db_connect.php";
 
 if (session_status() === PHP_SESSION_NONE) {
@@ -107,6 +109,19 @@ foreach ($params as $key => $value) {
     }
 }
 
+$countryCodes = [];
+
+$codeStmt = $modx->prepare("
+    SELECT country_name, country_code
+    FROM country_codes
+    WHERE country_code IS NOT NULL AND country_code <> ''
+    ORDER BY country_name ASC
+");
+
+if ($codeStmt && $codeStmt->execute()) {
+    $countryCodes = $codeStmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 if (!$stmt->execute()) {
     $error = $stmt->errorInfo();
     return '<p>Could not load vehicle: ' . htmlspecialchars($error[2], ENT_QUOTES, 'UTF-8') . '</p>';
@@ -146,28 +161,55 @@ $out .= '        <form action="' . htmlspecialchars($formAction, ENT_QUOTES, 'UT
 $out .= '          <div class="row">';
 
 $out .= '            <div class="col-md-6 mb-0">';
-$out .= '              <label class="driverForm__label">Full Name</label>';
+$out .= '              <label class="driverForm__label">Full Name <span class="text-danger">*</span></label>';
 $out .= '              <input type="text" name="full_name" class="form-control driverForm__control" placeholder="Full name" required>';
 $out .= '              <small class="text-muted">Can only contain letters A-Z.</small>';
 $out .= '            </div>';
 
 $out .= '            <div class="col-md-6 mb-3">';
-$out .= '              <label class="driverForm__label">Email</label>';
+$out .= '              <label class="driverForm__label">Email <span class="text-danger">*</span></label>';
 $out .= '              <input type="email" name="email" class="form-control driverForm__control" placeholder="Email" required>';
 $out .= '            </div>';
 
 $out .= '            <div class="col-md-6 mb-3">';
-$out .= '              <label class="driverForm__label">Whatsapp Number</label>';
-$out .= '              <input type="text" name="whatsapp_number" class="form-control driverForm__control" placeholder="Whatsapp Number" required>';
+$out .= '              <label class="driverForm__label">Whatsapp Number <span class="text-danger">*</span></label>';
+$out .= '              <div class="row gx-2">';
+$out .= '                <div class="col-5 pr-0">';
+$out .= '                  <select name="whatsapp_country_code" class="form-control driverForm__control" required>';
+$out .= '                    <option value="">Code</option>';
+
+foreach ($countryCodes as $cc) {
+    $countryName = trim((string)($cc['country_name'] ?? ''));
+    $countryCode = trim((string)($cc['country_code'] ?? ''));
+
+    if ($countryCode === '') {
+        continue;
+    }
+
+    $optionText = $countryName !== ''
+        ? $countryName . ' (' . $countryCode . ')'
+        : $countryCode;
+
+    $out .= '                <option value="' . htmlspecialchars($countryCode, ENT_QUOTES, 'UTF-8') . '">'
+         . htmlspecialchars($optionText, ENT_QUOTES, 'UTF-8')
+         . '</option>';
+}
+
+$out .= '                  </select>';
+$out .= '                </div>';
+$out .= '                <div class="col-7 pl-0">';
+$out .= '                  <input type="number" name="whatsapp_number" class="form-control driverForm__control" placeholder="Whatsapp Number" required>';
+$out .= '                </div>';
+$out .= '              </div>';
 $out .= '            </div>';
 
 $out .= '            <div class="col-md-6 mb-0">';
-$out .= '              <label class="driverForm__label">Country of residence</label>';
+$out .= '              <label class="driverForm__label">Country of residence <span class="text-danger">*</span></label>';
 $out .= '              <input type="text" name="country_of_residence" class="form-control driverForm__control" placeholder="Country of residence" required>';
 $out .= '            </div>';
 
 $out .= '            <div class="col-md-6 mb-3">';
-$out .= '              <label class="driverForm__label">Number of passengers</label>';
+$out .= '              <label class="driverForm__label">Number of passengers <span class="text-danger">*</span></label>';
 $out .= '              <input type="number" name="passengers" class="form-control driverForm__control" placeholder="Passenger Count" required>';
 $out .= '            </div>';
 
@@ -181,10 +223,10 @@ $out .= '              <hr>';
 
 
 $out .= '          <div class="driverFormSection mt-4">';
-$out .= '            <h3 class="driverFormSection__title">Driver options</h3>';
+$out .= '            <h3 class="driverFormSection__title">Driver options </h3>';
 $out .= '            <div class="row">';
 $out .= '              <div class="col-md-6 mb-3">';
-$out .= '                <label class="driverForm__label">Do you need a chauffeur?</label>';
+$out .= '                <label class="driverForm__label">Do you need a chauffeur? <span class="text-danger">*</span></label>';
 $out .= '                <select name="need_chauffeur" id="need_chauffeur" class="form-control driverForm__control" required>';
 $out .= '                  <option value="">Select</option>';
 $out .= '                  <option value="yes">Yes</option>';
@@ -253,7 +295,7 @@ $out .= '          <input type="hidden" name="extras" value="' . htmlspecialchar
 $out .= '              <hr>';
 
 $out .= '          <div class="driverFormSection mt-4">';
-$out .= '            <h3 class="driverFormSection__title">Payment option</h3>';
+$out .= '            <h3 class="driverFormSection__title">Payment option <span class="text-danger">*</span></h3>';
 $out .= '            <div class="row">';
 $out .= '              <div class="col-md-6 mb-3">';
 $out .= '                <label class="driverForm__label">How would you like to pay?</label>';

@@ -1,62 +1,26 @@
 <?php
-
 require "assets/includes/db_connect.php";
 
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+$vehicleId       = isset($_POST['vehicle_id']) ? (int)$_POST['vehicle_id'] : 0;
+$carCode         = isset($_POST['car_code']) ? trim($_POST['car_code']) : '';
+$pickupDateTime  = isset($_POST['pickup_datetime']) ? trim($_POST['pickup_datetime']) : '';
+$dropoffDateTime = isset($_POST['dropoff_datetime']) ? trim($_POST['dropoff_datetime']) : '';
+$pickupLocation  = isset($_POST['pickup_location']) ? trim($_POST['pickup_location']) : '';
+$dropoffLocation = isset($_POST['dropoff_location']) ? trim($_POST['dropoff_location']) : '';
+$days            = isset($_POST['days']) ? (int)$_POST['days'] : 0;
+
+$rentalAmount    = isset($_POST['rental_amount']) ? (float)$_POST['rental_amount'] : 0;
+$securityDeposit = isset($_POST['security_deposit']) ? (float)$_POST['security_deposit'] : 0;
+$extrasTotal     = isset($_POST['extras_total']) ? (float)$_POST['extras_total'] : 0;
+$grandTotal      = isset($_POST['grand_total']) ? (float)$_POST['grand_total'] : 0;
+
+$selectedExtras = [];
+if (!empty($_POST['extras'])) {
+    $decoded = json_decode($_POST['extras'], true);
+    if (is_array($decoded)) {
+        $selectedExtras = $decoded;
+    }
 }
-
-/*
-|--------------------------------------------------------------------------
-| Read booking data from session
-|--------------------------------------------------------------------------
-*/
-$sessionBooking  = $_SESSION['booking_step3'] ?? [];
-$sessionCoverage = $_SESSION['booking_step4'] ?? [];
-
-/*
-|--------------------------------------------------------------------------
-| If arriving from coverage page by POST, save selected coverage in session
-|--------------------------------------------------------------------------
-*/
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $_SESSION['booking_step4'] = [
-        'coverage_id'        => trim($_POST['coverage_id'] ?? ''),
-        'coverage_db_id'     => (int)($_POST['coverage_db_id'] ?? 0),
-        'coverage_name'      => trim($_POST['coverage_name'] ?? ''),
-        'coverage_day_price' => (float)($_POST['coverage_day_price'] ?? 0),
-        'coverage_total'     => (float)($_POST['coverage_total'] ?? 0),
-    ];
-
-    $sessionCoverage = $_SESSION['booking_step4'];
-}
-
-/*
-|--------------------------------------------------------------------------
-| Use session values, not URL/query-string values
-|--------------------------------------------------------------------------
-*/
-$vehicleId       = isset($sessionBooking['vehicle_id']) ? (int)$sessionBooking['vehicle_id'] : 0;
-$carCode         = trim($sessionBooking['car_code'] ?? '');
-$pickupDateTime  = trim($sessionBooking['pickup_datetime'] ?? '');
-$dropoffDateTime = trim($sessionBooking['dropoff_datetime'] ?? '');
-$pickupLocation  = trim($sessionBooking['pickup_location'] ?? '');
-$dropoffLocation = trim($sessionBooking['dropoff_location'] ?? '');
-$days            = isset($sessionBooking['days']) ? (int)$sessionBooking['days'] : 0;
-
-$rentalAmount    = isset($sessionBooking['rental_amount']) ? (float)$sessionBooking['rental_amount'] : 0;
-$securityDeposit = isset($sessionBooking['security_deposit']) ? (float)$sessionBooking['security_deposit'] : 0;
-$extrasTotal     = isset($sessionBooking['extras_total']) ? (float)$sessionBooking['extras_total'] : 0;
-$grandTotal      = isset($sessionBooking['grand_total']) ? (float)$sessionBooking['grand_total'] : 0;
-$selectedExtras  = isset($sessionBooking['extras']) && is_array($sessionBooking['extras'])
-    ? $sessionBooking['extras']
-    : [];
-
-$coverageId       = trim($sessionCoverage['coverage_id'] ?? '');
-$coverageDbId     = isset($sessionCoverage['coverage_db_id']) ? (int)$sessionCoverage['coverage_db_id'] : 0;
-$coverageName     = trim($sessionCoverage['coverage_name'] ?? 'No coverage');
-$coverageDayPrice = isset($sessionCoverage['coverage_day_price']) ? (float)$sessionCoverage['coverage_day_price'] : 0;
-$coverageTotal    = isset($sessionCoverage['coverage_total']) ? (float)$sessionCoverage['coverage_total'] : 0;
 
 if ($vehicleId <= 0 && $carCode === '') {
     return '<p>Vehicle not selected.</p>';
@@ -99,7 +63,7 @@ $sql = "SELECT
         LIMIT 1";
 
 $stmt = $modx->prepare($sql);
-if (!$stmt) return '<p>Could not prepare driver details query.</p>';
+if (!$stmt) return '<p>Could not prepare coverage query.</p>';
 
 foreach ($params as $key => $value) {
     if ($key === ':vehicle_id') {
@@ -111,285 +75,267 @@ foreach ($params as $key => $value) {
 
 if (!$stmt->execute()) {
     $error = $stmt->errorInfo();
-    return '<p>Could not load vehicle: ' . htmlspecialchars($error[2], ENT_QUOTES, 'UTF-8') . '</p>';
+    return '<p>Could not load vehicle: ' . htmlspecialchars($error[2]) . '</p>';
 }
 
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 if (!$row) return '<p>Vehicle not found.</p>';
 
-$pickupText  = $pickupDateTime && strtotime($pickupDateTime) ? date('d M Y, H:i', strtotime($pickupDateTime)) : '';
-$dropoffText = $dropoffDateTime && strtotime($dropoffDateTime) ? date('d M Y, H:i', strtotime($dropoffDateTime)) : '';
+if (!function_exists('step3CalculatePrice')) {
+    function step3CalculatePrice($modx, $carCode, $pickupDate, $dropoffDate) {
+        if (!$carCode || !$pickupDate || !$dropoffDate) return '';
 
-if ($securityDeposit <= 0 && isset($row['deposit_amount']) && $row['deposit_amount'] !== '') {
-    $securityDeposit = (float)$row['deposit_amount'];
-}
+        $start = strtotime($pickupDate);
+        $end   = strtotime($dropoffDate);
+        if (!$start || !$end || $end < $start) return '';
 
-$totalForTrip = $grandTotal > 0
-    ? ($grandTotal + $coverageTotal)
-    : ($rentalAmount + $extrasTotal + $coverageTotal);
+        $days = max(1, (int)(($end - $start) / 86400) + 1);
 
-$paymentPageId = 44; // change to your payment page resource id
-$formAction = html_entity_decode($modx->makeUrl($paymentPageId), ENT_QUOTES, 'UTF-8');
+        $sql = "SELECT duration, rate
+                FROM car_rental3
+                WHERE car_code = :car_code
+                  AND :pickup_date >= DATE(start_date)
+                  AND :dropoff_date <= DATE(end_date)
+                ORDER BY duration ASC";
 
-$countries = [];
-$countryApi = 'https://restcountries.com/v3.1/all?fields=name';
-$countryJson = @file_get_contents($countryApi);
+        $stmt = $modx->prepare($sql);
+        if (!$stmt) return '';
 
-if ($countryJson !== false) {
-    $countryData = json_decode($countryJson, true);
+        $stmt->bindValue(':car_code', $carCode, PDO::PARAM_STR);
+        $stmt->bindValue(':pickup_date', $pickupDate, PDO::PARAM_STR);
+        $stmt->bindValue(':dropoff_date', $dropoffDate, PDO::PARAM_STR);
 
-    if (is_array($countryData)) {
-        foreach ($countryData as $country) {
-            $countryName = trim((string)($country['name']['common'] ?? ''));
-            if ($countryName !== '') {
-                $countries[] = $countryName;
+        if (!$stmt->execute()) return '';
+
+        $rates = [];
+        foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $r) {
+            $duration = (int)($r['duration'] ?? 0);
+            $rate     = (float)($r['rate'] ?? 0);
+
+            if ($duration > 0) {
+                $rates[$duration] = $rate;
             }
         }
+
+        if (!$rates) return '';
+
+        ksort($rates);
+
+        $maxDuration = max(array_keys($rates));
+        $lastRate    = (float)$rates[$maxDuration];
+        $total       = 0.0;
+
+        for ($d = 1; $d <= $days; $d++) {
+            if (isset($rates[$d])) {
+                $total += (float)$rates[$d];
+            } elseif ($d > $maxDuration) {
+                $total += $lastRate;
+            } else {
+                return '';
+            }
+        }
+
+        return (float)number_format($total, 2, '.', '');
     }
 }
 
-$countries = array_values(array_unique($countries, SORT_STRING));
-sort($countries, SORT_NATURAL | SORT_FLAG_CASE);
+$baseRental = step3CalculatePrice($modx, $row['car_code'], $pickupDate, $dropoffDate);
+$baseRental = $baseRental !== '' ? (float)$baseRental : 0;
+
+$coveragePackages = [];
+
+/* load coverage packages from DB */
+$coverageStmt = $modx->prepare("
+    SELECT id, title, description, percentage, features
+    FROM coverage_packages
+    ORDER BY id ASC
+");
+
+if ($coverageStmt && $coverageStmt->execute()) {
+    $dbPackages = $coverageStmt->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach ($dbPackages as $pkg) {
+        $percentage = isset($pkg['percentage']) && $pkg['percentage'] !== null
+            ? (float)$pkg['percentage']
+            : null;
+
+        $periodTotal = 0;
+        $pricePerDay = 0;
+
+        if ($percentage !== null && $percentage > 0 && $baseRental > 0) {
+            $periodTotal = ($baseRental * $percentage) / 100;
+            $pricePerDay = $days > 0 ? ($periodTotal / $days) : 0;
+        }
+
+        $features = [];
+        if (!empty($pkg['features'])) {
+            $decodedFeatures = json_decode($pkg['features'], true);
+            if (is_array($decodedFeatures)) {
+                $features = $decodedFeatures;
+            }
+        }
+
+        $title = trim((string)($pkg['title'] ?? 'Coverage'));
+        $theme = strtolower(preg_replace('/[^a-z0-9]+/', '-', $title));
+        $button = 'Choose ' . $title;
+        $cardType = 'normal';
+
+        if (stripos($title, 'premium plus') !== false) {
+            $button = 'Book with ' . $title;
+            $theme = 'full';
+        } elseif (stripos($title, 'premium') !== false) {
+            $theme = 'premium';
+        } elseif (stripos($title, 'plus') !== false) {
+            $theme = 'standard';
+        } elseif (stripos($title, 'basic') !== false) {
+            $theme = 'risk';
+            $button = "No, I’ll take the risk";
+            $cardType = 'risk';
+        }
+
+        $coveragePackages[] = [
+            'id' => 'db_' . (int)$pkg['id'],
+            'db_id' => (int)$pkg['id'],
+            'title' => $title,
+            'subtitle' => $pkg['description'] ?? '',
+            'price_per_day' => $pricePerDay,
+            'period_total' => $periodTotal,
+            'button' => $button,
+            'theme' => $theme,
+            'type' => $cardType,
+            'items' => $features
+        ];
+    }
+}
+
+$step4BaseParams = [
+    'vehicle_id'       => $vehicleId,
+    'car_code'         => $carCode,
+    'pickup_datetime'  => $pickupDateTime,
+    'dropoff_datetime' => $dropoffDateTime,
+    'pickup_location'  => $pickupLocation,
+    'dropoff_location' => $dropoffLocation,
+    'days'             => $days
+];
 
 $out = '';
+$out .= '<div class="coveragePage">';
 
-$out .= '<div class="driverStepLayout">';
-$out .= '  <div class="row">';
+$out .= '  <div class="coveragePage__header">';
+$out .= '    <h2 class="coveragePage__title">Upgrade to Full Coverage and relax...</h2>';
+$out .= '    <p class="coveragePage__subtitle">Choose the protection package that suits your trip.</p>';
+$out .= '  </div>';
 
-$out .= '    <div class="col-lg-8">';
-$out .= '      <div class="driverStepMain">';
-
-$out .= '        <div class="driverStepHeading mb-4">';
-$out .= '          <h2 class="driverStepHeading__title">Enter driver details</h2>';
-$out .= '        </div>';
-
-$out .= '        <form action="' . htmlspecialchars($formAction, ENT_QUOTES, 'UTF-8') . '" method="post" enctype="multipart/form-data" class="driverForm" id="driverDetailsForm">';
-
-$out .= '          <div class="row">';
-
-$out .= '            <div class="col-md-6 mb-0">';
-$out .= '              <label class="driverForm__label">Full Name</label>';
-$out .= '              <input type="text" name="full_name" class="form-control driverForm__control" placeholder="Full name" required>';
-$out .= '              <small class="text-muted">Can only contain letters A-Z.</small>';
-$out .= '            </div>';
-
-$out .= '            <div class="col-md-6 mb-3">';
-$out .= '              <label class="driverForm__label">Email</label>';
-$out .= '              <input type="email" name="email" class="form-control driverForm__control" placeholder="Email" required>';
-$out .= '            </div>';
-
-$out .= '            <div class="col-md-6 mb-3">';
-$out .= '              <label class="driverForm__label">Whatsapp Number</label>';
-$out .= '              <input type="text" name="whatsapp_number" class="form-control driverForm__control" placeholder="Whatsapp Number" required>';
-$out .= '            </div>';
-
-$out .= '            <div class="col-md-6 mb-0">';
-$out .= '              <label class="driverForm__label">Country of residence</label>';
-$out .= '              <select name="country_of_residence" class="form-control driverForm__control" required>';
-$out .= '                <option value="">Select country</option>';
-
-foreach ($countries as $countryName) {
-    $out .= '            <option value="' . htmlspecialchars($countryName, ENT_QUOTES, 'UTF-8') . '">' . htmlspecialchars($countryName, ENT_QUOTES, 'UTF-8') . '</option>';
-}
-
-$out .= '              </select>';
-$out .= '            </div>';
-
-$out .= '            <div class="col-md-6 mb-3">';
-$out .= '              <label class="driverForm__label">Number of passengers</label>';
-$out .= '              <input type="number" name="passengers" class="form-control driverForm__control" placeholder="Passenger Count" required>';
-$out .= '            </div>';
-
-$out .= '              <div class="col-md-6 mb-3">';
-$out .= '                <label class="driverForm__label">Flight number <span class="text-muted">optional</span></label>';
-$out .= '                <input type="text" name="flight_number" class="form-control driverForm__control" placeholder="AA123">';
-$out .= '              </div>';
-$out .= '          </div>';
-
-$out .= '          <div class="driverFormSection mt-4">';
-$out .= '            <h3 class="driverFormSection__title">Driver options</h3>';
-$out .= '            <div class="row">';
-$out .= '              <div class="col-md-6 mb-3">';
-$out .= '                <label class="driverForm__label">Do you need a chauffeur?</label>';
-$out .= '                <select name="need_chauffeur" id="need_chauffeur" class="form-control driverForm__control" required>';
-$out .= '                  <option value="">Select</option>';
-$out .= '                  <option value="yes">Yes</option>';
-$out .= '                  <option value="no">No</option>';
-$out .= '                </select>';
-$out .= '              </div>';
-$out .= '            </div>';
-$out .= '          </div>';
-
-$out .= '          <div class="driverFormSection mt-4" id="licenseSection" style="display:none;">';
-$out .= '            <h3 class="driverFormSection__title">License and documents</h3>';
-$out .= '            <div class="row">';
-$out .= '              <div class="col-md-6 mb-3">';
-$out .= '                <label class="driverForm__label">Do you need a Sri Lankan driver’s license?</label>';
-$out .= '                <select name="need_sl_license" id="need_sl_license" class="form-control driverForm__control">';
-$out .= '                  <option value="">Select</option>';
-$out .= '                  <option value="yes">Yes</option>';
-$out .= '                  <option value="no">No</option>';
-$out .= '                </select>';
-$out .= '              </div>';
-$out .= '            </div>';
-
-$out .= '            <div id="uploadSection" style="display:none;">';
-$out .= '              <div class="row">';
-$out .= '                <div class="col-md-6 mb-3">';
-$out .= '                  <label class="driverForm__label">Passport image</label>';
-$out .= '                  <input type="file" name="passport_image" class="form-control driverForm__control" accept="image/*,.pdf">';
-$out .= '                </div>';
-
-$out .= '                <div class="col-md-6 mb-3">';
-$out .= '                  <label class="driverForm__label">IDP image</label>';
-$out .= '                  <input type="file" name="idp_image" class="form-control driverForm__control" accept="image/*,.pdf">';
-$out .= '                </div>';
-
-$out .= '                <div class="col-md-6 mb-3">';
-$out .= '                  <label class="driverForm__label">Color photo of applicant</label>';
-$out .= '                  <input type="file" name="applicant_photo" class="form-control driverForm__control" accept="image/*">';
-$out .= '                </div>';
-
-$out .= '                <div class="col-md-12 mb-3">';
-$out .= '                  <label class="driverForm__label">Remarks</label>';
-$out .= '                  <textarea name="remarks" class="form-control driverForm__control" rows="4" placeholder="Remarks"></textarea>';
-$out .= '                </div>';
-$out .= '              </div>';
-$out .= '            </div>';
-$out .= '          </div>';
-
-$out .= '          <input type="hidden" name="vehicle_id" value="' . (int)$vehicleId . '">';
-$out .= '          <input type="hidden" name="car_code" value="' . htmlspecialchars($carCode, ENT_QUOTES, 'UTF-8') . '">';
-$out .= '          <input type="hidden" name="pickup_datetime" value="' . htmlspecialchars($pickupDateTime, ENT_QUOTES, 'UTF-8') . '">';
-$out .= '          <input type="hidden" name="dropoff_datetime" value="' . htmlspecialchars($dropoffDateTime, ENT_QUOTES, 'UTF-8') . '">';
-$out .= '          <input type="hidden" name="pickup_location" value="' . htmlspecialchars($pickupLocation, ENT_QUOTES, 'UTF-8') . '">';
-$out .= '          <input type="hidden" name="dropoff_location" value="' . htmlspecialchars($dropoffLocation, ENT_QUOTES, 'UTF-8') . '">';
-$out .= '          <input type="hidden" name="days" value="' . (int)$days . '">';
-$out .= '          <input type="hidden" name="coverage_id" value="' . htmlspecialchars($coverageId, ENT_QUOTES, 'UTF-8') . '">';
-$out .= '          <input type="hidden" name="coverage_db_id" value="' . (int)$coverageDbId . '">';
-$out .= '          <input type="hidden" name="coverage_name" value="' . htmlspecialchars($coverageName, ENT_QUOTES, 'UTF-8') . '">';
-$out .= '          <input type="hidden" name="coverage_day_price" value="' . number_format($coverageDayPrice, 2, '.', '') . '">';
-$out .= '          <input type="hidden" name="coverage_total" value="' . number_format($coverageTotal, 2, '.', '') . '">';
-$out .= '          <input type="hidden" name="rental_amount" value="' . number_format($rentalAmount, 2, '.', '') . '">';
-$out .= '          <input type="hidden" name="security_deposit" value="' . number_format($securityDeposit, 2, '.', '') . '">';
-$out .= '          <input type="hidden" name="extras_total" value="' . number_format($extrasTotal, 2, '.', '') . '">';
-$out .= '          <input type="hidden" name="grand_total" value="' . number_format($totalForTrip, 2, '.', '') . '">';
-$out .= '          <input type="hidden" name="extras" value="' . htmlspecialchars(json_encode($selectedExtras), ENT_QUOTES, 'UTF-8') . '">';
-
-$out .= '          <div class="driverFormSection mt-4">';
-$out .= '            <h3 class="driverFormSection__title">Payment option</h3>';
-$out .= '            <div class="row">';
-$out .= '              <div class="col-md-6 mb-3">';
-$out .= '                <label class="driverForm__label">How would you like to pay?</label>';
-$out .= '                <select name="payment_option" id="payment_option" class="form-control driverForm__control" required>';
-$out .= '                  <option value="">Select payment option</option>';
-$out .= '                  <option value="pay_now">Pay now</option>';
-$out .= '                  <option value="pay_on_arrival">Pay on arrival</option>';
-$out .= '                </select>';
-$out .= '              </div>';
-$out .= '            </div>';
-$out .= '          </div>';
-$out .= '          <div class="mt-4 d-flex justify-content-end">';
-$out .= '            <button type="submit" class="btn btn-primary bookingSubmitBtn">Continue to Payment</button>';
-$out .= '          </div>';
-
-$out .= '        </form>';
-$out .= '      </div>';
-$out .= '    </div>';
-
-$out .= '    <div class="col-lg-4">';
-$out .= '      <aside class="driverSummaryCard">';
-$out .= '        <div class="driverSummaryCard__vehicle mb-4">';
-$out .= '          <div class="driverSummaryCard__dates">';
-$out .=                htmlspecialchars(($pickupText ? $pickupText : $pickupDate) . ($dropoffText ? ' - ' . $dropoffText : ''));
-$out .= '          </div>';
-$out .= '          <div class="driverSummaryCard__car d-flex align-items-center justify-content-between">';
-$out .= '            <div>';
-$out .= '              <h4 class="driverSummaryCard__carTitle mb-1">' . htmlspecialchars($row['car_model']) . '</h4>';
-$out .= '              <div class="text-muted">or similar ' . htmlspecialchars($row['car_category']) . '</div>';
-$out .= '            </div>';
-$out .= '            <img src="' . htmlspecialchars($row['image']) . '" alt="' . htmlspecialchars($row['car_model']) . '" class="driverSummaryCard__image">';
-$out .= '          </div>';
-$out .= '        </div>';
-
-$out .= '        <div class="driverSummaryCard__block mb-3">';
-$out .= '          <h5 class="driverSummaryCard__blockTitle">Trip details</h5>';
-$out .= '          <div class="driverSummaryRow"><span>Pick-up</span><strong>' . htmlspecialchars($pickupLocation !== '' ? $pickupLocation : '-') . '</strong></div>';
-$out .= '          <div class="driverSummaryRow"><span>Drop-off</span><strong>' . htmlspecialchars($dropoffLocation !== '' ? $dropoffLocation : '-') . '</strong></div>';
-$out .= '          <div class="driverSummaryRow"><span>Rental period</span><strong>' . (int)$days . ' ' . ($days === 1 ? 'day' : 'days') . '</strong></div>';
-$out .= '          <div class="driverSummaryRow"><span>Coverage</span><strong>' . htmlspecialchars($coverageName !== '' ? $coverageName : 'No coverage') . '</strong></div>';
-$out .= '        </div>';
+$out .= '  <div class="coverageHeroSummary">';
+$out .= '    <div class="coverageHeroSummary__vehicle">';
+$out .= '      <img src="' . htmlspecialchars($row['image']) . '" alt="' . htmlspecialchars($row['car_model']) . '" class="coverageHeroSummary__image">';
+$out .= '      <div class="coverageHeroSummary__info">';
+$out .= '        <h3 class="coverageHeroSummary__name">' . htmlspecialchars($row['car_model']) . '</h3>';
+$out .= '        <div class="coverageHeroSummary__meta">' . htmlspecialchars($row['transmission_type'] ?: 'Manual') . ' • ' . (int)$row['pax_count'] . ' seats • ' . (int)$row['luggage_count'] . ' luggage • ' . (int)$days . ' ' . ($days === 1 ? 'day' : 'days') . '</div>';
 
 if (!empty($selectedExtras)) {
-    $out .= '        <div class="driverSummaryCard__block mb-3">';
-    $out .= '          <h5 class="driverSummaryCard__blockTitle">Selected extras</h5>';
+    $out .= '        <div class="coverageHeroSummary__extras">';
+    $out .= '          <div class="coverageHeroSummary__extrasTitle">Selected extras</div>';
+    $out .= '          <ul class="coverageHeroSummary__extrasList">';
     foreach ($selectedExtras as $extra) {
-        $extraName  = htmlspecialchars($extra['name'] ?? '', ENT_QUOTES, 'UTF-8');
-        $extraQty   = (int)($extra['qty'] ?? 1);
-        $extraValue = isset($extra['total']) ? (float)$extra['total'] : 0;
-        $out .= '    <div class="driverSummaryRow"><span>' . $extraName . ' × ' . $extraQty . '</span><strong>€' . number_format($extraValue, 2, '.', '') . '</strong></div>';
+        $extraName = htmlspecialchars($extra['name'] ?? '');
+        $extraQty = (int)($extra['qty'] ?? 1);
+        $extraTotal = isset($extra['total']) ? (float)$extra['total'] : 0;
+        $out .= '            <li>';
+        $out .= '              <span>' . $extraName . ' × ' . $extraQty . '</span>';
+        $out .= '              <strong>€' . number_format($extraTotal, 2, '.', '') . '</strong>';
+        $out .= '            </li>';
     }
+    $out .= '          </ul>';
     $out .= '        </div>';
 }
 
-$out .= '        <div class="driverSummaryCard__block mb-3">';
-$out .= '          <h5 class="driverSummaryCard__blockTitle">Price summary</h5>';
-$out .= '          <div class="driverSummaryRow"><span>Coverage price</span><strong>€ ' . number_format($coverageTotal, 2, '.', ',') . '</strong></div>';
-$out .= '          <div class="driverSummaryRow"><span>Extras price</span><strong>€ ' . number_format($extrasTotal, 2, '.', ',') . '</strong></div>';
-$out .= '          <div class="driverSummaryRow"><span>Rental amount</span><strong>€ ' . number_format($rentalAmount, 2, '.', ',') . '</strong></div>';
-$out .= '          <div class="driverSummaryRow driverSummaryRow--total">';
-$out .= '              <span>Total for ' . (int)$days . ' ' . ($days === 1 ? 'day' : 'days') . '</span>';
-$out .= '              <strong class="driverSummaryTotalPrice">€ ' . number_format($totalForTrip, 2, '.', ',') . '</strong>';
-$out .= '          </div>';
-$out .= '          <div class="driverSummaryMuted">Security deposit: € ' . number_format($securityDeposit, 2, '.', ',') . ' (payable/refundable separately)</div>';
-$out .= '        </div>';
-
-$out .= '      </aside>';
+$out .= '      </div>';
 $out .= '    </div>';
+
+$out .= '    <div class="coverageHeroSummary__amount">';
+$out .= '      <span>Base rental</span>';
+$out .= '      <strong>€' . number_format($baseRental, 2, '.', '') . '</strong>';
+
+if ($extrasTotal > 0) {
+    $out .= '      <span class="coverageHeroSummary__amountSub">Extras: €' . number_format($extrasTotal, 2, '.', '') . '</span>';
+}
+
+
+$out .= '    </div>';
+$out .= '  </div>';
+
+$out .= '  <div class="coverageGrid">';
+
+foreach ($coveragePackages as $pkg) {
+    $themeClass = 'coverageCard--' . $pkg['theme'];
+    $pricePerDay = (float)($pkg['price_per_day'] ?? 0);
+    $periodTotal = (float)($pkg['period_total'] ?? 0);
+
+    $step4Link = $modx->makeUrl(42, '', array_merge($step4BaseParams, [
+        'coverage_id' => $pkg['id'],
+        'coverage_db_id' => isset($pkg['db_id']) ? (int)$pkg['db_id'] : 0,
+        'coverage_name' => $pkg['title'],
+        'coverage_day_price' => number_format($pricePerDay, 2, '.', ''),
+        'coverage_total' => number_format($periodTotal, 2, '.', '')
+    ]));
+
+    $out .= '<div class="coverageCard ' . $themeClass . '">';
+
+    $out .= '  <div class="coverageCard__top">';
+    $out .= '    <div class="coverageCard__intro">';
+    $out .= '      <h3 class="coverageCard__title">' . htmlspecialchars($pkg['title']) . '</h3>';
+    $out .= '      <p class="coverageCard__desc">' . htmlspecialchars($pkg['subtitle']) . '</p>';
+    $out .= '    </div>';
+    $out .= '    <div class="coverageCard__imageWrap">';
+    $out .= '      <img src="' . htmlspecialchars($row['image']) . '" alt="' . htmlspecialchars($row['car_model']) . '" class="coverageCard__image">';
+    $out .= '    </div>';
+    $out .= '  </div>';
+
+    $out .= '  <div class="coverageCard__priceBox">';
+    if ($pricePerDay > 0) {
+        $out .= '    <div class="coverageCard__price">';
+        $out .= '      <strong>€' . number_format($pricePerDay, 2, '.', '') . '/day</strong>';
+        $out .= '      <span>€' . number_format($periodTotal, 2, '.', '') . ' for rental period</span>';
+        $out .= '    </div>';
+    } else {
+        $out .= '    <div class="coverageCard__price">';
+        if (($pkg['type'] ?? '') === 'risk') {
+            $out .= '      <strong>No coverage</strong>';
+            $out .= '      <span>You are taking the risk yourself</span>';
+        } else {
+            $out .= '      <strong>Included</strong>';
+            $out .= '      <span>No additional protection selected</span>';
+        }
+        $out .= '    </div>';
+    }
+    $out .= '    <a href="' . htmlspecialchars($step4Link) . '" class="coverageCard__btn">' . htmlspecialchars($pkg['button']) . '</a>';
+    $out .= '  </div>';
+
+    $out .= '  <div class="coverageCard__features">';
+    $out .= '    <h4>' . (($pkg['type'] ?? '') === 'risk' ? 'Not covered' : "What's covered?") . '</h4>';
+
+    $out .= '    <ul>';
+    foreach ($pkg['items'] as $item) {
+        $out .= '<li>' . htmlspecialchars($item) . '</li>';
+    }
+    $out .= '    </ul>';
+    $out .= '  </div>';
+
+    if ($pkg['theme'] === 'full') {
+        $out .= '  <div class="coverageCard__footer coverageCard__footer--success">';
+        $out .= '    Cancel anytime before pick-up!';
+        $out .= '  </div>';
+    } elseif (($pkg['type'] ?? '') === 'risk') {
+        $out .= '  <div class="coverageCard__footer coverageCard__footer--warning">';
+        $out .= '    You may be charged directly by the supplier if something happens.';
+        $out .= '  </div>';
+    }
+
+    $out .= '</div>';
+}
 
 $out .= '  </div>';
 $out .= '</div>';
-
-$out .= '<script>
-  document.addEventListener("DOMContentLoaded", function () {
-      var needChauffeur = document.getElementById("need_chauffeur");
-      var needSlLicense = document.getElementById("need_sl_license");
-      var licenseSection = document.getElementById("licenseSection");
-      var uploadSection = document.getElementById("uploadSection");
-
-      function toggleSections() {
-          if (!needChauffeur || !licenseSection) return;
-
-          if (needChauffeur.value === "no") {
-              licenseSection.style.display = "block";
-          } else {
-              licenseSection.style.display = "none";
-              if (needSlLicense) needSlLicense.value = "";
-              if (uploadSection) uploadSection.style.display = "none";
-          }
-      }
-
-      function toggleUploads() {
-          if (!needSlLicense || !uploadSection) return;
-
-          if (needSlLicense.value === "yes") {
-              uploadSection.style.display = "block";
-          } else {
-              uploadSection.style.display = "none";
-          }
-      }
-
-      if (needChauffeur) {
-          needChauffeur.addEventListener("change", toggleSections);
-      }
-
-      if (needSlLicense) {
-          needSlLicense.addEventListener("change", toggleUploads);
-      }
-
-      toggleSections();
-      toggleUploads();
-  });
-</script>';
 
 return $out;

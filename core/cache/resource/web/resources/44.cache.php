@@ -75,6 +75,8 @@
         </div>
 
         [[!VehicleDriverDetailsStep4]]
+        [[!BookingSuccessPopupStep4]]
+
     </div>
 </section>',
     'richtext' => 1,
@@ -85,7 +87,7 @@
     'createdby' => 1,
     'createdon' => 1773743529,
     'editedby' => 1,
-    'editedon' => 1773743553,
+    'editedon' => 1773807281,
     'deleted' => 0,
     'deletedon' => 0,
     'deletedby' => 0,
@@ -342,6 +344,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
         [[!VehicleDriverDetailsStep4]]
+        [[!BookingSuccessPopupStep4]]
+
     </div>
 </section>
 <!-- ✅ Global Top-Right Logo (visible on all pages) -->
@@ -2412,7 +2416,9 @@ document.getElementById(\'backToTop\').addEventListener(\'click\', function() {
           'editor_type' => 0,
           'category' => 0,
           'cache_type' => 0,
-          'snippet' => 'require "assets/includes/db_connect.php";
+          'snippet' => 'require_once MODX_BASE_PATH . \'assets/includes/db_connect.php\';
+
+
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -2521,6 +2527,19 @@ foreach ($params as $key => $value) {
     }
 }
 
+$countryCodes = [];
+
+$codeStmt = $modx->prepare("
+    SELECT country_name, country_code
+    FROM country_codes
+    WHERE country_code IS NOT NULL AND country_code <> \'\'
+    ORDER BY country_name ASC
+");
+
+if ($codeStmt && $codeStmt->execute()) {
+    $countryCodes = $codeStmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 if (!$stmt->execute()) {
     $error = $stmt->errorInfo();
     return \'<p>Could not load vehicle: \' . htmlspecialchars($error[2], ENT_QUOTES, \'UTF-8\') . \'</p>\';
@@ -2540,8 +2559,7 @@ $totalForTrip = $grandTotal > 0
     ? ($grandTotal + $coverageTotal)
     : ($rentalAmount + $extrasTotal + $coverageTotal);
 
-$paymentPageId = 44; // change to your payment page resource id
-$formAction = html_entity_decode($modx->makeUrl($paymentPageId), ENT_QUOTES, \'UTF-8\');
+$formAction = \'assets/includes/save_booking.php\';
 
 $out = \'\';
 
@@ -2560,28 +2578,55 @@ $out .= \'        <form action="\' . htmlspecialchars($formAction, ENT_QUOTES, \
 $out .= \'          <div class="row">\';
 
 $out .= \'            <div class="col-md-6 mb-0">\';
-$out .= \'              <label class="driverForm__label">Full Name</label>\';
+$out .= \'              <label class="driverForm__label">Full Name <span class="text-danger">*</span></label>\';
 $out .= \'              <input type="text" name="full_name" class="form-control driverForm__control" placeholder="Full name" required>\';
 $out .= \'              <small class="text-muted">Can only contain letters A-Z.</small>\';
 $out .= \'            </div>\';
 
 $out .= \'            <div class="col-md-6 mb-3">\';
-$out .= \'              <label class="driverForm__label">Email</label>\';
+$out .= \'              <label class="driverForm__label">Email <span class="text-danger">*</span></label>\';
 $out .= \'              <input type="email" name="email" class="form-control driverForm__control" placeholder="Email" required>\';
 $out .= \'            </div>\';
 
 $out .= \'            <div class="col-md-6 mb-3">\';
-$out .= \'              <label class="driverForm__label">Whatsapp Number</label>\';
-$out .= \'              <input type="text" name="whatsapp_number" class="form-control driverForm__control" placeholder="Whatsapp Number" required>\';
+$out .= \'              <label class="driverForm__label">Whatsapp Number <span class="text-danger">*</span></label>\';
+$out .= \'              <div class="row gx-2">\';
+$out .= \'                <div class="col-5 pr-0">\';
+$out .= \'                  <select name="whatsapp_country_code" class="form-control driverForm__control" required>\';
+$out .= \'                    <option value="">Code</option>\';
+
+foreach ($countryCodes as $cc) {
+    $countryName = trim((string)($cc[\'country_name\'] ?? \'\'));
+    $countryCode = trim((string)($cc[\'country_code\'] ?? \'\'));
+
+    if ($countryCode === \'\') {
+        continue;
+    }
+
+    $optionText = $countryName !== \'\'
+        ? $countryName . \' (\' . $countryCode . \')\'
+        : $countryCode;
+
+    $out .= \'                <option value="\' . htmlspecialchars($countryCode, ENT_QUOTES, \'UTF-8\') . \'">\'
+         . htmlspecialchars($optionText, ENT_QUOTES, \'UTF-8\')
+         . \'</option>\';
+}
+
+$out .= \'                  </select>\';
+$out .= \'                </div>\';
+$out .= \'                <div class="col-7 pl-0">\';
+$out .= \'                  <input type="number" name="whatsapp_number" class="form-control driverForm__control" placeholder="Whatsapp Number" required>\';
+$out .= \'                </div>\';
+$out .= \'              </div>\';
 $out .= \'            </div>\';
 
 $out .= \'            <div class="col-md-6 mb-0">\';
-$out .= \'              <label class="driverForm__label">Country of residence</label>\';
+$out .= \'              <label class="driverForm__label">Country of residence <span class="text-danger">*</span></label>\';
 $out .= \'              <input type="text" name="country_of_residence" class="form-control driverForm__control" placeholder="Country of residence" required>\';
 $out .= \'            </div>\';
 
 $out .= \'            <div class="col-md-6 mb-3">\';
-$out .= \'              <label class="driverForm__label">Number of passengers</label>\';
+$out .= \'              <label class="driverForm__label">Number of passengers <span class="text-danger">*</span></label>\';
 $out .= \'              <input type="number" name="passengers" class="form-control driverForm__control" placeholder="Passenger Count" required>\';
 $out .= \'            </div>\';
 
@@ -2595,10 +2640,10 @@ $out .= \'              <hr>\';
 
 
 $out .= \'          <div class="driverFormSection mt-4">\';
-$out .= \'            <h3 class="driverFormSection__title">Driver options</h3>\';
+$out .= \'            <h3 class="driverFormSection__title">Driver options </h3>\';
 $out .= \'            <div class="row">\';
 $out .= \'              <div class="col-md-6 mb-3">\';
-$out .= \'                <label class="driverForm__label">Do you need a chauffeur?</label>\';
+$out .= \'                <label class="driverForm__label">Do you need a chauffeur? <span class="text-danger">*</span></label>\';
 $out .= \'                <select name="need_chauffeur" id="need_chauffeur" class="form-control driverForm__control" required>\';
 $out .= \'                  <option value="">Select</option>\';
 $out .= \'                  <option value="yes">Yes</option>\';
@@ -2666,9 +2711,8 @@ $out .= \'          <input type="hidden" name="extras" value="\' . htmlspecialch
 
 $out .= \'              <hr>\';
 
-
 $out .= \'          <div class="driverFormSection mt-4">\';
-$out .= \'            <h3 class="driverFormSection__title">Payment option</h3>\';
+$out .= \'            <h3 class="driverFormSection__title">Payment option <span class="text-danger">*</span></h3>\';
 $out .= \'            <div class="row">\';
 $out .= \'              <div class="col-md-6 mb-3">\';
 $out .= \'                <label class="driverForm__label">How would you like to pay?</label>\';
@@ -2809,7 +2853,9 @@ return $out;',
           'moduleguid' => '',
           'static' => false,
           'static_file' => '',
-          'content' => 'require "assets/includes/db_connect.php";
+          'content' => 'require_once MODX_BASE_PATH . \'assets/includes/db_connect.php\';
+
+
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -2918,6 +2964,19 @@ foreach ($params as $key => $value) {
     }
 }
 
+$countryCodes = [];
+
+$codeStmt = $modx->prepare("
+    SELECT country_name, country_code
+    FROM country_codes
+    WHERE country_code IS NOT NULL AND country_code <> \'\'
+    ORDER BY country_name ASC
+");
+
+if ($codeStmt && $codeStmt->execute()) {
+    $countryCodes = $codeStmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 if (!$stmt->execute()) {
     $error = $stmt->errorInfo();
     return \'<p>Could not load vehicle: \' . htmlspecialchars($error[2], ENT_QUOTES, \'UTF-8\') . \'</p>\';
@@ -2937,8 +2996,7 @@ $totalForTrip = $grandTotal > 0
     ? ($grandTotal + $coverageTotal)
     : ($rentalAmount + $extrasTotal + $coverageTotal);
 
-$paymentPageId = 44; // change to your payment page resource id
-$formAction = html_entity_decode($modx->makeUrl($paymentPageId), ENT_QUOTES, \'UTF-8\');
+$formAction = \'assets/includes/save_booking.php\';
 
 $out = \'\';
 
@@ -2957,28 +3015,55 @@ $out .= \'        <form action="\' . htmlspecialchars($formAction, ENT_QUOTES, \
 $out .= \'          <div class="row">\';
 
 $out .= \'            <div class="col-md-6 mb-0">\';
-$out .= \'              <label class="driverForm__label">Full Name</label>\';
+$out .= \'              <label class="driverForm__label">Full Name <span class="text-danger">*</span></label>\';
 $out .= \'              <input type="text" name="full_name" class="form-control driverForm__control" placeholder="Full name" required>\';
 $out .= \'              <small class="text-muted">Can only contain letters A-Z.</small>\';
 $out .= \'            </div>\';
 
 $out .= \'            <div class="col-md-6 mb-3">\';
-$out .= \'              <label class="driverForm__label">Email</label>\';
+$out .= \'              <label class="driverForm__label">Email <span class="text-danger">*</span></label>\';
 $out .= \'              <input type="email" name="email" class="form-control driverForm__control" placeholder="Email" required>\';
 $out .= \'            </div>\';
 
 $out .= \'            <div class="col-md-6 mb-3">\';
-$out .= \'              <label class="driverForm__label">Whatsapp Number</label>\';
-$out .= \'              <input type="text" name="whatsapp_number" class="form-control driverForm__control" placeholder="Whatsapp Number" required>\';
+$out .= \'              <label class="driverForm__label">Whatsapp Number <span class="text-danger">*</span></label>\';
+$out .= \'              <div class="row gx-2">\';
+$out .= \'                <div class="col-5 pr-0">\';
+$out .= \'                  <select name="whatsapp_country_code" class="form-control driverForm__control" required>\';
+$out .= \'                    <option value="">Code</option>\';
+
+foreach ($countryCodes as $cc) {
+    $countryName = trim((string)($cc[\'country_name\'] ?? \'\'));
+    $countryCode = trim((string)($cc[\'country_code\'] ?? \'\'));
+
+    if ($countryCode === \'\') {
+        continue;
+    }
+
+    $optionText = $countryName !== \'\'
+        ? $countryName . \' (\' . $countryCode . \')\'
+        : $countryCode;
+
+    $out .= \'                <option value="\' . htmlspecialchars($countryCode, ENT_QUOTES, \'UTF-8\') . \'">\'
+         . htmlspecialchars($optionText, ENT_QUOTES, \'UTF-8\')
+         . \'</option>\';
+}
+
+$out .= \'                  </select>\';
+$out .= \'                </div>\';
+$out .= \'                <div class="col-7 pl-0">\';
+$out .= \'                  <input type="number" name="whatsapp_number" class="form-control driverForm__control" placeholder="Whatsapp Number" required>\';
+$out .= \'                </div>\';
+$out .= \'              </div>\';
 $out .= \'            </div>\';
 
 $out .= \'            <div class="col-md-6 mb-0">\';
-$out .= \'              <label class="driverForm__label">Country of residence</label>\';
+$out .= \'              <label class="driverForm__label">Country of residence <span class="text-danger">*</span></label>\';
 $out .= \'              <input type="text" name="country_of_residence" class="form-control driverForm__control" placeholder="Country of residence" required>\';
 $out .= \'            </div>\';
 
 $out .= \'            <div class="col-md-6 mb-3">\';
-$out .= \'              <label class="driverForm__label">Number of passengers</label>\';
+$out .= \'              <label class="driverForm__label">Number of passengers <span class="text-danger">*</span></label>\';
 $out .= \'              <input type="number" name="passengers" class="form-control driverForm__control" placeholder="Passenger Count" required>\';
 $out .= \'            </div>\';
 
@@ -2992,10 +3077,10 @@ $out .= \'              <hr>\';
 
 
 $out .= \'          <div class="driverFormSection mt-4">\';
-$out .= \'            <h3 class="driverFormSection__title">Driver options</h3>\';
+$out .= \'            <h3 class="driverFormSection__title">Driver options </h3>\';
 $out .= \'            <div class="row">\';
 $out .= \'              <div class="col-md-6 mb-3">\';
-$out .= \'                <label class="driverForm__label">Do you need a chauffeur?</label>\';
+$out .= \'                <label class="driverForm__label">Do you need a chauffeur? <span class="text-danger">*</span></label>\';
 $out .= \'                <select name="need_chauffeur" id="need_chauffeur" class="form-control driverForm__control" required>\';
 $out .= \'                  <option value="">Select</option>\';
 $out .= \'                  <option value="yes">Yes</option>\';
@@ -3063,9 +3148,8 @@ $out .= \'          <input type="hidden" name="extras" value="\' . htmlspecialch
 
 $out .= \'              <hr>\';
 
-
 $out .= \'          <div class="driverFormSection mt-4">\';
-$out .= \'            <h3 class="driverFormSection__title">Payment option</h3>\';
+$out .= \'            <h3 class="driverFormSection__title">Payment option <span class="text-danger">*</span></h3>\';
 $out .= \'            <div class="row">\';
 $out .= \'              <div class="col-md-6 mb-3">\';
 $out .= \'                <label class="driverForm__label">How would you like to pay?</label>\';
@@ -3196,6 +3280,325 @@ $out .= \'<script>
       toggleUploads();
       togglePaymentButton();
   });
+</script>\';
+
+return $out;',
+        ),
+        'policies' => 
+        array (
+        ),
+        'source' => 
+        array (
+          'id' => 1,
+          'name' => 'Filesystem',
+          'description' => '',
+          'class_key' => 'MODX\\Revolution\\Sources\\modFileMediaSource',
+          'properties' => 
+          array (
+          ),
+          'is_stream' => true,
+        ),
+      ),
+      'BookingSuccessPopupStep4' => 
+      array (
+        'fields' => 
+        array (
+          'id' => 12,
+          'source' => 1,
+          'property_preprocess' => false,
+          'name' => 'BookingSuccessPopupStep4',
+          'description' => '',
+          'editor_type' => 0,
+          'category' => 0,
+          'cache_type' => 0,
+          'snippet' => 'if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+$bookingSuccess = $_SESSION[\'booking_success\'] ?? null;
+
+if (empty($bookingSuccess)) {
+    return \'\';
+}
+
+unset($_SESSION[\'booking_success\']);
+
+$bookingId = (int)($bookingSuccess[\'booking_id\'] ?? 0);
+$pdfUrl    = trim((string)($bookingSuccess[\'pdf_url\'] ?? \'\'));
+$homeUrl   = $modx->makeUrl(1); // home page resource id
+
+$out = \'\';
+
+$out .= \'<style>
+.bookingSuccessModal{
+    position:fixed;
+    inset:0;
+    background:rgba(15,23,42,.55);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:99999;
+    padding:20px;
+}
+.bookingSuccessModal__box{
+    width:100%;
+    max-width:520px;
+    background:#fff;
+    border-radius:20px;
+    padding:32px 24px;
+    text-align:center;
+    box-shadow:0 20px 50px rgba(0,0,0,.18);
+}
+.bookingSuccessModal__icon{
+    width:72px;
+    height:72px;
+    border-radius:50%;
+    background:#dcfce7;
+    color:#16a34a;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto 16px;
+    font-size:34px;
+    font-weight:700;
+}
+.bookingSuccessModal__title{
+    margin:0 0 10px;
+    font-size:28px;
+    font-weight:700;
+    color:#166534;
+}
+.bookingSuccessModal__text{
+    margin:0 0 8px;
+    color:#475569;
+    line-height:1.6;
+}
+.bookingSuccessModal__meta{
+    margin-top:14px;
+    padding:14px 16px;
+    border-radius:14px;
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    font-size:15px;
+    color:#334155;
+}
+.bookingSuccessModal__actions{
+    display:flex;
+    gap:12px;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin-top:22px;
+}
+.bookingSuccessModal__btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:48px;
+    padding:0 20px;
+    border-radius:12px;
+    text-decoration:none;
+    font-weight:700;
+    cursor:pointer;
+    border:none;
+}
+.bookingSuccessModal__btn--primary{
+    background:linear-gradient(135deg,#0ea5e9 0%,#0284c7 100%);
+    color:#fff;
+}
+.bookingSuccessModal__btn--secondary{
+    background:#fff;
+    color:#0284c7;
+    border:1px solid #cbd5e1;
+}
+</style>\';
+
+$out .= \'<div id="bookingSuccessModal" class="bookingSuccessModal">\';
+$out .= \'  <div class="bookingSuccessModal__box">\';
+$out .= \'      <div class="bookingSuccessModal__icon">✓</div>\';
+$out .= \'      <h3 class="bookingSuccessModal__title">Reservation Successful</h3>\';
+$out .= \'      <p class="bookingSuccessModal__text">Your reservation has been created successfully.</p>\';
+$out .= \'      <div class="bookingSuccessModal__meta"><strong>Booking ID:</strong> #\' . $bookingId . \'</div>\';
+$out .= \'      <div class="bookingSuccessModal__actions">\';
+
+if ($pdfUrl !== \'\') {
+    $out .= \'  <a href="\' . htmlspecialchars($pdfUrl, ENT_QUOTES, \'UTF-8\') . \'" class="bookingSuccessModal__btn bookingSuccessModal__btn--primary" id="downloadBookingPdfBtn" download>Download PDF</a>\';
+}
+
+$out .= \'          <button type="button" class="bookingSuccessModal__btn bookingSuccessModal__btn--secondary" id="closeBookingSuccessModal">Close</button>\';
+$out .= \'      </div>\';
+$out .= \'  </div>\';
+$out .= \'</div>\';
+
+$out .= \'<script>
+document.addEventListener("DOMContentLoaded", function () {
+    var modal = document.getElementById("bookingSuccessModal");
+    var closeBtn = document.getElementById("closeBookingSuccessModal");
+    var downloadBtn = document.getElementById("downloadBookingPdfBtn");
+    var homeUrl = \' . json_encode($homeUrl) . \';
+
+    if (closeBtn && modal) {
+        closeBtn.addEventListener("click", function () {
+            modal.style.display = "none";
+        });
+    }
+
+    if (downloadBtn) {
+        downloadBtn.addEventListener("click", function () {
+            setTimeout(function () {
+                window.location.href = homeUrl;
+            }, 800);
+        });
+    }
+});
+</script>\';
+
+return $out;',
+          'locked' => false,
+          'properties' => 
+          array (
+          ),
+          'moduleguid' => '',
+          'static' => false,
+          'static_file' => '',
+          'content' => 'if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+$bookingSuccess = $_SESSION[\'booking_success\'] ?? null;
+
+if (empty($bookingSuccess)) {
+    return \'\';
+}
+
+unset($_SESSION[\'booking_success\']);
+
+$bookingId = (int)($bookingSuccess[\'booking_id\'] ?? 0);
+$pdfUrl    = trim((string)($bookingSuccess[\'pdf_url\'] ?? \'\'));
+$homeUrl   = $modx->makeUrl(1); // home page resource id
+
+$out = \'\';
+
+$out .= \'<style>
+.bookingSuccessModal{
+    position:fixed;
+    inset:0;
+    background:rgba(15,23,42,.55);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:99999;
+    padding:20px;
+}
+.bookingSuccessModal__box{
+    width:100%;
+    max-width:520px;
+    background:#fff;
+    border-radius:20px;
+    padding:32px 24px;
+    text-align:center;
+    box-shadow:0 20px 50px rgba(0,0,0,.18);
+}
+.bookingSuccessModal__icon{
+    width:72px;
+    height:72px;
+    border-radius:50%;
+    background:#dcfce7;
+    color:#16a34a;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto 16px;
+    font-size:34px;
+    font-weight:700;
+}
+.bookingSuccessModal__title{
+    margin:0 0 10px;
+    font-size:28px;
+    font-weight:700;
+    color:#166534;
+}
+.bookingSuccessModal__text{
+    margin:0 0 8px;
+    color:#475569;
+    line-height:1.6;
+}
+.bookingSuccessModal__meta{
+    margin-top:14px;
+    padding:14px 16px;
+    border-radius:14px;
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    font-size:15px;
+    color:#334155;
+}
+.bookingSuccessModal__actions{
+    display:flex;
+    gap:12px;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin-top:22px;
+}
+.bookingSuccessModal__btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:48px;
+    padding:0 20px;
+    border-radius:12px;
+    text-decoration:none;
+    font-weight:700;
+    cursor:pointer;
+    border:none;
+}
+.bookingSuccessModal__btn--primary{
+    background:linear-gradient(135deg,#0ea5e9 0%,#0284c7 100%);
+    color:#fff;
+}
+.bookingSuccessModal__btn--secondary{
+    background:#fff;
+    color:#0284c7;
+    border:1px solid #cbd5e1;
+}
+</style>\';
+
+$out .= \'<div id="bookingSuccessModal" class="bookingSuccessModal">\';
+$out .= \'  <div class="bookingSuccessModal__box">\';
+$out .= \'      <div class="bookingSuccessModal__icon">✓</div>\';
+$out .= \'      <h3 class="bookingSuccessModal__title">Reservation Successful</h3>\';
+$out .= \'      <p class="bookingSuccessModal__text">Your reservation has been created successfully.</p>\';
+$out .= \'      <div class="bookingSuccessModal__meta"><strong>Booking ID:</strong> #\' . $bookingId . \'</div>\';
+$out .= \'      <div class="bookingSuccessModal__actions">\';
+
+if ($pdfUrl !== \'\') {
+    $out .= \'  <a href="\' . htmlspecialchars($pdfUrl, ENT_QUOTES, \'UTF-8\') . \'" class="bookingSuccessModal__btn bookingSuccessModal__btn--primary" id="downloadBookingPdfBtn" download>Download PDF</a>\';
+}
+
+$out .= \'          <button type="button" class="bookingSuccessModal__btn bookingSuccessModal__btn--secondary" id="closeBookingSuccessModal">Close</button>\';
+$out .= \'      </div>\';
+$out .= \'  </div>\';
+$out .= \'</div>\';
+
+$out .= \'<script>
+document.addEventListener("DOMContentLoaded", function () {
+    var modal = document.getElementById("bookingSuccessModal");
+    var closeBtn = document.getElementById("closeBookingSuccessModal");
+    var downloadBtn = document.getElementById("downloadBookingPdfBtn");
+    var homeUrl = \' . json_encode($homeUrl) . \';
+
+    if (closeBtn && modal) {
+        closeBtn.addEventListener("click", function () {
+            modal.style.display = "none";
+        });
+    }
+
+    if (downloadBtn) {
+        downloadBtn.addEventListener("click", function () {
+            setTimeout(function () {
+                window.location.href = homeUrl;
+            }, 800);
+        });
+    }
+});
 </script>\';
 
 return $out;',
