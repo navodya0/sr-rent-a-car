@@ -11262,8 +11262,9 @@ padding: 1rem 0 0 0;
   color: #fff;
 }
 .footer-widget ul li a {
-  color: #878787;
+  color: #fff !important;
   text-transform: capitalize;
+  white-space: nowrap;
 }
 .subscribe-form {
   position: relative;
@@ -13327,7 +13328,7 @@ body {
 .wa-button {
     position: fixed;
     bottom: 2rem;
-    right: 6rem;
+    right: 7rem;
     width: 55px;
     height: 55px;
     background: #25D366;
@@ -16255,7 +16256,7 @@ font-size:14px;
 
 .promo50-grid{
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
 }
 
@@ -16291,14 +16292,8 @@ font-size:14px;
   justify-content: flex-end;
   align-items: center;
   padding: 18px;
-  background:
-    linear-gradient(90deg,
-      rgba(0,0,0,0) 0%,
-      rgba(0,0,0,.05) 40%,
-      rgba(0,0,0,.22) 75%,
-      rgba(0,0,0,.28) 100%);
+    background: rgba(0, 0, 0, 0.5);
 }
-
 .promo50-content{
   text-align: left;
   color: #fff;
@@ -17297,7 +17292,7 @@ color : #fff;
   color: #fff;
 }
 
-.srBusiness__card h4 {
+.srBusiness__card h3 {
   font-size: 16px;
   font-weight: 800;
   color: #0b1f3a;
@@ -19195,6 +19190,7 @@ textarea.driverForm__control {
   color: #0f172a;
   font-weight: 700;
   text-align: right;
+  font-size: 12px;
 }
 
 .driverSummaryRow--total {
@@ -19383,13 +19379,16 @@ input[type="file"].driverForm__control {
 .driverSummaryTotalPrice {
   font-size: 1.4rem;
   font-weight: 800;
-  color: #16a34a !important; /* green */
+  color: #16a34a !important; 
+  font-size: 16px !important;
 }
 
 .driverSummaryRow--total span {
   font-size: 1rem;
   font-weight: 600;
   color: #0f172a;
+  font-size: 16px !important;
+
 }
 
 .countryDropdown {
@@ -19438,4 +19437,710 @@ input[type="file"].driverForm__control {
   height: 14px;
   object-fit: cover;
   border-radius: 2px;
+}
+
+.coverageCard--risk {
+    border: 1px solid #cbd5e1;
+}
+
+.coverageCard__desc--risk {
+    font-size: 16px;
+    line-height: 1.45;
+    color: #111827;
+}
+
+.coverageCard__descHighlight {
+    color: #f97316;
+    font-weight: 700;
+}
+
+.coverageCard__imageWrap {
+    position: relative;
+}
+
+.coverageCard__warningBadge {
+    position: absolute;
+    left: 8px;
+    bottom: 8px;
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: #f97316;
+    color: #fff;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 34px;
+    text-align: center;
+    z-index: 2;
+}
+
+.coverageCard__price--risk {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.coverageCard__price--risk strong {
+    font-size: 20px;
+    color: #111827;
+}
+
+.coverageCard__price--risk span {
+    margin-top: 8px;
+    color: #374151;
+}
+
+.coverageCard__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.coverageCard__list li {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 14px;
+}
+
+.coverageCard__list li::before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #16a34a;
+    font-weight: 700;
+}
+
+.coverageCard__list--risk li::before {
+    content: "⚠";
+    color: #f97316;
+    font-size: 18px;
+    top: -1px;
+}
+
+.coverageCard__footer--warning {
+    background: #fef3c7;
+    border: 1px solid #facc15;
+    color: #111827;
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-weight: 700;
+}
+
+.paymentCard,
+.paymentSummaryCard {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(30, 60, 114, 0.08);
+    padding: 30px;
+}
+
+.paymentCard__title,
+.paymentSummaryCard__title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #3d4db7;
+    margin-bottom: 20px;
+}
+
+.paymentMethods {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.paymentMethodItem {
+    border: 1px solid #d9dff5;
+    border-radius: 10px;
+    padding: 10px 16px;
+    background: #fff;
+    font-weight: 600;
+    color: #3d4db7;
+}
+
+.paymentMethodItem.active {
+    background: #f3f5ff;
+}
+
+.paymentForm__label {
+    font-weight: 600;
+    margin-bottom: 0;
+    display: block;
+    color: #444;
+}
+
+.paymentForm__control {
+    height: 48px;
+    border: 1px solid #d9dff5;
+    box-shadow: none;
+}
+
+.paymentBtn {
+    width: 100%;
+    height: 52px;
+    border: 0;
+    color: #fff;
+    font-weight: 700;
+    background: #03335f;
+    margin-top: 16px;
+}
+
+.paymentSummaryRow {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 12px;
+    font-size: 15px;
+}
+
+.paymentSummaryRow--total {
+    font-size: 18px;
+    font-weight: 700;
+    color: #3d4db7;
+}
+
+.paymentMethods {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.paymentMethodBtn {
+    border: 1px solid #d9dff5;
+    background: #fff;
+    border-radius: 12px;
+    padding: 12px 18px;
+    min-width: 110px;
+    min-height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+}
+
+.paymentMethodBtn:hover {
+    transform: translateY(-2px);
+    border-color: #8ea2ff;
+}
+
+.paymentMethodBtn.active {
+    border-color: #6d7cff;
+    box-shadow: 0 8px 20px rgba(109, 124, 255, 0.18);
+    background: #f6f8ff;
+}
+
+.paymentMethodBtn__img {
+    max-width: 72px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+.paymentPaypalNote {
+    background: #f7f9ff;
+    border: 1px solid #dde4ff;
+    color: #3d4db7;
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 18px;
+    font-size: 14px;
+}
+
+.payLaterNotice {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background: linear-gradient(135deg, #f5f8ff 0%, #eef3ff 100%);
+    border: 1px solid #dbe5ff;
+    box-shadow: 0 10px 25px rgba(61, 77, 183, 0.08);
+    animation: fadeInUp 0.3s ease;
+}
+
+.payLaterNotice__icon {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    border-radius: 50%;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.payLaterNotice__content {
+    flex: 1;
+}
+
+.payLaterNotice__title {
+    margin: 0 0 8px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #3246b8;
+}
+
+.payLaterNotice__text {
+    margin: 0 0 12px;
+    color: #555;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.payLaterNotice__list {
+    margin: 0 0 14px 18px;
+    padding: 0;
+    color: #444;
+}
+
+.payLaterNotice__list li {
+    margin-bottom: 6px;
+}
+
+.payLaterNotice__btn {
+    background: #003a5d;;
+    border: 0;
+    color: #fff;
+    font-weight: 600;
+    transition: 0.25s ease;
+}
+
+.payLaterNotice__btn:hover {
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.footer-style-v2 {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 40px 0 0;
+    color: #ffffff;
+    overflow: hidden;
+}
+
+.footer-style-v2 .footer-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(16, 16, 16, 0.6);
+    z-index: 1;
+}
+
+.footer-style-v2 .footer-inner {
+    position: relative;
+    z-index: 2;
+}
+
+.footer-brand,
+.footer-widget {
+    position: relative;
+}
+
+.footer-brand {
+  width: 100% !important;
+  text-align: justify;
+}
+
+.footer-logo-img {
+    max-width: 220px;
+    height: auto;
+}
+
+.footer-desc {
+    color: white;
+    font-size: 16px;
+    line-height: 1.8;
+    max-width: 320px;
+    margin-bottom: 0;
+}
+
+.footer-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links li a {
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 15px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer-links li a:hover {
+    color: #f1c644;
+    padding-left: 4px;
+}
+
+.footer-contact-row {
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px 40px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.footer-contact-icon {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    border-radius: 50%;
+    background: rgb(4 29 45);
+    border: 1px solid rgb(4 29 45);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}
+
+.footer-social {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-social a {
+    width: 42px;
+    height: 42px;
+    border: 3px solid rgb(85 6 21);
+    color: #000000;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    background: rgb(255 255 255);
+}
+
+.footer-social a:hover {
+    background: #f1c644;
+    color: #111111;
+    transform: translateY(-2px);
+}
+
+.footer-bottom {
+    margin-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer-bottom-center p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.76);
+    font-size: 14px;
+    text-align: center;
+}
+
+.footer-bottom-center p a {
+    color: #f1c644;
+    text-decoration: none;
+}
+
+.footer-payment-img {
+    height: 38px;
+    width: auto;
+    object-fit: contain;
+}
+
+.footer-raca-img {
+    height: 7rem;
+    width: auto;
+    object-fit: contain;
+}
+
+@media (max-width: 991px) {
+    .footer-style-v2 {
+        padding: 70px 0 25px;
+    }
+
+    .footer-title {
+        font-size: 22px;
+    }
+
+    .footer-contact-row,
+    .footer-bottom {
+        justify-content: flex-start;
+    }
+
+    .footer-bottom-center {
+        width: 100%;
+    }
+
+    .footer-bottom-center p {
+        text-align: left;
+    }
+}
+
+@media (max-width: 767px) {
+    .footer-style-v2 {
+        padding: 60px 0 20px;
+    }
+
+    .footer-logo-img {
+        max-width: 180px;
+    }
+
+    .footer-title {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .footer-desc,
+    .footer-links li a,
+    .footer-contact-item {
+        font-size: 14px;
+    }
+
+    .footer-contact-row {
+        gap: 18px;
+    }
+
+    .footer-contact-item {
+        width: 100%;
+    }
+
+    .footer-social {
+        width: 100%;
+    }
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: #999;
+    font-size: 14px;
+    margin-right: 6px;
+}
+
+.new-price {
+    color: #e53935;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.dealCard__oldPrice {
+    text-decoration: line-through;
+    color: #999;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.dealCard__newPrice {
+    color: #d62828;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.dealCard__offerNote {
+    margin-top: 14px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: #fff7e8;
+    border: 1px solid #f3d28b;
+}
+
+.dealCard__offerBadge {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    color: #8a5a00;
+    background: #ffe7a8;
+    padding: 5px 10px;
+    border-radius: 999px;
+    margin-bottom: 8px;
+}
+
+.dealCard__offerText {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #6b4a00;
+}
+
+.dealCard__suitable {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 700;
+    color: #1f7a3f;
+    background: #e9f8ee;
+    padding: 8px 14px;
+    border-radius: 10px;
+}
+
+.dealCard__selectInfo {
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 600;
+    color: #666;
+    background: #f5f5f5;
+    padding: 8px 14px;
+    border-radius: 10px;
+}
+
+.dealCard__oldPrice {
+    display: block;
+    text-decoration: line-through;
+    color: #999;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.dealCard__newPrice {
+    color: #d62828;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.premiumDiscountNotice {
+    margin: 14px 0 18px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    background: #fff7e8;
+    border: 1px solid #f2d089;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.premiumDiscountNotice__badge {
+    background: #ffd86b;
+    color: #6b4a00;
+    font-weight: 700;
+    font-size: 12px;
+    padding: 6px 10px;
+    border-radius: 999px;
+}
+
+.premiumDiscountNotice__text {
+    color: #6b4a00;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.floating-buttons {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 999;
+}
+
+.back-to-top {
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    background: #004763 !important;
+    color: #fff;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px !important;
+    z-index: 1000;
+}
+
+.back-to-top:hover {
+    background: #333;
+}
+
+.footer-services li a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-services img {
+    height: 4rem;
+    object-fit: cover;
+    background-color: white;
+}
+
+.footer-contact-item a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.footer-contact-item a:hover {
+    text-decoration: none;
+}
+
+  .tm-read-more-btn {
+    margin-top: 10px;
+    margin-bottom: 14px;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    background: #031c45;
+    color: #fff;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: 0.3s ease;
+  }
+
+  .tm-read-more-btn:hover {
+    background: #052b69;
+  }
+
+  .tm-text {
+    line-height: 1.7;
+  }
+
+
+.nav-item.dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0; 
+  border-radius: 0;
 }

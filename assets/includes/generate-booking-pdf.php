@@ -2,10 +2,75 @@
 declare(strict_types=1);
 
 use Dompdf\Dompdf;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
+require_once dirname(__DIR__, 2) . '/phpmailer/src/Exception.php';
+require_once dirname(__DIR__, 2) . '/phpmailer/src/PHPMailer.php';
+require_once dirname(__DIR__, 2) . '/phpmailer/src/SMTP.php';
 
 if (!function_exists('generateBookingPdfFile')) {
+    if (!function_exists('sendBookingPdfToCustomer')) {
+        function sendBookingPdfToCustomer(array $bookingData, string $pdfPathFs): bool
+        {
+            $customerName  = trim((string)($bookingData['full_name'] ?? 'Customer'));
+            $customerEmail = trim((string)($bookingData['email'] ?? ''));
+            $bookingId     = (int)($bookingData['booking_id'] ?? 0);
+
+            if ($customerEmail === '' || !filter_var($customerEmail, FILTER_VALIDATE_EMAIL)) {
+                return false;
+            }
+
+            if (!is_file($pdfPathFs)) {
+                return false;
+            }
+
+            $mail = new PHPMailer(true);
+
+            try {
+                $mail->isSMTP();
+                $mail->Host       = 'smtp.gmail.com';
+                $mail->SMTPAuth   = true;
+                $mail->Username   = 'navodyadivyanjali2@gmail.com';
+                $mail->Password   = 'hmdn xouu ecxf vait';
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                $mail->Port       = 587;
+
+                $mail->setFrom('navodyadivyanjali2@gmail.com', 'SR Rent A Car');
+                $mail->addAddress($customerEmail, $customerName);
+                $mail->addReplyTo('info@srilankarentacar.com', 'SR Rent A Car');
+
+                $mail->isHTML(true);
+                $mail->Subject = 'Your Booking Invoice - SR/RENT - ' . $bookingId;
+
+                $mail->Body = '
+                    <p>Dear ' . htmlspecialchars($customerName, ENT_QUOTES, 'UTF-8') . ',</p>
+                    <p>Thank you for your booking with <strong>SR Rent A Car</strong>.</p>
+                    <p>Please find your booking invoice attached to this email.</p>
+                    <p><strong>Booking Reference:</strong> SR/RENT - ' . $bookingId . '</p>
+                    <p>If you need any assistance, please reply to this email.</p>
+                    <br>
+                    <p>Best regards,<br>SR Rent A Car</p>
+                ';
+
+                $mail->AltBody =
+                    "Dear {$customerName},\n\n" .
+                    "Thank you for your booking with SR Rent A Car.\n" .
+                    "Please find your booking invoice attached.\n\n" .
+                    "Booking Reference: SR/RENT - {$bookingId}\n\n" .
+                    "Best regards,\nSR Rent A Car";
+
+                $mail->addAttachment($pdfPathFs, 'booking_invoice_BK-' . $bookingId . '.pdf');
+
+                $mail->send();
+                return true;
+            } catch (Exception $e) {
+                error_log('Booking PDF email failed: ' . $e->getMessage());
+                return false;
+            }
+        }
+    }
     function generateBookingPdfFile(array $bookingData): ?string
     {
         $bookingId = (int)($bookingData['booking_id'] ?? 0);
@@ -33,8 +98,7 @@ if (!function_exists('generateBookingPdfFile')) {
         $currency       = 'EUR';
 
         $invoiceTitle = 'Booking Invoice';
-        $invoiceDate  = date('Y-m-d H:i');
-        $bookingRef   = 'BK-' . $bookingId;
+        $bookingRef   = 'SR/RENT - ' . $bookingId;
 
         $vehicleName      = (string)($bookingData['car_model'] ?? '');
         $carCode          = (string)($bookingData['car_code'] ?? '');
@@ -47,6 +111,10 @@ if (!function_exists('generateBookingPdfFile')) {
         $coverageName     = (string)($bookingData['coverage_name'] ?? '');
         $coverageTotal    = (float)($bookingData['coverage_total'] ?? 0);
         $rentalAmount     = (float)($bookingData['rental_amount'] ?? 0);
+        $originalRentalAmount   = (float)($bookingData['original_rental_amount'] ?? 0);
+        $discountedRentalAmount = (float)($bookingData['discounted_rental_amount'] ?? 0);
+        $discountRaw            = (string)($bookingData['discount_raw'] ?? '');
+        $discountPercent        = (int)($bookingData['discount_percent'] ?? 0);
         $extrasTotal      = (float)($bookingData['extras_total'] ?? 0);
         $grandTotal       = (float)($bookingData['grand_total'] ?? 0);
         $securityDeposit  = (float)($bookingData['security_deposit'] ?? 0);
@@ -60,6 +128,12 @@ if (!function_exists('generateBookingPdfFile')) {
         $paymentOption    = (string)($bookingData['payment_option'] ?? '');
         $needChauffeur    = (string)($bookingData['need_chauffeur'] ?? '');
         $needSlLicense    = (string)($bookingData['need_sl_license'] ?? '');
+        $chauffeurFee     = (float)($bookingData['chauffeur_fee'] ?? 0);
+        $licenseFee       = (float)($bookingData['license_fee'] ?? 0);
+
+        if ($discountedRentalAmount <= 0) {
+            $discountedRentalAmount = $rentalAmount;
+        }
 
         $extras = json_decode((string)($bookingData['extras_json'] ?? ''), true);
         $extrasSummary = 'No additional extras';
@@ -208,7 +282,6 @@ table { width: 100%; border-collapse: collapse; }
             <div class="subtitle muted">Booking Confirmation Invoice</div>
             <div class="hr"></div>
             <div><span class="pill">Booking Ref: ' . $h($bookingRef) . '</span></div>
-            <div style="margin-top:6px;" class="muted">Issued: ' . $h($invoiceDate) . '</div>
         </td>
     </tr>
 </table>
@@ -263,10 +336,18 @@ table { width: 100%; border-collapse: collapse; }
                 <td>
                     <div style="font-weight:800;">Vehicle Rental</div>
                     <div class="muted small">' . $h($vehicleDisplay) . '</div>
+                    ' . ($discountPercent > 0 && $discountRaw !== '' ? '<div class="muted small" style="color:#b45309; font-weight:700;">Offer applied: ' . $h($discountRaw) . '</div>' : '') . '
                 </td>
                 <td class="num">' . $h((string)$days) . '</td>
-                <td class="num">' . $h($fmt($rentalAmount)) . '</td>
-                <td class="num" style="font-weight:800;">' . $h($fmt($rentalAmount)) . '</td>
+                <td class="num">' . $h($fmt($discountedRentalAmount)) . '</td>
+                <td class="num" style="font-weight:800;">
+                    ' . (
+                        $discountPercent > 0 && $originalRentalAmount > 0
+                        ? '<div style="text-decoration:line-through; color:#6b7280; font-weight:400;">' . $h($fmt($originalRentalAmount)) . '</div>
+                        <div>' . $h($fmt($discountedRentalAmount)) . '</div>'
+                        : $h($fmt($discountedRentalAmount))
+                    ) . '
+                </td>
             </tr>
             <tr>
                 <td>
@@ -294,8 +375,23 @@ table { width: 100%; border-collapse: collapse; }
     <table>
         <tr>
             <td class="muted">Rental amount</td>
-            <td class="num" style="text-align:right; font-weight:700;">' . $h($fmt($rentalAmount)) . '</td>
+            <td class="num" style="text-align:right; font-weight:700;">
+                ' . (
+                    $discountPercent > 0 && $originalRentalAmount > 0
+                    ? '<div style="text-decoration:line-through; color:#6b7280; font-weight:400;">' . $h($fmt($originalRentalAmount)) . '</div>
+                       <div>' . $h($fmt($discountedRentalAmount)) . '</div>'
+                    : $h($fmt($discountedRentalAmount))
+                ) . '
+            </td>
         </tr>
+        ' . (
+            $discountPercent > 0 && $originalRentalAmount > 0
+            ? '<tr>
+                    <td class="muted">Discount</td>
+                    <td class="num" style="text-align:right; font-weight:700; color:#b91c1c;">-' . $h($fmt($originalRentalAmount - $discountedRentalAmount)) . '</td>
+               </tr>'
+            : ''
+        ) . '
         <tr>
             <td class="muted">Coverage</td>
             <td class="num" style="text-align:right; font-weight:700;">' . $h($fmt($coverageTotal)) . '</td>
@@ -304,6 +400,18 @@ table { width: 100%; border-collapse: collapse; }
             <td class="muted">Extras</td>
             <td class="num" style="text-align:right; font-weight:700;">' . $h($fmt($extrasTotal)) . '</td>
         </tr>
+        ' . ($chauffeurFee > 0 ? '
+        <tr>
+            <td class="muted">Chauffeur fee</td>
+            <td class="num" style="text-align:right; font-weight:700;">' . $h($fmt($chauffeurFee)) . '</td>
+        </tr>
+        ' : '') . '
+        ' . ($licenseFee > 0 ? '
+        <tr>
+            <td class="muted">Sri Lankan license fee</td>
+            <td class="num" style="text-align:right; font-weight:700;">' . $h($fmt($licenseFee)) . '</td>
+        </tr>
+        ' : '') . '
         <tr><td colspan="2"><div class="hr"></div></td></tr>
         <tr>
             <td style="font-weight:800;">Grand Total</td>
@@ -358,7 +466,19 @@ table { width: 100%; border-collapse: collapse; }
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
 
-        file_put_contents($pdfPathFs, $dompdf->output());
+        $pdfBinary = $dompdf->output();
+
+        if ($pdfBinary === '' || $pdfBinary === false) {
+            error_log('PDF output is empty for booking ID: ' . $bookingId);
+            return null;
+        }
+
+        $written = @file_put_contents($pdfPathFs, $pdfBinary);
+
+        if ($written === false || !is_file($pdfPathFs)) {
+            error_log('Could not write PDF file: ' . $pdfPathFs);
+            return null;
+        }
 
         return $pdfPathRel;
     }

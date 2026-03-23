@@ -9,7 +9,7 @@ $url = 'https://places.googleapis.com/v1/places/' . urlencode($placeId);
 $headers = [
     'Content-Type: application/json',
     'X-Goog-Api-Key: ' . $apiKey,
-    'X-Goog-FieldMask: displayName,rating,userRatingCount,reviews'
+    'X-Goog-FieldMask: displayName,rating,userRatingCount,reviews,reviews.text,reviews.rating,reviews.authorAttribution'
 ];
 
 $ch = curl_init();
