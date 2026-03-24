@@ -44,24 +44,13 @@
       </div>
     </div>
 
-    <!-- Content -->
-    <div class="heroRent__content">
-      <div class="container">
-        <div class="heroRent__contentInner heroRent__contentInner--left">
-          <span class="heroRent__sub">Affordable</span>
-          <h1 class="heroRent__title">Sri Lanka Rent A Car</h1>
-          <p class="heroRent__lead">Premium vehicles • Chauffeur services • Airport pickup</p>
-        </div>
-      </div>
-    </div>
-
     <!-- Booking Bar -->
     <div class="heroRent__bar">
       <div class="container">
 
         <!-- Mobile Accordion Toggle -->
         <button type="button" class="heroRentAcc__toggle" aria-expanded="false" aria-controls="heroRentAccPanel">
-          <span>Search & Reserve</span>
+          <span class="text-white">Search & Reserve</span>
           <span class="heroRentAcc__icon" aria-hidden="true"></span>
         </button>
 
@@ -113,7 +102,17 @@
             </div>
           </form>
         </div>
+      </div>
+    </div>
 
+    <!-- Content -->
+    <div class="heroRent__content">
+      <div class="container">
+        <div class="heroRent__contentInner heroRent__contentInner--left">
+          <span class="heroRent__sub">Affordable</span>
+          <h1 class="heroRent__title">Sri Lanka Rent A Car</h1>
+          <p class="heroRent__lead">Premium vehicles • Chauffeur services • Airport pickup</p>
+        </div>
       </div>
     </div>
 
@@ -1162,7 +1161,7 @@
     'createdby' => 1,
     'createdon' => 1723316876,
     'editedby' => 1,
-    'editedon' => 1774338734,
+    'editedon' => 1774347453,
     'deleted' => 0,
     'deletedon' => 0,
     'deletedby' => 0,
@@ -1407,24 +1406,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
 
-    <!-- Content -->
-    <div class="heroRent__content">
-      <div class="container">
-        <div class="heroRent__contentInner heroRent__contentInner--left">
-          <span class="heroRent__sub">Affordable</span>
-          <h1 class="heroRent__title">Sri Lanka Rent A Car</h1>
-          <p class="heroRent__lead">Premium vehicles • Chauffeur services • Airport pickup</p>
-        </div>
-      </div>
-    </div>
-
     <!-- Booking Bar -->
     <div class="heroRent__bar">
       <div class="container">
 
         <!-- Mobile Accordion Toggle -->
         <button type="button" class="heroRentAcc__toggle" aria-expanded="false" aria-controls="heroRentAccPanel">
-          <span>Search & Reserve</span>
+          <span class="text-white">Search & Reserve</span>
           <span class="heroRentAcc__icon" aria-hidden="true"></span>
         </button>
 
@@ -1476,7 +1464,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
           </form>
         </div>
+      </div>
+    </div>
 
+    <!-- Content -->
+    <div class="heroRent__content">
+      <div class="container">
+        <div class="heroRent__contentInner heroRent__contentInner--left">
+          <span class="heroRent__sub">Affordable</span>
+          <h1 class="heroRent__title">Sri Lanka Rent A Car</h1>
+          <p class="heroRent__lead">Premium vehicles • Chauffeur services • Airport pickup</p>
+        </div>
       </div>
     </div>
 
@@ -4109,9 +4107,30 @@ $featuredOne = $featured[0] ?? null;
 ?>
 
 <?php if (!empty($promo50)): ?>
+<?php
+    $promoCount = count($promo50);
+
+    switch ($promoCount) {
+        case 1:
+            $promoCol = \'col-lg-8 col-md-10 col-12\';
+            break;
+        case 2:
+            $promoCol = \'col-lg-6 col-md-6 col-12\';
+            break;
+        case 3:
+            $promoCol = \'col-lg-4 col-md-6 col-12\';
+            break;
+        case 4:
+            $promoCol = \'col-lg-3 col-md-6 col-12\';
+            break;
+        default:
+            $promoCol = \'col-lg-3 col-md-6 col-12\';
+            break;
+    }
+?>
 <section class="promo50-section">
     <div class="container">
-        <div class="promo50-grid">
+        <div class="row justify-content-center">
 
             <?php foreach ($promo50 as $p): ?>
                 <?php
@@ -4136,42 +4155,45 @@ $featuredOne = $featured[0] ?? null;
                     // leave as is
                 }
 
-                // add discount in URL too, if needed
                 $offerLink = rtrim($ctaLink, \'?&\')
                     . (strpos($ctaLink, \'?\') !== false ? \'&\' : \'?\')
                     . \'discount=\' . rawurlencode($p[\'discount_text\'] ?? \'\');
                 ?>
-                <article class="promo50-card">
-                    <img
-                        class="promo50-bg"
-                        src="<?= htmlspecialchars($p[\'image_path\'] ?? \'\', ENT_QUOTES, \'UTF-8\') ?>"
-                        alt="<?= htmlspecialchars($p[\'title\'] ?? \'\', ENT_QUOTES, \'UTF-8\') ?>"
-                    >
+                
+                <div class="<?= $promoCol ?> mb-4">
+                    <article class="promo50-card">
+                        <img
+                            class="promo50-bg"
+                            src="<?= htmlspecialchars($p[\'image_path\'] ?? \'\', ENT_QUOTES, \'UTF-8\') ?>"
+                            alt="<?= htmlspecialchars($p[\'title\'] ?? \'\', ENT_QUOTES, \'UTF-8\') ?>"
+                        >
 
-                    <div class="promo50-overlay">
-                        <div class="promo50-content">
-                            <div class="promo50-title">
-                                <?= nl2br(htmlspecialchars(str_replace(\' \', "\\n", $p[\'discount_text\'] ?? \'\'), ENT_QUOTES, \'UTF-8\')) ?>
+                        <div class="promo50-overlay">
+                            <div class="promo50-content">
+                                <div class="promo50-title">
+                                    <?= nl2br(htmlspecialchars(str_replace(\' \', "\\n", $p[\'discount_text\'] ?? \'\'), ENT_QUOTES, \'UTF-8\')) ?>
+                                </div>
+
+                                <div class="promo50-sub">
+                                    <?= htmlspecialchars($p[\'subtitle\'] ?? \'\', ENT_QUOTES, \'UTF-8\') ?>
+                                </div>
+
+                                <form action="<?= htmlspecialchars($offerLink, ENT_QUOTES, \'UTF-8\') ?>" method="post" class="promo50-form">
+                                    <input type="hidden" name="pickup_location" value="<?= htmlspecialchars($pickupLocation, ENT_QUOTES, \'UTF-8\') ?>">
+                                    <input type="hidden" name="dropoff_location" value="<?= htmlspecialchars($dropoffLocation, ENT_QUOTES, \'UTF-8\') ?>">
+                                    <input type="hidden" name="pickup_datetime" value="<?= htmlspecialchars($pickupDatetime, ENT_QUOTES, \'UTF-8\') ?>">
+                                    <input type="hidden" name="dropoff_datetime" value="<?= htmlspecialchars($dropoffDatetime, ENT_QUOTES, \'UTF-8\') ?>">
+                                    <input type="hidden" name="discount" value="<?= htmlspecialchars($p[\'discount_text\'] ?? \'\', ENT_QUOTES, \'UTF-8\') ?>">
+
+                                    <button type="submit" class="promo50-btn">
+                                        <?= htmlspecialchars($p[\'cta_text\'] ?? \'Book Now\', ENT_QUOTES, \'UTF-8\') ?>
+                                    </button>
+                                </form>
                             </div>
-
-                            <div class="promo50-sub">
-                                <?= htmlspecialchars($p[\'subtitle\'] ?? \'\', ENT_QUOTES, \'UTF-8\') ?>
-                            </div>
-
-                            <form action="<?= htmlspecialchars($offerLink, ENT_QUOTES, \'UTF-8\') ?>" method="post" class="promo50-form">
-                                <input type="hidden" name="pickup_location" value="<?= htmlspecialchars($pickupLocation, ENT_QUOTES, \'UTF-8\') ?>">
-                                <input type="hidden" name="dropoff_location" value="<?= htmlspecialchars($dropoffLocation, ENT_QUOTES, \'UTF-8\') ?>">
-                                <input type="hidden" name="pickup_datetime" value="<?= htmlspecialchars($pickupDatetime, ENT_QUOTES, \'UTF-8\') ?>">
-                                <input type="hidden" name="dropoff_datetime" value="<?= htmlspecialchars($dropoffDatetime, ENT_QUOTES, \'UTF-8\') ?>">
-                                <input type="hidden" name="discount" value="<?= htmlspecialchars($p[\'discount_text\'] ?? \'\', ENT_QUOTES, \'UTF-8\') ?>">
-
-                                <button type="submit" class="promo50-btn">
-                                    <?= htmlspecialchars($p[\'cta_text\'] ?? \'Book Now\', ENT_QUOTES, \'UTF-8\') ?>
-                                </button>
-                            </form>
                         </div>
-                    </div>
-                </article>
+                    </article>
+                </div>
+
             <?php endforeach; ?>
 
         </div>
@@ -4228,9 +4250,30 @@ $featuredOne = $featured[0] ?? null;
 ?>
 
 <?php if (!empty($promo50)): ?>
+<?php
+    $promoCount = count($promo50);
+
+    switch ($promoCount) {
+        case 1:
+            $promoCol = \'col-lg-8 col-md-10 col-12\';
+            break;
+        case 2:
+            $promoCol = \'col-lg-6 col-md-6 col-12\';
+            break;
+        case 3:
+            $promoCol = \'col-lg-4 col-md-6 col-12\';
+            break;
+        case 4:
+            $promoCol = \'col-lg-3 col-md-6 col-12\';
+            break;
+        default:
+            $promoCol = \'col-lg-3 col-md-6 col-12\';
+            break;
+    }
+?>
 <section class="promo50-section">
     <div class="container">
-        <div class="promo50-grid">
+        <div class="row justify-content-center">
 
             <?php foreach ($promo50 as $p): ?>
                 <?php
@@ -4255,42 +4298,45 @@ $featuredOne = $featured[0] ?? null;
                     // leave as is
                 }
 
-                // add discount in URL too, if needed
                 $offerLink = rtrim($ctaLink, \'?&\')
                     . (strpos($ctaLink, \'?\') !== false ? \'&\' : \'?\')
                     . \'discount=\' . rawurlencode($p[\'discount_text\'] ?? \'\');
                 ?>
-                <article class="promo50-card">
-                    <img
-                        class="promo50-bg"
-                        src="<?= htmlspecialchars($p[\'image_path\'] ?? \'\', ENT_QUOTES, \'UTF-8\') ?>"
-                        alt="<?= htmlspecialchars($p[\'title\'] ?? \'\', ENT_QUOTES, \'UTF-8\') ?>"
-                    >
+                
+                <div class="<?= $promoCol ?> mb-4">
+                    <article class="promo50-card">
+                        <img
+                            class="promo50-bg"
+                            src="<?= htmlspecialchars($p[\'image_path\'] ?? \'\', ENT_QUOTES, \'UTF-8\') ?>"
+                            alt="<?= htmlspecialchars($p[\'title\'] ?? \'\', ENT_QUOTES, \'UTF-8\') ?>"
+                        >
 
-                    <div class="promo50-overlay">
-                        <div class="promo50-content">
-                            <div class="promo50-title">
-                                <?= nl2br(htmlspecialchars(str_replace(\' \', "\\n", $p[\'discount_text\'] ?? \'\'), ENT_QUOTES, \'UTF-8\')) ?>
+                        <div class="promo50-overlay">
+                            <div class="promo50-content">
+                                <div class="promo50-title">
+                                    <?= nl2br(htmlspecialchars(str_replace(\' \', "\\n", $p[\'discount_text\'] ?? \'\'), ENT_QUOTES, \'UTF-8\')) ?>
+                                </div>
+
+                                <div class="promo50-sub">
+                                    <?= htmlspecialchars($p[\'subtitle\'] ?? \'\', ENT_QUOTES, \'UTF-8\') ?>
+                                </div>
+
+                                <form action="<?= htmlspecialchars($offerLink, ENT_QUOTES, \'UTF-8\') ?>" method="post" class="promo50-form">
+                                    <input type="hidden" name="pickup_location" value="<?= htmlspecialchars($pickupLocation, ENT_QUOTES, \'UTF-8\') ?>">
+                                    <input type="hidden" name="dropoff_location" value="<?= htmlspecialchars($dropoffLocation, ENT_QUOTES, \'UTF-8\') ?>">
+                                    <input type="hidden" name="pickup_datetime" value="<?= htmlspecialchars($pickupDatetime, ENT_QUOTES, \'UTF-8\') ?>">
+                                    <input type="hidden" name="dropoff_datetime" value="<?= htmlspecialchars($dropoffDatetime, ENT_QUOTES, \'UTF-8\') ?>">
+                                    <input type="hidden" name="discount" value="<?= htmlspecialchars($p[\'discount_text\'] ?? \'\', ENT_QUOTES, \'UTF-8\') ?>">
+
+                                    <button type="submit" class="promo50-btn">
+                                        <?= htmlspecialchars($p[\'cta_text\'] ?? \'Book Now\', ENT_QUOTES, \'UTF-8\') ?>
+                                    </button>
+                                </form>
                             </div>
-
-                            <div class="promo50-sub">
-                                <?= htmlspecialchars($p[\'subtitle\'] ?? \'\', ENT_QUOTES, \'UTF-8\') ?>
-                            </div>
-
-                            <form action="<?= htmlspecialchars($offerLink, ENT_QUOTES, \'UTF-8\') ?>" method="post" class="promo50-form">
-                                <input type="hidden" name="pickup_location" value="<?= htmlspecialchars($pickupLocation, ENT_QUOTES, \'UTF-8\') ?>">
-                                <input type="hidden" name="dropoff_location" value="<?= htmlspecialchars($dropoffLocation, ENT_QUOTES, \'UTF-8\') ?>">
-                                <input type="hidden" name="pickup_datetime" value="<?= htmlspecialchars($pickupDatetime, ENT_QUOTES, \'UTF-8\') ?>">
-                                <input type="hidden" name="dropoff_datetime" value="<?= htmlspecialchars($dropoffDatetime, ENT_QUOTES, \'UTF-8\') ?>">
-                                <input type="hidden" name="discount" value="<?= htmlspecialchars($p[\'discount_text\'] ?? \'\', ENT_QUOTES, \'UTF-8\') ?>">
-
-                                <button type="submit" class="promo50-btn">
-                                    <?= htmlspecialchars($p[\'cta_text\'] ?? \'Book Now\', ENT_QUOTES, \'UTF-8\') ?>
-                                </button>
-                            </form>
                         </div>
-                    </div>
-                </article>
+                    </article>
+                </div>
+
             <?php endforeach; ?>
 
         </div>

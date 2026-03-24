@@ -196,10 +196,6 @@ label {
 button {
   border-radius: 0; }
 
-button:focus {
-  outline: 1px dotted;
-  outline: 5px auto -webkit-focus-ring-color; }
-
 input,
 button,
 select,
@@ -13511,7 +13507,7 @@ font-size:14px;
 
 .heroRent__sub{
   display:block;
-  font-size: 88px;
+  font-size: 70px;
   color: #efc900 !important;
   font-weight: 600;
   font-family: "Great Vibes", cursive;
@@ -13521,7 +13517,7 @@ font-size:14px;
 }
 
 .heroRent__title{
-  font-size:52px;
+  font-size:48px;
   color: #fff;
   line-height: 1.18;
   font-family: "Playfair Display", serif;
@@ -13579,7 +13575,7 @@ font-size:14px;
   position:absolute;
   left:0;
   right:0;
-  top:58%;
+  top:56%;
   bottom:auto;
   transform: translateY(-50%);
   z-index:20;
@@ -13605,6 +13601,7 @@ font-size:14px;
   pointer-events:none;
   background: linear-gradient(120deg, rgba(255,255,255,.14), transparent 32%, transparent 68%, rgba(255,255,255,.06));
 }
+
 
 .heroRentForm::after{
   content:"";
@@ -14355,18 +14352,17 @@ font-size:14px;
   text-decoration:none;
   padding:16px 16px 14px;
   border-radius:22px;
-  background:#0c31401f;             /* soft blue like image */
-  box-shadow: 0 10px 25px rgba(0,0,0,.06);
+  box-shadow: 0 10px 25px rgba(0,0,0,.4);
   position:relative;
   overflow:hidden;
   height: 360px;
+  border: 2px solid #001c35;
 }
 
 .we-offer .offer-head{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  margin-bottom:10px;
 }
 
 .we-offer .offer-title{
@@ -14398,14 +14394,14 @@ font-size:14px;
   place-items:center;
   box-shadow: 0 8px 18px rgba(0,0,0,.08);
   z-index:2;
+  display: none;
 }
 
 /* image aligned to right */
 .we-offer .offer-img{
   position:absolute;
-  right:10px;
   top:18px;
-  width: 72%;
+  width: 100%;
   height: 170px;
   object-fit: cover;
   border-radius:16px;
@@ -14425,9 +14421,9 @@ font-size:14px;
 
 .we-offer .offer-bubble p{
   margin:0;
-  color:#5a6775;
-  font-size:13px;
+  font-size:14px;
   line-height:1.35;
+  text-align: justify;
 }
 
 /* little arrow button at bubble right */
@@ -14536,9 +14532,8 @@ font-size:14px;
 
 .tm-text{
   color:#6a7786;
-  font-size:13px;
+  font-size:14px;
   line-height:1.45;
-  margin:0 0 18px;
 }
 
 .tm-footer{
@@ -14865,7 +14860,7 @@ font-size:14px;
 /* clickable header */
 .why-head{
   width:100%;
-  background:#f6fbff;
+  background:#fff;
   border:0;
   padding:16px 16px;
   display:flex;
@@ -14939,8 +14934,7 @@ font-size:14px;
 /* CTA card */
 .why-cta{
   height:100%;
-  border-radius:16px;
-  background: linear-gradient(135deg, #0b3a78, #00a3c4);
+  border: 2px solid #001c35;
   padding:22px;
   color:#fff;
   box-shadow:0 16px 40px rgba(0,0,0,.12);
@@ -14949,23 +14943,22 @@ font-size:14px;
 .why-cta h4{
   margin:0 0 8px;
   font-weight:900;
-  color: white;
+  color: black;
   font-size: 16px;
-  font-family: "playfair display", georgia, serif;
 }
 
 .why-cta p{
   margin:0 0 14px;
   opacity:.95;
-  color: white !important;
+  color: black !important;
+  font-size: 16px;
 }
 
 .why-btn{
   display:inline-flex;
-  padding:10px 14px;
-  border-radius:999px;
-  background:#fff;
-  color:#0b3a78;
+  padding:4px 14px;
+  background:#024167;
+  color:#fff;
   font-weight:900;
   text-decoration:none;
 }
@@ -15545,8 +15538,7 @@ font-size:14px;
 
 .faq-q{
   width:100%;
-  padding:14px 14px;
-  background:#f7fbff;
+  background:#f7fbff00;
   border:0;
   display:flex;
   justify-content:space-between;
@@ -15597,11 +15589,12 @@ font-size:14px;
 }
 
 .contact-card{
-  background:#001c35;
-  color:#fff;
+  background:#fff;
+  color:#000;
   padding:30px;
   height:100%;
-  box-shadow:0 20px 50px rgba(0,0,0,.15);
+  box-shadow:0 20px 50px rgba(0,0,0,.5);
+  border: 2px solid #001c35;
 }
 
 .contact-card h3{
@@ -15613,7 +15606,11 @@ font-size:14px;
   opacity:.95;
   font-size:14px;
   line-height:1.6;
-  color: white !important;
+  color: #000 !important;
+}
+
+.text-black {
+  color: #0000 !important;
 }
 
 .contact-item{
@@ -15634,12 +15631,12 @@ font-size:14px;
 }
 
 .contact-card a{
-  color:#fff;
+  color:#000 !important;
   text-decoration:none;
 }
 
 .social-section{
-  margin-top:30px;
+  margin-top:20px;
 }
 
 .social-icons{
@@ -15656,8 +15653,12 @@ font-size:14px;
   place-items:center;
   border-radius:50%;
   font-size:18px;
-  color:#fff;
+  color:#fff !important;
   transition:.3s ease;
+}
+
+.social-icons a {
+  color: white !important;
 }
 
 /* Brand Colors */
@@ -16933,7 +16934,7 @@ color : #fff;
   max-width: 850px;
   margin: 0 auto;
   color: #4b5b70;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.8;
 }
 
@@ -16943,7 +16944,7 @@ color : #fff;
   color: #fff !important;
   padding: 8px 18px;
   border-radius: 50px;
-  font-size: 0.85rem;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.5px;
 }
@@ -17169,6 +17170,7 @@ color : #fff;
   line-height: 1.8;
   max-width: 580px;
   margin-bottom: 0;
+  font-size: 14px;
 }
 
 .fleet-hero-image {
@@ -17343,7 +17345,7 @@ color : #fff;
   color: #fff !important;
   padding: 8px 18px;
   border-radius: 40px;
-  font-size: 0.8rem;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.6px;
   margin-bottom: 18px;
@@ -18964,7 +18966,7 @@ color : #fff;
   position: relative;
   padding-left: 34px;
   margin-bottom: 16px;
-  color: #4b5563;
+  color: #000;
   line-height: 1.8;
 }
 
@@ -18982,6 +18984,16 @@ color : #fff;
   margin-bottom: 20px;
 }
 
+
+.dealCard__payNowNote {
+    padding: 8px 10px;
+    font-size: 13px;
+    line-height: 1.4;
+    color: #cb1313;
+    background: #f8eeee;
+    border-left: 3px solid #bf0000;
+    border-radius: 6px;
+}
 .faq-question {
   font-size: 18px;
   font-weight: 600;
@@ -19334,9 +19346,9 @@ color : #fff;
   text-decoration: none;
   font-weight: 800;
   font-size: 16px;
-  padding: 14px 22px;
-  border-radius: 999px;
+  padding: 7px 10px;
   white-space: nowrap;
+  border-color: transparent;
 }
 
 .coverageCard__btn:hover {
@@ -19535,9 +19547,10 @@ color : #fff;
   border: 1px solid #d7dfeb;
   background: #fff;
   color: #0f172a;
-  font-size: 12px !important;
+  font-size: 14px !important;
   box-shadow: none;
   transition: all 0.2s ease;
+  font-family: Cambria, serif;
 }
 
 textarea.driverForm__control.form-control,
@@ -19615,11 +19628,11 @@ textarea.driverForm__control {
   background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
   border: 1px solid #e6edf5;
   border-radius: 18px;
-  padding: 18px;
+  padding: 12px;
 }
 
 .driverSummaryCard__dates {
-  font-size: 0.96rem;
+  font-size: 12px;
   font-weight: 600;
   color: #334155;
   margin-bottom: 14px;
@@ -19627,7 +19640,7 @@ textarea.driverForm__control {
 
 .driverSummaryCard__carTitle {
   margin: 0;
-  font-size: 1.3rem;
+  font-size: 16px;
   line-height: 1.2;
   font-weight: 700;
   color: #0f172a;
@@ -20228,7 +20241,7 @@ input[type="file"].driverForm__control {
 .footer-style-v2 .footer-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(16, 16, 16, 0.6);
+    background: rgba(16, 16, 16, 0.4);
     z-index: 1;
 }
 
@@ -20490,6 +20503,7 @@ input[type="file"].driverForm__control {
     background: #fff7e8;
     border: 1px solid #f3d28b;
     font-weight: 700;
+    white-space: nowrap
 }
 
 .dealCard__discountBadge {
@@ -20725,4 +20739,272 @@ input[type="file"].driverForm__control {
 
 .srBusiness__btnCard:hover {
   background: rgba(255,255,255,0.3);
+}
+
+.rentExtraInfo__card {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  border: 1px solid #e7eef7;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(24, 39, 75, 0.08);
+  overflow: hidden;
+}
+
+.rentExtraInfo__header {
+  margin-bottom: 18px;
+}
+
+.rentExtraInfo__badge {
+  display: inline-block;
+  padding: 6px 12px;
+  background: #004f89;
+  color: #fff !important;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.rentExtraInfo__header h4 {
+  margin: 0 0 8px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #132238;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  text-transform: uppercase;
+}
+
+.rentExtraInfo__header p {
+  margin: 0;
+  color: #607086;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.rentExtraInfo__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.rentExtraInfo__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px;
+  background: #fff;
+  border: 1px solid #edf2f7;
+  border-radius: 14px;
+  transition: all 0.25s ease;
+}
+
+.rentExtraInfo__item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+  border-color: #d7e4f3;
+}
+
+.rentExtraInfo__icon {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border-radius: 12px;
+  background: #eef6ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.rentExtraInfo__content h5 {
+  margin: 0 0 6px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1b2a41;
+}
+
+.rentExtraInfo__content p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.65;
+  color: #5f6f82;
+  text-align: justify;
+}
+
+.rentExtraInfo__footer {
+  padding-top: 14px;
+  border-top: 1px solid #e9eef5;
+  color: #7a8899;
+}
+
+
+
+
+.rentExtraInfo__card {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  border: 1px solid #e7eef7;
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 10px 30px rgba(24, 39, 75, 0.08);
+  overflow: hidden;
+}
+
+.rentExtraInfo__header {
+  margin-bottom: 18px;
+}
+
+/* .rentExtraInfo__badge {
+  display: inline-block;
+  padding: 6px 12px;
+  background: #8b0016;
+  color: #fff;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 10px;
+} */
+
+.rentExtraInfo__mobileToggle h4 {
+  margin: 0 0 8px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #132238;
+}
+
+.rentExtraInfo__header p {
+  margin: 0;
+  color: #607086;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.rentExtraInfo__grid {
+  display: grid;
+  gap: 14px;
+}
+
+.rentExtraInfo__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px;
+  background: #fff;
+  border: 1px solid #edf2f7;
+  border-radius: 14px;
+  transition: all 0.25s ease;
+}
+
+.rentExtraInfo__item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+  border-color: #d7e4f3;
+}
+
+.rentExtraInfo__icon {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border-radius: 12px;
+  background: #eef6ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.rentExtraInfo__content h5 {
+  margin: 0 0 6px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1b2a41;
+}
+
+.rentExtraInfo__content p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.65;
+  color: #5f6f82;
+}
+
+.rentExtraInfo__footer {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid #e9eef5;
+  color: #7a8899;
+}
+
+/* mobile accordion button */
+.rentExtraInfo__mobileToggle {
+  display: none;
+  width: 100%;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  text-align: left;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.rentExtraInfo__mobileToggle .rentExtraInfo__badge {
+  margin-bottom: 8px;
+}
+
+.rentExtraInfo__mobileIcon {
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
+  border-radius: 50%;
+  background: #eef6ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  line-height: 1;
+  color: #132238;
+  transition: transform 0.25s ease;
+}
+
+/* Small screen behavior */
+@media (max-width: 767.98px) {
+  .rentExtraInfo__card {
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .rentExtraInfo__mobileToggle {
+    display: flex;
+  }
+
+  .rentExtraInfo__body {
+    display: none;
+    margin-top: 14px;
+  }
+
+  .rentExtraInfo.is-open .rentExtraInfo__body {
+    display: block;
+  }
+
+  .rentExtraInfo.is-open .rentExtraInfo__mobileIcon {
+    transform: rotate(45deg);
+  }
+
+  .rentExtraInfo__header {
+    display: none;
+  }
+
+  .rentExtraInfo__mobileToggle h4 {
+    font-size: 20px;
+    margin-bottom: 0;
+  }
+}
+
+/* Desktop: always show content, hide mobile toggle */
+@media (min-width: 768px) {
+  .rentExtraInfo__body {
+    display: block !important;
+  }
+
+  .rentExtraInfo__mobileToggle {
+    display: none !important;
+  }
 }

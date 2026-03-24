@@ -195,7 +195,7 @@
     background: #f8fbff;
     border: 1px solid #eef4fa;
     border-radius: 0;
-    padding: 26px;
+    padding: 5px;
 }
 
 .paymentFormGrid .row {
@@ -203,21 +203,12 @@
     margin-right: -10px;
 }
 
-.paymentFormGrid .row > div {
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-.paymentField {
-    margin-bottom: 18px;
-}
 
 .paymentField label {
     display: block;
     margin-bottom: 0;
     color: #000;
     font-weight: 600;
-    font-size: 13px;
 }
 
 .paymentInput,
@@ -331,15 +322,13 @@
 /* button */
 .paymentAction {
     display: flex;
-    justify-content: stretch;
-    margin-top: 26px;
+    justify-content: center;
 }
 
 #payNowBtn {
-    width: 100%;
-    height: 54px;
+    width: 50%;
+    height: 44px;
     border: 0;
-    border-radius: 8px;
     background: #62aef0;
     color: #fff;
     font-weight: 700;
@@ -603,7 +592,7 @@
                         </p>
                     </div>
 
-                    <form action="assets/includes/process_payment.php" method="post" id="paymentForm">
+                    <form action="#" method="post" id="paymentForm">
 
                         <div class="paymentLayout">
                             <div class="paymentMethodCol">
@@ -614,8 +603,8 @@
                                     <img src="assets/images/car_booking/visa_card.png" alt="Visa">
                                 </label>
 
-                                <label class="paymentMethodItem" id="optionPaypal">
-                                    <input type="radio" id="paypal_payment" name="payment_method" value="mastercard">
+                                <label class="paymentMethodItem" id="mastercard">
+                                    <input type="radio" id="mastercard" name="payment_method" value="mastercard">
                                     <img src="assets/images/car_booking/master_card.png" alt="Master Card">
                                 </label>
 
@@ -630,7 +619,7 @@
                                     <div id="cardArea">
                                         <div class="paymentFormGrid">
                                             <div class="row">
-                                                <div class="col-md-12">
+                                                <div class="col-md-12 pt-0">
                                                     <div class="paymentField">
                                                         <label for="card_number">Card Number</label>
                                                         <input type="text" id="card_number" name="card_number" class="paymentInput" placeholder="7569 8859 8744 3244" maxlength="19">

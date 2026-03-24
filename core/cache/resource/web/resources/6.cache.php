@@ -2,12 +2,12 @@
   'resourceClass' => 'MODX\\Revolution\\modDocument',
   'resource' => 
   array (
-    'id' => 39,
+    'id' => 6,
     'type' => 'document',
-    'pagetitle' => 'book-vehicle',
-    'longtitle' => '',
+    'pagetitle' => 'contact_us',
+    'longtitle' => 'Congratulations!',
     'description' => '',
-    'alias' => 'book-vehicle',
+    'alias' => 'contact-us',
     'link_attributes' => '',
     'published' => 1,
     'pub_date' => 0,
@@ -15,350 +15,213 @@
     'parent' => 0,
     'isfolder' => 0,
     'introtext' => '',
-    'content' => '<section class="hero-wrap hero-wrap-2" 
-    style="background-image: url(\'assets/images/booking-bg.jpg\'); height: 36rem;" 
-    data-stellar-background-ratio="0.5">
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row no-gutters slider-text align-items-end justify-content-center" style="height: 36rem;">
-        <div class="col-md-9 ftco-animate text-center mb-4">
-          <h1 class="mb-2 bread">Manage Booking</h1>
-          <p class="breadcrumbs" style="padding-bottom: 20px;"><span class="mr-2"><a href="[[~1]]">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Manage Booking<i class="ion-ios-arrow-forward"></i></span></p>
-        </div>
-      </div>
-    </div>
+    'content' => '  
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5861K2TN4V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag(\'js\', new Date());
+
+  gtag(\'config\', \'G-5861K2TN4V\');
+</script>
+
+<section class="hero-wrap hero-wrap-2" style="background-image: url(\'assets/images/home/breadcrumb.jpg\');" data-stellar-background-ratio="0.5">
+	<div class="overlay"></div>
+	<div class="container">
+		<div class="row no-gutters slider-text align-items-end justify-content-center">
+		<div class="col-md-9 ftco-animate text-center mb-4">
+			<h1 class="mb-2 bread">Contact Us</h1>
+			<p class="breadcrumbs" style="padding-bottom: 20px;"><span class="mr-2"><a href="[[~1]]">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Contact Us <i class="ion-ios-arrow-forward"></i></span></p>
+		</div>
+		</div>
+	</div>
 </section>
 
-<section id="rentResults" class="rentResults py-5 bg-whitee">
-  <div class="container">
-    <div class="row">
-        <div class="col-lg-12">
-            [[!VehiclesCategoryList? &table=`vehicles`]]
-        </div>
-    </div>
+<section class="contact-modern">
+	<div class="container">
 
-    <div class="row mt-5">
-<div class="col-lg-4">
-  [[!RentSearchSummary? &searchPageId=`1`]]
+		<div class="row align-items-center">
 
-<div class="rentExtraInfo mt-4">
-  <div class="rentExtraInfo__card">
-    <button type="button" class="rentExtraInfo__mobileToggle" aria-expanded="false" aria-controls="rentExtraInfoBody">
-      <div>
-        <span class="rentExtraInfo__badge">Good to know</span>
-        <h4>Before you drive</h4>
-      </div>
-      <span class="rentExtraInfo__mobileIcon">+</span>
-    </button>
+		<!-- LEFT: Contact Info -->
+		<div class="col-lg-5">
+			<div class="contact-card">
 
-    <div class="rentExtraInfo__body" id="rentExtraInfoBody">
-      <div class="rentExtraInfo__header">
-        <span class="rentExtraInfo__badge">Good to know</span>
-        <h4>Before you drive</h4>
-        <p>Important rental information for customers booking in Sri Lanka.</p>
-      </div>
+			<h2 class="text-dark">Get In Touch</h3>
+			<p>We’re here to help you with rentals, transfers, and reservations. Reach out anytime.</p>
+<hr>
+			<div class="contact-item">
+				<span class="contact-icon">📍</span>
+					<div>
+				<strong>Address</strong>
+				<p class="text-black">
+					<a href="https://maps.app.goo.gl/N69GRNHpC4VfgpWs5"
+					target="_blank"
+					class="contact-link">
+					SR Rent A Car (Pvt.) Ltd,<br>
+					371/5, Negombo Road, Seeduwa, Sri Lanka
+					</a>
+				</p>
+				</div>
+			</div>
 
-      <div class="rentExtraInfo__grid">
-        <div class="rentExtraInfo__item">
-          <div class="rentExtraInfo__icon">€</div>
-          <div class="rentExtraInfo__content">
-            <h5>Security deposit</h5>
-            <p>A refundable <strong>€ 700</strong> security deposit is required at vehicle collection. The renter will be liable for any damages, and associated costs will be charged against this deposit.</p>
-          </div>
-        </div>
+			<div class="contact-item">
+				<span class="contact-icon">📞</span>
+				<div>
+				<strong>Phone</strong>
+								<p class="text-black">
+<a href="tel:+94777780729">+94 77 778 0729</a></p>
+				</div>
+			</div>
 
-        <div class="rentExtraInfo__item">
-          <div class="rentExtraInfo__icon">🪪</div>
-          <div class="rentExtraInfo__content">
-            <h5>Licence requirements</h5>
-            <p>Drivers should carry a valid driving licence and any required local permit while driving.</p>
-          </div>
-        </div>
+			<div class="contact-item">
+				<span class="contact-icon">✉️</span>
+				<div>
+				<strong>Email</strong>
+								<p class="text-black">
+<a href="mailto:bookings@srilankarentacar.com">bookings@srilankarentacar.com</a></p>
+				</div>
+			</div>
 
-        <div class="rentExtraInfo__item">
-          <div class="rentExtraInfo__icon">📏</div>
-          <div class="rentExtraInfo__content">
-            <h5>Road rules</h5>
-            <p>Seat belts are required, speed limits must be followed, and mobile phone use while driving should be avoided unless hands-free.</p>
-          </div>
-        </div>
+			<div class="social-section">
+				<h4>Follow Us</h4>
+				<div class="social-icons">
 
-        <div class="rentExtraInfo__item">
-          <div class="rentExtraInfo__icon">⏰</div>
-          <div class="rentExtraInfo__content">
-            <h5>Return policy</h5>
-            <p>Please return the vehicle on time and in the same condition to avoid additional charges.</p>
-          </div>
-        </div>
+					<a href="https://www.linkedin.com/company/31174684/admin/dashboard/" 
+						target="_blank" 
+						class="social-btn linkedin">
+						<i class="fab fa-linkedin-in"></i>
+					</a>
 
-        <div class="rentExtraInfo__item">
-          <div class="rentExtraInfo__icon">⚠️</div>
-          <div class="rentExtraInfo__content">
-            <h5>Customer responsibility</h5>
-            <p>Traffic fines, parking penalties, and misuse of the vehicle remain the renter’s responsibility.</p>
-          </div>
-        </div>
-      </div>
+					<a href="https://www.facebook.com/srrentacar" 
+						target="_blank" 
+						class="social-btn facebook">
+						<i class="fab fa-facebook-f"></i>
+					</a>
 
-      <div class="rentExtraInfo__footer">
-        <small>Please review all rental terms at the time of booking confirmation.</small>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-        
-        <div class="col-lg-8 mt-5 mt-lg-0">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <h2 id="vehiclesHeading" class="mb-0">All vehicles</h2>
+					<a href="https://www.instagram.com/srrentacarsrilanka/" 
+						target="_blank" 
+						class="social-btn instagram">
+						<i class="fab fa-instagram"></i>
+					</a>
 
-                <div class="stepIndicator" role="button" tabindex="0" aria-label="Step 1: Select vehicle">
-                    <span class="stepIndicator__label">Step</span>
-                    <span class="stepIndicator__number">1</span>
-                    <span class="stepIndicator__text">Select vehicle</span>
-                </div>
-            </div>
+					</div>
+			</div>
 
-            [[!VehiclesCategoryList? &table=`vehicles` &mode=`list` &tplItem=`VehicleListItemTpl`]]
-        </div>
-    </div>
-  </div>
+			</div>
+		</div>
+
+		<!-- RIGHT: Contact Form -->
+		<div class="col-lg-7">
+			<div class="contact-form-box">
+
+			<h3>Send Us a Message</h3>
+
+			<form id="contactForm" method="POST">
+				<div class="floating-group">
+				<input type="text" name="name" required placeholder="Your Name">
+				<!-- <label>Your Name</label> -->
+				</div>
+
+				<div class="floating-group">
+				<input type="email" name="email" required placeholder="Your Email">
+				<!-- <label>Your Email</label> -->
+				</div>
+
+				<div class="floating-group">
+				<input type="text" name="subject" required placeholder="Subject">
+				<!-- <label>Subject</label> -->
+				</div>
+
+				<div class="floating-group">
+				<textarea name="message" rows="5" required placeholder="Your Message"></textarea>
+				<!-- <label>Your Message</label> -->
+				</div>
+
+				<button type="submit" class="contact-btn">
+				Send Message →
+				</button>
+
+			</form>
+
+			<div id="formMessage"></div>
+
+			</div>
+		</div>
+
+		</div>
+	</div>
 </section>
+     
+<div class="row">
+	<div class="col-12">
+		<div class="map">
+			<iframe
+				src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.971183150275!2d79.87322757499844!3d7.129329892874595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae2f9da7f0d8cad%3A0x23cc584d58386b05!2sSR%20Rent%20A%20Car%20Sri%20Lanka!5e0!3m2!1sen!2slk!4v1724917513316!5m2!1sen!2slk"
+				width="100%" height="450" style="border:2;" allowfullscreen="" loading="lazy"></iframe>
+		</div>
+	</div>
+</div>      
 
 <script>
-document.addEventListener(\'DOMContentLoaded\', () => {
-  const infoBox = document.querySelector(\'.rentExtraInfo\');
-  const toggleBtn = document.querySelector(\'.rentExtraInfo__mobileToggle\');
+document.getElementById("contactForm").addEventListener("submit", function(e) {
+    e.preventDefault();
 
-  if (!infoBox || !toggleBtn) return;
+    const form = this;
+    const button = form.querySelector("button[type=\'submit\']");
+    const msg = document.getElementById("formMessage");
 
-  toggleBtn.addEventListener(\'click\', () => {
-    infoBox.classList.toggle(\'is-open\');
-    const expanded = infoBox.classList.contains(\'is-open\');
-    toggleBtn.setAttribute(\'aria-expanded\', expanded ? \'true\' : \'false\');
-  });
-});
-</script>
+    button.disabled = true;
+    button.innerHTML = "Sending...";
+    msg.innerHTML = "";
 
-<script>
-  document.addEventListener(\'DOMContentLoaded\', () => {
-    const stepIndicator = document.querySelector(\'.stepIndicator\');
-    const categoryCards = document.querySelectorAll(\'.vehicleScroller [data-category]\');
-    const vehicleItems = document.querySelectorAll(\'#vehicleGroups .vehicleItem\');
+    const formData = new FormData(form);
 
-    if (!stepIndicator) return;
+    fetch("assets/includes/save-contact.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
 
-    const activateStep = () => {
-      stepIndicator.classList.add(\'is-active\');
-      const text = stepIndicator.querySelector(\'.stepIndicator__text\');
-      if (text) text.textContent = \'Vehicle selected\';
-    };
+        if (data.success) {
+            msg.innerHTML = "<p style=\'color:green;font-weight:600;\'>✔ Message submitted successfully!</p>";
 
-    categoryCards.forEach(card => {
-      card.addEventListener(\'click\', activateStep);
-    });
+            form.reset();
 
-    vehicleItems.forEach(item => {
-      item.addEventListener(\'click\', activateStep);
-    });
+            setTimeout(() => {
+                msg.innerHTML = "";
+            }, 3000);
 
-    stepIndicator.addEventListener(\'click\', () => {
-      const listSection = document.getElementById(\'rentResults\');
-      if (listSection) {
-        listSection.scrollIntoView({ behavior: \'smooth\', block: \'start\' });
-      }
-    });
-  });
-</script>
-
-<script>
-  document.addEventListener(\'DOMContentLoaded\', () => {
-    document.querySelectorAll(\'.rentWidgetForm\').forEach((form) => {
-      const same = form.querySelector(\'.js-sameLocation\');
-      const dropRow = form.querySelector(\'.js-dropoffRow\');
-      const dropInput = form.querySelector(\'input[name="dropoff_location"]\');
-
-      const sync = () => {
-        const checked = same && same.checked;
-        if (dropRow) dropRow.style.display = checked ? \'none\' : \'\';
-        if (checked && dropInput) dropInput.value = \'\';
-      };
-
-      if (same) same.addEventListener(\'change\', sync);
-      sync();
-
-      form.querySelectorAll(\'.rentWidget__clear\').forEach((btn) => {
-        btn.addEventListener(\'click\', () => {
-          const input = btn.parentElement.querySelector(\'input\');
-          if (input) input.value = \'\';
-          if (input) input.focus();
-        });
-      });
-    });
-  });
-</script>
-
-<script>
-  document.addEventListener(\'DOMContentLoaded\', () => {
-    if (!window.flatpickr) return;
-
-    const now = new Date();
-
-    document.querySelectorAll(\'.rentWidgetForm\').forEach((form) => {
-      const pickupInput = form.querySelector(\'input[name="pickup_datetime"]\');
-      const dropoffInput = form.querySelector(\'input[name="dropoff_datetime"]\');
-
-      if (!pickupInput || !dropoffInput) return;
-
-      let dropoffPicker;
-
-      const pickupPicker = flatpickr(pickupInput, {
-        enableTime: true,
-        dateFormat: "Y-m-d H:i",
-        time_24hr: true,
-        minDate: now,
-        disableMobile: true,
-        onChange: function(selectedDates) {
-          if (selectedDates.length && dropoffPicker) {
-            dropoffPicker.set(\'minDate\', selectedDates[0]);
-
-            const currentDrop = dropoffPicker.selectedDates[0];
-            if (currentDrop && currentDrop <= selectedDates[0]) {
-              dropoffPicker.clear();
-            }
-          }
+        } else {
+            msg.innerHTML = "<p style=\'color:red;\'>" + data.message + "</p>";
         }
-      });
 
-      dropoffPicker = flatpickr(dropoffInput, {
-        enableTime: true,
-        dateFormat: "Y-m-d H:i",
-        time_24hr: true,
-        minDate: pickupInput.value ? pickupInput.value : now,
-        disableMobile: true
-      });
+        button.disabled = false;
+        button.innerHTML = "Send Message →";
+    })
+    .catch(error => {
+        msg.innerHTML = "<p style=\'color:red;\'>Server error. Please try later.</p>";
+
+        button.disabled = false;
+        button.innerHTML = "Send Message →";
+        console.log(error);
     });
-  });
-</script>
-
-<script>
-  function initAutocomplete() {
-    document.querySelectorAll(\'.js-places\').forEach((input) => {
-      const ac = new google.maps.places.Autocomplete(input, {
-        fields: ["formatted_address", "geometry", "name"],
-        componentRestrictions: { country: "lk" }
-      });
-
-      ac.addListener("place_changed", () => {
-        const place = ac.getPlace();
-        if (place && place.formatted_address) {
-          input.value = place.formatted_address;
-        }
-      });
-    });
-  }
-</script>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAHmbwBrk0OKY0Nhp9FrR_zn8HKLGZ54OU&libraries=places&callback=initAutocomplete" async defer></script>
-
-<script>
-  document.addEventListener(\'DOMContentLoaded\', () => {
-    document.querySelectorAll(\'.vehicleScroller\').forEach(scroller => {
-      const rowId = scroller.getAttribute(\'data-scroller\');
-      const row = document.getElementById(rowId);
-      if (!row) return;
-
-      const scrollByCards = (dir) => {
-        const card = row.querySelector(\'.vehicleCard\');
-        const cardW = card ? (card.getBoundingClientRect().width + 12) : 200;
-        row.scrollBy({ left: dir * (cardW * 3), behavior: \'smooth\' }); 
-      };
-
-      scroller.querySelectorAll(\'.vehicleScroller__btn\').forEach(btn => {
-        btn.addEventListener(\'click\', () => {
-          const dir = parseInt(btn.getAttribute(\'data-dir\'), 10) || 1;
-          scrollByCards(dir);
-        });
-      });
-    });
-  });
-</script>
-
-<script>
-document.addEventListener(\'DOMContentLoaded\', () => {
-  const heading = document.getElementById(\'vehiclesHeading\');
-  const groups = document.querySelectorAll(\'#vehicleGroups .vehicleGroup\');
-  const categoryCards = document.querySelectorAll(\'.vehicleScroller [data-category]\');
-
-  if (!groups.length || !categoryCards.length) return;
-
-  const normalize = (str) => (str || \'\').trim().toLowerCase();
-
-  const showDefaultView = () => {
-    if (heading) heading.textContent = \'All vehicles\';
-
-    groups.forEach(group => {
-      const items = group.querySelectorAll(\'.vehicleItem\');
-      items.forEach((item, index) => {
-        item.style.display = index === 0 ? \'\' : \'none\';
-      });
-      group.style.display = \'\';
-    });
-
-    categoryCards.forEach(card => card.classList.remove(\'is-active\'));
-  };
-
-  const showCategory = (category) => {
-    const selected = normalize(category);
-    if (!selected) {
-      showDefaultView();
-      return;
-    }
-
-    if (heading) heading.textContent = category.toUpperCase();
-
-    groups.forEach(group => {
-      const groupCat = normalize(group.getAttribute(\'data-category\'));
-      const items = group.querySelectorAll(\'.vehicleItem\');
-
-      if (groupCat === selected) {
-        group.style.display = \'\';
-        items.forEach(item => item.style.display = \'\');
-      } else {
-        group.style.display = \'none\';
-      }
-    });
-
-    categoryCards.forEach(card => {
-      const cardCat = normalize(card.getAttribute(\'data-category\'));
-      card.classList.toggle(\'is-active\', cardCat === selected);
-    });
-  };
-
-  categoryCards.forEach(card => {
-    card.addEventListener(\'click\', (e) => {
-      e.preventDefault();
-      const cat = card.getAttribute(\'data-category\');
-      showCategory(cat);
-    });
-  });
-
-  showDefaultView();
 });
 </script>',
     'richtext' => 1,
     'template' => 2,
-    'menuindex' => 37,
+    'menuindex' => 4,
     'searchable' => 1,
     'cacheable' => 1,
     'createdby' => 1,
-    'createdon' => 1772606037,
+    'createdon' => 1724916257,
     'editedby' => 1,
-    'editedon' => 1774353621,
+    'editedon' => 1774349271,
     'deleted' => 0,
     'deletedon' => 0,
     'deletedby' => 0,
-    'publishedon' => 1772606100,
+    'publishedon' => 1724916240,
     'publishedby' => 1,
     'menutitle' => '',
     'donthit' => 0,
@@ -369,7 +232,7 @@ document.addEventListener(\'DOMContentLoaded\', () => {
     'class_key' => 'MODX\\Revolution\\modDocument',
     'context_key' => 'web',
     'content_type' => 1,
-    'uri' => '',
+    'uri' => 'contact-us.html',
     'uri_override' => 0,
     'hide_children_in_tree' => 0,
     'show_in_tree' => 1,
@@ -570,335 +433,198 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-<section class="hero-wrap hero-wrap-2" 
-    style="background-image: url(\'assets/images/booking-bg.jpg\'); height: 36rem;" 
-    data-stellar-background-ratio="0.5">
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row no-gutters slider-text align-items-end justify-content-center" style="height: 36rem;">
-        <div class="col-md-9 ftco-animate text-center mb-4">
-          <h1 class="mb-2 bread">Manage Booking</h1>
-          <p class="breadcrumbs" style="padding-bottom: 20px;"><span class="mr-2"><a href="index.php?id=1">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Manage Booking<i class="ion-ios-arrow-forward"></i></span></p>
-        </div>
-      </div>
-    </div>
+  
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5861K2TN4V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag(\'js\', new Date());
+
+  gtag(\'config\', \'G-5861K2TN4V\');
+</script>
+
+<section class="hero-wrap hero-wrap-2" style="background-image: url(\'assets/images/home/breadcrumb.jpg\');" data-stellar-background-ratio="0.5">
+	<div class="overlay"></div>
+	<div class="container">
+		<div class="row no-gutters slider-text align-items-end justify-content-center">
+		<div class="col-md-9 ftco-animate text-center mb-4">
+			<h1 class="mb-2 bread">Contact Us</h1>
+			<p class="breadcrumbs" style="padding-bottom: 20px;"><span class="mr-2"><a href="index.php?id=1">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Contact Us <i class="ion-ios-arrow-forward"></i></span></p>
+		</div>
+		</div>
+	</div>
 </section>
 
-<section id="rentResults" class="rentResults py-5 bg-whitee">
-  <div class="container">
-    <div class="row">
-        <div class="col-lg-12">
-            [[!VehiclesCategoryList? &table=`vehicles`]]
-        </div>
-    </div>
+<section class="contact-modern">
+	<div class="container">
 
-    <div class="row mt-5">
-<div class="col-lg-4">
-  [[!RentSearchSummary? &searchPageId=`1`]]
+		<div class="row align-items-center">
 
-<div class="rentExtraInfo mt-4">
-  <div class="rentExtraInfo__card">
-    <button type="button" class="rentExtraInfo__mobileToggle" aria-expanded="false" aria-controls="rentExtraInfoBody">
-      <div>
-        <span class="rentExtraInfo__badge">Good to know</span>
-        <h4>Before you drive</h4>
-      </div>
-      <span class="rentExtraInfo__mobileIcon">+</span>
-    </button>
+		<!-- LEFT: Contact Info -->
+		<div class="col-lg-5">
+			<div class="contact-card">
 
-    <div class="rentExtraInfo__body" id="rentExtraInfoBody">
-      <div class="rentExtraInfo__header">
-        <span class="rentExtraInfo__badge">Good to know</span>
-        <h4>Before you drive</h4>
-        <p>Important rental information for customers booking in Sri Lanka.</p>
-      </div>
+			<h2 class="text-dark">Get In Touch</h3>
+			<p>We’re here to help you with rentals, transfers, and reservations. Reach out anytime.</p>
+<hr>
+			<div class="contact-item">
+				<span class="contact-icon">📍</span>
+					<div>
+				<strong>Address</strong>
+				<p class="text-black">
+					<a href="https://maps.app.goo.gl/N69GRNHpC4VfgpWs5"
+					target="_blank"
+					class="contact-link">
+					SR Rent A Car (Pvt.) Ltd,<br>
+					371/5, Negombo Road, Seeduwa, Sri Lanka
+					</a>
+				</p>
+				</div>
+			</div>
 
-      <div class="rentExtraInfo__grid">
-        <div class="rentExtraInfo__item">
-          <div class="rentExtraInfo__icon">€</div>
-          <div class="rentExtraInfo__content">
-            <h5>Security deposit</h5>
-            <p>A refundable <strong>€ 700</strong> security deposit is required at vehicle collection. The renter will be liable for any damages, and associated costs will be charged against this deposit.</p>
-          </div>
-        </div>
+			<div class="contact-item">
+				<span class="contact-icon">📞</span>
+				<div>
+				<strong>Phone</strong>
+								<p class="text-black">
+<a href="tel:+94777780729">+94 77 778 0729</a></p>
+				</div>
+			</div>
 
-        <div class="rentExtraInfo__item">
-          <div class="rentExtraInfo__icon">🪪</div>
-          <div class="rentExtraInfo__content">
-            <h5>Licence requirements</h5>
-            <p>Drivers should carry a valid driving licence and any required local permit while driving.</p>
-          </div>
-        </div>
+			<div class="contact-item">
+				<span class="contact-icon">✉️</span>
+				<div>
+				<strong>Email</strong>
+								<p class="text-black">
+<a href="mailto:bookings@srilankarentacar.com">bookings@srilankarentacar.com</a></p>
+				</div>
+			</div>
 
-        <div class="rentExtraInfo__item">
-          <div class="rentExtraInfo__icon">📏</div>
-          <div class="rentExtraInfo__content">
-            <h5>Road rules</h5>
-            <p>Seat belts are required, speed limits must be followed, and mobile phone use while driving should be avoided unless hands-free.</p>
-          </div>
-        </div>
+			<div class="social-section">
+				<h4>Follow Us</h4>
+				<div class="social-icons">
 
-        <div class="rentExtraInfo__item">
-          <div class="rentExtraInfo__icon">⏰</div>
-          <div class="rentExtraInfo__content">
-            <h5>Return policy</h5>
-            <p>Please return the vehicle on time and in the same condition to avoid additional charges.</p>
-          </div>
-        </div>
+					<a href="https://www.linkedin.com/company/31174684/admin/dashboard/" 
+						target="_blank" 
+						class="social-btn linkedin">
+						<i class="fab fa-linkedin-in"></i>
+					</a>
 
-        <div class="rentExtraInfo__item">
-          <div class="rentExtraInfo__icon">⚠️</div>
-          <div class="rentExtraInfo__content">
-            <h5>Customer responsibility</h5>
-            <p>Traffic fines, parking penalties, and misuse of the vehicle remain the renter’s responsibility.</p>
-          </div>
-        </div>
-      </div>
+					<a href="https://www.facebook.com/srrentacar" 
+						target="_blank" 
+						class="social-btn facebook">
+						<i class="fab fa-facebook-f"></i>
+					</a>
 
-      <div class="rentExtraInfo__footer">
-        <small>Please review all rental terms at the time of booking confirmation.</small>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-        
-        <div class="col-lg-8 mt-5 mt-lg-0">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <h2 id="vehiclesHeading" class="mb-0">All vehicles</h2>
+					<a href="https://www.instagram.com/srrentacarsrilanka/" 
+						target="_blank" 
+						class="social-btn instagram">
+						<i class="fab fa-instagram"></i>
+					</a>
 
-                <div class="stepIndicator" role="button" tabindex="0" aria-label="Step 1: Select vehicle">
-                    <span class="stepIndicator__label">Step</span>
-                    <span class="stepIndicator__number">1</span>
-                    <span class="stepIndicator__text">Select vehicle</span>
-                </div>
-            </div>
+					</div>
+			</div>
 
-            [[!VehiclesCategoryList? &table=`vehicles` &mode=`list` &tplItem=`VehicleListItemTpl`]]
-        </div>
-    </div>
-  </div>
+			</div>
+		</div>
+
+		<!-- RIGHT: Contact Form -->
+		<div class="col-lg-7">
+			<div class="contact-form-box">
+
+			<h3>Send Us a Message</h3>
+
+			<form id="contactForm" method="POST">
+				<div class="floating-group">
+				<input type="text" name="name" required placeholder="Your Name">
+				<!-- <label>Your Name</label> -->
+				</div>
+
+				<div class="floating-group">
+				<input type="email" name="email" required placeholder="Your Email">
+				<!-- <label>Your Email</label> -->
+				</div>
+
+				<div class="floating-group">
+				<input type="text" name="subject" required placeholder="Subject">
+				<!-- <label>Subject</label> -->
+				</div>
+
+				<div class="floating-group">
+				<textarea name="message" rows="5" required placeholder="Your Message"></textarea>
+				<!-- <label>Your Message</label> -->
+				</div>
+
+				<button type="submit" class="contact-btn">
+				Send Message →
+				</button>
+
+			</form>
+
+			<div id="formMessage"></div>
+
+			</div>
+		</div>
+
+		</div>
+	</div>
 </section>
+     
+<div class="row">
+	<div class="col-12">
+		<div class="map">
+			<iframe
+				src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.971183150275!2d79.87322757499844!3d7.129329892874595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae2f9da7f0d8cad%3A0x23cc584d58386b05!2sSR%20Rent%20A%20Car%20Sri%20Lanka!5e0!3m2!1sen!2slk!4v1724917513316!5m2!1sen!2slk"
+				width="100%" height="450" style="border:2;" allowfullscreen="" loading="lazy"></iframe>
+		</div>
+	</div>
+</div>      
 
 <script>
-document.addEventListener(\'DOMContentLoaded\', () => {
-  const infoBox = document.querySelector(\'.rentExtraInfo\');
-  const toggleBtn = document.querySelector(\'.rentExtraInfo__mobileToggle\');
+document.getElementById("contactForm").addEventListener("submit", function(e) {
+    e.preventDefault();
 
-  if (!infoBox || !toggleBtn) return;
+    const form = this;
+    const button = form.querySelector("button[type=\'submit\']");
+    const msg = document.getElementById("formMessage");
 
-  toggleBtn.addEventListener(\'click\', () => {
-    infoBox.classList.toggle(\'is-open\');
-    const expanded = infoBox.classList.contains(\'is-open\');
-    toggleBtn.setAttribute(\'aria-expanded\', expanded ? \'true\' : \'false\');
-  });
-});
-</script>
+    button.disabled = true;
+    button.innerHTML = "Sending...";
+    msg.innerHTML = "";
 
-<script>
-  document.addEventListener(\'DOMContentLoaded\', () => {
-    const stepIndicator = document.querySelector(\'.stepIndicator\');
-    const categoryCards = document.querySelectorAll(\'.vehicleScroller [data-category]\');
-    const vehicleItems = document.querySelectorAll(\'#vehicleGroups .vehicleItem\');
+    const formData = new FormData(form);
 
-    if (!stepIndicator) return;
+    fetch("assets/includes/save-contact.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
 
-    const activateStep = () => {
-      stepIndicator.classList.add(\'is-active\');
-      const text = stepIndicator.querySelector(\'.stepIndicator__text\');
-      if (text) text.textContent = \'Vehicle selected\';
-    };
+        if (data.success) {
+            msg.innerHTML = "<p style=\'color:green;font-weight:600;\'>✔ Message submitted successfully!</p>";
 
-    categoryCards.forEach(card => {
-      card.addEventListener(\'click\', activateStep);
-    });
+            form.reset();
 
-    vehicleItems.forEach(item => {
-      item.addEventListener(\'click\', activateStep);
-    });
+            setTimeout(() => {
+                msg.innerHTML = "";
+            }, 3000);
 
-    stepIndicator.addEventListener(\'click\', () => {
-      const listSection = document.getElementById(\'rentResults\');
-      if (listSection) {
-        listSection.scrollIntoView({ behavior: \'smooth\', block: \'start\' });
-      }
-    });
-  });
-</script>
-
-<script>
-  document.addEventListener(\'DOMContentLoaded\', () => {
-    document.querySelectorAll(\'.rentWidgetForm\').forEach((form) => {
-      const same = form.querySelector(\'.js-sameLocation\');
-      const dropRow = form.querySelector(\'.js-dropoffRow\');
-      const dropInput = form.querySelector(\'input[name="dropoff_location"]\');
-
-      const sync = () => {
-        const checked = same && same.checked;
-        if (dropRow) dropRow.style.display = checked ? \'none\' : \'\';
-        if (checked && dropInput) dropInput.value = \'\';
-      };
-
-      if (same) same.addEventListener(\'change\', sync);
-      sync();
-
-      form.querySelectorAll(\'.rentWidget__clear\').forEach((btn) => {
-        btn.addEventListener(\'click\', () => {
-          const input = btn.parentElement.querySelector(\'input\');
-          if (input) input.value = \'\';
-          if (input) input.focus();
-        });
-      });
-    });
-  });
-</script>
-
-<script>
-  document.addEventListener(\'DOMContentLoaded\', () => {
-    if (!window.flatpickr) return;
-
-    const now = new Date();
-
-    document.querySelectorAll(\'.rentWidgetForm\').forEach((form) => {
-      const pickupInput = form.querySelector(\'input[name="pickup_datetime"]\');
-      const dropoffInput = form.querySelector(\'input[name="dropoff_datetime"]\');
-
-      if (!pickupInput || !dropoffInput) return;
-
-      let dropoffPicker;
-
-      const pickupPicker = flatpickr(pickupInput, {
-        enableTime: true,
-        dateFormat: "Y-m-d H:i",
-        time_24hr: true,
-        minDate: now,
-        disableMobile: true,
-        onChange: function(selectedDates) {
-          if (selectedDates.length && dropoffPicker) {
-            dropoffPicker.set(\'minDate\', selectedDates[0]);
-
-            const currentDrop = dropoffPicker.selectedDates[0];
-            if (currentDrop && currentDrop <= selectedDates[0]) {
-              dropoffPicker.clear();
-            }
-          }
+        } else {
+            msg.innerHTML = "<p style=\'color:red;\'>" + data.message + "</p>";
         }
-      });
 
-      dropoffPicker = flatpickr(dropoffInput, {
-        enableTime: true,
-        dateFormat: "Y-m-d H:i",
-        time_24hr: true,
-        minDate: pickupInput.value ? pickupInput.value : now,
-        disableMobile: true
-      });
+        button.disabled = false;
+        button.innerHTML = "Send Message →";
+    })
+    .catch(error => {
+        msg.innerHTML = "<p style=\'color:red;\'>Server error. Please try later.</p>";
+
+        button.disabled = false;
+        button.innerHTML = "Send Message →";
+        console.log(error);
     });
-  });
-</script>
-
-<script>
-  function initAutocomplete() {
-    document.querySelectorAll(\'.js-places\').forEach((input) => {
-      const ac = new google.maps.places.Autocomplete(input, {
-        fields: ["formatted_address", "geometry", "name"],
-        componentRestrictions: { country: "lk" }
-      });
-
-      ac.addListener("place_changed", () => {
-        const place = ac.getPlace();
-        if (place && place.formatted_address) {
-          input.value = place.formatted_address;
-        }
-      });
-    });
-  }
-</script>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAHmbwBrk0OKY0Nhp9FrR_zn8HKLGZ54OU&libraries=places&callback=initAutocomplete" async defer></script>
-
-<script>
-  document.addEventListener(\'DOMContentLoaded\', () => {
-    document.querySelectorAll(\'.vehicleScroller\').forEach(scroller => {
-      const rowId = scroller.getAttribute(\'data-scroller\');
-      const row = document.getElementById(rowId);
-      if (!row) return;
-
-      const scrollByCards = (dir) => {
-        const card = row.querySelector(\'.vehicleCard\');
-        const cardW = card ? (card.getBoundingClientRect().width + 12) : 200;
-        row.scrollBy({ left: dir * (cardW * 3), behavior: \'smooth\' }); 
-      };
-
-      scroller.querySelectorAll(\'.vehicleScroller__btn\').forEach(btn => {
-        btn.addEventListener(\'click\', () => {
-          const dir = parseInt(btn.getAttribute(\'data-dir\'), 10) || 1;
-          scrollByCards(dir);
-        });
-      });
-    });
-  });
-</script>
-
-<script>
-document.addEventListener(\'DOMContentLoaded\', () => {
-  const heading = document.getElementById(\'vehiclesHeading\');
-  const groups = document.querySelectorAll(\'#vehicleGroups .vehicleGroup\');
-  const categoryCards = document.querySelectorAll(\'.vehicleScroller [data-category]\');
-
-  if (!groups.length || !categoryCards.length) return;
-
-  const normalize = (str) => (str || \'\').trim().toLowerCase();
-
-  const showDefaultView = () => {
-    if (heading) heading.textContent = \'All vehicles\';
-
-    groups.forEach(group => {
-      const items = group.querySelectorAll(\'.vehicleItem\');
-      items.forEach((item, index) => {
-        item.style.display = index === 0 ? \'\' : \'none\';
-      });
-      group.style.display = \'\';
-    });
-
-    categoryCards.forEach(card => card.classList.remove(\'is-active\'));
-  };
-
-  const showCategory = (category) => {
-    const selected = normalize(category);
-    if (!selected) {
-      showDefaultView();
-      return;
-    }
-
-    if (heading) heading.textContent = category.toUpperCase();
-
-    groups.forEach(group => {
-      const groupCat = normalize(group.getAttribute(\'data-category\'));
-      const items = group.querySelectorAll(\'.vehicleItem\');
-
-      if (groupCat === selected) {
-        group.style.display = \'\';
-        items.forEach(item => item.style.display = \'\');
-      } else {
-        group.style.display = \'none\';
-      }
-    });
-
-    categoryCards.forEach(card => {
-      const cardCat = normalize(card.getAttribute(\'data-category\'));
-      card.classList.toggle(\'is-active\', cardCat === selected);
-    });
-  };
-
-  categoryCards.forEach(card => {
-    card.addEventListener(\'click\', (e) => {
-      e.preventDefault();
-      const cat = card.getAttribute(\'data-category\');
-      showCategory(cat);
-    });
-  });
-
-  showDefaultView();
 });
 </script>
 <!-- ✅ Global Top-Right Logo (visible on all pages) -->
@@ -2429,1255 +2155,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           'is_stream' => true,
         ),
       ),
-      'VehicleCategoryCardTpl' => 
-      array (
-        'fields' => 
-        array (
-          'id' => 7,
-          'source' => 1,
-          'property_preprocess' => false,
-          'name' => 'VehicleCategoryCardTpl',
-          'description' => '',
-          'editor_type' => 0,
-          'category' => 0,
-          'cache_type' => 0,
-          'snippet' => '<a class="vehicleCardLink [[+is_active:is=`1`:then=`vehicleCardLink--active`]]"
-   href="[[+cat_link]]"
-   data-category="[[+car_category:htmlent]]">
-  <div class="vehicleCard">
-    <div class="vehicleCard__top">
-      <p class="vehicleCard__title">[[+car_category:ucfirst:htmlent]]</p>
-      <div class="vehicleCard__icons"></div>
-    </div>
-
-    <div class="text-center d-flex justify-content-around gap-3">
-      <span class="vehicleCard__icon">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="#000">
-          <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-4.4 0-8 2.2-8 5v3h16v-3c0-2.8-3.6-5-8-5z"/>
-        </svg>
-        [[+pax_count]]
-      </span>
-
-      <span class="vehicleCard__icon">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="#000">
-          <path d="M6 7V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1h1a2 2 0 0 1 2 2v9H3V9a2 2 0 0 1 2-2h1zm2 0h8V6H8v1z"/>
-        </svg>
-        [[+luggage_count]]
-      </span>
-    </div>
-
-    <img class="mt-4 vehicleCard__img" src="[[+image]]" alt="[[+car_model:htmlent]]">
-
-
-  </div>
-</a>',
-          'locked' => false,
-          'properties' => 
-          array (
-          ),
-          'static' => false,
-          'static_file' => '',
-          'content' => '<a class="vehicleCardLink [[+is_active:is=`1`:then=`vehicleCardLink--active`]]"
-   href="[[+cat_link]]"
-   data-category="[[+car_category:htmlent]]">
-  <div class="vehicleCard">
-    <div class="vehicleCard__top">
-      <p class="vehicleCard__title">[[+car_category:ucfirst:htmlent]]</p>
-      <div class="vehicleCard__icons"></div>
-    </div>
-
-    <div class="text-center d-flex justify-content-around gap-3">
-      <span class="vehicleCard__icon">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="#000">
-          <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-4.4 0-8 2.2-8 5v3h16v-3c0-2.8-3.6-5-8-5z"/>
-        </svg>
-        [[+pax_count]]
-      </span>
-
-      <span class="vehicleCard__icon">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="#000">
-          <path d="M6 7V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1h1a2 2 0 0 1 2 2v9H3V9a2 2 0 0 1 2-2h1zm2 0h8V6H8v1z"/>
-        </svg>
-        [[+luggage_count]]
-      </span>
-    </div>
-
-    <img class="mt-4 vehicleCard__img" src="[[+image]]" alt="[[+car_model:htmlent]]">
-
-
-  </div>
-</a>',
-        ),
-        'policies' => 
-        array (
-          'web' => 
-          array (
-          ),
-        ),
-        'source' => 
-        array (
-          'id' => 1,
-          'name' => 'Filesystem',
-          'description' => '',
-          'class_key' => 'MODX\\Revolution\\Sources\\modFileMediaSource',
-          'properties' => 
-          array (
-          ),
-          'is_stream' => true,
-        ),
-      ),
-      'VehicleListItemTpl' => 
-      array (
-        'fields' => 
-        array (
-          'id' => 9,
-          'source' => 1,
-          'property_preprocess' => false,
-          'name' => 'VehicleListItemTpl',
-          'description' => '',
-          'editor_type' => 0,
-          'category' => 0,
-          'cache_type' => 0,
-          'snippet' => '<div class="dealCard">
-  <div class="dealCard__top">
-<h3 class="dealCard__title">
-  [[+discount_percent:gt=`0`:then=`
-    <span class="dealCard__discountBadge">
-     Save-[[+discount_percent]]%
-    </span>
-  `]]
-  [[+car_model:htmlent]]
-
-
-
-  <span class="dealCard__sub">
-    or similar
-    <span class="dealCard__tooltipWrap" tabindex="0">
-      <span class="dealCard__tooltipIcon"><i class="fa fa-info-circle"></i></span>
-      <span class="dealCard__tooltipBox">
-        Vehicle model may vary depending on availability, but you will receive a similar car in the same category with comparable features and capacity.
-      </span>
-    </span>
-  </span>
-</h3>
-
-    <div class="dealCard__specs">
-      <span class="dealCard__spec"><i class="fa fa-cog"></i> [[+transmission_type]]</span>
-      <span class="dealCard__spec"><i class="fa fa-user"></i> [[+pax_count]] Seats</span>
-      <span class="dealCard__spec"><i class="fa fa-suitcase"></i> [[+luggage_count]] Bags</span>
-      <span class="dealCard__spec"><i class="fa fa-snowflake"></i> Air Conditioning</span>
-      <span class="dealCard__spec"><i class="fa fa-car"></i> 4 doors</span>
-    </div>
-  </div>
-
-  <div class="dealCard__body">
-    <div class="dealCard__imageCol">
-      <img src="[[+image]]" alt="[[+car_model:htmlent]]" class="dealCard__image">
-    </div>
-
-    <div class="dealCard__content">
-      <ul class="dealCard__features">
-        <li>In terminal pick-up</li>
-        <li>Average deposit</li>
-        <li>Instant confirmation!</li>
-        <li>Unlimited mileage</li>
-      </ul>
-
-      [[+discount_percent:gt=`0`:then=`
-        <div class="dealCard__offerNote">
-          <span class="dealCard__offerBadge">Discount Applied!!</span>
-         
-        </div>
-      `]]
-    </div>
-
-    <div class="dealCard__priceCol">
-      <div class="dealCard__priceLabel">
-        [[+days:gt=`0`:then=`Total for [[+days]] [[+days:is=`1`:then=`day`:else=`days`]]`:else=`Select dates to see total`]]
-      </div>
-
-<div class="dealCard__priceValue">
-  [[+price:is=``:then=`
-    [[+discount_percent:gt=`0`:then=`
-      <span class="dealCard__suitable">Suitable offer available</span>
-    `:else=`
-      <span class="dealCard__selectInfo">Select dates and locations</span>
-    `]]
-  `:else=`
-    [[+discount_percent:gt=`0`:then=`
-      <span class="dealCard__oldPrice">$ [[+original_price]]</span>
-      <span class="dealCard__newPrice">$ [[+price]]</span>
-    `:else=`
-      <span class="dealCard__mainPrice">$ [[+price]]</span>
-    `]]
-  `]]
-</div>
-
-[[+price:isnot=``:then=`
-  <div class="dealCard__payNowNote">
-    Get 5% off when you pay now rather than on arrival.
-  </div>
-`]]
-
-      <div class="dealCard__cancel mt-3">**Free cancellation <br> upto 24 hrs</div>
-
-      <form action="[[+form_action]]" method="post" class="dealCard__form">
-        <input type="hidden" name="id" value="41">
-        <input type="hidden" name="vehicle_id" value="[[+vehicle_id]]">
-        <input type="hidden" name="car_code" value="[[+car_code]]">
-        <input type="hidden" name="search_source" value="[[+discount_percent:gt=`0`:then=`offer`:else=`home`]]">
-        <input type="hidden" name="discount" value="[[+discount_raw]]">
-        <button type="submit" class="dealCard__btn js-dealBtn">View deal</button>
-      </form>
-    </div>
-  </div>
-</div>
-
-
-<script>
-document.addEventListener(\'DOMContentLoaded\', () => {
-
-  function checkDatesAndToggleButtons() {
-    const pickup = document.querySelector(\'input[name="pickup_datetime"]\');
-    const drop   = document.querySelector(\'input[name="dropoff_datetime"]\');
-
-    const hasDates = pickup && drop && pickup.value.trim() && drop.value.trim();
-
-    document.querySelectorAll(\'.js-dealBtn\').forEach(btn => {
-      btn.disabled = !hasDates;
-
-      // optional styling class
-      btn.classList.toggle(\'is-disabled\', !hasDates);
-    });
-  }
-
-  // Run initially
-  checkDatesAndToggleButtons();
-
-  // Listen to changes (Flatpickr triggers change event)
-  document.addEventListener(\'change\', checkDatesAndToggleButtons);
-
-});
-</script>',
-          'locked' => false,
-          'properties' => 
-          array (
-          ),
-          'static' => false,
-          'static_file' => '',
-          'content' => '<div class="dealCard">
-  <div class="dealCard__top">
-<h3 class="dealCard__title">
-  [[+discount_percent:gt=`0`:then=`
-    <span class="dealCard__discountBadge">
-     Save-[[+discount_percent]]%
-    </span>
-  `]]
-  [[+car_model:htmlent]]
-
-
-
-  <span class="dealCard__sub">
-    or similar
-    <span class="dealCard__tooltipWrap" tabindex="0">
-      <span class="dealCard__tooltipIcon"><i class="fa fa-info-circle"></i></span>
-      <span class="dealCard__tooltipBox">
-        Vehicle model may vary depending on availability, but you will receive a similar car in the same category with comparable features and capacity.
-      </span>
-    </span>
-  </span>
-</h3>
-
-    <div class="dealCard__specs">
-      <span class="dealCard__spec"><i class="fa fa-cog"></i> [[+transmission_type]]</span>
-      <span class="dealCard__spec"><i class="fa fa-user"></i> [[+pax_count]] Seats</span>
-      <span class="dealCard__spec"><i class="fa fa-suitcase"></i> [[+luggage_count]] Bags</span>
-      <span class="dealCard__spec"><i class="fa fa-snowflake"></i> Air Conditioning</span>
-      <span class="dealCard__spec"><i class="fa fa-car"></i> 4 doors</span>
-    </div>
-  </div>
-
-  <div class="dealCard__body">
-    <div class="dealCard__imageCol">
-      <img src="[[+image]]" alt="[[+car_model:htmlent]]" class="dealCard__image">
-    </div>
-
-    <div class="dealCard__content">
-      <ul class="dealCard__features">
-        <li>In terminal pick-up</li>
-        <li>Average deposit</li>
-        <li>Instant confirmation!</li>
-        <li>Unlimited mileage</li>
-      </ul>
-
-      [[+discount_percent:gt=`0`:then=`
-        <div class="dealCard__offerNote">
-          <span class="dealCard__offerBadge">Discount Applied!!</span>
-         
-        </div>
-      `]]
-    </div>
-
-    <div class="dealCard__priceCol">
-      <div class="dealCard__priceLabel">
-        [[+days:gt=`0`:then=`Total for [[+days]] [[+days:is=`1`:then=`day`:else=`days`]]`:else=`Select dates to see total`]]
-      </div>
-
-<div class="dealCard__priceValue">
-  [[+price:is=``:then=`
-    [[+discount_percent:gt=`0`:then=`
-      <span class="dealCard__suitable">Suitable offer available</span>
-    `:else=`
-      <span class="dealCard__selectInfo">Select dates and locations</span>
-    `]]
-  `:else=`
-    [[+discount_percent:gt=`0`:then=`
-      <span class="dealCard__oldPrice">$ [[+original_price]]</span>
-      <span class="dealCard__newPrice">$ [[+price]]</span>
-    `:else=`
-      <span class="dealCard__mainPrice">$ [[+price]]</span>
-    `]]
-  `]]
-</div>
-
-[[+price:isnot=``:then=`
-  <div class="dealCard__payNowNote">
-    Get 5% off when you pay now rather than on arrival.
-  </div>
-`]]
-
-      <div class="dealCard__cancel mt-3">**Free cancellation <br> upto 24 hrs</div>
-
-      <form action="[[+form_action]]" method="post" class="dealCard__form">
-        <input type="hidden" name="id" value="41">
-        <input type="hidden" name="vehicle_id" value="[[+vehicle_id]]">
-        <input type="hidden" name="car_code" value="[[+car_code]]">
-        <input type="hidden" name="search_source" value="[[+discount_percent:gt=`0`:then=`offer`:else=`home`]]">
-        <input type="hidden" name="discount" value="[[+discount_raw]]">
-        <button type="submit" class="dealCard__btn js-dealBtn">View deal</button>
-      </form>
-    </div>
-  </div>
-</div>
-
-
-<script>
-document.addEventListener(\'DOMContentLoaded\', () => {
-
-  function checkDatesAndToggleButtons() {
-    const pickup = document.querySelector(\'input[name="pickup_datetime"]\');
-    const drop   = document.querySelector(\'input[name="dropoff_datetime"]\');
-
-    const hasDates = pickup && drop && pickup.value.trim() && drop.value.trim();
-
-    document.querySelectorAll(\'.js-dealBtn\').forEach(btn => {
-      btn.disabled = !hasDates;
-
-      // optional styling class
-      btn.classList.toggle(\'is-disabled\', !hasDates);
-    });
-  }
-
-  // Run initially
-  checkDatesAndToggleButtons();
-
-  // Listen to changes (Flatpickr triggers change event)
-  document.addEventListener(\'change\', checkDatesAndToggleButtons);
-
-});
-</script>',
-        ),
-        'policies' => 
-        array (
-          'web' => 
-          array (
-          ),
-        ),
-        'source' => 
-        array (
-          'id' => 1,
-          'name' => 'Filesystem',
-          'description' => '',
-          'class_key' => 'MODX\\Revolution\\Sources\\modFileMediaSource',
-          'properties' => 
-          array (
-          ),
-          'is_stream' => true,
-        ),
-      ),
     ),
     'MODX\\Revolution\\modSnippet' => 
     array (
-      'VehiclesCategoryList' => 
-      array (
-        'fields' => 
-        array (
-          'id' => 6,
-          'source' => 1,
-          'property_preprocess' => false,
-          'name' => 'VehiclesCategoryList',
-          'description' => '',
-          'editor_type' => 0,
-          'category' => 0,
-          'cache_type' => 0,
-          'snippet' => 'require "assets/includes/db_connect.php";
-
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
-$tpl      = $modx->getOption(\'tpl\', $scriptProperties, \'VehicleCategoryCardTpl\');
-$tplItem  = $modx->getOption(\'tplItem\', $scriptProperties, \'VehicleListItemTpl\');
-$limit    = (int)$modx->getOption(\'limit\', $scriptProperties, 20);
-$table    = $modx->getOption(\'table\', $scriptProperties, \'vehicles\');
-$groupBy  = (int)$modx->getOption(\'groupByCategory\', $scriptProperties, 1);
-$mode     = $modx->getOption(\'mode\', $scriptProperties, \'cards\');
-$step2PageId = (int)$modx->getOption(\'step2PageId\', $scriptProperties, 41);
-
-/*
-|--------------------------------------------------------------------------
-| Handle incoming search source
-|--------------------------------------------------------------------------
-*/
-if ($_SERVER[\'REQUEST_METHOD\'] === \'POST\') {
-    $searchSource = trim($_POST[\'search_source\'] ?? \'\');
-
-    $_SESSION[\'rent_search\'] = [
-        \'pickup_location\'  => trim($_POST[\'pickup_location\'] ?? \'\'),
-        \'dropoff_location\' => trim($_POST[\'dropoff_location\'] ?? \'\'),
-        \'pickup_datetime\'  => trim($_POST[\'pickup_datetime\'] ?? \'\'),
-        \'dropoff_datetime\' => trim($_POST[\'dropoff_datetime\'] ?? \'\'),
-    ];
-
-    // Coming from home search => remove old discount
-    if ($searchSource === \'home\') {
-        unset($_SESSION[\'rent_discount\']);
-    }
-
-    // Coming from offer => store discount
-    if ($searchSource === \'offer\' && isset($_POST[\'discount\']) && trim($_POST[\'discount\']) !== \'\') {
-        $_SESSION[\'rent_discount\'] = trim($_POST[\'discount\']);
-    }
-
-    // Explicit remove
-    if (isset($_POST[\'clear_discount\']) && $_POST[\'clear_discount\'] === \'1\') {
-        unset($_SESSION[\'rent_discount\']);
-    }
-}
-
-$discountRaw = \'\';
-
-if (isset($_GET[\'discount\']) && trim($_GET[\'discount\']) !== \'\') {
-    $discountRaw = trim($_GET[\'discount\']);
-    $_SESSION[\'rent_discount\'] = $discountRaw;
-} else {
-    $discountRaw = trim($_SESSION[\'rent_discount\'] ?? \'\');
-}
-
-$discountPercent = 0;
-if ($discountRaw !== \'\') {
-    $discountPercent = (int)preg_replace(\'/[^0-9]/\', \'\', $discountRaw);
-}
-
-$search = $_SESSION[\'rent_search\'] ?? [];
-
-$discountRaw = trim($_SESSION[\'rent_discount\'] ?? \'\');
-$discountPercent = 0;
-
-if ($discountRaw !== \'\') {
-    $discountPercent = (int)preg_replace(\'/[^0-9]/\', \'\', $discountRaw);
-}
-
-$pickupRaw  = trim($search[\'pickup_datetime\'] ?? \'\');
-$dropoffRaw = trim($search[\'dropoff_datetime\'] ?? \'\');
-$currentCat = isset($_REQUEST[\'cat\']) ? trim((string)$_REQUEST[\'cat\']) : \'\';
-
-$pickupLocation  = trim($search[\'pickup_location\'] ?? \'\');
-$dropoffLocation = trim($search[\'dropoff_location\'] ?? \'\');
-
-$pickupDate  = ($pickupRaw !== \'\' && strtotime($pickupRaw)) ? date(\'Y-m-d\', strtotime($pickupRaw)) : \'\';
-$dropoffDate = ($dropoffRaw !== \'\' && strtotime($dropoffRaw)) ? date(\'Y-m-d\', strtotime($dropoffRaw)) : \'\';
-
-if (!function_exists(\'getRentalDays\')) {
-    function getRentalDays($pickupDate, $dropoffDate) {
-        if (!$pickupDate || !$dropoffDate) return 0;
-
-        $start = strtotime($pickupDate);
-        $end   = strtotime($dropoffDate);
-
-        if (!$start || !$end || $end < $start) return 0;
-
-        return max(1, (int)(($end - $start) / 86400) + 1);
-    }
-}
-
-if (!function_exists(\'calculateRentalPrice\')) {
-    function calculateRentalPrice($modx, $carCode, $pickupDate, $dropoffDate) {
-        $days = getRentalDays($pickupDate, $dropoffDate);
-        if ($days <= 0 || $carCode === \'\') return \'\';
-
-        $sql = "SELECT duration, rate
-                FROM car_rental
-                WHERE car_code = :car_code
-                  AND :pickup_date >= DATE(start_date)
-                  AND :dropoff_date <= DATE(end_date)
-                ORDER BY duration ASC";
-
-        $stmt = $modx->prepare($sql);
-        if (!$stmt) return \'\';
-
-        $stmt->bindValue(\':car_code\', $carCode, PDO::PARAM_STR);
-        $stmt->bindValue(\':pickup_date\', $pickupDate, PDO::PARAM_STR);
-        $stmt->bindValue(\':dropoff_date\', $dropoffDate, PDO::PARAM_STR);
-
-        if (!$stmt->execute()) return \'\';
-
-        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        if (!$rows) return \'\';
-
-        $rates = [];
-        foreach ($rows as $row) {
-            $duration = (int)($row[\'duration\'] ?? 0);
-            $rate     = (float)($row[\'rate\'] ?? 0);
-
-            if ($duration > 0) {
-                $rates[$duration] = $rate;
-            }
-        }
-
-        if (!$rates) return \'\';
-
-        ksort($rates);
-
-        $maxDuration = max(array_keys($rates));
-        $lastRate    = (float)$rates[$maxDuration];
-        $total       = 0;
-
-        for ($d = 1; $d <= $days; $d++) {
-            if (isset($rates[$d])) {
-                $total += (float)$rates[$d];
-            } elseif ($d > $maxDuration) {
-                $total += $lastRate;
-            } else {
-                return \'\';
-            }
-        }
-
-        return number_format($total, 2, \'.\', \'\');
-    }
-}
-
-$days = getRentalDays($pickupDate, $dropoffDate);
-
-/**
- * MODE 1: category cards
- */
-if ($mode === \'cards\') {
-    if ($groupBy) {
-        $sql = "SELECT
-                    v1.id,
-                    v1.image,
-                    v1.car_category,
-                    v1.car_model,
-                    v1.car_code,
-                    v1.pax_count,
-                    v1.luggage_count
-                FROM {$table} v1
-                INNER JOIN (
-                    SELECT car_category, MIN(id) AS first_id
-                    FROM {$table}
-                    GROUP BY car_category
-                ) v2 ON v1.id = v2.first_id
-                ORDER BY v1.car_category ASC
-                LIMIT :limit";
-    } else {
-        $sql = "SELECT
-                    v.id,
-                    v.image,
-                    v.car_category,
-                    v.car_model,
-                    v.car_code,
-                    v.pax_count,
-                    v.luggage_count
-                FROM {$table} v
-                ORDER BY v.id DESC
-                LIMIT :limit";
-    }
-
-    $stmt = $modx->prepare($sql);
-    if (!$stmt) return \'<p>Could not prepare vehicles query.</p>\';
-
-    $stmt->bindValue(\':limit\', $limit, PDO::PARAM_INT);
-    if (!$stmt->execute()) return \'<p>Could not load vehicles.</p>\';
-
-    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    if (!$rows) return \'<p>No vehicles found.</p>\';
-
-    $uid = \'vehRow_\' . substr(md5(uniqid(\'\', true)), 0, 8);
-
-    $out  = \'<div class="vehicleScroller" data-scroller="\' . $uid . \'">\';
-    $out .= \'<button class="vehicleScroller__btn vehicleScroller__btn--left" type="button" aria-label="Scroll left" data-dir="-1">‹</button>\';
-    $out .= \'<div class="vehicleRow mt-4 mt-lg-0" id="\' . $uid . \'">\';
-
-    foreach ($rows as $row) {
-        $cat = (string)($row[\'car_category\'] ?? \'\');
-
-
-
-$formAction = $modx->makeUrl($step2PageId);
-
-$ph = [
-    \'image\'         => $row[\'image\'] ?? \'\',
-    \'car_category\'  => $cat,
-    \'car_model\'     => $row[\'car_model\'] ?? \'\',
-    \'car_code\'      => $row[\'car_code\'] ?? \'\',
-    \'pax_count\'     => (int)($row[\'pax_count\'] ?? 0),
-    \'luggage_count\' => (int)($row[\'luggage_count\'] ?? 0),
-    \'price\'         => calculateRentalPrice($modx, $row[\'car_code\'] ?? \'\', $pickupDate, $dropoffDate),
-    \'days\'          => $days,
-    \'deal_link\'     => \'\',
-    \'form_action\'   => $formAction,
-    \'vehicle_id\'    => (int)$row[\'id\'],
-    \'is_active\'     => ($currentCat !== \'\' && strcasecmp($currentCat, $cat) === 0) ? 1 : 0,
-];
-
-        $out .= $modx->getChunk($tpl, $ph);
-    }
-
-    $out .= \'</div>\';
-    $out .= \'<button class="vehicleScroller__btn vehicleScroller__btn--right" type="button" aria-label="Scroll right" data-dir="1">›</button>\';
-    $out .= \'</div>\';
-
-    return $out;
-}
-
-/**
- * MODE 2: vehicle list
- */
-$sql = "SELECT
-            v.id,
-            v.image,
-            v.car_category,
-            v.car_model,
-            v.car_code,
-            v.transmission_type,
-            v.pax_count,
-            v.luggage_count
-        FROM {$table} v";
-
-$params = [];
-if ($currentCat !== \'\') {
-    $sql .= " WHERE v.car_category = :current_cat";
-    $params[\':current_cat\'] = $currentCat;
-}
-
-$sql .= " ORDER BY v.car_category ASC, v.id ASC";
-
-$stmt = $modx->prepare($sql);
-if (!$stmt) return \'<p>Could not prepare vehicles query.</p>\';
-
-foreach ($params as $key => $val) {
-    $stmt->bindValue($key, $val, PDO::PARAM_STR);
-}
-
-if (!$stmt->execute()) return \'<p>Could not load vehicles.</p>\';
-
-$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-if (!$rows) return \'<p>No vehicles found.</p>\';
-
-$grouped = [];
-foreach ($rows as $row) {
-    $cat = trim((string)($row[\'car_category\'] ?? \'Uncategorized\'));
-    if (!isset($grouped[$cat])) $grouped[$cat] = [];
-
-$originalPrice = (float) calculateRentalPrice(
-    $modx,
-    $row[\'car_code\'] ?? \'\',
-    $pickupDate,
-    $dropoffDate
-);
-
-$discountedPrice = $originalPrice;
-
-if ($discountPercent > 0 && $originalPrice > 0) {
-    $discountedPrice = $originalPrice - (($originalPrice * $discountPercent) / 100);
-}
-
-$row[\'calculated_price\'] = $discountedPrice > 0 ? number_format($discountedPrice, 2, \'.\', \'\') : \'\';
-$row[\'original_price\'] = $originalPrice > 0 ? number_format($originalPrice, 2, \'.\', \'\') : \'\';
-$row[\'discount_percent\'] = $discountPercent;
-
-$row[\'form_action\'] = $modx->makeUrl($step2PageId);
-$row[\'vehicle_id\']  = (int)$row[\'id\'];
-
-    $grouped[$cat][] = $row;
-}
-
-$out = \'<div id="vehicleGroups">\';
-
-foreach ($grouped as $cat => $items) {
-    $safeCat = htmlspecialchars($cat, ENT_QUOTES, \'UTF-8\');
-    $out .= \'<div class="vehicleGroup" data-category="\' . $safeCat . \'">\';
-    foreach ($items as $index => $row) {
-$ph = [
-    \'id\'               => (int)($row[\'id\'] ?? 0),
-    \'image\'            => $row[\'image\'] ?? \'\',
-    \'car_model\'        => $row[\'car_model\'] ?? \'\',
-    \'car_category\'     => $cat,
-    \'car_code\'         => $row[\'car_code\'] ?? \'\',
-    \'pax_count\'        => (int)($row[\'pax_count\'] ?? 0),
-    \'luggage_count\'    => (int)($row[\'luggage_count\'] ?? 0),
-    \'transmission_type\'         => $row[\'transmission_type\'] ?? \'\',
-    \'price\'            => $row[\'calculated_price\'] ?? \'\',
-    \'original_price\'   => $row[\'original_price\'] ?? \'\',
-    \'discount_percent\' => $row[\'discount_percent\'] ?? 0,
-    \'discount_raw\'     => $discountRaw,
-    \'days\'             => $days,
-    \'form_action\'      => $row[\'form_action\'] ?? \'\',
-    \'vehicle_id\'       => $row[\'vehicle_id\'] ?? 0,
-    \'is_first\'         => $index === 0 ? 1 : 0,
-];
-
-        $out .= \'<div class="vehicleItem" data-first="\' . ($index === 0 ? \'1\' : \'0\') . \'">\';
-        $out .= $modx->getChunk($tplItem, $ph);
-        $out .= \'</div>\';
-    }
-
-    $out .= \'</div>\';
-}
-
-$out .= \'</div>\';
-
-return $out;',
-          'locked' => false,
-          'properties' => 
-          array (
-          ),
-          'moduleguid' => '',
-          'static' => false,
-          'static_file' => '',
-          'content' => 'require "assets/includes/db_connect.php";
-
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
-$tpl      = $modx->getOption(\'tpl\', $scriptProperties, \'VehicleCategoryCardTpl\');
-$tplItem  = $modx->getOption(\'tplItem\', $scriptProperties, \'VehicleListItemTpl\');
-$limit    = (int)$modx->getOption(\'limit\', $scriptProperties, 20);
-$table    = $modx->getOption(\'table\', $scriptProperties, \'vehicles\');
-$groupBy  = (int)$modx->getOption(\'groupByCategory\', $scriptProperties, 1);
-$mode     = $modx->getOption(\'mode\', $scriptProperties, \'cards\');
-$step2PageId = (int)$modx->getOption(\'step2PageId\', $scriptProperties, 41);
-
-/*
-|--------------------------------------------------------------------------
-| Handle incoming search source
-|--------------------------------------------------------------------------
-*/
-if ($_SERVER[\'REQUEST_METHOD\'] === \'POST\') {
-    $searchSource = trim($_POST[\'search_source\'] ?? \'\');
-
-    $_SESSION[\'rent_search\'] = [
-        \'pickup_location\'  => trim($_POST[\'pickup_location\'] ?? \'\'),
-        \'dropoff_location\' => trim($_POST[\'dropoff_location\'] ?? \'\'),
-        \'pickup_datetime\'  => trim($_POST[\'pickup_datetime\'] ?? \'\'),
-        \'dropoff_datetime\' => trim($_POST[\'dropoff_datetime\'] ?? \'\'),
-    ];
-
-    // Coming from home search => remove old discount
-    if ($searchSource === \'home\') {
-        unset($_SESSION[\'rent_discount\']);
-    }
-
-    // Coming from offer => store discount
-    if ($searchSource === \'offer\' && isset($_POST[\'discount\']) && trim($_POST[\'discount\']) !== \'\') {
-        $_SESSION[\'rent_discount\'] = trim($_POST[\'discount\']);
-    }
-
-    // Explicit remove
-    if (isset($_POST[\'clear_discount\']) && $_POST[\'clear_discount\'] === \'1\') {
-        unset($_SESSION[\'rent_discount\']);
-    }
-}
-
-$discountRaw = \'\';
-
-if (isset($_GET[\'discount\']) && trim($_GET[\'discount\']) !== \'\') {
-    $discountRaw = trim($_GET[\'discount\']);
-    $_SESSION[\'rent_discount\'] = $discountRaw;
-} else {
-    $discountRaw = trim($_SESSION[\'rent_discount\'] ?? \'\');
-}
-
-$discountPercent = 0;
-if ($discountRaw !== \'\') {
-    $discountPercent = (int)preg_replace(\'/[^0-9]/\', \'\', $discountRaw);
-}
-
-$search = $_SESSION[\'rent_search\'] ?? [];
-
-$discountRaw = trim($_SESSION[\'rent_discount\'] ?? \'\');
-$discountPercent = 0;
-
-if ($discountRaw !== \'\') {
-    $discountPercent = (int)preg_replace(\'/[^0-9]/\', \'\', $discountRaw);
-}
-
-$pickupRaw  = trim($search[\'pickup_datetime\'] ?? \'\');
-$dropoffRaw = trim($search[\'dropoff_datetime\'] ?? \'\');
-$currentCat = isset($_REQUEST[\'cat\']) ? trim((string)$_REQUEST[\'cat\']) : \'\';
-
-$pickupLocation  = trim($search[\'pickup_location\'] ?? \'\');
-$dropoffLocation = trim($search[\'dropoff_location\'] ?? \'\');
-
-$pickupDate  = ($pickupRaw !== \'\' && strtotime($pickupRaw)) ? date(\'Y-m-d\', strtotime($pickupRaw)) : \'\';
-$dropoffDate = ($dropoffRaw !== \'\' && strtotime($dropoffRaw)) ? date(\'Y-m-d\', strtotime($dropoffRaw)) : \'\';
-
-if (!function_exists(\'getRentalDays\')) {
-    function getRentalDays($pickupDate, $dropoffDate) {
-        if (!$pickupDate || !$dropoffDate) return 0;
-
-        $start = strtotime($pickupDate);
-        $end   = strtotime($dropoffDate);
-
-        if (!$start || !$end || $end < $start) return 0;
-
-        return max(1, (int)(($end - $start) / 86400) + 1);
-    }
-}
-
-if (!function_exists(\'calculateRentalPrice\')) {
-    function calculateRentalPrice($modx, $carCode, $pickupDate, $dropoffDate) {
-        $days = getRentalDays($pickupDate, $dropoffDate);
-        if ($days <= 0 || $carCode === \'\') return \'\';
-
-        $sql = "SELECT duration, rate
-                FROM car_rental
-                WHERE car_code = :car_code
-                  AND :pickup_date >= DATE(start_date)
-                  AND :dropoff_date <= DATE(end_date)
-                ORDER BY duration ASC";
-
-        $stmt = $modx->prepare($sql);
-        if (!$stmt) return \'\';
-
-        $stmt->bindValue(\':car_code\', $carCode, PDO::PARAM_STR);
-        $stmt->bindValue(\':pickup_date\', $pickupDate, PDO::PARAM_STR);
-        $stmt->bindValue(\':dropoff_date\', $dropoffDate, PDO::PARAM_STR);
-
-        if (!$stmt->execute()) return \'\';
-
-        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        if (!$rows) return \'\';
-
-        $rates = [];
-        foreach ($rows as $row) {
-            $duration = (int)($row[\'duration\'] ?? 0);
-            $rate     = (float)($row[\'rate\'] ?? 0);
-
-            if ($duration > 0) {
-                $rates[$duration] = $rate;
-            }
-        }
-
-        if (!$rates) return \'\';
-
-        ksort($rates);
-
-        $maxDuration = max(array_keys($rates));
-        $lastRate    = (float)$rates[$maxDuration];
-        $total       = 0;
-
-        for ($d = 1; $d <= $days; $d++) {
-            if (isset($rates[$d])) {
-                $total += (float)$rates[$d];
-            } elseif ($d > $maxDuration) {
-                $total += $lastRate;
-            } else {
-                return \'\';
-            }
-        }
-
-        return number_format($total, 2, \'.\', \'\');
-    }
-}
-
-$days = getRentalDays($pickupDate, $dropoffDate);
-
-/**
- * MODE 1: category cards
- */
-if ($mode === \'cards\') {
-    if ($groupBy) {
-        $sql = "SELECT
-                    v1.id,
-                    v1.image,
-                    v1.car_category,
-                    v1.car_model,
-                    v1.car_code,
-                    v1.pax_count,
-                    v1.luggage_count
-                FROM {$table} v1
-                INNER JOIN (
-                    SELECT car_category, MIN(id) AS first_id
-                    FROM {$table}
-                    GROUP BY car_category
-                ) v2 ON v1.id = v2.first_id
-                ORDER BY v1.car_category ASC
-                LIMIT :limit";
-    } else {
-        $sql = "SELECT
-                    v.id,
-                    v.image,
-                    v.car_category,
-                    v.car_model,
-                    v.car_code,
-                    v.pax_count,
-                    v.luggage_count
-                FROM {$table} v
-                ORDER BY v.id DESC
-                LIMIT :limit";
-    }
-
-    $stmt = $modx->prepare($sql);
-    if (!$stmt) return \'<p>Could not prepare vehicles query.</p>\';
-
-    $stmt->bindValue(\':limit\', $limit, PDO::PARAM_INT);
-    if (!$stmt->execute()) return \'<p>Could not load vehicles.</p>\';
-
-    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    if (!$rows) return \'<p>No vehicles found.</p>\';
-
-    $uid = \'vehRow_\' . substr(md5(uniqid(\'\', true)), 0, 8);
-
-    $out  = \'<div class="vehicleScroller" data-scroller="\' . $uid . \'">\';
-    $out .= \'<button class="vehicleScroller__btn vehicleScroller__btn--left" type="button" aria-label="Scroll left" data-dir="-1">‹</button>\';
-    $out .= \'<div class="vehicleRow mt-4 mt-lg-0" id="\' . $uid . \'">\';
-
-    foreach ($rows as $row) {
-        $cat = (string)($row[\'car_category\'] ?? \'\');
-
-
-
-$formAction = $modx->makeUrl($step2PageId);
-
-$ph = [
-    \'image\'         => $row[\'image\'] ?? \'\',
-    \'car_category\'  => $cat,
-    \'car_model\'     => $row[\'car_model\'] ?? \'\',
-    \'car_code\'      => $row[\'car_code\'] ?? \'\',
-    \'pax_count\'     => (int)($row[\'pax_count\'] ?? 0),
-    \'luggage_count\' => (int)($row[\'luggage_count\'] ?? 0),
-    \'price\'         => calculateRentalPrice($modx, $row[\'car_code\'] ?? \'\', $pickupDate, $dropoffDate),
-    \'days\'          => $days,
-    \'deal_link\'     => \'\',
-    \'form_action\'   => $formAction,
-    \'vehicle_id\'    => (int)$row[\'id\'],
-    \'is_active\'     => ($currentCat !== \'\' && strcasecmp($currentCat, $cat) === 0) ? 1 : 0,
-];
-
-        $out .= $modx->getChunk($tpl, $ph);
-    }
-
-    $out .= \'</div>\';
-    $out .= \'<button class="vehicleScroller__btn vehicleScroller__btn--right" type="button" aria-label="Scroll right" data-dir="1">›</button>\';
-    $out .= \'</div>\';
-
-    return $out;
-}
-
-/**
- * MODE 2: vehicle list
- */
-$sql = "SELECT
-            v.id,
-            v.image,
-            v.car_category,
-            v.car_model,
-            v.car_code,
-            v.transmission_type,
-            v.pax_count,
-            v.luggage_count
-        FROM {$table} v";
-
-$params = [];
-if ($currentCat !== \'\') {
-    $sql .= " WHERE v.car_category = :current_cat";
-    $params[\':current_cat\'] = $currentCat;
-}
-
-$sql .= " ORDER BY v.car_category ASC, v.id ASC";
-
-$stmt = $modx->prepare($sql);
-if (!$stmt) return \'<p>Could not prepare vehicles query.</p>\';
-
-foreach ($params as $key => $val) {
-    $stmt->bindValue($key, $val, PDO::PARAM_STR);
-}
-
-if (!$stmt->execute()) return \'<p>Could not load vehicles.</p>\';
-
-$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-if (!$rows) return \'<p>No vehicles found.</p>\';
-
-$grouped = [];
-foreach ($rows as $row) {
-    $cat = trim((string)($row[\'car_category\'] ?? \'Uncategorized\'));
-    if (!isset($grouped[$cat])) $grouped[$cat] = [];
-
-$originalPrice = (float) calculateRentalPrice(
-    $modx,
-    $row[\'car_code\'] ?? \'\',
-    $pickupDate,
-    $dropoffDate
-);
-
-$discountedPrice = $originalPrice;
-
-if ($discountPercent > 0 && $originalPrice > 0) {
-    $discountedPrice = $originalPrice - (($originalPrice * $discountPercent) / 100);
-}
-
-$row[\'calculated_price\'] = $discountedPrice > 0 ? number_format($discountedPrice, 2, \'.\', \'\') : \'\';
-$row[\'original_price\'] = $originalPrice > 0 ? number_format($originalPrice, 2, \'.\', \'\') : \'\';
-$row[\'discount_percent\'] = $discountPercent;
-
-$row[\'form_action\'] = $modx->makeUrl($step2PageId);
-$row[\'vehicle_id\']  = (int)$row[\'id\'];
-
-    $grouped[$cat][] = $row;
-}
-
-$out = \'<div id="vehicleGroups">\';
-
-foreach ($grouped as $cat => $items) {
-    $safeCat = htmlspecialchars($cat, ENT_QUOTES, \'UTF-8\');
-    $out .= \'<div class="vehicleGroup" data-category="\' . $safeCat . \'">\';
-    foreach ($items as $index => $row) {
-$ph = [
-    \'id\'               => (int)($row[\'id\'] ?? 0),
-    \'image\'            => $row[\'image\'] ?? \'\',
-    \'car_model\'        => $row[\'car_model\'] ?? \'\',
-    \'car_category\'     => $cat,
-    \'car_code\'         => $row[\'car_code\'] ?? \'\',
-    \'pax_count\'        => (int)($row[\'pax_count\'] ?? 0),
-    \'luggage_count\'    => (int)($row[\'luggage_count\'] ?? 0),
-    \'transmission_type\'         => $row[\'transmission_type\'] ?? \'\',
-    \'price\'            => $row[\'calculated_price\'] ?? \'\',
-    \'original_price\'   => $row[\'original_price\'] ?? \'\',
-    \'discount_percent\' => $row[\'discount_percent\'] ?? 0,
-    \'discount_raw\'     => $discountRaw,
-    \'days\'             => $days,
-    \'form_action\'      => $row[\'form_action\'] ?? \'\',
-    \'vehicle_id\'       => $row[\'vehicle_id\'] ?? 0,
-    \'is_first\'         => $index === 0 ? 1 : 0,
-];
-
-        $out .= \'<div class="vehicleItem" data-first="\' . ($index === 0 ? \'1\' : \'0\') . \'">\';
-        $out .= $modx->getChunk($tplItem, $ph);
-        $out .= \'</div>\';
-    }
-
-    $out .= \'</div>\';
-}
-
-$out .= \'</div>\';
-
-return $out;',
-        ),
-        'policies' => 
-        array (
-          'web' => 
-          array (
-          ),
-        ),
-        'source' => 
-        array (
-          'id' => 1,
-          'name' => 'Filesystem',
-          'description' => '',
-          'class_key' => 'MODX\\Revolution\\Sources\\modFileMediaSource',
-          'properties' => 
-          array (
-          ),
-          'is_stream' => true,
-        ),
-      ),
-      'RentSearchSummary' => 
-      array (
-        'fields' => 
-        array (
-          'id' => 5,
-          'source' => 1,
-          'property_preprocess' => false,
-          'name' => 'RentSearchSummary',
-          'description' => '',
-          'editor_type' => 0,
-          'category' => 0,
-          'cache_type' => 0,
-          'snippet' => 'if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
-/**
- * Snippet: RentSearchSummary
- * Uses SESSION instead of GET so details do not appear in URL
- */
-
-$h = function($v) { return htmlspecialchars((string)$v, ENT_QUOTES, \'UTF-8\'); };
-
-$search = $_SESSION[\'rent_search\'] ?? [];
-
-$pickup  = trim($search[\'pickup_location\'] ?? \'\');
-$dropoff = trim($search[\'dropoff_location\'] ?? \'\');
-$pickDT  = trim($search[\'pickup_datetime\'] ?? \'\');
-$dropDT  = trim($search[\'dropoff_datetime\'] ?? \'\');
-
-$same = ($dropoff === \'\');
-
-$resultsPageId = (int)$modx->getOption(\'resultsPageId\', $scriptProperties, 39);
-$action = $modx->makeUrl($resultsPageId);
-
-$out = \'<div class="rentWidget">\'; 
-$out .= \'  <form class="rentWidgetForm" action="\'.$h($action).\'" method="post">\';
-$out .= \'    <input type="hidden" name="id" value="\'.$resultsPageId.\'">\';
-
-$out .= \' <div class="rentWidget__row">\'; 
-$out .= \'      <div class="rentWidget__label">Pick-up location</div>\';
-$out .= \'      <div class="rentWidget__box">\';
-$out .= \'        <input class="rentWidget__input js-places" type="text" name="pickup_location" value="\'.$h($pickup).\'" placeholder="e.g., Colombo" required>\';
-$out .= \'        <button type="button" class="rentWidget__clear" aria-label="Clear pickup">✕</button>\';
-$out .= \'      </div>\';
-$out .= \'    </div>\';
-
-$out .= \'    <label class="rentWidget__check mb-0">\';
-$out .= \'      <input type="checkbox" class="js-sameLocation" \'.($same ? \'checked\' : \'\').\'>\';
-$out .= \'      <span class="text-white">Return car in same location</span>\';
-$out .= \'    </label>\';
-
-$out .= \' <div class="rentWidget__row mt-0 js-dropoffRow" \'.($same ? \'style="display:none;"\' : \'\').\'>\';
-$out .= \'      <div class="rentWidget__label">Drop-off location</div>\';
-$out .= \'      <div class="rentWidget__box">\';
-$out .= \'        <input class="rentWidget__input js-places" type="text" name="dropoff_location" value="\'.$h($dropoff).\'" placeholder="e.g., Kandy">\';
-$out .= \'        <button type="button" class="rentWidget__clear" aria-label="Clear dropoff">✕</button>\';
-$out .= \'      </div>\';
-$out .= \'    </div>\';
-
-$out .= \'    <div class="rentWidget__row">\';
-$out .= \'      <div class="rentWidget__label">Pick-up date & time</div>\';
-$out .= \'      <div class="rentWidget__box">\';
-$out .= \'        <input class="rentWidget__input js-datetime" type="text" name="pickup_datetime" value="\'.$h($pickDT).\'" placeholder="YYYY-MM-DD HH:MM" required>\';
-$out .= \'      </div>\';
-$out .= \'    </div>\';
-
-$out .= \'    <div class="rentWidget__row">\';
-$out .= \'      <div class="rentWidget__label">Drop-off date & time</div>\';
-$out .= \'      <div class="rentWidget__box">\';
-$out .= \'        <input class="rentWidget__input js-datetime" type="text" name="dropoff_datetime" value="\'.$h($dropDT).\'" placeholder="YYYY-MM-DD HH:MM" required>\';
-$out .= \'      </div>\';
-$out .= \'    </div>\';
-
-$out .= \'    <hr style="border-top: 1px solid rgb(255 255 255);">\';
-$out .= \'    <button class="rentWidget__btn" type="submit">Search now</button>\';
-$out .= \'  </form>\';
-$out .= \'</div>\';
-
-return $out;',
-          'locked' => false,
-          'properties' => 
-          array (
-          ),
-          'moduleguid' => '',
-          'static' => false,
-          'static_file' => '',
-          'content' => 'if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
-/**
- * Snippet: RentSearchSummary
- * Uses SESSION instead of GET so details do not appear in URL
- */
-
-$h = function($v) { return htmlspecialchars((string)$v, ENT_QUOTES, \'UTF-8\'); };
-
-$search = $_SESSION[\'rent_search\'] ?? [];
-
-$pickup  = trim($search[\'pickup_location\'] ?? \'\');
-$dropoff = trim($search[\'dropoff_location\'] ?? \'\');
-$pickDT  = trim($search[\'pickup_datetime\'] ?? \'\');
-$dropDT  = trim($search[\'dropoff_datetime\'] ?? \'\');
-
-$same = ($dropoff === \'\');
-
-$resultsPageId = (int)$modx->getOption(\'resultsPageId\', $scriptProperties, 39);
-$action = $modx->makeUrl($resultsPageId);
-
-$out = \'<div class="rentWidget">\'; 
-$out .= \'  <form class="rentWidgetForm" action="\'.$h($action).\'" method="post">\';
-$out .= \'    <input type="hidden" name="id" value="\'.$resultsPageId.\'">\';
-
-$out .= \' <div class="rentWidget__row">\'; 
-$out .= \'      <div class="rentWidget__label">Pick-up location</div>\';
-$out .= \'      <div class="rentWidget__box">\';
-$out .= \'        <input class="rentWidget__input js-places" type="text" name="pickup_location" value="\'.$h($pickup).\'" placeholder="e.g., Colombo" required>\';
-$out .= \'        <button type="button" class="rentWidget__clear" aria-label="Clear pickup">✕</button>\';
-$out .= \'      </div>\';
-$out .= \'    </div>\';
-
-$out .= \'    <label class="rentWidget__check mb-0">\';
-$out .= \'      <input type="checkbox" class="js-sameLocation" \'.($same ? \'checked\' : \'\').\'>\';
-$out .= \'      <span class="text-white">Return car in same location</span>\';
-$out .= \'    </label>\';
-
-$out .= \' <div class="rentWidget__row mt-0 js-dropoffRow" \'.($same ? \'style="display:none;"\' : \'\').\'>\';
-$out .= \'      <div class="rentWidget__label">Drop-off location</div>\';
-$out .= \'      <div class="rentWidget__box">\';
-$out .= \'        <input class="rentWidget__input js-places" type="text" name="dropoff_location" value="\'.$h($dropoff).\'" placeholder="e.g., Kandy">\';
-$out .= \'        <button type="button" class="rentWidget__clear" aria-label="Clear dropoff">✕</button>\';
-$out .= \'      </div>\';
-$out .= \'    </div>\';
-
-$out .= \'    <div class="rentWidget__row">\';
-$out .= \'      <div class="rentWidget__label">Pick-up date & time</div>\';
-$out .= \'      <div class="rentWidget__box">\';
-$out .= \'        <input class="rentWidget__input js-datetime" type="text" name="pickup_datetime" value="\'.$h($pickDT).\'" placeholder="YYYY-MM-DD HH:MM" required>\';
-$out .= \'      </div>\';
-$out .= \'    </div>\';
-
-$out .= \'    <div class="rentWidget__row">\';
-$out .= \'      <div class="rentWidget__label">Drop-off date & time</div>\';
-$out .= \'      <div class="rentWidget__box">\';
-$out .= \'        <input class="rentWidget__input js-datetime" type="text" name="dropoff_datetime" value="\'.$h($dropDT).\'" placeholder="YYYY-MM-DD HH:MM" required>\';
-$out .= \'      </div>\';
-$out .= \'    </div>\';
-
-$out .= \'    <hr style="border-top: 1px solid rgb(255 255 255);">\';
-$out .= \'    <button class="rentWidget__btn" type="submit">Search now</button>\';
-$out .= \'  </form>\';
-$out .= \'</div>\';
-
-return $out;',
-        ),
-        'policies' => 
-        array (
-          'web' => 
-          array (
-          ),
-        ),
-        'source' => 
-        array (
-          'id' => 1,
-          'name' => 'Filesystem',
-          'description' => '',
-          'class_key' => 'MODX\\Revolution\\Sources\\modFileMediaSource',
-          'properties' => 
-          array (
-          ),
-          'is_stream' => true,
-        ),
-      ),
     ),
     'MODX\\Revolution\\modTemplateVar' => 
     array (
