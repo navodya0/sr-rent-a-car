@@ -19671,6 +19671,7 @@ textarea.driverForm__control {
 .driverSummaryRow span {
   color: #475569;
   font-size: 12px;
+  white-space: nowrap;
 }
 
 .driverSummaryRow strong {
