@@ -1045,22 +1045,19 @@
 		if (defaultValue) {
 		el.value = defaultValue;
 
-		// Optional: force Google to recognize the default as a real place
 		const service = new google.maps.places.AutocompleteService();
 		service.getPlacePredictions({
 			input: defaultValue,
 			componentRestrictions: { country: "lk" }
 		}, function(predictions, status) {
 			if (status === google.maps.places.PlacesServiceStatus.OK && predictions.length > 0) {
-			// You could optionally fetch full place details here if needed
-			// But for most booking forms, just pre-filling text is enough
+
 			}
 		});
 		}
 
 		ac.addListener("place_changed", () => {
 		const place = ac.getPlace();
-		// console.log(place.formatted_address);
 		});
 	}
 
