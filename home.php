@@ -270,7 +270,7 @@
 <section id="our-fleet" class="fleet-members-section py-5">
   <div class="container">
     <div class="row align-items-center mb-0">
-      <div class="col-lg-5">
+      <div class="col-lg-6">
         <span class="fleet-badge">Our Fleet</span>
         <h2 class="fleet-heading mt-3">Newly Joined Fleet Members</h2>
         <p class="fleet-subtext">
@@ -280,26 +280,26 @@
         </p>
       </div>
 
-      <div class="col-lg-7">
+      <div class="col-lg-6">
         <div class="fleet-hero-image">
-  <div class="swiper fleetSwiper">
-    <div class="swiper-wrapper">
+            <div class="swiper fleetSwiper">
+                <div class="swiper-wrapper">
 
-      <div class="swiper-slide">
-        <img src="assets/images/fleet/fleet-hero.jpg" alt="Fleet 1">
-      </div>
+                <div class="swiper-slide">
+                    <img src="assets/images/fleet/fleet-hero.jpg" alt="Fleet 1">
+                </div>
 
-      <div class="swiper-slide">
-        <img src="assets/images/fleet/fleet-2.jpg" alt="Fleet 2">
-      </div>
+                <div class="swiper-slide">
+                    <img src="assets/images/fleet/fleet-2.jpg" alt="Fleet 2">
+                </div>
 
-      <div class="swiper-slide">
-        <img src="assets/images/fleet/fleet-3.jpg" alt="Fleet 3">
-      </div>
+                <div class="swiper-slide">
+                    <img src="assets/images/fleet/fleet-3.jpg" alt="Fleet 3">
+                </div>
 
-    </div>
-  </div>
-</div>
+                </div>
+            </div>
+            </div>
       </div>
     </div>
   </div>
@@ -523,7 +523,7 @@
     </div>
 
     <div class="text-center mt-4">
-      <a href="https://www.google.com/search?client=firefox-b-d&q=sr+rent+a+car#lrd=0x3ae2f9da7f0d8cad:0x23cc584d58386b05,1,,,," target="_blank" rel="noopener">
+      <a href="https://www.google.com/search?client=firefox-b-d&sca_esv=9151e0e90600ee3c&si=AL3DRZFIhG6pAqfNLal55wUTwygCG0fClF3UxiOmgw9Hq7nbWdWJUU6NpxzcEPVLFQQsT7kAueOwmfglvNUMRgYs_amlJY3vAqLLCGNXN5gP9EdBmecitfCH_3VoarzY42Cez1-7xoR-Q5y_2sRxn9kbFytBgN7Vmw%3D%3D&q=SR+Rent+A+Car+Sri+Lanka+Reviews&sa=X&ved=2ahUKEwi5sf2-hLiTAxVnzDgGHRjtHvYQ0bkNegQIJhAH&biw=1536&bih=730&dpr=1.25" target="_blank" rel="noopener">
         <img src="assets/images/home/google.png" alt="Google" style="max-width:180px;">
       </a>
     </div>
@@ -734,7 +734,10 @@
             <div class="swiper-slide">
               <div class="tm-card">
                 <div class="tm-avatar">
-                  <img src="${image}" alt="${name}">
+                  <img 
+  src="${image}" 
+  alt="${name}" 
+  onerror="this.onerror=null;this.src='assets/images/home/avatar.webp';">
                 </div>
 
                 <p class="tm-text" 
@@ -767,21 +770,26 @@
         }).join('');
 
         new Swiper('.tmSwiper', {
-          slidesPerView: 1,
-          spaceBetween: 24,
-          loop: reviews.length > 1,
-          navigation: {
-            nextEl: '.tm-next',
-            prevEl: '.tm-prev'
-          },
-          breakpoints: {
+        slidesPerView: 1,
+        spaceBetween: 24,
+        loop: reviews.length > 1,
+
+        autoplay: {
+            delay: 3000,              // slide every 3s
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true   // pause on hover (nice UX)
+        },
+
+        speed: 800, // smooth transition
+
+        breakpoints: {
             768: {
-              slidesPerView: 2
+            slidesPerView: 2
             },
             1200: {
-              slidesPerView: 3
+            slidesPerView: 3
             }
-          }
+        }
         });
 
         document.querySelectorAll('.tm-read-more-btn').forEach(button => {
@@ -933,7 +941,7 @@
         enableTime: true,
         dateFormat: "Y-m-d H:i",
         minDate: now,              
-        minTime: now.getHours() + ":" + now.getMinutes(), // ✅ disables past time TODAY
+        minTime: now.getHours() + ":" + now.getMinutes(), 
         time_24hr: true,
         minuteIncrement: 15,
         disableMobile: true,
@@ -953,7 +961,7 @@
         dropPicker = flatpickr(dropEl, {
         enableTime: true,
         dateFormat: "Y-m-d H:i",
-        minDate: new Date(),   // ✅ FIXED
+        minDate: new Date(),  
         time_24hr: true,
         minuteIncrement: 15,
         disableMobile: true
@@ -967,59 +975,59 @@
 </script>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const form = document.querySelector('.heroRentForm');
+    document.addEventListener('DOMContentLoaded', () => {
+    const form = document.querySelector('.heroRentForm');
 
-  if (!form) return;
+    if (!form) return;
 
-  form.addEventListener('submit', function(e) {
-    const pickup = document.getElementById("heroRent_pickupDT");
-    const drop   = document.getElementById("heroRent_dropDT");
+    form.addEventListener('submit', function(e) {
+        const pickup = document.getElementById("heroRent_pickupDT");
+        const drop   = document.getElementById("heroRent_dropDT");
 
-    let hasError = false;
+        let hasError = false;
 
-    // Reset styles
-    [pickup, drop].forEach(el => {
-      if (el) el.style.border = '';
-    });
+        // Reset styles
+        [pickup, drop].forEach(el => {
+        if (el) el.style.border = '';
+        });
 
-    // Validate pickup
-    if (!pickup.value.trim()) {
-      pickup.style.border = '2px solid red';
-      hasError = true;
-    }
-
-    // Validate dropoff
-    if (!drop.value.trim()) {
-      drop.style.border = '2px solid red';
-      hasError = true;
-    }
-
-    // Validate date logic
-    if (!hasError) {
-      const pickupDate = new Date(pickup.value);
-      const dropDate   = new Date(drop.value);
-
-      if (dropDate <= pickupDate) {
-        drop.style.border = '2px solid red';
-        alert("Drop-off must be after pickup date.");
+        // Validate pickup
+        if (!pickup.value.trim()) {
+        pickup.style.border = '2px solid red';
         hasError = true;
-      }
-    }
+        }
 
-    if (hasError) {
-      e.preventDefault();
+        // Validate dropoff
+        if (!drop.value.trim()) {
+        drop.style.border = '2px solid red';
+        hasError = true;
+        }
 
-      // scroll to form nicely
-      form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // Validate date logic
+        if (!hasError) {
+        const pickupDate = new Date(pickup.value);
+        const dropDate   = new Date(drop.value);
 
-      // optional message
-      if (!pickup.value || !drop.value) {
-        alert("Please select pickup and drop-off date & time.");
-      }
-    }
-  });
-});
+        if (dropDate <= pickupDate) {
+            drop.style.border = '2px solid red';
+            alert("Drop-off must be after pickup date.");
+            hasError = true;
+        }
+        }
+
+        if (hasError) {
+        e.preventDefault();
+
+        // scroll to form nicely
+        form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+        // optional message
+        if (!pickup.value || !drop.value) {
+            alert("Please select pickup and drop-off date & time.");
+        }
+        }
+    });
+    });
 </script>
 
 <script>

@@ -13442,7 +13442,6 @@ font-size:14px;
   margin: 0 auto;
   overflow: hidden;
   box-shadow: 0 35px 90px rgba(0,0,0,.20);
-  border-radius: 0 0 34px 34px;
   isolation: isolate;
 }
 
@@ -13906,10 +13905,6 @@ font-size:14px;
     padding-top: 10px;
   }
 
-  .heroRent--yacht .heroRent__frame{
-    border-radius: 0 0 22px 22px;
-  }
-
   .heroRentAcc__toggle{
     display:flex;
   }
@@ -14277,7 +14272,6 @@ font-size:14px;
 
 .fleet-hero-image img:hover {
   transform: scale(1.05);
-  filter: brightness(1.05);
 }
 
 /* =========================
@@ -16688,7 +16682,7 @@ color : #fff;
 
 /* ===== Left Search Summary (yellow widget) ===== */
 .rentWidget{
-  background:#a8a8a84d;
+  background:#ffffff;
   padding:18px;
   box-shadow:0 6px 18px rgb(8 75 120 / 80%);
   border: 3px solid #00080e;
@@ -16705,13 +16699,12 @@ color : #fff;
 
 .rentWidget__box{
   background:#fff;
-  border-radius:6px;
   padding:10px 12px;
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:10px;
-  border:1px solid rgba(0,0,0,.08);
+  border:1px solid rgb(0 0 0 / 83%);
 }
 
 .rentWidget__value{
@@ -17180,13 +17173,6 @@ color : #fff;
 
 .fleet-hero-image {
   text-align: center;
-}
-
-.fleet-hero-image img {
-  max-width: 100%;
-  height: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 18px 30px rgba(11, 31, 58, 0.15));
 }
 
 .fleet-swiper-wrap {
@@ -17776,15 +17762,15 @@ color : #fff;
   font-weight: 700;
 }
 
-.dealCard__offerNote {
+/* .dealCard__offerNote {
   margin: 14px 0 14px;
   padding: 12px 14px;
   background: #f8fbff;
   border: 1px solid #dbeafe;
   border-radius: 12px;
-}
+} */
 
-.dealCard__offerBadge {
+/* .dealCard__offerBadge {
   display: inline-block;
   background: #0ea5e9;
   color: #fff;
@@ -17793,7 +17779,7 @@ color : #fff;
   padding: 4px 10px;
   border-radius: 999px;
   margin-bottom: 8px;
-}
+} */
 
 .dealCard__offerText {
   margin: 0;
@@ -20499,13 +20485,25 @@ input[type="file"].driverForm__control {
 
 .dealCard__offerNote {
     margin-top: 14px;
-    padding: 12px 14px;
-    border-radius: 12px;
+    padding: 8px 14px;
     background: #fff7e8;
     border: 1px solid #f3d28b;
+    font-weight: 700;
 }
 
-.dealCard__offerBadge {
+.dealCard__discountBadge {
+  display: inline-block;
+  margin-right: 10px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff !important;
+  background: #ba0000;
+  border-radius: 999px;
+  vertical-align: middle;
+}
+
+/* .dealCard__offerBadge {
     display: inline-block;
     font-size: 12px;
     font-weight: 700;
@@ -20514,7 +20512,7 @@ input[type="file"].driverForm__control {
     padding: 5px 10px;
     border-radius: 999px;
     margin-bottom: 8px;
-}
+} */
 
 .dealCard__offerText {
     margin: 0;

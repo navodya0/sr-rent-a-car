@@ -2375,7 +2375,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           'snippet' => '<div class="dealCard">
   <div class="dealCard__top">
 <h3 class="dealCard__title">
+  [[+discount_percent:gt=`0`:then=`
+    <span class="dealCard__discountBadge">
+     Save-[[+discount_percent]]%
+    </span>
+  `]]
   [[+car_model:htmlent]]
+
+
+
   <span class="dealCard__sub">
     or similar
     <span class="dealCard__tooltipWrap" tabindex="0">
@@ -2411,10 +2419,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       [[+discount_percent:gt=`0`:then=`
         <div class="dealCard__offerNote">
-          <span class="dealCard__offerBadge">Discount Applied</span>
-          <p class="dealCard__offerText">
-            Select dates and pickup details to see your discounted total.
-          </p>
+          <span class="dealCard__offerBadge">Discount Applied!!</span>
+         
         </div>
       `]]
     </div>
@@ -2490,7 +2496,15 @@ document.addEventListener(\'DOMContentLoaded\', () => {
           'content' => '<div class="dealCard">
   <div class="dealCard__top">
 <h3 class="dealCard__title">
+  [[+discount_percent:gt=`0`:then=`
+    <span class="dealCard__discountBadge">
+     Save-[[+discount_percent]]%
+    </span>
+  `]]
   [[+car_model:htmlent]]
+
+
+
   <span class="dealCard__sub">
     or similar
     <span class="dealCard__tooltipWrap" tabindex="0">
@@ -2526,10 +2540,8 @@ document.addEventListener(\'DOMContentLoaded\', () => {
 
       [[+discount_percent:gt=`0`:then=`
         <div class="dealCard__offerNote">
-          <span class="dealCard__offerBadge">Discount Applied</span>
-          <p class="dealCard__offerText">
-            Select dates and pickup details to see your discounted total.
-          </p>
+          <span class="dealCard__offerBadge">Discount Applied!!</span>
+         
         </div>
       `]]
     </div>

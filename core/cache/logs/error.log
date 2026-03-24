@@ -49,3 +49,5 @@
 [2026-03-24 07:58:13] (ERROR @ C:\xampp\htdocs\srilankarentacar.com\core\cache\includes\elements\modx\revolution\modsnippet\5.include.cache.php : 26) PHP warning: Undefined variable $<div class="rentWidget">
 [2026-03-24 08:08:23] (ERROR @ C:\xampp\htdocs\srilankarentacar.com\core\vendor\xpdo\xpdo\src\xPDO\Cache\xPDOCacheManager.php : 319) PHP warning: mkdir(): File exists
 [2026-03-24 08:08:23] (ERROR @ C:\xampp\htdocs\srilankarentacar.com\core\vendor\xpdo\xpdo\src\xPDO\Cache\xPDOCacheManager.php : 324) PHP warning: mkdir(): File exists
+[2026-03-24 08:31:19] (ERROR @ C:\xampp\htdocs\srilankarentacar.com\core\vendor\xpdo\xpdo\src\xPDO\Cache\xPDOCacheManager.php : 319) PHP warning: mkdir(): File exists
+[2026-03-24 08:31:19] (ERROR @ C:\xampp\htdocs\srilankarentacar.com\core\vendor\xpdo\xpdo\src\xPDO\Cache\xPDOCacheManager.php : 324) PHP warning: mkdir(): File exists
