@@ -62,6 +62,10 @@ body {
 [tabindex="-1"]:focus {
   outline: 0 !important; }
 
+  p,span { 
+    color: black !important ;
+  }
+
 hr {
   -webkit-box-sizing: content-box;
   box-sizing: content-box;
@@ -8227,7 +8231,8 @@ body {
  
   line-height: 2;
   font-weight: 400;
-  color: #fffefe; }
+  color: #fffefe !important; 
+}
 
 
 
@@ -8476,7 +8481,7 @@ h1, h2, h3, h4, h5,
         font-size: 13px;
         letter-spacing: 1px; }
         .hero-wrap.hero-wrap-2 .slider-text .breadcrumbs span {
-          color: #fff;
+          color: #fff !important;
           border-bottom: 2px solid rgba(255, 255, 255, 0.1); }
           .hero-wrap.hero-wrap-2 .slider-text .breadcrumbs span a {
             color: #fff; }
@@ -10294,7 +10299,7 @@ sup {
 
 .exp {
   font-size: 12px;
-  color: #999;
+  color: #999 !important;
 }
 
 
@@ -13420,147 +13425,262 @@ font-size:14px;
 /* HERO */
 .heroRent{
   position: relative;
-  height: 100vh !important;
   overflow: hidden;
+}
+
+.heroRent--yacht{
+  height:auto;
+  background:#fff;
+}
+
+/* FRAME */
+.heroRent--yacht .heroRent__frame{
+  position: relative;
+  height: 101vh;
+  min-height: 560px;
+  max-height: 900px;
+  margin: 0 auto;
+  overflow: hidden;
+  box-shadow: 0 35px 90px rgba(0,0,0,.20);
+  border-radius: 0 0 34px 34px;
+  isolation: isolate;
+}
+
+.heroRent--yacht .heroRent__frame::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:2;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 15% 30%, rgba(255,255,255,.12), transparent 28%),
+    radial-gradient(circle at 85% 20%, rgba(239,201,0,.08), transparent 18%);
 }
 
 /* SWIPER */
 .heroRent__swiper,
 .heroRent__slide{
-  height: 100vh;
+  height: 100%;
 }
 
 .heroRent__slide{
   background-size: cover;
   background-position: center;
   position: relative;
+  transform: scale(1.02);
+  transition: transform 7s ease;
 }
 
+.swiper-slide-active.heroRent__slide{
+  transform: scale(1.08);
+}
+
+/* SHADE */
 .heroRent__shade{
   position:absolute;
   inset:0;
-  background:rgba(0,0,0,.40);
+  background:
+    linear-gradient(90deg, rgba(0,0,0,.58) 0%, rgba(0,0,0,.30) 40%, rgba(0,0,0,.16) 100%),
+    linear-gradient(180deg, rgba(0,0,0,.10) 0%, rgba(0,0,0,.28) 100%);
 }
 
-/* TEXT CONTENT */
+/* CONTENT */
 .heroRent__content{
   position:absolute;
   inset:0;
   z-index:10;
   display:flex;
   align-items:center;
-  text-align:center;
   color:#fff;
   pointer-events:none;
+}
+
+.heroRent__content .container{
+  width:100%;
 }
 
 .heroRent__contentInner{
   pointer-events:auto;
 }
 
+.heroRent__contentInner--left{
+  max-width: 700px;
+  text-align: left;
+  margin-top: -180px;
+  animation: heroFadeUp 1s ease both;
+}
+
 .heroRent__sub{
   display:block;
-  font-size: 80px;
-  color: #efc900;
-  font-weight: normal;
+  font-size: 88px;
+  color: #efc900 !important;
+  font-weight: 600;
   font-family: "Great Vibes", cursive;
-  margin-bottom: 0;
-  line-height: 1;
+  margin-bottom: 6px;
+  line-height: .95;
+  text-shadow: 0 8px 30px rgba(0,0,0,.25);
 }
 
 .heroRent__title{
-  font-size:40px;
+  font-size:52px;
   color: #fff;
-  line-height: 1.5;
-  font-family: "Playfair Display", serif;  
-  letter-spacing: 4px;
+  line-height: 1.18;
+  font-family: "Playfair Display", serif;
+  letter-spacing: 3px;
   text-transform: uppercase;
+  font-weight: 700;
+  text-shadow: 0 10px 30px rgba(0,0,0,.20);
+}
+
+.heroRent__lead{
+  color: rgba(255,255,255,.88) !important;
+  margin-bottom: 14px;
+  font-size: 16px;
+  letter-spacing: .5px;
   font-weight: 700;
 }
 
-.heroRent__cta{
-  display:inline-block;
+.heroRent__meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  align-items:center;
+  color:rgba(255,255,255,.82);
+  font-size:13px;
+  letter-spacing:.5px;
+  margin-bottom:22px;
 }
 
-/* BOOKING BAR POSITION */
-.heroRent__bar{
+.heroRent__pill{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height: 42px;
+  padding: 0 20px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.12);
+  color:#fff;
+  font-weight: 700;
+  text-decoration:none;
+  border: 1px solid rgba(255,255,255,.20);
+  box-shadow: 0 14px 30px rgba(0,0,0,.18);
+  backdrop-filter: blur(10px);
+  transition: transform .2s ease, background .2s ease, border-color .2s ease;
+}
+
+.heroRent__pill:hover{
+  transform: translateY(-2px);
+  background: rgba(255,255,255,.18);
+  border-color: rgba(255,255,255,.30);
+  color:#fff;
+}
+
+/* BOOKING BAR CENTERED ON DESKTOP */
+.heroRent--yacht .heroRent__bar{
   position:absolute;
-  left:0; right:0;
-  bottom:24px;
+  left:0;
+  right:0;
+  top:58%;
+  bottom:auto;
+  transform: translateY(-50%);
   z-index:20;
 }
 
-/* FORM REDESIGN */
+/* FORM */
 .heroRentForm{
-  background: linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.35));
-  border: 1px solid rgba(255,255,255,.14);
-  box-shadow: 0 20px 60px rgba(0,0,0,.35);
-  padding: 16px;
-  backdrop-filter: blur(10px);
+  background: linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.08));
+  border: 1px solid rgba(255,255,255,.16);
+  box-shadow:
+    0 24px 80px rgba(0,0,0,.28),
+    inset 0 1px 0 rgba(255,255,255,.16);
+  padding: 18px;
+  backdrop-filter: blur(18px);
+  position: relative;
+  overflow: hidden;
+}
+
+.heroRentForm::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background: linear-gradient(120deg, rgba(255,255,255,.14), transparent 32%, transparent 68%, rgba(255,255,255,.06));
+}
+
+.heroRentForm::after{
+  content:"";
+  position:absolute;
+  top:0;
+  left:24px;
+  width:120px;
+  height:2px;
+  background: linear-gradient(90deg, #efc900, rgba(239,201,0,0));
+  border-radius:999px;
 }
 
 .heroRentForm__grid{
   display:grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 12px;
+  gap: 14px;
   align-items:end;
+  position: relative;
+  z-index: 1;
 }
 
 .heroRentForm__field{
   min-width:0;
 }
 
-.flatpickr-calendar{ z-index: 999999 !important; }
-
-.flatpickr-day.nextMonthDay {
-  color: #393939 !important;
-}
-
-
 .heroRentForm__label{
   display:block;
-  font-size:15px;
-  color:rgba(255,255,255,.92);
+  font-size:14px;
+  color:rgba(255,255,255,.96);
   letter-spacing:.3px;
-  line-height: 3rem !important;
-  height: 3rem !important;
+  line-height: 1.2;
+  margin-bottom: 8px;
   text-align: left;
+  font-weight: 600;
+  height: auto !important;
 }
 
-/* inputs */
 .heroRentForm__input{
   width:100%;
-  height:46px;
+  height:52px;
   border: 1px solid rgba(255,255,255,.20);
-  background: rgba(255,255,255,.92);
-  padding: 10px 12px;
+  background: rgba(255,255,255,.94);
+  padding: 10px 14px;
   outline:none;
-  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
   font-size: 15px;
 }
 
+.heroRentForm__input::placeholder{
+  color: rgba(0,0,0,.45);
+}
+
 .heroRentForm__input:focus{
-  border-color: rgba(239, 201, 0, .65);
-  box-shadow: 0 0 0 4px rgba(239, 201, 0, .18);
+  border-color: rgba(239, 201, 0, .70);
+  box-shadow: 0 0 0 4px rgba(239, 201, 0, .16);
   transform: translateY(-1px);
+  background:#fff;
 }
 
 /* checkbox */
 .heroRentForm__field--check{
   display:flex;
-  align-items:flex-end;
+  align-items:end;
 }
 
 .heroRentForm__checkLabel{
   display:flex;
   align-items:center;
   gap:10px;
-  color:rgba(255,255,255,.92);
+  color:rgba(255,255,255,.94);
   font-size:13px;
   margin:0;
   cursor:pointer;
   user-select:none;
-  height:46px;
+  min-height:52px;
 }
 
 .heroRentForm__checkLabel input[type="checkbox"]{
@@ -13569,7 +13689,7 @@ font-size:14px;
   accent-color: #efc900;
 }
 
-/* wider fields on desktop */
+/* wider fields */
 @media (min-width: 992px){
   .heroRentForm__field--wide{
     grid-column: span 2;
@@ -13583,16 +13703,39 @@ font-size:14px;
 
 .heroRentForm__btn{
   width:100%;
-  height:46px;
-  font-size:18px;
-  font-weight:600;
+  height:52px;
+  font-size:22px;
+  font-weight:700;
   letter-spacing:.3px;
-  border: 1px solid rgba(255,255,255,.18);
-  box-shadow: 0 14px 30px rgba(0,0,0,.28);
-  transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
-  background-color: #01239df7;
-  border-color: transparent;  
+  border: none;
+  box-shadow: 0 18px 34px rgba(1,35,157,.30);
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+  background: linear-gradient(135deg, #01239d 0%, #1148f7 100%);
   color:#fff;
+  position: relative;
+  overflow: hidden;
+  text-transform: capitalize;
+}
+
+.heroRentForm__btn::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-130%;
+  width:60%;
+  height:100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.28), transparent);
+  transition:left .55s ease;
+}
+
+.heroRentForm__btn:hover{
+  transform: translateY(-2px);
+  filter: brightness(1.03);
+  box-shadow: 0 22px 44px rgba(1,35,157,.34);
+}
+
+.heroRentForm__btn:hover::before{
+  left: 140%;
 }
 
 /* Accordion toggle: hidden on desktop */
@@ -13619,6 +13762,7 @@ font-size:14px;
   display:inline-block;
   position:relative;
 }
+
 .heroRentAcc__icon::before,
 .heroRentAcc__icon::after{
   content:"";
@@ -13630,121 +13774,26 @@ font-size:14px;
   background:#efc900;
   transform:translate(-50%,-50%);
 }
+
 .heroRentAcc__icon::after{
   transform:translate(-50%,-50%) rotate(90deg);
 }
 
-/* Panel wrapper */
 .heroRentAcc__panel{
   margin-top:10px;
 }
 
-/* On mobile: show toggle, panel is collapsible */
-@media (max-width: 767px){
-  .heroRentAcc__toggle{ display:flex; }
-  .heroRentForm{
-    border-radius: 16px;
-  }
-}
-
-/* When expanded: rotate plus to minus */
 .heroRentAcc__toggle[aria-expanded="true"] .heroRentAcc__icon::after{
   transform:translate(-50%,-50%) rotate(0deg);
 }
 
-.heroRentForm__btn:hover{
-  transform: translateY(-1px);
-  filter: brightness(1.02);
-  box-shadow: 0 18px 40px rgba(0,0,0,.35);
-}
-
-/* responsive */
-@media (max-width: 767px){
-  .heroRent__bar{ bottom:10px; }
-  .heroRentForm{ padding:14px; border-radius:14px; }
-  .heroRentForm__grid{ grid-template-columns: 1fr; }
-  .heroRentForm__field--wide{ grid-column:auto; }
-}
-
-/* optional: keep form classy width on very large screens */
-@media (min-width: 1400px){
-  .heroRentForm{
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-}
-
-
-/* === Yacht-style hero frame === */
-.heroRent--yacht{
-  height:auto;            /* not full 100vh page section */
-  background:#fff;        /* page background */
-}
-
-.heroRent--yacht .heroRent__frame{
-  position: relative;
-  height: 101vh;
-  min-height: 560px;
-  max-height: 900px;
-  margin: 0 auto;
-  overflow: hidden;
-  box-shadow: 0 35px 90px rgba(0,0,0,.20);
-}
-
-/* swiper height inside frame */
-.heroRent--yacht .heroRent__swiper,
-.heroRent--yacht .heroRent__slide{
-  height: 100%;
-}
-
-/* overlay like example */
-.heroRent--yacht .heroRent__shade{
-  background: rgba(0,0,0,.35);
-}
-
-/* place hero text on left (like example) */
-.heroRent__contentInner--left{
-  max-width: 620px;
-  text-align: left;
-}
-
-.heroRent__lead{
-  color: rgba(255,255,255,.85);
-  margin-bottom: 16px;
-  font-size: 15px;
-  letter-spacing: .3px;
-  font-weight: 800;
-}
-
-/* little pill button like the sample */
-.heroRent__pill{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  height: 40px;
-  padding: 0 18px;
-  border-radius: 999px;
-  background: rgba(255,255,255,.92);
-  color:#0b0f1a;
-  font-weight: 700;
-  text-decoration:none;
-  box-shadow: 0 14px 30px rgba(0,0,0,.18);
-}
-
-/* Booking bar sits above wave */
-.heroRent--yacht .heroRent__bar{
-  position:absolute;
-  left:0; right:0;
-  bottom: 5rem;          /* keep it above wave */
-  z-index: 20;
-}
-
+/* WAVE */
 .heroRent__wave{
   position:absolute;
-  bottom:-1px;
+  bottom:-50px;
   left:0;
   width:100%;
-  height:160px;
+  height:180px;
   z-index:15;
   pointer-events:none;
 }
@@ -13755,15 +13804,100 @@ font-size:14px;
   display:block;
 }
 
-/* Responsive */
+/* NAV */
+.heroRent__nav{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:30;
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.18);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-size:22px;
+  line-height:1;
+  cursor:pointer;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 16px 34px rgba(0,0,0,.18);
+  transition: transform .2s ease, background .2s ease, border-color .2s ease;
+}
+
+.heroRent__nav:hover{
+  transform:translateY(-50%) scale(1.06);
+  background:rgba(255,255,255,.18);
+  border-color: rgba(255,255,255,.28);
+}
+
+.heroRent__nav--prev{
+  left:24px;
+}
+
+.heroRent__nav--next{
+  right:24px;
+}
+
+/* Flatpickr */
+.flatpickr-calendar{ z-index: 999999 !important; }
+
+.flatpickr-day.nextMonthDay {
+  color: #393939 !important;
+}
+
+.flatpickr-day.flatpickr-disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+
+.dealCard__btn.is-disabled,
+.dealCard__btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* ANIMATION */
+@keyframes heroFadeUp{
+  from{
+    opacity:0;
+    transform:translateY(26px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* RESPONSIVE */
 @media (max-width: 991px){
   .heroRent__contentInner--left{
-    /* padding-top: 55px; */
     text-align:center;
     margin: 0 auto;
+    margin-top: 0;
   }
+
+  .heroRent__sub{
+    font-size: 64px;
+  }
+
+  .heroRent__title{
+    font-size: 36px;
+    line-height: 1.3;
+  }
+
+  .heroRent__meta{
+    justify-content:center;
+  }
+
   .heroRent--yacht .heroRent__bar{
+    top: auto;
     bottom: 80px;
+    transform: none;
   }
 }
 
@@ -13771,23 +13905,64 @@ font-size:14px;
   .heroRent--yacht{
     padding-top: 10px;
   }
+
+  .heroRent--yacht .heroRent__frame{
+    border-radius: 0 0 22px 22px;
+  }
+
+  .heroRentAcc__toggle{
+    display:flex;
+  }
+
+  .heroRentForm{
+    padding:14px;
+    border-radius:14px;
+  }
+
+  .heroRentForm__grid{
+    grid-template-columns: 1fr;
+  }
+
+  .heroRentForm__field--wide{
+    grid-column:auto;
+  }
+
   .heroRent--yacht .heroRent__bar{
     bottom: 70px;
   }
+
+  .heroRent__sub{
+    font-size: 52px;
+  }
+
+  .heroRent__title{
+    font-size: 28px;
+    letter-spacing: 2px;
+  }
+
+  .heroRent__lead{
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .heroRent__meta{
+    gap:8px;
+    font-size:12px;
+    margin-bottom:14px;
+  }
+
+  .heroRent__nav{
+    display:none;
+  }
 }
 
-/* NAV */
-.heroRent__nav{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  z-index:30;
-  width:44px;
-  height:44px;
-  border-radius:50%;
-  background:rgba(0,0,0,.5);
-  display:flex;
+@media (min-width: 1400px){
+  .heroRentForm{
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 }
+
 
 /* who we are */
 /* About section (image-like layout) */
@@ -13812,7 +13987,7 @@ font-size:14px;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color:#da0000;
+  color:#da0000 !important;
 }
 
 .srAbout__title{
@@ -14173,7 +14348,7 @@ font-size:14px;
   font-size:12px;
   font-weight:700;
   letter-spacing:2px;
-  color:#da0000;
+  color:#da0000 !important;
 }
 
 /* Bootstrap 4 fallback if g-4 doesn't exist */
@@ -14293,7 +14468,7 @@ font-size:14px;
   font-size:12px;
   font-weight:700;
   letter-spacing:2px;
-  color:#ff6b6b;
+  color:#ff6b6b !important;
   margin-bottom:10px;
   text-transform:uppercase;
 }
@@ -14629,8 +14804,7 @@ font-size:14px;
 }
 
 .rental-topics .topic-body p{
-  margin:0 0 14px;
-  color:#5f6e7d;
+  color:#0f0f0f;
   font-size:14px;
   line-height:1.45;
   text-align:justify;
@@ -14673,7 +14847,7 @@ font-size:14px;
 
 .why-intro{
   font-size:16px;
-  color:#5f6e7d;
+  color: #000000;
   line-height:1.6;
   margin:0;
   text-align:justify;
@@ -14789,6 +14963,7 @@ font-size:14px;
 .why-cta p{
   margin:0 0 14px;
   opacity:.95;
+  color: white !important;
 }
 
 .why-btn{
@@ -15444,6 +15619,7 @@ font-size:14px;
   opacity:.95;
   font-size:14px;
   line-height:1.6;
+  color: white !important;
 }
 
 .contact-item{
@@ -16512,17 +16688,20 @@ color : #fff;
 
 /* ===== Left Search Summary (yellow widget) ===== */
 .rentWidget{
-  background:#003351;
+  background:#a8a8a84d;
   padding:18px;
-  box-shadow:0 6px 18px rgba(0,0,0,.08);
+  box-shadow:0 6px 18px rgb(8 75 120 / 80%);
+  border: 3px solid #00080e;
 }
 
 .rentWidget__label{
   font-size:14px;
   font-weight:700;
   margin:0 0 8px;
-  color:#fff;
+  color:#000;
 }
+
+
 
 .rentWidget__box{
   background:#fff;
@@ -16629,7 +16808,7 @@ color : #fff;
 .vehicleCard__price strong{ font-weight:900; }
 
 .bg-whitee {
-    background: #fff !important;
+    background: #f1f3f4  !important;
 }
 
 .rentWidget__box{ gap:8px; }
@@ -16651,7 +16830,10 @@ color : #fff;
 }
 .rentWidget__clear:hover{ opacity:1; }
 
-.rentWidget__check span{ color:#111; font-weight:600; }
+.rentWidget__check span{ 
+  color:#000 !important; 
+  font-weight:600; 
+}
 
 
 .vehicleScroller{
@@ -16765,7 +16947,7 @@ color : #fff;
 .priority-badge {
   display: inline-block;
   background: #0b1f3a;
-  color: #fff;
+  color: #fff !important;
   padding: 8px 18px;
   border-radius: 50px;
   font-size: 0.85rem;
@@ -16856,7 +17038,7 @@ color : #fff;
 }
 
 .travel-card p {
-  color: rgba(255,255,255,0.92);
+  color: rgba(255,255,255,0.92) !important;
   line-height: 1.7;
   margin-bottom: 0;
   font-size: 16px;
@@ -16974,7 +17156,7 @@ color : #fff;
 .fleet-badge {
   display: inline-block;
   background: #0b1f3a;
-  color: #fff;
+  color: #fff !important;
   padding: 8px 18px;
   border-radius: 40px;
   font-size: 12px;
@@ -17172,7 +17354,7 @@ color : #fff;
   display: inline-block;
   width: fit-content;
   background: #0b1f3a;
-  color: #fff;
+  color: #fff !important;
   padding: 8px 18px;
   border-radius: 40px;
   font-size: 0.8rem;
@@ -17278,8 +17460,8 @@ color : #fff;
   width: 68px;
   height: 68px;
   border-radius: 20px;
-  background: rgba(11, 31, 58, 0.08);
-  color: #0b1f3a;
+  background: rgb(255 255 255);
+  color: #000 !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17293,17 +17475,18 @@ color : #fff;
 }
 
 .srBusiness__card h3 {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 800;
-  color: #0b1f3a;
+  color: #fff !important;
   margin-bottom: 0;
   line-height: 1.3;
+  text-transform: uppercase;
 }
 
 .srBusiness__card p {
   font-size: 14px;
   line-height: 1.75;
-  color: #607086;
+  color: #fff !important;
   margin-top: 12px;
   margin-bottom: 0;
 }
@@ -17379,7 +17562,7 @@ color : #fff;
 .srBusiness__btnCard{
   display:inline-block;
   margin-top:18px;
-  padding:10px 18px;
+  padding:4px 18px;
   border-radius:30px;
   font-size:0.9rem;
   font-weight:600;
@@ -17395,12 +17578,11 @@ color : #fff;
   transform:translateY(-2px);
 }
 
-.dealCard {
+/* .dealCard {
   display: flex;
   align-items: center;
   gap: 24px;
   border: 1px solid #d9dfe8;
-  border-radius: 14px;
   background: #fff;
   padding: 10px;
   margin-bottom: 20px;
@@ -17493,6 +17675,323 @@ color : #fff;
     padding-top: 20px;
     text-align: left;
   }
+} */
+
+
+.dealCard {
+  background: #fff;
+  border: 1px solid #d9e1ea;
+  padding: 20px 22px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+}
+
+.dealCard__top {
+  padding-bottom: 14px;
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 16px;
+}
+
+.dealCard__title {
+  margin: 0 0 10px;
+  font-size: 20px;
+  line-height: 1.25;
+  font-weight: 700;
+  color: #0f2b5b;
+}
+
+.dealCard__sub {
+  font-size: 14px;
+  font-weight: 400;
+  color: #6b7280;
+  margin-left: 4px;
+}
+
+.dealCard__specs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.dealCard__spec {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 15px;
+  color: #111827;
+}
+
+.dealCard__body {
+  display: flex;
+  align-items: stretch;
+  gap: 24px;
+}
+
+.dealCard__imageCol {
+  flex: 0 0 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dealCard__image {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.dealCard__content {
+  flex: 1 1 auto;
+  padding-top: 8px;
+}
+
+.dealCard__features {
+  margin: 0 0 18px;
+  padding: 0;
+  list-style: none;
+}
+
+.dealCard__features li {
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 12px;
+  font-size: 16px;
+  line-height: 1.4;
+  color: #111827;
+}
+
+.dealCard__features li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #16a34a;
+  color: #16a34a;
+  border-radius: 50%;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.dealCard__offerNote {
+  margin: 14px 0 14px;
+  padding: 12px 14px;
+  background: #f8fbff;
+  border: 1px solid #dbeafe;
+  border-radius: 12px;
+}
+
+.dealCard__offerBadge {
+  display: inline-block;
+  background: #0ea5e9;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 8px;
+}
+
+.dealCard__offerText {
+  margin: 0;
+  font-size: 14px;
+  color: #374151;
+}
+
+.dealCard__conditions {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #0071c2;
+  text-decoration: none;
+}
+
+.dealCard__conditions:hover {
+  text-decoration: underline;
+}
+
+.dealCard__priceCol {
+  /* flex: 0 0 220px; */
+  border-left: 1px solid #e5e7eb;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.dealCard__priceLabel {
+  font-size: 15px;
+  color: #374151;
+  margin-bottom: 8px;
+  white-space: nowrap;
+}
+
+.dealCard__priceValue {
+  margin-bottom: 10px;
+}
+
+.dealCard__mainPrice,
+.dealCard__newPrice {
+  display: block;
+  font-size: 28px;
+  line-height: 1.1;
+  font-weight: 800;
+  color: #111827;
+}
+
+.dealCard__oldPrice {
+  display: block;
+  font-size: 18px;
+  color: #9ca3af;
+  text-decoration: line-through;
+  margin-bottom: 4px;
+}
+
+.dealCard__selectInfo,
+.dealCard__suitable {
+  display: block;
+  font-size: 15px;
+  color: #6b7280;
+}
+
+.dealCard__cancel {
+  font-size: 15px;
+  font-weight: 700;
+  color: #15803d;
+  margin-bottom: 16px;
+  white-space: nowrap;
+}
+
+/* .dealCard__form {
+  margin-top: auto;
+} */
+
+ .dealCard__sub {
+  font-size: 14px;
+  font-weight: 400;
+  color: #6b7280;
+  margin-left: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dealCard__tooltipWrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: help;
+}
+
+.dealCard__tooltipIcon {
+  color: #0ea5e9;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.dealCard__tooltipBox {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  transform: translateX(-50%);
+  width: 260px;
+  background: #111827;
+  color: #fff !important;
+  font-size: 12px;
+  line-height: 1.45;
+  text-align: justify;
+  padding: 10px 12px;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  z-index: 20;
+}
+
+.dealCard__tooltipBox::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: #111827 transparent transparent transparent;
+}
+
+.dealCard__tooltipWrap:hover .dealCard__tooltipBox,
+.dealCard__tooltipWrap:focus .dealCard__tooltipBox {
+  opacity: 1;
+  visibility: visible;
+}
+
+.dealCard__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 4rem;
+  border: 0;
+  background: #0071c2;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.dealCard__btn:hover {
+  background: #005fa3;
+}
+
+@media (max-width: 991.98px) {
+  .dealCard__body {
+    flex-direction: column;
+  }
+
+  .dealCard__priceCol {
+    flex: 1 1 auto;
+    border-left: 0;
+    border-top: 1px solid #e5e7eb;
+    padding-left: 0;
+    padding-top: 18px;
+  }
+
+  .dealCard__imageCol {
+    flex: 1 1 auto;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .dealCard {
+    padding: 16px;
+  }
+
+  .dealCard__title {
+    font-size: 18px;
+  }
+
+  .dealCard__specs {
+    gap: 10px 14px;
+  }
+
+  .dealCard__spec {
+    font-size: 14px;
+  }
+
+  .dealCard__features li {
+    font-size: 15px;
+  }
+
+  .dealCard__mainPrice,
+  .dealCard__newPrice {
+    font-size: 30px;
+  }
 }
 
 .stepIndicator {
@@ -17521,6 +18020,7 @@ color : #fff;
   text-transform: uppercase;
   opacity: 0.9;
   letter-spacing: 0.08em;
+  color: white !important;
 }
 
 .stepIndicator__number {
@@ -17540,6 +18040,7 @@ color : #fff;
   font-size: 14px;
   font-weight: 600;
   white-space: nowrap;
+  color: white !important;
 }
 
 .stepIndicator.is-active {
@@ -18294,7 +18795,7 @@ color : #fff;
   letter-spacing: 2px;
   text-transform: uppercase;
   font-weight: 600;
-  color: #c8a96a;
+  color: #c8a96a !important;
 }
 
 .premium-title {
@@ -18447,7 +18948,7 @@ color : #fff;
 }
 
 .luxury-card p {
-  color: rgba(255,255,255,0.82);
+  color: rgba(255,255,255,0.82) !important;
 }
 
 .benefit-card p,
@@ -19765,7 +20266,7 @@ input[type="file"].driverForm__control {
 }
 
 .footer-desc {
-    color: white;
+    color: white !important;
     font-size: 16px;
     line-height: 1.8;
     max-width: 320px;
@@ -19830,7 +20331,7 @@ input[type="file"].driverForm__control {
     border-radius: 50%;
     background: rgb(4 29 45);
     border: 1px solid rgb(4 29 45);
-    color: #ffffff;
+    color: #ffffff !important;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -19874,7 +20375,7 @@ input[type="file"].driverForm__control {
 
 .footer-bottom-center p {
     margin: 0;
-    color: rgba(255, 255, 255, 0.76);
+    color: rgba(255, 255, 255, 0.76) !important;
     font-size: 14px;
     text-align: center;
 }
@@ -19882,6 +20383,23 @@ input[type="file"].driverForm__control {
 .footer-bottom-center p a {
     color: #f1c644;
     text-decoration: none;
+}
+
+
+.fleet-hero-image .swiper {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.fleet-hero-image .swiper-slide {
+  width: 100% !important;
+}
+
+.fleet-hero-image img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  display: block;
 }
 
 .footer-payment-img {
@@ -19954,7 +20472,7 @@ input[type="file"].driverForm__control {
 
 .old-price {
     text-decoration: line-through;
-    color: #999;
+    color: #999 !important;
     font-size: 14px;
     margin-right: 6px;
 }
@@ -19967,14 +20485,14 @@ input[type="file"].driverForm__control {
 
 .dealCard__oldPrice {
     text-decoration: line-through;
-    color: #999;
+    color: #999 !important;
     font-size: 14px;
     display: block;
     margin-bottom: 4px;
 }
 
 .dealCard__newPrice {
-    color: #d62828;
+    color: #d62828 !important;
     font-size: 22px;
     font-weight: 700;
 }
@@ -20023,20 +20541,6 @@ input[type="file"].driverForm__control {
     background: #f5f5f5;
     padding: 8px 14px;
     border-radius: 10px;
-}
-
-.dealCard__oldPrice {
-    display: block;
-    text-decoration: line-through;
-    color: #999;
-    font-size: 14px;
-    margin-bottom: 4px;
-}
-
-.dealCard__newPrice {
-    color: #d62828;
-    font-size: 22px;
-    font-weight: 700;
 }
 
 .premiumDiscountNotice {
@@ -20143,4 +20647,83 @@ input[type="file"].driverForm__control {
   display: block;
   margin-top: 0; 
   border-radius: 0;
+}
+
+.dealCard__btn--disabled {
+    background: #ccc !important;
+    cursor: not-allowed;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+
+/* Base card with background */
+.srBusiness__card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  color: #fff;
+  background-size: cover;
+  background-position: center;
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+/* Overlay */
+.srBusiness__card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55); /* adjust darkness here */
+  z-index: 1;
+}
+
+/* Ensure content stays above overlay */
+.srBusiness__card > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Background images */
+.srBusiness__card--vacations {
+  background-image: url('../images/services/vacations.jpg');
+}
+
+.srBusiness__card--parking {
+  background-image: url('../images/services/parking.jpg');
+}
+
+.srBusiness__card--transfers {
+  background-image: url('../images/services/transfers.jpg');
+}
+
+.srBusiness__card--villa {
+  background-image: url('../images/services/villa.jpg');
+}
+
+.srBusiness__card--support {
+  background-image: url('../images/services/support.jpg');
+}
+
+/* Optional: nicer spacing */
+.srBusiness__card {
+  padding: 24px;
+}
+
+/* Button contrast */
+.srBusiness__btnCard {
+  background: rgb(255 255 255);
+  backdrop-filter: blur(4px);
+  border-radius: 999px;
+  color: #000000;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  width: 38%;
+}
+
+.srBusiness__btnCard:hover {
+  background: rgba(255,255,255,0.3);
 }
