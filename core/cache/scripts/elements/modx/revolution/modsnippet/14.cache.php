@@ -64,6 +64,13 @@ $featuredOne = $featured[0] ?? null;
 ?>
 <section class="promo50-section">
     <div class="container">
+
+        <div class="row">
+            <div class="col-12 text-center mb-4">
+                <h2 class="promo50-heading">Special Offers</h2>
+                <p class="promo50-subheading">Grab the best deals for your ride</p>
+            </div>
+        </div>
         <div class="row justify-content-center">
 
             <?php foreach ($promo50 as $p): ?>
@@ -92,7 +99,7 @@ $featuredOne = $featured[0] ?? null;
 $offerLink = rtrim($ctaLink, \'?&\')
     . (strpos($ctaLink, \'?\') !== false ? \'&\' : \'?\')
     . \'discount=\' . rawurlencode($p[\'discount_text\'] ?? \'\')
-    . \'&vehicle_id=\' . (int)($p[\'vehicle_id\'] ?? 0);
+    . \'&car_category=\' . rawurlencode($p[\'car_category\'] ?? \'\');
                 ?>
                 
                 <div class="<?= $promoCol ?> mb-4">
@@ -113,13 +120,13 @@ $offerLink = rtrim($ctaLink, \'?&\')
                                     <?= htmlspecialchars($p[\'subtitle\'] ?? \'\', ENT_QUOTES, \'UTF-8\') ?>
                                 </div>
 
-                                <form action="<?= htmlspecialchars($offerLink, ENT_QUOTES, \'UTF-8\') ?>" method="post" class="promo50-form">
+                                <form action="<?= htmlspecialchars($offerLink, ENT_QUOTES, \'UTF-8\') ?>" method="post" class="promo50-form style="text-align: right;">
                                     <input type="hidden" name="pickup_location" value="<?= htmlspecialchars($pickupLocation, ENT_QUOTES, \'UTF-8\') ?>">
                                     <input type="hidden" name="dropoff_location" value="<?= htmlspecialchars($dropoffLocation, ENT_QUOTES, \'UTF-8\') ?>">
                                     <input type="hidden" name="pickup_datetime" value="<?= htmlspecialchars($pickupDatetime, ENT_QUOTES, \'UTF-8\') ?>">
                                     <input type="hidden" name="dropoff_datetime" value="<?= htmlspecialchars($dropoffDatetime, ENT_QUOTES, \'UTF-8\') ?>">
                                     <input type="hidden" name="discount" value="<?= htmlspecialchars($p[\'discount_text\'] ?? \'\', ENT_QUOTES, \'UTF-8\') ?>">
-<input type="hidden" name="vehicle_id" value="<?= (int)($p[\'vehicle_id\'] ?? 0) ?>">
+<input type="hidden" name="car_category" value="<?= htmlspecialchars($p[\'car_category\'] ?? \'\', ENT_QUOTES, \'UTF-8\') ?>">
                                     <button type="submit" class="promo50-btn">
                                         <?= htmlspecialchars($p[\'cta_text\'] ?? \'Book Now\', ENT_QUOTES, \'UTF-8\') ?>
                                     </button>

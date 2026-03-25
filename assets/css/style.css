@@ -16474,18 +16474,36 @@ font-size:14px;
 
 .promo50-title{
   font-weight: 900;
-  font-size: 54px;
+  font-size: 46px;
   line-height: .92;
   letter-spacing: .5px;
   margin-bottom: 10px;
   text-shadow: 0 10px 30px rgba(0,0,0,.25);
+  text-align: end;
+}
+
+.promo50-form {
+  text-align: end;
 }
 
 .promo50-sub{
-  font-size: 13px;
+  font-size: 18px;
   font-weight: 700;
-  opacity: .95;
   margin-bottom: 14px;
+  text-align: end
+  ;
+}
+
+
+.promo50-heading {
+    font-size: 32px;
+    font-weight: 700;
+    color: #02406f;
+}
+
+.promo50-subheading {
+    font-size: 16px;
+    color: #777;
 }
 
 /* purple pill button like the image */

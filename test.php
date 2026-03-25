@@ -1,3 +1,4 @@
+<?php
 require "assets/includes/db_connect.php";
 
 if (session_status() === PHP_SESSION_NONE) {

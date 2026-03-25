@@ -32,7 +32,7 @@
     <!-- Swiper -->
     <div class="heroRent__swiper swiper">
       <div class="swiper-wrapper">
-        <div class="swiper-slide heroRent__slide" style="background-image:url(\'assets/images/1.jpeg\');">
+        <div class="swiper-slide heroRent__slide" style="background-image:url(\'assets/images/1.jpg\');">
           <div class="heroRent__shade"></div>
         </div>
         <div class="swiper-slide heroRent__slide" style="background-image:url(\'assets/images/2.jpg\');">
@@ -302,15 +302,19 @@
                 <div class="swiper-wrapper">
 
                 <div class="swiper-slide">
-                    <img src="assets/images/fleet/fleet-hero.jpg" alt="Fleet 1">
+                    <img src="assets/images/fleet/1.png" alt="Fleet 1">
                 </div>
 
                 <div class="swiper-slide">
-                    <img src="assets/images/fleet/fleet-2.jpg" alt="Fleet 2">
+                    <img src="assets/images/fleet/2.png" alt="Fleet 2">
                 </div>
 
                 <div class="swiper-slide">
-                    <img src="assets/images/fleet/fleet-3.jpg" alt="Fleet 3">
+                    <img src="assets/images/fleet/3.png" alt="Fleet 3">
+                </div>
+
+             <div class="swiper-slide">
+                    <img src="assets/images/fleet/4.png" alt="Fleet 3">
                 </div>
 
                 </div>
@@ -850,22 +854,7 @@
   });
 </script>
 
-<script>
-	document.addEventListener("DOMContentLoaded", function () {
-	new Swiper(".fleetSwiper", {
-		slidesPerView: 1,
-		spaceBetween: 20,
-		navigation: {
-		nextEl: ".fleet-next",
-		prevEl: ".fleet-prev"
-		},
-		breakpoints: {
-		576: { slidesPerView: 2 },
-		992: { slidesPerView: 3 }
-		}
-	});
-	});
-</script>
+
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
@@ -1161,7 +1150,7 @@
     'createdby' => 1,
     'createdon' => 1723316876,
     'editedby' => 1,
-    'editedon' => 1774347453,
+    'editedon' => 1774435507,
     'deleted' => 0,
     'deletedon' => 0,
     'deletedby' => 0,
@@ -1394,7 +1383,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- Swiper -->
     <div class="heroRent__swiper swiper">
       <div class="swiper-wrapper">
-        <div class="swiper-slide heroRent__slide" style="background-image:url(\'assets/images/1.jpeg\');">
+        <div class="swiper-slide heroRent__slide" style="background-image:url(\'assets/images/1.jpg\');">
           <div class="heroRent__shade"></div>
         </div>
         <div class="swiper-slide heroRent__slide" style="background-image:url(\'assets/images/2.jpg\');">
@@ -1664,15 +1653,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <div class="swiper-wrapper">
 
                 <div class="swiper-slide">
-                    <img src="assets/images/fleet/fleet-hero.jpg" alt="Fleet 1">
+                    <img src="assets/images/fleet/1.png" alt="Fleet 1">
                 </div>
 
                 <div class="swiper-slide">
-                    <img src="assets/images/fleet/fleet-2.jpg" alt="Fleet 2">
+                    <img src="assets/images/fleet/2.png" alt="Fleet 2">
                 </div>
 
                 <div class="swiper-slide">
-                    <img src="assets/images/fleet/fleet-3.jpg" alt="Fleet 3">
+                    <img src="assets/images/fleet/3.png" alt="Fleet 3">
+                </div>
+
+             <div class="swiper-slide">
+                    <img src="assets/images/fleet/4.png" alt="Fleet 3">
                 </div>
 
                 </div>
@@ -2212,22 +2205,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   });
 </script>
 
-<script>
-	document.addEventListener("DOMContentLoaded", function () {
-	new Swiper(".fleetSwiper", {
-		slidesPerView: 1,
-		spaceBetween: 20,
-		navigation: {
-		nextEl: ".fleet-next",
-		prevEl: ".fleet-prev"
-		},
-		breakpoints: {
-		576: { slidesPerView: 2 },
-		992: { slidesPerView: 3 }
-		}
-	});
-	});
-</script>
+
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
@@ -4124,6 +4102,13 @@ $featuredOne = $featured[0] ?? null;
 ?>
 <section class="promo50-section">
     <div class="container">
+
+        <div class="row">
+            <div class="col-12 text-center mb-4">
+                <h2 class="promo50-heading">Special Offers</h2>
+                <p class="promo50-subheading">Grab the best deals for your ride</p>
+            </div>
+        </div>
         <div class="row justify-content-center">
 
             <?php foreach ($promo50 as $p): ?>
@@ -4152,7 +4137,7 @@ $featuredOne = $featured[0] ?? null;
 $offerLink = rtrim($ctaLink, \'?&\')
     . (strpos($ctaLink, \'?\') !== false ? \'&\' : \'?\')
     . \'discount=\' . rawurlencode($p[\'discount_text\'] ?? \'\')
-    . \'&vehicle_id=\' . (int)($p[\'vehicle_id\'] ?? 0);
+    . \'&car_category=\' . rawurlencode($p[\'car_category\'] ?? \'\');
                 ?>
                 
                 <div class="<?= $promoCol ?> mb-4">
@@ -4173,13 +4158,13 @@ $offerLink = rtrim($ctaLink, \'?&\')
                                     <?= htmlspecialchars($p[\'subtitle\'] ?? \'\', ENT_QUOTES, \'UTF-8\') ?>
                                 </div>
 
-                                <form action="<?= htmlspecialchars($offerLink, ENT_QUOTES, \'UTF-8\') ?>" method="post" class="promo50-form">
+                                <form action="<?= htmlspecialchars($offerLink, ENT_QUOTES, \'UTF-8\') ?>" method="post" class="promo50-form style="text-align: right;">
                                     <input type="hidden" name="pickup_location" value="<?= htmlspecialchars($pickupLocation, ENT_QUOTES, \'UTF-8\') ?>">
                                     <input type="hidden" name="dropoff_location" value="<?= htmlspecialchars($dropoffLocation, ENT_QUOTES, \'UTF-8\') ?>">
                                     <input type="hidden" name="pickup_datetime" value="<?= htmlspecialchars($pickupDatetime, ENT_QUOTES, \'UTF-8\') ?>">
                                     <input type="hidden" name="dropoff_datetime" value="<?= htmlspecialchars($dropoffDatetime, ENT_QUOTES, \'UTF-8\') ?>">
                                     <input type="hidden" name="discount" value="<?= htmlspecialchars($p[\'discount_text\'] ?? \'\', ENT_QUOTES, \'UTF-8\') ?>">
-<input type="hidden" name="vehicle_id" value="<?= (int)($p[\'vehicle_id\'] ?? 0) ?>">
+<input type="hidden" name="car_category" value="<?= htmlspecialchars($p[\'car_category\'] ?? \'\', ENT_QUOTES, \'UTF-8\') ?>">
                                     <button type="submit" class="promo50-btn">
                                         <?= htmlspecialchars($p[\'cta_text\'] ?? \'Book Now\', ENT_QUOTES, \'UTF-8\') ?>
                                     </button>
@@ -4268,6 +4253,13 @@ $featuredOne = $featured[0] ?? null;
 ?>
 <section class="promo50-section">
     <div class="container">
+
+        <div class="row">
+            <div class="col-12 text-center mb-4">
+                <h2 class="promo50-heading">Special Offers</h2>
+                <p class="promo50-subheading">Grab the best deals for your ride</p>
+            </div>
+        </div>
         <div class="row justify-content-center">
 
             <?php foreach ($promo50 as $p): ?>
@@ -4296,7 +4288,7 @@ $featuredOne = $featured[0] ?? null;
 $offerLink = rtrim($ctaLink, \'?&\')
     . (strpos($ctaLink, \'?\') !== false ? \'&\' : \'?\')
     . \'discount=\' . rawurlencode($p[\'discount_text\'] ?? \'\')
-    . \'&vehicle_id=\' . (int)($p[\'vehicle_id\'] ?? 0);
+    . \'&car_category=\' . rawurlencode($p[\'car_category\'] ?? \'\');
                 ?>
                 
                 <div class="<?= $promoCol ?> mb-4">
@@ -4317,13 +4309,13 @@ $offerLink = rtrim($ctaLink, \'?&\')
                                     <?= htmlspecialchars($p[\'subtitle\'] ?? \'\', ENT_QUOTES, \'UTF-8\') ?>
                                 </div>
 
-                                <form action="<?= htmlspecialchars($offerLink, ENT_QUOTES, \'UTF-8\') ?>" method="post" class="promo50-form">
+                                <form action="<?= htmlspecialchars($offerLink, ENT_QUOTES, \'UTF-8\') ?>" method="post" class="promo50-form style="text-align: right;">
                                     <input type="hidden" name="pickup_location" value="<?= htmlspecialchars($pickupLocation, ENT_QUOTES, \'UTF-8\') ?>">
                                     <input type="hidden" name="dropoff_location" value="<?= htmlspecialchars($dropoffLocation, ENT_QUOTES, \'UTF-8\') ?>">
                                     <input type="hidden" name="pickup_datetime" value="<?= htmlspecialchars($pickupDatetime, ENT_QUOTES, \'UTF-8\') ?>">
                                     <input type="hidden" name="dropoff_datetime" value="<?= htmlspecialchars($dropoffDatetime, ENT_QUOTES, \'UTF-8\') ?>">
                                     <input type="hidden" name="discount" value="<?= htmlspecialchars($p[\'discount_text\'] ?? \'\', ENT_QUOTES, \'UTF-8\') ?>">
-<input type="hidden" name="vehicle_id" value="<?= (int)($p[\'vehicle_id\'] ?? 0) ?>">
+<input type="hidden" name="car_category" value="<?= htmlspecialchars($p[\'car_category\'] ?? \'\', ENT_QUOTES, \'UTF-8\') ?>">
                                     <button type="submit" class="promo50-btn">
                                         <?= htmlspecialchars($p[\'cta_text\'] ?? \'Book Now\', ENT_QUOTES, \'UTF-8\') ?>
                                     </button>
