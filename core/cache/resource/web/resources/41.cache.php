@@ -2,12 +2,12 @@
   'resourceClass' => 'MODX\\Revolution\\modDocument',
   'resource' => 
   array (
-    'id' => 9,
+    'id' => 41,
     'type' => 'document',
-    'pagetitle' => 'rentacar',
-    'longtitle' => 'Congratulations!',
+    'pagetitle' => 'vehicle-booking',
+    'longtitle' => '',
     'description' => '',
-    'alias' => 'rent-a-car',
+    'alias' => 'vehicle-booking',
     'link_attributes' => '',
     'published' => 1,
     'pub_date' => 0,
@@ -15,441 +15,77 @@
     'parent' => 0,
     'isfolder' => 0,
     'introtext' => '',
-    'content' => '  
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5861K2TN4V"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag(\'js\', new Date());
+    'content' => '
 
-  gtag(\'config\', \'G-5861K2TN4V\');
-</script>
-
-    <section class="hero-wrap hero-wrap-2" style="background-image: url(\'assets/images/breadcrumb/sr_bc_rentacar.jpg\');" data-stellar-background-ratio="0.5">
-        <div class="overlay"></div>
-        <div class="container">
-          <div class="row no-gutters slider-text align-items-end justify-content-center">
-            <div class="col-md-9 ftco-animate text-center mb-4">
-              <h1 class="mb-2 bread">Rent A  Car</h1>
-              <p class="breadcrumbs" style="padding-bottom: 20px;"><span class="mr-2"><a href="[[~1]]">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Rent A  Car <i class="ion-ios-arrow-forward"></i></span></p>
-            </div>
-          </div>
-        </div>
-      </section>
-    
-  
-  
-    <section class="about-section">
-      	<div class="container">
-			<div class="row clearfix align-items-center">
-				
-				<!--Content Column-->
-				<div class="content-column col-md-6 col-sm-12 col-xs-12">
-					<div class="inner-column">
-						<div class="sec-title">
-							<h2 style="font-size: 30px; color: #a40000;  font-weight: bold;">Rent A Car In Sri Lanka Has <br> Never Been Easier</h2>
-						</div>
-
-						<div class="text" style="text-align: justify;">
-							Want to explore the beautiful island of Sri Lanka freely? Our team is ready to help you find the perfect car rental solution.
-						
-						</div>
-						<div class="text" style="text-align: justify;">
-							Based in Seeduwa (10 minutes away from Colombo International Airport), SR Rent A Car is an independent car rental company in Sri Lanka established since 2004. We offer luxurious customer service and affordable rates. Our personalized and professional approach ensures your satisfaction.
-							You can conveniently collect and return your vehicle at Bandaranaike International Airport or our Seeduwa office. Choose from a wide range of vehicles to suit your needs. Our helpful staff is available 24/7 to assist you with any queries.
-						</div>
-	
-						<a href="[[~4]]" class="theme-btn btn-style-three">Rent A Car</a>
-						<!-- <a href="[[~4]]" class="theme-btn btn-style-three" style="margin-left: 35px;">(+94) 777 780 729</a> -->
-					</div>
-				</div>
-	
-					
-					<!--Image Column-->
-					<div class="image-column col-md-6 col-sm-12 col-xs-12">
-					<div class="inner-column " data-wow-delay="0ms" data-wow-duration="1500ms">
-						<div class="image">
-								<img src="assets/images/rentacar/renthome.png" alt="">
-								<div class="overlay-box">
-								<div class="year-box"><span class="number">20</span>Years <br> Industry  <br> Expertise</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-			</div>
-		</div>
-    </section>
-
-       <!-- Topic Cards -->
-         <!-- <div id="cards_landscape_wrap-2">
-         
-			<div class="container">
-				<h1 class="text-gradient" style="font-size: 40px;text-align: left;">Short Term Car Rentals</h1>
-				<div class="row">
-					
-					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-						<a href="">
-							<div class="card-flyer">
-								<div class="text-box">
-									<div class="image-box">
-										<img src="assets/images/rentacar/short_term.jpg" alt="" />
-									</div>
-									<div class="text-container">
-										<h6 style="padding-top: 20px;">Short Term Car Rentals</h6>
-										<p style="text-align: justify;padding: 20px;font-size: 16px;font-family: Cambria, Cochin, Georgia, Times, \'Times New Roman\', serif;">SR Rent A Car offer our customers access to a wide variety of the newest vehicles available for short-term hire by the day, week, month.</p>
-									</div>
-								</div>
-							</div>
-						</a>
-					</div>
-					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-						<a href="">
-							<div class="card-flyer">
-								<div class="text-box">
-									<div class="image-box">
-										<img src="assets/images/rentacar/long_term.jpg" alt="" />
-									</div>
-									<div class="text-container">                                    
-										<h6 style="padding-top: 20px;">Long Term Car Rentals</h6>
-										<p style="text-align: justify;padding: 20px;font-size: 16px;font-family: Cambria, Cochin, Georgia, Times, \'Times New Roman\', serif;">SR Rent A Car offer you to hire a vehicle long term basis in Sri Lanka. We offer ultimate flexibility, reliability and affordability for your need.</p>
-									</div>
-								</div>
-							</div>
-						</a>
-					</div>
-					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-						<a href="">
-							<div class="card-flyer">
-								<div class="text-box">
-									<div class="image-box">
-										<img src="assets/images/rentacar/corporate_rental.jpg" alt="" />
-									</div>
-	
-									<div class="text-container">
-										<h6 style="padding-top: 20px;">Corporate Car Rentals</h6>
-										<p style="text-align: justify;padding: 20px;font-size: 16px;font-family: Cambria, Cochin, Georgia, Times, \'Times New Roman\', serif;">SR Rent A Car has always been ahead of the game to provide excellent Corporate Car Rental services at competitive rates for businesses.</p>
-									</div>
-								</div>
-							</div>
-						</a>
-					</div>
-					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-						<a href="">
-							<div class="card-flyer">
-								<div class="text-box">
-									<div class="image-box">
-										<img src="assets/images/rentacar/selfdriving.jpg" alt="" />
-									</div>
-	
-									<div class="text-container">
-										<h6 style="padding-top: 20px;">Self Driven Car Rentals</h6>
-										<p style="text-align: justify;padding: 20px;font-size: 16px;font-family: Cambria, Cochin, Georgia, Times, \'Times New Roman\', serif;">SR Rent A Car provides a large range of self-drive cars, vans, and SUVs available in selecting shapes, sizes, and specifications. These come in different specifications and sizes and are available by the day, week, month or longer.</p>
-									</div>
-								</div>
-							</div>
-						</a>
-					</div>
-					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-					<a href="">
-						<div class="card-flyer">
-							<div class="text-box">
-								<div class="image-box">
-									<img src="assets/images/rentacar/chauffeur.jpg" alt="" />
-								</div>
-	
-								<div class="text-container">
-									<h6 style="padding-top: 20px;">Chauffeur Driven Car Rentals</h6>
-									<p style="text-align: justify;padding: 20px;font-size: 16px;font-family: Cambria, Cochin, Georgia, Times, \'Times New Roman\', serif;">SR Rent A Car is best known for its top-notch personal chauffeur services in Sri Lanka. We make sure that you have the perfect chauffeur driven car for your occasion.</p>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-					<a href="">
-						<div class="card-flyer">
-							<div class="text-box">
-								<div class="image-box">
-									<img src="assets/images/rentacar/vip.jpg" alt="" />
-								</div>
-	
-								<div class="text-container">
-									<h6 style="padding-top: 20px;">Luxury Car Rentals</h6>
-									<p style="text-align: justify;padding: 20px;font-size: 16px;font-family: Cambria, Cochin, Georgia, Times, \'Times New Roman\', serif;">Here At SR Rent A Car we pride ourselves in offering a wide range of prestigious vehicles, from luxury saloons to sporty 4x4s.</p>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-				</div>
-			</div>
-      	</div> -->
-  
-<section class="ftco-section rental-topics">
-	<div id="cards_landscape_wrap-2">
+<section class="hero-wrap hero-wrap-2" 
+    style="background-image: url(\'assets/images/booking-bg.jpg\'); height: 36rem;" 
+    data-stellar-background-ratio="0.5">
+		<div class="overlay"></div>
 		<div class="container">
-			<div class="row mb-4 align-items-end">
-				<div class="col-lg-8">
-					<h2 class="topics-title">Short Term Car Rentals</h2>
-					<p class="topics-sub">
-						Choose the rental type that fits your trip — short term, long term, corporate, self-drive, chauffeur, or luxury.
-					</p>
-				</div>
+		  <div class="row no-gutters slider-text align-items-end justify-content-center" style="height: 36rem;">
+			<div class="col-md-9 ftco-animate text-center mb-4">
+			  <h1 class="mb-2 bread">Manage Booking</h1>
+			  <p class="breadcrumbs" style="padding-bottom: 20px;"><span class="mr-2"><a href="[[~1]]">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Manage Booking<i class="ion-ios-arrow-forward"></i></span></p>
 			</div>
-
-			<div class="row g-4">
-				<!-- 1 -->
-				<div class="col-12 col-sm-6 col-lg-4">
-				<a href="#" class="topic-card">
-					<div class="topic-media">
-					<img src="assets/images/rentacar/short_term.jpg" alt="Short Term Car Rentals">
-					<span class="topic-chip">Short Term</span>
-					</div>
-					<div class="topic-body">
-					<h6>Short Term Car Rentals</h6>
-					<p>SR Rent A Car offer our customers access to a wide variety of the newest vehicles available for short-term hire by the day, week, month.</p>
-					<span class="topic-cta">Explore →</span>
-					</div>
-				</a>
-				</div>
-
-				<!-- 2 -->
-				<div class="col-12 col-sm-6 col-lg-4">
-				<a href="#" class="topic-card">
-					<div class="topic-media">
-					<img src="assets/images/rentacar/long_term.jpg" alt="Long Term Car Rentals">
-					<span class="topic-chip">Long Term</span>
-					</div>
-					<div class="topic-body">
-					<h6>Long Term Car Rentals</h6>
-					<p>SR Rent A Car offer you to hire a vehicle long term basis in Sri Lanka. We offer ultimate flexibility, reliability and affordability for your need.</p>
-					<span class="topic-cta">Explore →</span>
-					</div>
-				</a>
-				</div>
-
-				<!-- 3 -->
-				<div class="col-12 col-sm-6 col-lg-4">
-				<a href="#" class="topic-card">
-					<div class="topic-media">
-					<img src="assets/images/rentacar/corporate_rental.jpg" alt="Corporate Car Rentals">
-					<span class="topic-chip">Corporate</span>
-					</div>
-					<div class="topic-body">
-					<h6>Corporate Car Rentals</h6>
-					<p>SR Rent A Car has always been ahead of the game to provide excellent Corporate Car Rental services at competitive rates for businesses.</p>
-					<span class="topic-cta">Explore →</span>
-					</div>
-				</a>
-				</div>
-
-				<!-- 4 -->
-				<div class="col-12 col-sm-6 col-lg-4 mt-4">
-				<a href="#" class="topic-card">
-					<div class="topic-media">
-					<img src="assets/images/rentacar/selfdriving.jpg" alt="Self Driven Car Rentals">
-					<span class="topic-chip">Self Drive</span>
-					</div>
-					<div class="topic-body">
-					<h6>Self Driven Car Rentals</h6>
-					<p>SR Rent A Car provides a large range of self-drive cars, vans, and SUVs available by the day, week, month or longer.</p>
-					<span class="topic-cta">Explore →</span>
-					</div>
-				</a>
-				</div>
-
-				<!-- 5 -->
-				<div class="col-12 col-sm-6 col-lg-4 mt-4">
-				<a href="#" class="topic-card">
-					<div class="topic-media">
-					<img src="assets/images/rentacar/chauffeur.jpg" alt="Chauffeur Driven Car Rentals">
-					<span class="topic-chip">Chauffeur</span>
-					</div>
-					<div class="topic-body">
-					<h6>Chauffeur Driven Car Rentals</h6>
-					<p>SR Rent A Car is best known for its top-notch personal chauffeur services in Sri Lanka. Perfect chauffeur-driven car for your occasion.</p>
-					<span class="topic-cta">Explore →</span>
-					</div>
-				</a>
-				</div>
-
-				<!-- 6 -->
-				<div class="col-12 col-sm-6 col-lg-4 mt-4">
-				<a href="#" class="topic-card">
-					<div class="topic-media">
-					<img src="assets/images/rentacar/vip.jpg" alt="Luxury Car Rentals">
-					<span class="topic-chip">Luxury</span>
-					</div>
-					<div class="topic-body">
-					<h6>Luxury Car Rentals</h6>
-					<p>Here At SR Rent A Car we pride ourselves in offering a wide range of prestigious vehicles, from luxury saloons to sporty 4x4s.</p>
-					<span class="topic-cta">Explore →</span>
-					</div>
-				</a>
-				</div>
-			</div>
+		  </div>
 		</div>
-	</div>
 </section>
-      
-<section class="ftco-section why-choose">
+
+<section class="bookingStepPage py-5">
   <div class="container">
-    <div class="row mb-4 align-items-end">
-      <div class="col-lg-9">
-        <h2 class="why-title">Why Choose SR Rent A Car?</h2>
-        <p class="why-intro">
-          SR Rent A Car offers reliable, flexible and cheap car rental services in Sri Lanka. As a rent a car company, we take pride in our trustworthy services to all our esteemed clients. Our wide range of rental cars is available all through the year. Our rental car services stretch from short term rentals to long term rentals at very affordable prices. Whether you are looking for a saloon car, station wagon, minivans, coaster bus and SUVs, we got you covered with low prices and ultimate customer care service. Below are some of the reasons why you should choose us.
-        </p>
+
+    <div class="bookingSteps mb-4">
+      <div class="bookingSteps__item bookingSteps__item--done">
+        <span class="bookingSteps__num">1</span>
+        <span class="bookingSteps__text">Select vehicle</span>
+      </div>
+
+      <div class="bookingSteps__line bookingSteps__line--active"></div>
+
+      <div class="bookingSteps__item bookingSteps__item--active">
+        <span class="bookingSteps__num">2</span>
+        <span class="bookingSteps__text">Your deal</span>
+      </div>
+
+      <div class="bookingSteps__line"></div>
+
+      <div class="bookingSteps__item">
+        <span class="bookingSteps__num">3</span>
+        <span class="bookingSteps__text">Coverage</span>
+      </div>
+
+      <div class="bookingSteps__line"></div>
+
+      <div class="bookingSteps__item">
+        <span class="bookingSteps__num">4</span>
+        <span class="bookingSteps__text">Driver details</span>
       </div>
     </div>
 
-    <div class="row g-4">
-      <!-- 1 -->
-      <div class="col-12 col-lg-6">
-        <div class="why-item">
-          <button class="why-head" type="button" aria-expanded="false">
-            <span class="why-icon">✓</span>
-            <span class="why-label">Professional Services</span>
-            <span class="why-toggle">+</span>
-          </button>
-          <div class="why-body">
-            <p>
-              The happiness & satisfaction of our customer is the most valued components of our business.
-              You will be provided with a vehicle that will keep you relaxed, safe, calm and extremely comfortable.
-              We guarantee exceptional, first-class services that give 100% customer satisfaction.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- 2 -->
-      <div class="col-12 col-lg-6">
-        <div class="why-item">
-          <button class="why-head" type="button" aria-expanded="false">
-            <span class="why-icon">👥</span>
-            <span class="why-label">Knowledgeable Staff</span>
-            <span class="why-toggle">+</span>
-          </button>
-          <div class="why-body">
-            <p>
-              Because our staff are local residents and have years of experience offering vehicle rentals from Sri Lanka,
-              you can be confident you’ll get answers to all of your questions and satisfactory solutions along the way.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- 3 -->
-      <div class="col-12 col-lg-6 mt-3">
-        <div class="why-item">
-          <button class="why-head" type="button" aria-expanded="false">
-            <span class="why-icon">🛬</span>
-            <span class="why-label">Flexible Pick Up and Drop Off Service</span>
-            <span class="why-toggle">+</span>
-          </button>
-          <div class="why-body">
-            <p>
-              Our friendly staff pick you up from the terminal of your choice. From there you can enjoy your trip with the
-              seamless comforts of your own transportation. Once you are ready to hand back the keys, simply meet our team
-              at a prearranged time and we’ll drop you off at the airport with plenty of time to spare.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- 4 -->
-      <div class="col-12 col-lg-6 mt-3">
-        <div class="why-item">
-          <button class="why-head" type="button" aria-expanded="false">
-            <span class="why-icon">🚗</span>
-            <span class="why-label">Diverse Fleet</span>
-            <span class="why-toggle">+</span>
-          </button>
-          <div class="why-body">
-            <p>
-              We can provide you with a wide range of different vehicles. Our diverse vehicle fleet includes Economy,
-              Compact, Family Sedan, Pickup 2x4, SUVs, Station Wagons, Seven-Seaters and many more.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- 5 -->
-      <div class="col-12 col-lg-6 mt-3">
-        <div class="why-item">
-          <button class="why-head" type="button" aria-expanded="false">
-            <span class="why-icon">💰</span>
-            <span class="why-label">Affordable Rates Guaranteed</span>
-            <span class="why-toggle">+</span>
-          </button>
-          <div class="why-body">
-            <p>
-              Whether you\'re gearing up to take your family on a road trip or heading out on a business excursion,
-              you\'ll find our rates are personalized to you. Providing affordable car rental rates throughout the year
-              is one of the key aspects of SR Rent A Car.
-            </p>
-          </div>
-        </div>
+    <div class="bookingStepTopbar mb-4">
+<a href="[[~39]]" class="bookingStepTopbar__back">← Back to results</a>
+      <div class="bookingStepTopbar__next">
+        Next: Coverage
       </div>
     </div>
-	<div class="row mt-5">
-		<div class="col-12 col-lg-6">
-        <div class="why-cta">
-          <h4>Need help choosing a vehicle?</h4>
-          <p>Tell us your dates and location — we’ll recommend the best option for your budget.</p>
-          <a href="[[~6]]" class="why-btn">Contact Us</a>
-        </div>
-      </div>
-	</div>
+
+    [[!VehicleDealStep2]]
+
   </div>
-</section>
-  
-  </div>
-    </div>
-  
-  <script>
-document.addEventListener("DOMContentLoaded", function () {
-  document.querySelectorAll(".why-item .why-head").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const item = btn.closest(".why-item");
-      const isOpen = item.classList.contains("is-open");
-
-      // close others (optional - remove if you want multiple open)
-      document.querySelectorAll(".why-item.is-open").forEach((openItem) => {
-        openItem.classList.remove("is-open");
-        openItem.querySelector(".why-head").setAttribute("aria-expanded", "false");
-        openItem.querySelector(".why-toggle").textContent = "+";
-      });
-
-      // toggle current
-      if (!isOpen) {
-        item.classList.add("is-open");
-        btn.setAttribute("aria-expanded", "true");
-        item.querySelector(".why-toggle").textContent = "–";
-      } else {
-        item.classList.remove("is-open");
-        btn.setAttribute("aria-expanded", "false");
-        item.querySelector(".why-toggle").textContent = "+";
-      }
-    });
-  });
-});
-</script>',
+</section>',
     'richtext' => 1,
     'template' => 2,
-    'menuindex' => 7,
+    'menuindex' => 39,
     'searchable' => 1,
     'cacheable' => 1,
     'createdby' => 1,
-    'createdon' => 1725434763,
+    'createdon' => 1773638237,
     'editedby' => 1,
-    'editedon' => 1772516946,
+    'editedon' => 1773903933,
     'deleted' => 0,
     'deletedon' => 0,
     'deletedby' => 0,
-    'publishedon' => 1725434760,
+    'publishedon' => 1773638220,
     'publishedby' => 1,
     'menutitle' => '',
     'donthit' => 0,
@@ -460,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
     'class_key' => 'MODX\\Revolution\\modDocument',
     'context_key' => 'web',
     'content_type' => 1,
-    'uri' => 'rent-a-car.html',
+    'uri' => '',
     'uri_override' => 0,
     'hide_children_in_tree' => 0,
     'show_in_tree' => 1,
@@ -661,428 +297,64 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-  
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5861K2TN4V"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag(\'js\', new Date());
 
-  gtag(\'config\', \'G-5861K2TN4V\');
-</script>
 
-    <section class="hero-wrap hero-wrap-2" style="background-image: url(\'assets/images/breadcrumb/sr_bc_rentacar.jpg\');" data-stellar-background-ratio="0.5">
-        <div class="overlay"></div>
-        <div class="container">
-          <div class="row no-gutters slider-text align-items-end justify-content-center">
-            <div class="col-md-9 ftco-animate text-center mb-4">
-              <h1 class="mb-2 bread">Rent A  Car</h1>
-              <p class="breadcrumbs" style="padding-bottom: 20px;"><span class="mr-2"><a href="index.php?id=1">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Rent A  Car <i class="ion-ios-arrow-forward"></i></span></p>
-            </div>
-          </div>
-        </div>
-      </section>
-    
-  
-  
-    <section class="about-section">
-      	<div class="container">
-			<div class="row clearfix align-items-center">
-				
-				<!--Content Column-->
-				<div class="content-column col-md-6 col-sm-12 col-xs-12">
-					<div class="inner-column">
-						<div class="sec-title">
-							<h2 style="font-size: 30px; color: #a40000;  font-weight: bold;">Rent A Car In Sri Lanka Has <br> Never Been Easier</h2>
-						</div>
-
-						<div class="text" style="text-align: justify;">
-							Want to explore the beautiful island of Sri Lanka freely? Our team is ready to help you find the perfect car rental solution.
-						
-						</div>
-						<div class="text" style="text-align: justify;">
-							Based in Seeduwa (10 minutes away from Colombo International Airport), SR Rent A Car is an independent car rental company in Sri Lanka established since 2004. We offer luxurious customer service and affordable rates. Our personalized and professional approach ensures your satisfaction.
-							You can conveniently collect and return your vehicle at Bandaranaike International Airport or our Seeduwa office. Choose from a wide range of vehicles to suit your needs. Our helpful staff is available 24/7 to assist you with any queries.
-						</div>
-	
-						<a href="index.php?id=4" class="theme-btn btn-style-three">Rent A Car</a>
-						<!-- <a href="index.php?id=4" class="theme-btn btn-style-three" style="margin-left: 35px;">(+94) 777 780 729</a> -->
-					</div>
-				</div>
-	
-					
-					<!--Image Column-->
-					<div class="image-column col-md-6 col-sm-12 col-xs-12">
-					<div class="inner-column " data-wow-delay="0ms" data-wow-duration="1500ms">
-						<div class="image">
-								<img src="assets/images/rentacar/renthome.png" alt="">
-								<div class="overlay-box">
-								<div class="year-box"><span class="number">20</span>Years <br> Industry  <br> Expertise</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-			</div>
-		</div>
-    </section>
-
-       <!-- Topic Cards -->
-         <!-- <div id="cards_landscape_wrap-2">
-         
-			<div class="container">
-				<h1 class="text-gradient" style="font-size: 40px;text-align: left;">Short Term Car Rentals</h1>
-				<div class="row">
-					
-					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-						<a href="">
-							<div class="card-flyer">
-								<div class="text-box">
-									<div class="image-box">
-										<img src="assets/images/rentacar/short_term.jpg" alt="" />
-									</div>
-									<div class="text-container">
-										<h6 style="padding-top: 20px;">Short Term Car Rentals</h6>
-										<p style="text-align: justify;padding: 20px;font-size: 16px;font-family: Cambria, Cochin, Georgia, Times, \'Times New Roman\', serif;">SR Rent A Car offer our customers access to a wide variety of the newest vehicles available for short-term hire by the day, week, month.</p>
-									</div>
-								</div>
-							</div>
-						</a>
-					</div>
-					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-						<a href="">
-							<div class="card-flyer">
-								<div class="text-box">
-									<div class="image-box">
-										<img src="assets/images/rentacar/long_term.jpg" alt="" />
-									</div>
-									<div class="text-container">                                    
-										<h6 style="padding-top: 20px;">Long Term Car Rentals</h6>
-										<p style="text-align: justify;padding: 20px;font-size: 16px;font-family: Cambria, Cochin, Georgia, Times, \'Times New Roman\', serif;">SR Rent A Car offer you to hire a vehicle long term basis in Sri Lanka. We offer ultimate flexibility, reliability and affordability for your need.</p>
-									</div>
-								</div>
-							</div>
-						</a>
-					</div>
-					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-						<a href="">
-							<div class="card-flyer">
-								<div class="text-box">
-									<div class="image-box">
-										<img src="assets/images/rentacar/corporate_rental.jpg" alt="" />
-									</div>
-	
-									<div class="text-container">
-										<h6 style="padding-top: 20px;">Corporate Car Rentals</h6>
-										<p style="text-align: justify;padding: 20px;font-size: 16px;font-family: Cambria, Cochin, Georgia, Times, \'Times New Roman\', serif;">SR Rent A Car has always been ahead of the game to provide excellent Corporate Car Rental services at competitive rates for businesses.</p>
-									</div>
-								</div>
-							</div>
-						</a>
-					</div>
-					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-						<a href="">
-							<div class="card-flyer">
-								<div class="text-box">
-									<div class="image-box">
-										<img src="assets/images/rentacar/selfdriving.jpg" alt="" />
-									</div>
-	
-									<div class="text-container">
-										<h6 style="padding-top: 20px;">Self Driven Car Rentals</h6>
-										<p style="text-align: justify;padding: 20px;font-size: 16px;font-family: Cambria, Cochin, Georgia, Times, \'Times New Roman\', serif;">SR Rent A Car provides a large range of self-drive cars, vans, and SUVs available in selecting shapes, sizes, and specifications. These come in different specifications and sizes and are available by the day, week, month or longer.</p>
-									</div>
-								</div>
-							</div>
-						</a>
-					</div>
-					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-					<a href="">
-						<div class="card-flyer">
-							<div class="text-box">
-								<div class="image-box">
-									<img src="assets/images/rentacar/chauffeur.jpg" alt="" />
-								</div>
-	
-								<div class="text-container">
-									<h6 style="padding-top: 20px;">Chauffeur Driven Car Rentals</h6>
-									<p style="text-align: justify;padding: 20px;font-size: 16px;font-family: Cambria, Cochin, Georgia, Times, \'Times New Roman\', serif;">SR Rent A Car is best known for its top-notch personal chauffeur services in Sri Lanka. We make sure that you have the perfect chauffeur driven car for your occasion.</p>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-					<a href="">
-						<div class="card-flyer">
-							<div class="text-box">
-								<div class="image-box">
-									<img src="assets/images/rentacar/vip.jpg" alt="" />
-								</div>
-	
-								<div class="text-container">
-									<h6 style="padding-top: 20px;">Luxury Car Rentals</h6>
-									<p style="text-align: justify;padding: 20px;font-size: 16px;font-family: Cambria, Cochin, Georgia, Times, \'Times New Roman\', serif;">Here At SR Rent A Car we pride ourselves in offering a wide range of prestigious vehicles, from luxury saloons to sporty 4x4s.</p>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div>
-				</div>
-			</div>
-      	</div> -->
-  
-<section class="ftco-section rental-topics">
-	<div id="cards_landscape_wrap-2">
+<section class="hero-wrap hero-wrap-2" 
+    style="background-image: url(\'assets/images/booking-bg.jpg\'); height: 36rem;" 
+    data-stellar-background-ratio="0.5">
+		<div class="overlay"></div>
 		<div class="container">
-			<div class="row mb-4 align-items-end">
-				<div class="col-lg-8">
-					<h2 class="topics-title">Short Term Car Rentals</h2>
-					<p class="topics-sub">
-						Choose the rental type that fits your trip — short term, long term, corporate, self-drive, chauffeur, or luxury.
-					</p>
-				</div>
+		  <div class="row no-gutters slider-text align-items-end justify-content-center" style="height: 36rem;">
+			<div class="col-md-9 ftco-animate text-center mb-4">
+			  <h1 class="mb-2 bread">Manage Booking</h1>
+			  <p class="breadcrumbs" style="padding-bottom: 20px;"><span class="mr-2"><a href="index.php?id=1">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Manage Booking<i class="ion-ios-arrow-forward"></i></span></p>
 			</div>
-
-			<div class="row g-4">
-				<!-- 1 -->
-				<div class="col-12 col-sm-6 col-lg-4">
-				<a href="#" class="topic-card">
-					<div class="topic-media">
-					<img src="assets/images/rentacar/short_term.jpg" alt="Short Term Car Rentals">
-					<span class="topic-chip">Short Term</span>
-					</div>
-					<div class="topic-body">
-					<h6>Short Term Car Rentals</h6>
-					<p>SR Rent A Car offer our customers access to a wide variety of the newest vehicles available for short-term hire by the day, week, month.</p>
-					<span class="topic-cta">Explore →</span>
-					</div>
-				</a>
-				</div>
-
-				<!-- 2 -->
-				<div class="col-12 col-sm-6 col-lg-4">
-				<a href="#" class="topic-card">
-					<div class="topic-media">
-					<img src="assets/images/rentacar/long_term.jpg" alt="Long Term Car Rentals">
-					<span class="topic-chip">Long Term</span>
-					</div>
-					<div class="topic-body">
-					<h6>Long Term Car Rentals</h6>
-					<p>SR Rent A Car offer you to hire a vehicle long term basis in Sri Lanka. We offer ultimate flexibility, reliability and affordability for your need.</p>
-					<span class="topic-cta">Explore →</span>
-					</div>
-				</a>
-				</div>
-
-				<!-- 3 -->
-				<div class="col-12 col-sm-6 col-lg-4">
-				<a href="#" class="topic-card">
-					<div class="topic-media">
-					<img src="assets/images/rentacar/corporate_rental.jpg" alt="Corporate Car Rentals">
-					<span class="topic-chip">Corporate</span>
-					</div>
-					<div class="topic-body">
-					<h6>Corporate Car Rentals</h6>
-					<p>SR Rent A Car has always been ahead of the game to provide excellent Corporate Car Rental services at competitive rates for businesses.</p>
-					<span class="topic-cta">Explore →</span>
-					</div>
-				</a>
-				</div>
-
-				<!-- 4 -->
-				<div class="col-12 col-sm-6 col-lg-4 mt-4">
-				<a href="#" class="topic-card">
-					<div class="topic-media">
-					<img src="assets/images/rentacar/selfdriving.jpg" alt="Self Driven Car Rentals">
-					<span class="topic-chip">Self Drive</span>
-					</div>
-					<div class="topic-body">
-					<h6>Self Driven Car Rentals</h6>
-					<p>SR Rent A Car provides a large range of self-drive cars, vans, and SUVs available by the day, week, month or longer.</p>
-					<span class="topic-cta">Explore →</span>
-					</div>
-				</a>
-				</div>
-
-				<!-- 5 -->
-				<div class="col-12 col-sm-6 col-lg-4 mt-4">
-				<a href="#" class="topic-card">
-					<div class="topic-media">
-					<img src="assets/images/rentacar/chauffeur.jpg" alt="Chauffeur Driven Car Rentals">
-					<span class="topic-chip">Chauffeur</span>
-					</div>
-					<div class="topic-body">
-					<h6>Chauffeur Driven Car Rentals</h6>
-					<p>SR Rent A Car is best known for its top-notch personal chauffeur services in Sri Lanka. Perfect chauffeur-driven car for your occasion.</p>
-					<span class="topic-cta">Explore →</span>
-					</div>
-				</a>
-				</div>
-
-				<!-- 6 -->
-				<div class="col-12 col-sm-6 col-lg-4 mt-4">
-				<a href="#" class="topic-card">
-					<div class="topic-media">
-					<img src="assets/images/rentacar/vip.jpg" alt="Luxury Car Rentals">
-					<span class="topic-chip">Luxury</span>
-					</div>
-					<div class="topic-body">
-					<h6>Luxury Car Rentals</h6>
-					<p>Here At SR Rent A Car we pride ourselves in offering a wide range of prestigious vehicles, from luxury saloons to sporty 4x4s.</p>
-					<span class="topic-cta">Explore →</span>
-					</div>
-				</a>
-				</div>
-			</div>
+		  </div>
 		</div>
-	</div>
 </section>
-      
-<section class="ftco-section why-choose">
+
+<section class="bookingStepPage py-5">
   <div class="container">
-    <div class="row mb-4 align-items-end">
-      <div class="col-lg-9">
-        <h2 class="why-title">Why Choose SR Rent A Car?</h2>
-        <p class="why-intro">
-          SR Rent A Car offers reliable, flexible and cheap car rental services in Sri Lanka. As a rent a car company, we take pride in our trustworthy services to all our esteemed clients. Our wide range of rental cars is available all through the year. Our rental car services stretch from short term rentals to long term rentals at very affordable prices. Whether you are looking for a saloon car, station wagon, minivans, coaster bus and SUVs, we got you covered with low prices and ultimate customer care service. Below are some of the reasons why you should choose us.
-        </p>
+
+    <div class="bookingSteps mb-4">
+      <div class="bookingSteps__item bookingSteps__item--done">
+        <span class="bookingSteps__num">1</span>
+        <span class="bookingSteps__text">Select vehicle</span>
+      </div>
+
+      <div class="bookingSteps__line bookingSteps__line--active"></div>
+
+      <div class="bookingSteps__item bookingSteps__item--active">
+        <span class="bookingSteps__num">2</span>
+        <span class="bookingSteps__text">Your deal</span>
+      </div>
+
+      <div class="bookingSteps__line"></div>
+
+      <div class="bookingSteps__item">
+        <span class="bookingSteps__num">3</span>
+        <span class="bookingSteps__text">Coverage</span>
+      </div>
+
+      <div class="bookingSteps__line"></div>
+
+      <div class="bookingSteps__item">
+        <span class="bookingSteps__num">4</span>
+        <span class="bookingSteps__text">Driver details</span>
       </div>
     </div>
 
-    <div class="row g-4">
-      <!-- 1 -->
-      <div class="col-12 col-lg-6">
-        <div class="why-item">
-          <button class="why-head" type="button" aria-expanded="false">
-            <span class="why-icon">✓</span>
-            <span class="why-label">Professional Services</span>
-            <span class="why-toggle">+</span>
-          </button>
-          <div class="why-body">
-            <p>
-              The happiness & satisfaction of our customer is the most valued components of our business.
-              You will be provided with a vehicle that will keep you relaxed, safe, calm and extremely comfortable.
-              We guarantee exceptional, first-class services that give 100% customer satisfaction.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- 2 -->
-      <div class="col-12 col-lg-6">
-        <div class="why-item">
-          <button class="why-head" type="button" aria-expanded="false">
-            <span class="why-icon">👥</span>
-            <span class="why-label">Knowledgeable Staff</span>
-            <span class="why-toggle">+</span>
-          </button>
-          <div class="why-body">
-            <p>
-              Because our staff are local residents and have years of experience offering vehicle rentals from Sri Lanka,
-              you can be confident you’ll get answers to all of your questions and satisfactory solutions along the way.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- 3 -->
-      <div class="col-12 col-lg-6 mt-3">
-        <div class="why-item">
-          <button class="why-head" type="button" aria-expanded="false">
-            <span class="why-icon">🛬</span>
-            <span class="why-label">Flexible Pick Up and Drop Off Service</span>
-            <span class="why-toggle">+</span>
-          </button>
-          <div class="why-body">
-            <p>
-              Our friendly staff pick you up from the terminal of your choice. From there you can enjoy your trip with the
-              seamless comforts of your own transportation. Once you are ready to hand back the keys, simply meet our team
-              at a prearranged time and we’ll drop you off at the airport with plenty of time to spare.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- 4 -->
-      <div class="col-12 col-lg-6 mt-3">
-        <div class="why-item">
-          <button class="why-head" type="button" aria-expanded="false">
-            <span class="why-icon">🚗</span>
-            <span class="why-label">Diverse Fleet</span>
-            <span class="why-toggle">+</span>
-          </button>
-          <div class="why-body">
-            <p>
-              We can provide you with a wide range of different vehicles. Our diverse vehicle fleet includes Economy,
-              Compact, Family Sedan, Pickup 2x4, SUVs, Station Wagons, Seven-Seaters and many more.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- 5 -->
-      <div class="col-12 col-lg-6 mt-3">
-        <div class="why-item">
-          <button class="why-head" type="button" aria-expanded="false">
-            <span class="why-icon">💰</span>
-            <span class="why-label">Affordable Rates Guaranteed</span>
-            <span class="why-toggle">+</span>
-          </button>
-          <div class="why-body">
-            <p>
-              Whether you\'re gearing up to take your family on a road trip or heading out on a business excursion,
-              you\'ll find our rates are personalized to you. Providing affordable car rental rates throughout the year
-              is one of the key aspects of SR Rent A Car.
-            </p>
-          </div>
-        </div>
+    <div class="bookingStepTopbar mb-4">
+<a href="index.php?id=39" class="bookingStepTopbar__back">← Back to results</a>
+      <div class="bookingStepTopbar__next">
+        Next: Coverage
       </div>
     </div>
-	<div class="row mt-5">
-		<div class="col-12 col-lg-6">
-        <div class="why-cta">
-          <h4>Need help choosing a vehicle?</h4>
-          <p>Tell us your dates and location — we’ll recommend the best option for your budget.</p>
-          <a href="index.php?id=6" class="why-btn">Contact Us</a>
-        </div>
-      </div>
-	</div>
+
+    [[!VehicleDealStep2]]
+
   </div>
 </section>
-  
-  </div>
-    </div>
-  
-  <script>
-document.addEventListener("DOMContentLoaded", function () {
-  document.querySelectorAll(".why-item .why-head").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const item = btn.closest(".why-item");
-      const isOpen = item.classList.contains("is-open");
-
-      // close others (optional - remove if you want multiple open)
-      document.querySelectorAll(".why-item.is-open").forEach((openItem) => {
-        openItem.classList.remove("is-open");
-        openItem.querySelector(".why-head").setAttribute("aria-expanded", "false");
-        openItem.querySelector(".why-toggle").textContent = "+";
-      });
-
-      // toggle current
-      if (!isOpen) {
-        item.classList.add("is-open");
-        btn.setAttribute("aria-expanded", "true");
-        item.querySelector(".why-toggle").textContent = "–";
-      } else {
-        item.classList.remove("is-open");
-        btn.setAttribute("aria-expanded", "false");
-        item.querySelector(".why-toggle").textContent = "+";
-      }
-    });
-  });
-});
-</script>
 <!-- ✅ Global Top-Right Logo (visible on all pages) -->
 <div class="global-logo">
   <img src="assets/images/award.png" alt="Sri Lanka Rent A Car">
@@ -1516,7 +788,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </body>
 </html>
 ',
-    '[[~4]]' => 'index.php?id=4',
     '[[$footer?]]' => '<footer class="footer-section footer-style-v2" style="background-image: url(\'assets/images/footer-bg.jpg\');">
     
     <button id="backToTop" class="back-to-top">
@@ -2139,9 +1410,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         ),
         'policies' => 
         array (
-          'web' => 
-          array (
-          ),
         ),
         'source' => 
         array (
@@ -2596,9 +1864,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         ),
         'policies' => 
         array (
-          'web' => 
-          array (
-          ),
         ),
         'source' => 
         array (
@@ -2615,6 +1880,1617 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     ),
     'MODX\\Revolution\\modSnippet' => 
     array (
+      'VehicleDealStep2' => 
+      array (
+        'fields' => 
+        array (
+          'id' => 9,
+          'source' => 1,
+          'property_preprocess' => false,
+          'name' => 'VehicleDealStep2',
+          'description' => '',
+          'editor_type' => 0,
+          'category' => 0,
+          'cache_type' => 0,
+          'snippet' => 'require "assets/includes/db_connect.php";
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+/**
+ * Save selected vehicle from POST
+ */
+if ($_SERVER[\'REQUEST_METHOD\'] === \'POST\') {
+    if (isset($_POST[\'vehicle_id\']) || isset($_POST[\'car_code\'])) {
+        $_SESSION[\'selected_vehicle\'] = [
+            \'vehicle_id\' => trim($_POST[\'vehicle_id\'] ?? \'\'),
+            \'car_code\'   => trim($_POST[\'car_code\'] ?? \'\'),
+        ];
+    }
+}
+
+$selectedVehicle = $_SESSION[\'selected_vehicle\'] ?? [];
+$search          = $_SESSION[\'rent_search\'] ?? [];
+
+$discountRaw = trim($_SESSION[\'rent_discount\'] ?? \'\');
+$discountPercent = 0;
+
+if ($discountRaw !== \'\') {
+    $discountPercent = (int)preg_replace(\'/[^0-9]/\', \'\', $discountRaw);
+}
+
+$vehicleId = isset($selectedVehicle[\'vehicle_id\']) ? (int)$selectedVehicle[\'vehicle_id\'] : 0;
+$carCode   = trim($selectedVehicle[\'car_code\'] ?? \'\');
+
+$pickupDateTime  = trim($search[\'pickup_datetime\'] ?? \'\');
+$dropoffDateTime = trim($search[\'dropoff_datetime\'] ?? \'\');
+$pickupLocation  = trim($search[\'pickup_location\'] ?? \'\');
+$dropoffLocation = trim($search[\'dropoff_location\'] ?? \'\');
+
+// if dropoff is empty, use pickup location
+if ($dropoffLocation === \'\') {
+    $dropoffLocation = $pickupLocation;
+}
+
+if ($vehicleId <= 0 && $carCode === \'\') {
+    return \'<p>Vehicle not selected.</p>\';
+}
+
+$pickupDate  = ($pickupDateTime !== \'\' && strtotime($pickupDateTime)) ? date(\'Y-m-d\', strtotime($pickupDateTime)) : \'\';
+$dropoffDate = ($dropoffDateTime !== \'\' && strtotime($dropoffDateTime)) ? date(\'Y-m-d\', strtotime($dropoffDateTime)) : \'\';
+
+$days = 0;
+if ($pickupDate && $dropoffDate) {
+    $start = strtotime($pickupDate);
+    $end   = strtotime($dropoffDate);
+
+    if ($start && $end && $end >= $start) {
+        $days = max(1, (int)(($end - $start) / 86400) + 1);
+    }
+}
+
+$where = [];
+$params = [];
+
+if ($vehicleId > 0) {
+    $where[] = "v.id = :vehicle_id";
+    $params[\':vehicle_id\'] = $vehicleId;
+} elseif ($carCode !== \'\') {
+    $where[] = "v.car_code = :car_code";
+    $params[\':car_code\'] = $carCode;
+}
+
+$sql = "SELECT
+          v.id,
+          v.image,
+          v.car_model,
+          v.car_category,
+          v.car_code,
+          v.pax_count,
+          v.luggage_count,
+          v.transmission_type,
+          v.deposit_amount
+        FROM vehicles v
+        LEFT JOIN car_rental r
+          ON r.car_code = v.car_code
+         AND :pickup_date >= DATE(r.start_date)
+         AND :dropoff_date <= DATE(r.end_date)
+        WHERE " . implode(\' AND \', $where) . "
+        LIMIT 1";
+
+$stmt = $modx->prepare($sql);
+if (!$stmt) return \'<p>Could not prepare deal query.</p>\';
+
+$stmt->bindValue(\':pickup_date\', $pickupDate, PDO::PARAM_STR);
+$stmt->bindValue(\':dropoff_date\', $dropoffDate, PDO::PARAM_STR);
+
+foreach ($params as $key => $value) {
+    if ($key === \':vehicle_id\') {
+        $stmt->bindValue($key, $value, PDO::PARAM_INT);
+    } else {
+        $stmt->bindValue($key, $value, PDO::PARAM_STR);
+    }
+}
+
+if (!$stmt->execute()) {
+    $error = $stmt->errorInfo();
+    return \'<p>Could not load deal: \' . htmlspecialchars($error[2]) . \'</p>\';
+}
+
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
+if (!$row) return \'<p>Vehicle deal not found.</p>\';
+
+if (!function_exists(\'step2CalculatePrice\')) {
+    function step2CalculatePrice($modx, $carCode, $pickupDate, $dropoffDate) {
+        if (!$carCode || !$pickupDate || !$dropoffDate) return \'\';
+
+        $start = strtotime($pickupDate);
+        $end   = strtotime($dropoffDate);
+        if (!$start || !$end || $end < $start) return \'\';
+
+        $days = max(1, (int)(($end - $start) / 86400) + 1);
+
+        $sql = "SELECT duration, rate
+                FROM car_rental
+                WHERE car_code = :car_code
+                  AND :pickup_date >= DATE(start_date)
+                  AND :dropoff_date <= DATE(end_date)
+                ORDER BY duration ASC";
+
+        $stmt = $modx->prepare($sql);
+        if (!$stmt) return \'\';
+
+        $stmt->bindValue(\':car_code\', $carCode, PDO::PARAM_STR);
+        $stmt->bindValue(\':pickup_date\', $pickupDate, PDO::PARAM_STR);
+        $stmt->bindValue(\':dropoff_date\', $dropoffDate, PDO::PARAM_STR);
+
+        if (!$stmt->execute()) return \'\';
+
+        $rates = [];
+        foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $r) {
+            $duration = (int)($r[\'duration\'] ?? 0);
+            $rate     = (float)($r[\'rate\'] ?? 0);
+
+            if ($duration > 0) {
+                $rates[$duration] = $rate;
+            }
+        }
+
+        if (!$rates) return \'\';
+
+        ksort($rates);
+
+        $maxDuration = max(array_keys($rates));
+        $lastRate    = (float)$rates[$maxDuration];
+        $total       = 0.0;
+
+        for ($d = 1; $d <= $days; $d++) {
+            if (isset($rates[$d])) {
+                $total += (float)$rates[$d];
+            } elseif ($d > $maxDuration) {
+                $total += $lastRate;
+            } else {
+                // missing duration between 1 and max duration
+                return \'\';
+            }
+        }
+
+        return number_format($total, 2, \'.\', \'\');
+    }
+}
+
+$amount = step2CalculatePrice($modx, $row[\'car_code\'], $pickupDate, $dropoffDate);
+
+$originalAmount = $amount !== \'\' ? (float)$amount : 0.00;
+$discountedAmount = $originalAmount;
+
+if ($discountPercent > 0 && $originalAmount > 0) {
+    $discountedAmount = $originalAmount - (($originalAmount * $discountPercent) / 100);
+}
+
+$displayOriginalAmount = $originalAmount > 0 ? number_format($originalAmount, 2, \'.\', \'\') : \'\';
+$displayDiscountedAmount = $discountedAmount > 0 ? number_format($discountedAmount, 2, \'.\', \'\') : \'\';
+
+$securityDeposit = isset($row[\'deposit_amount\']) && $row[\'deposit_amount\'] !== \'\'
+    ? number_format((float)$row[\'deposit_amount\'], 2, \'.\', \'\')
+    : \'\';
+
+$baseTotal = $displayDiscountedAmount !== \'\'
+    ? number_format((float)$displayDiscountedAmount, 2, \'.\', \'\')
+    : \'\';
+
+
+$pickupText = $pickupDateTime && strtotime($pickupDateTime) ? date(\'d M Y, H:i\', strtotime($pickupDateTime)) : \'\';
+$dropoffText = $dropoffDateTime && strtotime($dropoffDateTime) ? date(\'d M Y, H:i\', strtotime($dropoffDateTime)) : \'\';
+
+$extras = [];
+$extraStmt = $modx->prepare("SELECT extra_id, name, description, price FROM extras ORDER BY extra_id ASC");
+if ($extraStmt && $extraStmt->execute()) {
+    $extras = $extraStmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+$out = \'\';
+$out .= \'<div class="premiumDealLayout">\';
+
+$out .= \'  <div class="premiumDealLayout__main">\';
+
+$out .= \'    <div class="premiumDealCard premiumDealCard--hero">\';
+if ($discountPercent > 0) {
+    $out .= \'      <div class="premiumDiscountNotice">\';
+    $out .= \'        <span class="premiumDiscountNotice__badge">Discount Applied</span>\';
+    $out .= \'        <span class="premiumDiscountNotice__text">\' . htmlspecialchars($discountRaw, ENT_QUOTES, \'UTF-8\') . \' offer is active for this booking.</span>\';
+    $out .= \'      </div>\';
+}
+
+$out .= \'      <div class="premiumDealCard__badges">\';
+$out .= \'        <span class="premiumBadge premiumBadge--gold">Excellent service</span>\';
+$out .= \'        <span class="premiumBadge premiumBadge--blue">Pay part now</span>\';
+$out .= \'      </div>\';
+
+$out .= \'      <div class="premiumDealHero">\';
+$out .= \'        <div class="premiumDealHero__left">\';
+$out .= \'          <div class="premiumDealHero__titleRow">\';
+$out .= \'            <h2 class="premiumDealHero__title">\' . htmlspecialchars($row[\'car_model\']) . \'</h2>\';
+$out .= \'          </div>\';
+
+$out .= \'          <div class="premiumDealHero__subtitleWrap">\';
+$out .= \'             <div class="premiumDealHero__subtitle">or similar \' . htmlspecialchars($row[\'car_category\']) . \'</div>\';
+$out .= \'             <div class="premiumInfoTooltip">\';
+$out .= \'                 <button type="button" class="premiumInfoTrigger" aria-label="Vehicle availability information">\';
+$out .= \'                     <img src="assets/images/information.svg" alt="Info" class="premiumInfoIcon">\';
+$out .= \'                 </button>\';
+
+$out .= \'                 <div class="premiumTooltipBox">\';
+$out .= \'                     <strong class="mb-3">What does "or similar" mean?</strong>\';
+$out .= \'                     <p>If the exact model isn’t available, you’ll get a car in the same category that’s the same size and has the same number of doors, transmission type, and features. This is standard for most car rental suppliers.</p>\';
+$out .= \'                 </div>\';
+
+$out .= \'             </div>\';
+$out .= \'          </div>\';
+$out .= \'          <div class="premiumSpecs">\';
+$out .= \'            <span class="premiumSpecs__item">\' . htmlspecialchars($row[\'transmission_type\'] ?: \'Manual\') . \'</span>\';
+$out .= \'            <span class="premiumSpecs__item">\' . (int)$row[\'pax_count\'] . \' Seats</span>\';
+$out .= \'            <span class="premiumSpecs__item">\' . (int)$row[\'luggage_count\'] . \' Luggages</span>\';
+$out .= \'            <span class="premiumSpecs__item">Air Conditioning</span>\';
+$out .= \'          </div>\';
+
+$out .= \'          <div class="premiumBookingMeta">\';
+if ($pickupLocation !== \'\') {
+    $out .= \'            <div><strong>Pick-up:</strong> \' . htmlspecialchars($pickupLocation) . ($pickupText ? \' <span class="premiumMuted">(\' . htmlspecialchars($pickupText) . \')</span>\' : \'\') . \'</div>\';
+}
+if ($dropoffLocation !== \'\') {
+    $out .= \'            <div><strong>Drop-off:</strong> \' . htmlspecialchars($dropoffLocation) . ($dropoffText ? \' <span class="premiumMuted">(\' . htmlspecialchars($dropoffText) . \')</span>\' : \'\') . \'</div>\';
+}
+$out .= \'          </div>\';
+$out .= \'        </div>\';
+
+$out .= \'        <div class="premiumDealHero__right">\';
+$out .= \'          <img src="\' . htmlspecialchars($row[\'image\']) . \'" alt="\' . htmlspecialchars($row[\'car_model\']) . \'" class="premiumDealHero__image">\';
+$out .= \'        </div>\';
+$out .= \'      </div>\';
+$out .= \'    </div>\';
+
+$out .= \'    <div class="premiumDealCard">\';
+$out .= \'      <h3 class="premiumSectionTitle">Included in your offer</h3>\';
+$out .= \'      <ul class="premiumIncludedList">\';
+$out .= \'        <li>Unlimited mileage</li>\';
+$out .= \'        <li>Theft Protection</li>\';
+$out .= \'        <li>Third Party Liability (TPL)</li>\';
+$out .= \'      </ul>\';
+$out .= \'    </div>\';
+
+$out .= \'    <div class="premiumDealCard premiumDealCard--soft">\';
+$out .= \'      <div class="premiumCoverageBanner">\';
+$out .= \'        <div class="premiumCoverageBanner__text">\';
+$out .= \'          <strong>Add coverage in the next step...</strong><br>\';
+$out .= \'        </div>\';
+$out .= \'        <div class="premiumCoverageBanner__icon">🛡️</div>\';
+$out .= \'      </div>\';
+$out .= \'    </div>\';
+
+$out .= \'    <div class="premiumDealCard">\';
+$out .= \'      <div class="premiumInfoBlock">\';
+$out .= \'        <h3 class="premiumSectionTitle premiumSectionTitle--sm">Important to know</h3>\';
+$out .= \'        <ul class="premiumInfoList">\';
+$out .= \'          <li>There is a security deposit of EUR 700</li>\';
+$out .= \'          <li>The supplier will hold/charge a deposit on the main driver&#39;s credit card at pick-up. If no charges are incurred after the rental, it will be released.</li>\';
+$out .= \'        </ul>\';
+$out .= \'      </div>\';
+
+$out .= \'      <div class="premiumInfoBlock">\';
+$out .= \'        <h3 class="premiumSectionTitle premiumSectionTitle--sm">Bring your documents</h3>\';
+$out .= \'        <ul class="premiumInfoList">\';
+$out .= \'          <li>Passport or ID card</li>\';
+$out .= \'          <li>Driver&#39;s license</li>\';
+$out .= \'        </ul>\';
+$out .= \'      </div>\';
+
+$out .= \'      <div class="premiumInfoBlock">\';
+$out .= \'        <h3 class="premiumSectionTitle premiumSectionTitle--sm">Car has unlimited mileage</h3>\';
+$out .= \'        <ul class="premiumInfoList">\';
+$out .= \'          <li>There is no limit on how many kilometers/miles can be traveled.</li>\';
+$out .= \'        </ul>\';
+$out .= \'      </div>\';
+
+$out .= \'      <button type="button" class="premiumConditionsBtn" id="openRentalConditions">See all rental conditions</button>\';
+$out .= \'    </div>\';
+
+$out .= \'    <div class="rentalModal" id="rentalConditionsModal" aria-hidden="true">\';
+$out .= \'      <div class="rentalModal__backdrop" data-close-modal></div>\';
+$out .= \'      <div class="rentalModal__dialog" role="dialog" aria-modal="true" aria-labelledby="rentalConditionsTitle">\';
+$out .= \'        <button type="button" class="rentalModal__close" data-close-modal aria-label="Close">×</button>\';
+$out .= \'        <h3 class="rentalModal__title" id="rentalConditionsTitle">Rental conditions</h3>\';
+$out .= \'        <div class="rentalModal__content">\';
+
+$out .= \'          <div class="rentalModal__section">\';
+$out .= \'            <h4>Deposit and payment cards</h4>\';
+
+$out .= \'            <h5>Security deposit</h5>\';
+$out .= \'            <p>The supplier will hold a deposit of € 700.00 on your card when you pick up the car. If no charges are incurred after the rental, it will be released.</p>\';
+
+$out .= \'            <h5>Payment card</h5>\';
+$out .= \'            <p>You’ll need a credit card in the main driver’s full name at pick-up for payment and any required deposit.</p>\';
+
+$out .= \'            <h5>Accepted cards</h5>\';
+$out .= \'            <ul>\';
+$out .= \'              <li>American Express Credit</li>\';
+$out .= \'              <li>Visa Credit</li>\';
+$out .= \'              <li>MasterCard Credit</li>\';
+$out .= \'            </ul>\';
+
+$out .= \'            <h5>Not accepted</h5>\';
+$out .= \'            <ul>\';
+$out .= \'              <li>Debit cards</li>\';
+$out .= \'              <li>Cards not in main driver&#39;s name or without numbers</li>\';
+$out .= \'              <li>Virtual cards on your phone (e.g., Google Pay, Apple Pay, etc.)</li>\';
+$out .= \'              <li>Visa Electron</li>\';
+$out .= \'              <li>Cards issued by online-only banks</li>\';
+$out .= \'            </ul>\';
+
+$out .= \'            <h5>Please note</h5>\';
+$out .= \'            <p>The card must have the number printed on it. The card must have chip and PIN capability.</p>\';
+$out .= \'          </div>\';
+
+$out .= \'          <div class="rentalModal__section">\';
+$out .= \'            <h4>Included protection</h4>\';
+$out .= \'            <p><strong>€ 700.00 excess / deductible</strong></p>\';
+
+$out .= \'            <h5>Included insurance</h5>\';
+
+$out .= \'            <h5>Collision Damage Waiver</h5>\';
+$out .= \'            <p><strong>Deductible:</strong> € 700.00</p>\';
+$out .= \'            <p>You&#39;ll have to pay at most the deductible if the car&#39;s bodywork is damaged (other parts of the car aren&#39;t covered).</p>\';
+
+$out .= \'            <h5>Theft Protection</h5>\';
+$out .= \'            <p>You&#39;ll have to pay at most the deductible if the car is stolen.</p>\';
+
+$out .= \'            <h5>Third Party Liability (TPL)</h5>\';
+$out .= \'            <p><strong>No limit</strong></p>\';
+$out .= \'            <p>Mandatory coverage for injuries and damage you may cause to others while driving the car.</p>\';
+$out .= \'          </div>\';
+
+$out .= \'          <div class="rentalModal__section">\';
+$out .= \'            <h4>Fuel policy</h4>\';
+$out .= \'            <p><strong>Full to full</strong></p>\';
+$out .= \'            <p>The vehicle is provided with a full tank of fuel and must be returned with the same amount in order to avoid additional charges.</p>\';
+$out .= \'          </div>\';
+
+$out .= \'          <div class="rentalModal__section">\';
+$out .= \'            <h4>Mileage</h4>\';
+$out .= \'            <p><strong>Unlimited mileage</strong></p>\';
+$out .= \'            <p>There is no limit on how many kilometers/miles can be traveled.</p>\';
+$out .= \'          </div>\';
+
+$out .= \'          <div class="rentalModal__section">\';
+$out .= \'            <h4>Driver Requirements</h4>\';
+$out .= \'            <ul>\';
+$out .= \'              <li>Minimum rental age is 21 years.</li>\';
+$out .= \'              <li>A young driver fee applies to drivers under the age of 25.</li>\';
+$out .= \'              <li>There is no maximum age.</li>\';
+$out .= \'              <li>A Senior driver fee is not applied.</li>\';
+$out .= \'              <li>The driver license must have been issued by authorized authorities at least 2 year(s) before the date of the commencement of the rental.</li>\';
+$out .= \'              <li>A driver license printed using a non-Roman alphabet (Arabic, Japanese, Cyrillic, etc) must be supplemented by an International Driving Permit.</li>\';
+$out .= \'              <li>Please note that the International Driving Permit is valid only if it is accompanied by a regular driver&#39;s license, is issued by an official authority or government-authorized organization, and is in physical (not digital) form.</li>\';
+$out .= \'              <li>Licences issued in China are not accepted.</li>\';
+$out .= \'              <li>In order to pick up the car, the following documents are required: passport, valid driver license, credit card on a main driver&#39;s name, booking voucher.</li>\';
+$out .= \'            </ul>\';
+$out .= \'          </div>\';
+
+$out .= \'        </div>\';
+$out .= \'      </div>\';
+$out .= \'    </div>\';
+
+$out .= \'  </div>\';
+
+$out .= \'  <aside class="premiumDealLayout__sidebar">\';
+$out .= \'    <div class="premiumSummaryCard">\';
+
+$out .= \'      <div class="premiumSummaryCard__block">\';
+$out .= \'        <div class="premiumSummaryRow">\';
+$out .= \'          <span>Rental Payment</span>\';
+
+if ($discountPercent > 0 && $displayOriginalAmount !== \'\' && $displayDiscountedAmount !== \'\') {
+    $out .= \'      <strong id="js-rental-payment">\';
+    $out .= \'        <span style="display:block; text-decoration:line-through; color:#999 !important; font-size:14px; text-align: end;">€ \' . $displayOriginalAmount . \'</span>\';
+    $out .= \'        <span style="display:block; color:#d62828; font-size:22px; font-weight:700;">€ \' . $displayDiscountedAmount . \'</span>\';
+    $out .= \'      </strong>\';
+} else {
+    $out .= \'      <strong id="js-rental-payment">\' . ($displayDiscountedAmount !== \'\' ? \'€ \' . $displayDiscountedAmount : \'N/A\') . \'</strong>\';
+}
+
+$out .= \'        </div>\';
+$out .= \'      </div>\';
+
+// $out .= \'      <div class="premiumSummaryCard__block">\';
+// $out .= \'        <div class="premiumSummaryRow">\';
+// $out .= \'          <span>Security Deposit</span>\';
+// $out .= \'          <strong id="js-security-deposit">\' . ($securityDeposit !== \'\' ? \'€\' . $securityDeposit : \'N/A\') . \'</strong>\';
+// $out .= \'        </div>\';
+// $out .= \'      </div>\';
+
+if ($extras) {
+    $out .= \'      <div class="premiumSummaryCard__block premiumSummaryCard__extras">\';
+    $out .= \'        <div class="premiumSummaryCard__heading">Optional extras</div>\';
+    $out .= \'        <div class="extrasList">\';
+
+    foreach ($extras as $extra) {
+        $extraId = (int)$extra[\'extra_id\'];
+        $extraName = htmlspecialchars($extra[\'name\'] ?? \'\');
+        $extraDescription = trim((string)($extra[\'description\'] ?? \'\'));
+        $extraPrice = number_format((float)($extra[\'price\'] ?? 0), 2, \'.\', \'\');
+
+        $out .= \'          <label class="extraOption" data-extra-id="\' . $extraId . \'">\';
+        $out .= \'            <input type="checkbox" class="extraOption__checkbox js-extra-check" value="\' . $extraId . \'" data-price="\' . $extraPrice . \'">\';
+        $out .= \'            <div class="extraOption__main">\';
+        $out .= \'              <div class="extraOption__checkWrap">\';
+        $out .= \'                <span class="extraOption__fakebox"></span>\';
+        $out .= \'              </div>\';
+
+        $out .= \'              <div class="extraOption__info">\';
+        $out .= \'                <div class="extraOption__title">\' . $extraName . ($extraDescription !== \'\' ? \' <span class="extraOption__descInline">(\' . htmlspecialchars($extraDescription) . \')</span>\' : \'\') . \'</div>\';
+        $out .= \'                <div class="extraOption__price">€\' . $extraPrice . \' for rental period</div>\';
+        $out .= \'              </div>\';
+
+        $out .= \'              <div class="extraOption__actions">\';
+        $out .= \'                <div class="extraQty js-extra-qty-wrap" style="display:none;">\';
+        $out .= \'                  <button type="button" class="extraQty__btn js-extra-minus" aria-label="Decrease">−</button>\';
+        $out .= \'                  <input type="text" class="extraQty__input js-extra-qty" value="1" readonly>\';
+        $out .= \'                  <button type="button" class="extraQty__btn js-extra-plus" aria-label="Increase">+</button>\';
+        $out .= \'                </div>\';
+        $out .= \'              </div>\';
+        $out .= \'            </div>\';
+        $out .= \'          </label>\';
+    }
+
+    $out .= \'        </div>\';
+    $out .= \'        <p class="extrasNote">Please note that prices and availability of optional extras are fully controlled by the rental supplier and that prices are subject to change. Those listed here are to be used as a guide only.</p>\';
+    $out .= \'      </div>\';
+}
+
+$out .= \'      <div class="premiumSummaryCard__block" id="js-extras-summary" style="display:none;">\';
+$out .= \'        <div class="premiumSummaryRow">\';
+$out .= \'          <span>Optional Extras</span>\';
+$out .= \'          <strong id="js-extras-total">€0.00</strong>\';
+$out .= \'        </div>\';
+$out .= \'      </div>\';
+
+$out .= \'      <div class="premiumSummaryCard__total">\';
+$out .= \'        <span>Total for \' . (int)$days . \' \' . ($days === 1 ? \'day\' : \'days\') . \'</span>\';
+$out .= \'        <strong id="js-grand-total">\' . ($baseTotal !== \'\' ? \'€\' . $baseTotal : \'Rate not available\') . \'</strong>\';
+$out .= \'      </div>\';
+
+$out .= \'      <div class="premiumPriceAlert">\';
+$out .= \'        <strong>Don’t miss out!</strong> Prices are currently lower than usual.<br>\';
+$out .= \'        Book now and save more.\';
+$out .= \'      </div>\';
+
+$step3Link = $modx->makeUrl(43, \'\', [
+    \'vehicle_id\'       => $vehicleId,
+    \'car_code\'         => $carCode,
+    \'pickup_datetime\'  => $pickupDateTime,
+    \'dropoff_datetime\' => $dropoffDateTime,
+    \'pickup_location\'  => $pickupLocation,
+    \'dropoff_location\' => $dropoffLocation,
+    \'days\'             => $days
+]);
+
+$step3Action = html_entity_decode($modx->makeUrl(43), ENT_QUOTES, \'UTF-8\');
+
+$out .= \'      <form action="\' . htmlspecialchars($step3Action, ENT_QUOTES, \'UTF-8\') . \'" method="post" id="js-step3-form">\';
+$out .= \'        <input type="hidden" name="vehicle_id" value="\' . (int)$vehicleId . \'">\';
+$out .= \'        <input type="hidden" name="car_code" value="\' . htmlspecialchars($carCode, ENT_QUOTES, \'UTF-8\') . \'">\';
+$out .= \'        <input type="hidden" name="pickup_datetime" value="\' . htmlspecialchars($pickupDateTime, ENT_QUOTES, \'UTF-8\') . \'">\';
+$out .= \'        <input type="hidden" name="dropoff_datetime" value="\' . htmlspecialchars($dropoffDateTime, ENT_QUOTES, \'UTF-8\') . \'">\';
+$out .= \'        <input type="hidden" name="pickup_location" value="\' . htmlspecialchars($pickupLocation, ENT_QUOTES, \'UTF-8\') . \'">\';
+$out .= \'        <input type="hidden" name="dropoff_location" value="\' . htmlspecialchars($dropoffLocation, ENT_QUOTES, \'UTF-8\') . \'">\';
+$out .= \'        <input type="hidden" name="days" value="\' . (int)$days . \'">\';
+$out .= \'        <input type="hidden" name="rental_amount" id="js-post-rental-amount" value="\' . htmlspecialchars($amount !== \'\' ? $amount : \'0.00\', ENT_QUOTES, \'UTF-8\') . \'">\';
+$out .= \'        <input type="hidden" name="security_deposit" id="js-post-security-deposit" value="\' . htmlspecialchars($securityDeposit !== \'\' ? $securityDeposit : \'0.00\', ENT_QUOTES, \'UTF-8\') . \'">\';
+$out .= \'        <input type="hidden" name="extras_total" id="js-post-extras-total" value="0.00">\';
+$out .= \'        <input type="hidden" name="grand_total" id="js-post-grand-total" value="\' . htmlspecialchars($baseTotal !== \'\' ? $baseTotal : \'0.00\', ENT_QUOTES, \'UTF-8\') . \'">\';
+$out .= \'        <input type="hidden" name="extras" id="js-post-extras" value="">\';
+$out .= \'        <button type="submit" class="premiumContinueBtn" id="js-step3-submit">Continue to coverage</button>\';
+$out .= \'      </form>\';
+
+$out .= \'    </div>\';
+$out .= \'  </aside>\';
+
+$out .= \'</div>\';
+
+
+$out .= \'<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const checks = document.querySelectorAll(".js-extra-check");
+  const extrasSummary = document.getElementById("js-extras-summary");
+  const extrasTotalEl = document.getElementById("js-extras-total");
+  const grandTotalEl = document.getElementById("js-grand-total");
+
+  const postRentalAmount = document.getElementById("js-post-rental-amount");
+  const postSecurityDeposit = document.getElementById("js-post-security-deposit");
+  const postExtrasTotal = document.getElementById("js-post-extras-total");
+  const postGrandTotal = document.getElementById("js-post-grand-total");
+  const postExtras = document.getElementById("js-post-extras");
+
+const baseTotal = \' . json_encode((float)($baseTotal !== \'\' ? $baseTotal : 0)) . \';
+const rentalAmount = \' . json_encode((float)($displayDiscountedAmount !== \'\' ? $displayDiscountedAmount : 0)) . \';
+  const securityDeposit = \' . json_encode((float)($securityDeposit !== \'\' ? $securityDeposit : 0)) . \';
+
+  function money(val) {
+    return "€" + Number(val).toFixed(2);
+  }
+
+  function updateExtraCard(label) {
+    const check = label.querySelector(".js-extra-check");
+    const qtyWrap = label.querySelector(".js-extra-qty-wrap");
+
+    if (check.checked) {
+      label.classList.add("is-selected");
+      if (qtyWrap) qtyWrap.style.display = "flex";
+    } else {
+      label.classList.remove("is-selected");
+      if (qtyWrap) qtyWrap.style.display = "none";
+    }
+  }
+
+  function getSelectedExtras() {
+    const selected = [];
+
+    checks.forEach((check) => {
+      const label = check.closest(".extraOption");
+      const qtyInput = label ? label.querySelector(".js-extra-qty") : null;
+      const qty = qtyInput ? parseInt(qtyInput.value, 10) || 1 : 1;
+      const price = parseFloat(check.getAttribute("data-price") || "0");
+      const extraId = check.value || "";
+      const titleEl = label ? label.querySelector(".extraOption__title") : null;
+      const title = titleEl ? titleEl.textContent.trim() : "";
+
+      if (check.checked) {
+        selected.push({
+          id: extraId,
+          name: title,
+          qty: qty,
+          price: price,
+          total: price * qty
+        });
+      }
+    });
+
+    return selected;
+  }
+
+  function updatePostFields(extrasTotal, grandTotal) {
+    if (postRentalAmount) postRentalAmount.value = Number(rentalAmount).toFixed(2);
+    if (postSecurityDeposit) postSecurityDeposit.value = Number(securityDeposit).toFixed(2);
+    if (postExtrasTotal) postExtrasTotal.value = Number(extrasTotal).toFixed(2);
+    if (postGrandTotal) postGrandTotal.value = Number(grandTotal).toFixed(2);
+    if (postExtras) postExtras.value = JSON.stringify(getSelectedExtras());
+  }
+
+  function calcTotals() {
+    let extrasTotal = 0;
+
+    checks.forEach((check) => {
+      const label = check.closest(".extraOption");
+      const qtyInput = label.querySelector(".js-extra-qty");
+      const qty = qtyInput ? parseInt(qtyInput.value, 10) || 1 : 1;
+      const price = parseFloat(check.getAttribute("data-price") || "0");
+
+      if (check.checked) {
+        extrasTotal += price * qty;
+      }
+
+      updateExtraCard(label);
+    });
+
+    if (extrasTotal > 0) {
+      extrasSummary.style.display = "";
+      extrasTotalEl.textContent = money(extrasTotal);
+    } else {
+      extrasSummary.style.display = "none";
+      extrasTotalEl.textContent = money(0);
+    }
+
+    const grandTotal = baseTotal + extrasTotal;
+    grandTotalEl.textContent = money(grandTotal);
+
+    updatePostFields(extrasTotal, grandTotal);
+  }
+
+  checks.forEach((check) => {
+    check.addEventListener("change", calcTotals);
+
+    const label = check.closest(".extraOption");
+    const minusBtn = label.querySelector(".js-extra-minus");
+    const plusBtn = label.querySelector(".js-extra-plus");
+    const qtyInput = label.querySelector(".js-extra-qty");
+
+    if (minusBtn && qtyInput) {
+      minusBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        let val = parseInt(qtyInput.value, 10) || 1;
+        val = Math.max(1, val - 1);
+        qtyInput.value = val;
+        calcTotals();
+      });
+    }
+
+    if (plusBtn && qtyInput) {
+      plusBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        let val = parseInt(qtyInput.value, 10) || 1;
+        if (val < 3) {
+          qtyInput.value = val + 1;
+          calcTotals();
+        }
+      });
+    }
+  });
+
+  calcTotals();
+});
+</script>\';
+
+$out .= \'<script>
+function openVehicleInfoModal() {
+  var modal = document.getElementById("vehicleInfoModal");
+  if (!modal) return;
+  modal.classList.add("is-active");
+  modal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+}
+
+function closeVehicleInfoModal() {
+  var modal = document.getElementById("vehicleInfoModal");
+  if (!modal) return;
+  modal.classList.remove("is-active");
+  modal.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+}
+
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Escape") {
+    closeVehicleInfoModal();
+  }
+});
+</script>\';
+$out .= \'<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const modal = document.getElementById("rentalConditionsModal");
+  const openBtn = document.getElementById("openRentalConditions");
+  const closeBtns = modal ? modal.querySelectorAll("[data-close-modal]") : [];
+
+  function openModal() {
+    if (!modal) return;
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeModal() {
+    if (!modal) return;
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+
+  if (openBtn) {
+    openBtn.addEventListener("click", openModal);
+  }
+
+  closeBtns.forEach((btn) => {
+    btn.addEventListener("click", closeModal);
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      closeModal();
+    }
+  });
+});
+</script>\';
+
+$out .= \'<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const checks = document.querySelectorAll(".js-extra-check");
+  const extrasSummary = document.getElementById("js-extras-summary");
+  const extrasTotalEl = document.getElementById("js-extras-total");
+  const grandTotalEl = document.getElementById("js-grand-total");
+  const baseTotal = \' . json_encode((float)($baseTotal !== \'\' ? $baseTotal : 0)) . \';
+
+  function money(val) {
+    return "€" + Number(val).toFixed(2);
+  }
+
+  function updateExtraCard(label) {
+    const check = label.querySelector(".js-extra-check");
+    const qtyWrap = label.querySelector(".js-extra-qty-wrap");
+    if (check.checked) {
+      label.classList.add("is-selected");
+      if (qtyWrap) qtyWrap.style.display = "flex";
+    } else {
+      label.classList.remove("is-selected");
+      if (qtyWrap) qtyWrap.style.display = "none";
+    }
+  }
+
+  function calcTotals() {
+    let extrasTotal = 0;
+
+    checks.forEach((check) => {
+      const label = check.closest(".extraOption");
+      const qtyInput = label.querySelector(".js-extra-qty");
+      const qty = qtyInput ? parseInt(qtyInput.value, 10) || 1 : 1;
+      const price = parseFloat(check.getAttribute("data-price") || "0");
+
+      if (check.checked) {
+        extrasTotal += price * qty;
+      }
+
+      updateExtraCard(label);
+    });
+
+    if (extrasTotal > 0) {
+      extrasSummary.style.display = "";
+      extrasTotalEl.textContent = money(extrasTotal);
+    } else {
+      extrasSummary.style.display = "none";
+      extrasTotalEl.textContent = money(0);
+    }
+
+    grandTotalEl.textContent = money(baseTotal + extrasTotal);
+  }
+
+  checks.forEach((check) => {
+    check.addEventListener("change", calcTotals);
+
+    const label = check.closest(".extraOption");
+    const minusBtn = label.querySelector(".js-extra-minus");
+    const plusBtn = label.querySelector(".js-extra-plus");
+    const qtyInput = label.querySelector(".js-extra-qty");
+
+    if (minusBtn && qtyInput) {
+      minusBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        let val = parseInt(qtyInput.value, 10) || 1;
+        val = Math.max(1, val - 1);
+        qtyInput.value = val;
+        calcTotals();
+      });
+    }
+
+    if (plusBtn && qtyInput) {
+      plusBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        let val = parseInt(qtyInput.value, 10) || 1;
+        if (val < 3) {
+          qtyInput.value = val + 1;
+          calcTotals();
+        }
+      });
+    }
+  });
+
+  calcTotals();
+});
+</script>\';
+
+return $out;',
+          'locked' => false,
+          'properties' => 
+          array (
+          ),
+          'moduleguid' => '',
+          'static' => false,
+          'static_file' => '',
+          'content' => 'require "assets/includes/db_connect.php";
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+/**
+ * Save selected vehicle from POST
+ */
+if ($_SERVER[\'REQUEST_METHOD\'] === \'POST\') {
+    if (isset($_POST[\'vehicle_id\']) || isset($_POST[\'car_code\'])) {
+        $_SESSION[\'selected_vehicle\'] = [
+            \'vehicle_id\' => trim($_POST[\'vehicle_id\'] ?? \'\'),
+            \'car_code\'   => trim($_POST[\'car_code\'] ?? \'\'),
+        ];
+    }
+}
+
+$selectedVehicle = $_SESSION[\'selected_vehicle\'] ?? [];
+$search          = $_SESSION[\'rent_search\'] ?? [];
+
+$discountRaw = trim($_SESSION[\'rent_discount\'] ?? \'\');
+$discountPercent = 0;
+
+if ($discountRaw !== \'\') {
+    $discountPercent = (int)preg_replace(\'/[^0-9]/\', \'\', $discountRaw);
+}
+
+$vehicleId = isset($selectedVehicle[\'vehicle_id\']) ? (int)$selectedVehicle[\'vehicle_id\'] : 0;
+$carCode   = trim($selectedVehicle[\'car_code\'] ?? \'\');
+
+$pickupDateTime  = trim($search[\'pickup_datetime\'] ?? \'\');
+$dropoffDateTime = trim($search[\'dropoff_datetime\'] ?? \'\');
+$pickupLocation  = trim($search[\'pickup_location\'] ?? \'\');
+$dropoffLocation = trim($search[\'dropoff_location\'] ?? \'\');
+
+// if dropoff is empty, use pickup location
+if ($dropoffLocation === \'\') {
+    $dropoffLocation = $pickupLocation;
+}
+
+if ($vehicleId <= 0 && $carCode === \'\') {
+    return \'<p>Vehicle not selected.</p>\';
+}
+
+$pickupDate  = ($pickupDateTime !== \'\' && strtotime($pickupDateTime)) ? date(\'Y-m-d\', strtotime($pickupDateTime)) : \'\';
+$dropoffDate = ($dropoffDateTime !== \'\' && strtotime($dropoffDateTime)) ? date(\'Y-m-d\', strtotime($dropoffDateTime)) : \'\';
+
+$days = 0;
+if ($pickupDate && $dropoffDate) {
+    $start = strtotime($pickupDate);
+    $end   = strtotime($dropoffDate);
+
+    if ($start && $end && $end >= $start) {
+        $days = max(1, (int)(($end - $start) / 86400) + 1);
+    }
+}
+
+$where = [];
+$params = [];
+
+if ($vehicleId > 0) {
+    $where[] = "v.id = :vehicle_id";
+    $params[\':vehicle_id\'] = $vehicleId;
+} elseif ($carCode !== \'\') {
+    $where[] = "v.car_code = :car_code";
+    $params[\':car_code\'] = $carCode;
+}
+
+$sql = "SELECT
+          v.id,
+          v.image,
+          v.car_model,
+          v.car_category,
+          v.car_code,
+          v.pax_count,
+          v.luggage_count,
+          v.transmission_type,
+          v.deposit_amount
+        FROM vehicles v
+        LEFT JOIN car_rental r
+          ON r.car_code = v.car_code
+         AND :pickup_date >= DATE(r.start_date)
+         AND :dropoff_date <= DATE(r.end_date)
+        WHERE " . implode(\' AND \', $where) . "
+        LIMIT 1";
+
+$stmt = $modx->prepare($sql);
+if (!$stmt) return \'<p>Could not prepare deal query.</p>\';
+
+$stmt->bindValue(\':pickup_date\', $pickupDate, PDO::PARAM_STR);
+$stmt->bindValue(\':dropoff_date\', $dropoffDate, PDO::PARAM_STR);
+
+foreach ($params as $key => $value) {
+    if ($key === \':vehicle_id\') {
+        $stmt->bindValue($key, $value, PDO::PARAM_INT);
+    } else {
+        $stmt->bindValue($key, $value, PDO::PARAM_STR);
+    }
+}
+
+if (!$stmt->execute()) {
+    $error = $stmt->errorInfo();
+    return \'<p>Could not load deal: \' . htmlspecialchars($error[2]) . \'</p>\';
+}
+
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
+if (!$row) return \'<p>Vehicle deal not found.</p>\';
+
+if (!function_exists(\'step2CalculatePrice\')) {
+    function step2CalculatePrice($modx, $carCode, $pickupDate, $dropoffDate) {
+        if (!$carCode || !$pickupDate || !$dropoffDate) return \'\';
+
+        $start = strtotime($pickupDate);
+        $end   = strtotime($dropoffDate);
+        if (!$start || !$end || $end < $start) return \'\';
+
+        $days = max(1, (int)(($end - $start) / 86400) + 1);
+
+        $sql = "SELECT duration, rate
+                FROM car_rental
+                WHERE car_code = :car_code
+                  AND :pickup_date >= DATE(start_date)
+                  AND :dropoff_date <= DATE(end_date)
+                ORDER BY duration ASC";
+
+        $stmt = $modx->prepare($sql);
+        if (!$stmt) return \'\';
+
+        $stmt->bindValue(\':car_code\', $carCode, PDO::PARAM_STR);
+        $stmt->bindValue(\':pickup_date\', $pickupDate, PDO::PARAM_STR);
+        $stmt->bindValue(\':dropoff_date\', $dropoffDate, PDO::PARAM_STR);
+
+        if (!$stmt->execute()) return \'\';
+
+        $rates = [];
+        foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $r) {
+            $duration = (int)($r[\'duration\'] ?? 0);
+            $rate     = (float)($r[\'rate\'] ?? 0);
+
+            if ($duration > 0) {
+                $rates[$duration] = $rate;
+            }
+        }
+
+        if (!$rates) return \'\';
+
+        ksort($rates);
+
+        $maxDuration = max(array_keys($rates));
+        $lastRate    = (float)$rates[$maxDuration];
+        $total       = 0.0;
+
+        for ($d = 1; $d <= $days; $d++) {
+            if (isset($rates[$d])) {
+                $total += (float)$rates[$d];
+            } elseif ($d > $maxDuration) {
+                $total += $lastRate;
+            } else {
+                // missing duration between 1 and max duration
+                return \'\';
+            }
+        }
+
+        return number_format($total, 2, \'.\', \'\');
+    }
+}
+
+$amount = step2CalculatePrice($modx, $row[\'car_code\'], $pickupDate, $dropoffDate);
+
+$originalAmount = $amount !== \'\' ? (float)$amount : 0.00;
+$discountedAmount = $originalAmount;
+
+if ($discountPercent > 0 && $originalAmount > 0) {
+    $discountedAmount = $originalAmount - (($originalAmount * $discountPercent) / 100);
+}
+
+$displayOriginalAmount = $originalAmount > 0 ? number_format($originalAmount, 2, \'.\', \'\') : \'\';
+$displayDiscountedAmount = $discountedAmount > 0 ? number_format($discountedAmount, 2, \'.\', \'\') : \'\';
+
+$securityDeposit = isset($row[\'deposit_amount\']) && $row[\'deposit_amount\'] !== \'\'
+    ? number_format((float)$row[\'deposit_amount\'], 2, \'.\', \'\')
+    : \'\';
+
+$baseTotal = $displayDiscountedAmount !== \'\'
+    ? number_format((float)$displayDiscountedAmount, 2, \'.\', \'\')
+    : \'\';
+
+
+$pickupText = $pickupDateTime && strtotime($pickupDateTime) ? date(\'d M Y, H:i\', strtotime($pickupDateTime)) : \'\';
+$dropoffText = $dropoffDateTime && strtotime($dropoffDateTime) ? date(\'d M Y, H:i\', strtotime($dropoffDateTime)) : \'\';
+
+$extras = [];
+$extraStmt = $modx->prepare("SELECT extra_id, name, description, price FROM extras ORDER BY extra_id ASC");
+if ($extraStmt && $extraStmt->execute()) {
+    $extras = $extraStmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+$out = \'\';
+$out .= \'<div class="premiumDealLayout">\';
+
+$out .= \'  <div class="premiumDealLayout__main">\';
+
+$out .= \'    <div class="premiumDealCard premiumDealCard--hero">\';
+if ($discountPercent > 0) {
+    $out .= \'      <div class="premiumDiscountNotice">\';
+    $out .= \'        <span class="premiumDiscountNotice__badge">Discount Applied</span>\';
+    $out .= \'        <span class="premiumDiscountNotice__text">\' . htmlspecialchars($discountRaw, ENT_QUOTES, \'UTF-8\') . \' offer is active for this booking.</span>\';
+    $out .= \'      </div>\';
+}
+
+$out .= \'      <div class="premiumDealCard__badges">\';
+$out .= \'        <span class="premiumBadge premiumBadge--gold">Excellent service</span>\';
+$out .= \'        <span class="premiumBadge premiumBadge--blue">Pay part now</span>\';
+$out .= \'      </div>\';
+
+$out .= \'      <div class="premiumDealHero">\';
+$out .= \'        <div class="premiumDealHero__left">\';
+$out .= \'          <div class="premiumDealHero__titleRow">\';
+$out .= \'            <h2 class="premiumDealHero__title">\' . htmlspecialchars($row[\'car_model\']) . \'</h2>\';
+$out .= \'          </div>\';
+
+$out .= \'          <div class="premiumDealHero__subtitleWrap">\';
+$out .= \'             <div class="premiumDealHero__subtitle">or similar \' . htmlspecialchars($row[\'car_category\']) . \'</div>\';
+$out .= \'             <div class="premiumInfoTooltip">\';
+$out .= \'                 <button type="button" class="premiumInfoTrigger" aria-label="Vehicle availability information">\';
+$out .= \'                     <img src="assets/images/information.svg" alt="Info" class="premiumInfoIcon">\';
+$out .= \'                 </button>\';
+
+$out .= \'                 <div class="premiumTooltipBox">\';
+$out .= \'                     <strong class="mb-3">What does "or similar" mean?</strong>\';
+$out .= \'                     <p>If the exact model isn’t available, you’ll get a car in the same category that’s the same size and has the same number of doors, transmission type, and features. This is standard for most car rental suppliers.</p>\';
+$out .= \'                 </div>\';
+
+$out .= \'             </div>\';
+$out .= \'          </div>\';
+$out .= \'          <div class="premiumSpecs">\';
+$out .= \'            <span class="premiumSpecs__item">\' . htmlspecialchars($row[\'transmission_type\'] ?: \'Manual\') . \'</span>\';
+$out .= \'            <span class="premiumSpecs__item">\' . (int)$row[\'pax_count\'] . \' Seats</span>\';
+$out .= \'            <span class="premiumSpecs__item">\' . (int)$row[\'luggage_count\'] . \' Luggages</span>\';
+$out .= \'            <span class="premiumSpecs__item">Air Conditioning</span>\';
+$out .= \'          </div>\';
+
+$out .= \'          <div class="premiumBookingMeta">\';
+if ($pickupLocation !== \'\') {
+    $out .= \'            <div><strong>Pick-up:</strong> \' . htmlspecialchars($pickupLocation) . ($pickupText ? \' <span class="premiumMuted">(\' . htmlspecialchars($pickupText) . \')</span>\' : \'\') . \'</div>\';
+}
+if ($dropoffLocation !== \'\') {
+    $out .= \'            <div><strong>Drop-off:</strong> \' . htmlspecialchars($dropoffLocation) . ($dropoffText ? \' <span class="premiumMuted">(\' . htmlspecialchars($dropoffText) . \')</span>\' : \'\') . \'</div>\';
+}
+$out .= \'          </div>\';
+$out .= \'        </div>\';
+
+$out .= \'        <div class="premiumDealHero__right">\';
+$out .= \'          <img src="\' . htmlspecialchars($row[\'image\']) . \'" alt="\' . htmlspecialchars($row[\'car_model\']) . \'" class="premiumDealHero__image">\';
+$out .= \'        </div>\';
+$out .= \'      </div>\';
+$out .= \'    </div>\';
+
+$out .= \'    <div class="premiumDealCard">\';
+$out .= \'      <h3 class="premiumSectionTitle">Included in your offer</h3>\';
+$out .= \'      <ul class="premiumIncludedList">\';
+$out .= \'        <li>Unlimited mileage</li>\';
+$out .= \'        <li>Theft Protection</li>\';
+$out .= \'        <li>Third Party Liability (TPL)</li>\';
+$out .= \'      </ul>\';
+$out .= \'    </div>\';
+
+$out .= \'    <div class="premiumDealCard premiumDealCard--soft">\';
+$out .= \'      <div class="premiumCoverageBanner">\';
+$out .= \'        <div class="premiumCoverageBanner__text">\';
+$out .= \'          <strong>Add coverage in the next step...</strong><br>\';
+$out .= \'        </div>\';
+$out .= \'        <div class="premiumCoverageBanner__icon">🛡️</div>\';
+$out .= \'      </div>\';
+$out .= \'    </div>\';
+
+$out .= \'    <div class="premiumDealCard">\';
+$out .= \'      <div class="premiumInfoBlock">\';
+$out .= \'        <h3 class="premiumSectionTitle premiumSectionTitle--sm">Important to know</h3>\';
+$out .= \'        <ul class="premiumInfoList">\';
+$out .= \'          <li>There is a security deposit of EUR 700</li>\';
+$out .= \'          <li>The supplier will hold/charge a deposit on the main driver&#39;s credit card at pick-up. If no charges are incurred after the rental, it will be released.</li>\';
+$out .= \'        </ul>\';
+$out .= \'      </div>\';
+
+$out .= \'      <div class="premiumInfoBlock">\';
+$out .= \'        <h3 class="premiumSectionTitle premiumSectionTitle--sm">Bring your documents</h3>\';
+$out .= \'        <ul class="premiumInfoList">\';
+$out .= \'          <li>Passport or ID card</li>\';
+$out .= \'          <li>Driver&#39;s license</li>\';
+$out .= \'        </ul>\';
+$out .= \'      </div>\';
+
+$out .= \'      <div class="premiumInfoBlock">\';
+$out .= \'        <h3 class="premiumSectionTitle premiumSectionTitle--sm">Car has unlimited mileage</h3>\';
+$out .= \'        <ul class="premiumInfoList">\';
+$out .= \'          <li>There is no limit on how many kilometers/miles can be traveled.</li>\';
+$out .= \'        </ul>\';
+$out .= \'      </div>\';
+
+$out .= \'      <button type="button" class="premiumConditionsBtn" id="openRentalConditions">See all rental conditions</button>\';
+$out .= \'    </div>\';
+
+$out .= \'    <div class="rentalModal" id="rentalConditionsModal" aria-hidden="true">\';
+$out .= \'      <div class="rentalModal__backdrop" data-close-modal></div>\';
+$out .= \'      <div class="rentalModal__dialog" role="dialog" aria-modal="true" aria-labelledby="rentalConditionsTitle">\';
+$out .= \'        <button type="button" class="rentalModal__close" data-close-modal aria-label="Close">×</button>\';
+$out .= \'        <h3 class="rentalModal__title" id="rentalConditionsTitle">Rental conditions</h3>\';
+$out .= \'        <div class="rentalModal__content">\';
+
+$out .= \'          <div class="rentalModal__section">\';
+$out .= \'            <h4>Deposit and payment cards</h4>\';
+
+$out .= \'            <h5>Security deposit</h5>\';
+$out .= \'            <p>The supplier will hold a deposit of € 700.00 on your card when you pick up the car. If no charges are incurred after the rental, it will be released.</p>\';
+
+$out .= \'            <h5>Payment card</h5>\';
+$out .= \'            <p>You’ll need a credit card in the main driver’s full name at pick-up for payment and any required deposit.</p>\';
+
+$out .= \'            <h5>Accepted cards</h5>\';
+$out .= \'            <ul>\';
+$out .= \'              <li>American Express Credit</li>\';
+$out .= \'              <li>Visa Credit</li>\';
+$out .= \'              <li>MasterCard Credit</li>\';
+$out .= \'            </ul>\';
+
+$out .= \'            <h5>Not accepted</h5>\';
+$out .= \'            <ul>\';
+$out .= \'              <li>Debit cards</li>\';
+$out .= \'              <li>Cards not in main driver&#39;s name or without numbers</li>\';
+$out .= \'              <li>Virtual cards on your phone (e.g., Google Pay, Apple Pay, etc.)</li>\';
+$out .= \'              <li>Visa Electron</li>\';
+$out .= \'              <li>Cards issued by online-only banks</li>\';
+$out .= \'            </ul>\';
+
+$out .= \'            <h5>Please note</h5>\';
+$out .= \'            <p>The card must have the number printed on it. The card must have chip and PIN capability.</p>\';
+$out .= \'          </div>\';
+
+$out .= \'          <div class="rentalModal__section">\';
+$out .= \'            <h4>Included protection</h4>\';
+$out .= \'            <p><strong>€ 700.00 excess / deductible</strong></p>\';
+
+$out .= \'            <h5>Included insurance</h5>\';
+
+$out .= \'            <h5>Collision Damage Waiver</h5>\';
+$out .= \'            <p><strong>Deductible:</strong> € 700.00</p>\';
+$out .= \'            <p>You&#39;ll have to pay at most the deductible if the car&#39;s bodywork is damaged (other parts of the car aren&#39;t covered).</p>\';
+
+$out .= \'            <h5>Theft Protection</h5>\';
+$out .= \'            <p>You&#39;ll have to pay at most the deductible if the car is stolen.</p>\';
+
+$out .= \'            <h5>Third Party Liability (TPL)</h5>\';
+$out .= \'            <p><strong>No limit</strong></p>\';
+$out .= \'            <p>Mandatory coverage for injuries and damage you may cause to others while driving the car.</p>\';
+$out .= \'          </div>\';
+
+$out .= \'          <div class="rentalModal__section">\';
+$out .= \'            <h4>Fuel policy</h4>\';
+$out .= \'            <p><strong>Full to full</strong></p>\';
+$out .= \'            <p>The vehicle is provided with a full tank of fuel and must be returned with the same amount in order to avoid additional charges.</p>\';
+$out .= \'          </div>\';
+
+$out .= \'          <div class="rentalModal__section">\';
+$out .= \'            <h4>Mileage</h4>\';
+$out .= \'            <p><strong>Unlimited mileage</strong></p>\';
+$out .= \'            <p>There is no limit on how many kilometers/miles can be traveled.</p>\';
+$out .= \'          </div>\';
+
+$out .= \'          <div class="rentalModal__section">\';
+$out .= \'            <h4>Driver Requirements</h4>\';
+$out .= \'            <ul>\';
+$out .= \'              <li>Minimum rental age is 21 years.</li>\';
+$out .= \'              <li>A young driver fee applies to drivers under the age of 25.</li>\';
+$out .= \'              <li>There is no maximum age.</li>\';
+$out .= \'              <li>A Senior driver fee is not applied.</li>\';
+$out .= \'              <li>The driver license must have been issued by authorized authorities at least 2 year(s) before the date of the commencement of the rental.</li>\';
+$out .= \'              <li>A driver license printed using a non-Roman alphabet (Arabic, Japanese, Cyrillic, etc) must be supplemented by an International Driving Permit.</li>\';
+$out .= \'              <li>Please note that the International Driving Permit is valid only if it is accompanied by a regular driver&#39;s license, is issued by an official authority or government-authorized organization, and is in physical (not digital) form.</li>\';
+$out .= \'              <li>Licences issued in China are not accepted.</li>\';
+$out .= \'              <li>In order to pick up the car, the following documents are required: passport, valid driver license, credit card on a main driver&#39;s name, booking voucher.</li>\';
+$out .= \'            </ul>\';
+$out .= \'          </div>\';
+
+$out .= \'        </div>\';
+$out .= \'      </div>\';
+$out .= \'    </div>\';
+
+$out .= \'  </div>\';
+
+$out .= \'  <aside class="premiumDealLayout__sidebar">\';
+$out .= \'    <div class="premiumSummaryCard">\';
+
+$out .= \'      <div class="premiumSummaryCard__block">\';
+$out .= \'        <div class="premiumSummaryRow">\';
+$out .= \'          <span>Rental Payment</span>\';
+
+if ($discountPercent > 0 && $displayOriginalAmount !== \'\' && $displayDiscountedAmount !== \'\') {
+    $out .= \'      <strong id="js-rental-payment">\';
+    $out .= \'        <span style="display:block; text-decoration:line-through; color:#999 !important; font-size:14px; text-align: end;">€ \' . $displayOriginalAmount . \'</span>\';
+    $out .= \'        <span style="display:block; color:#d62828; font-size:22px; font-weight:700;">€ \' . $displayDiscountedAmount . \'</span>\';
+    $out .= \'      </strong>\';
+} else {
+    $out .= \'      <strong id="js-rental-payment">\' . ($displayDiscountedAmount !== \'\' ? \'€ \' . $displayDiscountedAmount : \'N/A\') . \'</strong>\';
+}
+
+$out .= \'        </div>\';
+$out .= \'      </div>\';
+
+// $out .= \'      <div class="premiumSummaryCard__block">\';
+// $out .= \'        <div class="premiumSummaryRow">\';
+// $out .= \'          <span>Security Deposit</span>\';
+// $out .= \'          <strong id="js-security-deposit">\' . ($securityDeposit !== \'\' ? \'€\' . $securityDeposit : \'N/A\') . \'</strong>\';
+// $out .= \'        </div>\';
+// $out .= \'      </div>\';
+
+if ($extras) {
+    $out .= \'      <div class="premiumSummaryCard__block premiumSummaryCard__extras">\';
+    $out .= \'        <div class="premiumSummaryCard__heading">Optional extras</div>\';
+    $out .= \'        <div class="extrasList">\';
+
+    foreach ($extras as $extra) {
+        $extraId = (int)$extra[\'extra_id\'];
+        $extraName = htmlspecialchars($extra[\'name\'] ?? \'\');
+        $extraDescription = trim((string)($extra[\'description\'] ?? \'\'));
+        $extraPrice = number_format((float)($extra[\'price\'] ?? 0), 2, \'.\', \'\');
+
+        $out .= \'          <label class="extraOption" data-extra-id="\' . $extraId . \'">\';
+        $out .= \'            <input type="checkbox" class="extraOption__checkbox js-extra-check" value="\' . $extraId . \'" data-price="\' . $extraPrice . \'">\';
+        $out .= \'            <div class="extraOption__main">\';
+        $out .= \'              <div class="extraOption__checkWrap">\';
+        $out .= \'                <span class="extraOption__fakebox"></span>\';
+        $out .= \'              </div>\';
+
+        $out .= \'              <div class="extraOption__info">\';
+        $out .= \'                <div class="extraOption__title">\' . $extraName . ($extraDescription !== \'\' ? \' <span class="extraOption__descInline">(\' . htmlspecialchars($extraDescription) . \')</span>\' : \'\') . \'</div>\';
+        $out .= \'                <div class="extraOption__price">€\' . $extraPrice . \' for rental period</div>\';
+        $out .= \'              </div>\';
+
+        $out .= \'              <div class="extraOption__actions">\';
+        $out .= \'                <div class="extraQty js-extra-qty-wrap" style="display:none;">\';
+        $out .= \'                  <button type="button" class="extraQty__btn js-extra-minus" aria-label="Decrease">−</button>\';
+        $out .= \'                  <input type="text" class="extraQty__input js-extra-qty" value="1" readonly>\';
+        $out .= \'                  <button type="button" class="extraQty__btn js-extra-plus" aria-label="Increase">+</button>\';
+        $out .= \'                </div>\';
+        $out .= \'              </div>\';
+        $out .= \'            </div>\';
+        $out .= \'          </label>\';
+    }
+
+    $out .= \'        </div>\';
+    $out .= \'        <p class="extrasNote">Please note that prices and availability of optional extras are fully controlled by the rental supplier and that prices are subject to change. Those listed here are to be used as a guide only.</p>\';
+    $out .= \'      </div>\';
+}
+
+$out .= \'      <div class="premiumSummaryCard__block" id="js-extras-summary" style="display:none;">\';
+$out .= \'        <div class="premiumSummaryRow">\';
+$out .= \'          <span>Optional Extras</span>\';
+$out .= \'          <strong id="js-extras-total">€0.00</strong>\';
+$out .= \'        </div>\';
+$out .= \'      </div>\';
+
+$out .= \'      <div class="premiumSummaryCard__total">\';
+$out .= \'        <span>Total for \' . (int)$days . \' \' . ($days === 1 ? \'day\' : \'days\') . \'</span>\';
+$out .= \'        <strong id="js-grand-total">\' . ($baseTotal !== \'\' ? \'€\' . $baseTotal : \'Rate not available\') . \'</strong>\';
+$out .= \'      </div>\';
+
+$out .= \'      <div class="premiumPriceAlert">\';
+$out .= \'        <strong>Don’t miss out!</strong> Prices are currently lower than usual.<br>\';
+$out .= \'        Book now and save more.\';
+$out .= \'      </div>\';
+
+$step3Link = $modx->makeUrl(43, \'\', [
+    \'vehicle_id\'       => $vehicleId,
+    \'car_code\'         => $carCode,
+    \'pickup_datetime\'  => $pickupDateTime,
+    \'dropoff_datetime\' => $dropoffDateTime,
+    \'pickup_location\'  => $pickupLocation,
+    \'dropoff_location\' => $dropoffLocation,
+    \'days\'             => $days
+]);
+
+$step3Action = html_entity_decode($modx->makeUrl(43), ENT_QUOTES, \'UTF-8\');
+
+$out .= \'      <form action="\' . htmlspecialchars($step3Action, ENT_QUOTES, \'UTF-8\') . \'" method="post" id="js-step3-form">\';
+$out .= \'        <input type="hidden" name="vehicle_id" value="\' . (int)$vehicleId . \'">\';
+$out .= \'        <input type="hidden" name="car_code" value="\' . htmlspecialchars($carCode, ENT_QUOTES, \'UTF-8\') . \'">\';
+$out .= \'        <input type="hidden" name="pickup_datetime" value="\' . htmlspecialchars($pickupDateTime, ENT_QUOTES, \'UTF-8\') . \'">\';
+$out .= \'        <input type="hidden" name="dropoff_datetime" value="\' . htmlspecialchars($dropoffDateTime, ENT_QUOTES, \'UTF-8\') . \'">\';
+$out .= \'        <input type="hidden" name="pickup_location" value="\' . htmlspecialchars($pickupLocation, ENT_QUOTES, \'UTF-8\') . \'">\';
+$out .= \'        <input type="hidden" name="dropoff_location" value="\' . htmlspecialchars($dropoffLocation, ENT_QUOTES, \'UTF-8\') . \'">\';
+$out .= \'        <input type="hidden" name="days" value="\' . (int)$days . \'">\';
+$out .= \'        <input type="hidden" name="rental_amount" id="js-post-rental-amount" value="\' . htmlspecialchars($amount !== \'\' ? $amount : \'0.00\', ENT_QUOTES, \'UTF-8\') . \'">\';
+$out .= \'        <input type="hidden" name="security_deposit" id="js-post-security-deposit" value="\' . htmlspecialchars($securityDeposit !== \'\' ? $securityDeposit : \'0.00\', ENT_QUOTES, \'UTF-8\') . \'">\';
+$out .= \'        <input type="hidden" name="extras_total" id="js-post-extras-total" value="0.00">\';
+$out .= \'        <input type="hidden" name="grand_total" id="js-post-grand-total" value="\' . htmlspecialchars($baseTotal !== \'\' ? $baseTotal : \'0.00\', ENT_QUOTES, \'UTF-8\') . \'">\';
+$out .= \'        <input type="hidden" name="extras" id="js-post-extras" value="">\';
+$out .= \'        <button type="submit" class="premiumContinueBtn" id="js-step3-submit">Continue to coverage</button>\';
+$out .= \'      </form>\';
+
+$out .= \'    </div>\';
+$out .= \'  </aside>\';
+
+$out .= \'</div>\';
+
+
+$out .= \'<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const checks = document.querySelectorAll(".js-extra-check");
+  const extrasSummary = document.getElementById("js-extras-summary");
+  const extrasTotalEl = document.getElementById("js-extras-total");
+  const grandTotalEl = document.getElementById("js-grand-total");
+
+  const postRentalAmount = document.getElementById("js-post-rental-amount");
+  const postSecurityDeposit = document.getElementById("js-post-security-deposit");
+  const postExtrasTotal = document.getElementById("js-post-extras-total");
+  const postGrandTotal = document.getElementById("js-post-grand-total");
+  const postExtras = document.getElementById("js-post-extras");
+
+const baseTotal = \' . json_encode((float)($baseTotal !== \'\' ? $baseTotal : 0)) . \';
+const rentalAmount = \' . json_encode((float)($displayDiscountedAmount !== \'\' ? $displayDiscountedAmount : 0)) . \';
+  const securityDeposit = \' . json_encode((float)($securityDeposit !== \'\' ? $securityDeposit : 0)) . \';
+
+  function money(val) {
+    return "€" + Number(val).toFixed(2);
+  }
+
+  function updateExtraCard(label) {
+    const check = label.querySelector(".js-extra-check");
+    const qtyWrap = label.querySelector(".js-extra-qty-wrap");
+
+    if (check.checked) {
+      label.classList.add("is-selected");
+      if (qtyWrap) qtyWrap.style.display = "flex";
+    } else {
+      label.classList.remove("is-selected");
+      if (qtyWrap) qtyWrap.style.display = "none";
+    }
+  }
+
+  function getSelectedExtras() {
+    const selected = [];
+
+    checks.forEach((check) => {
+      const label = check.closest(".extraOption");
+      const qtyInput = label ? label.querySelector(".js-extra-qty") : null;
+      const qty = qtyInput ? parseInt(qtyInput.value, 10) || 1 : 1;
+      const price = parseFloat(check.getAttribute("data-price") || "0");
+      const extraId = check.value || "";
+      const titleEl = label ? label.querySelector(".extraOption__title") : null;
+      const title = titleEl ? titleEl.textContent.trim() : "";
+
+      if (check.checked) {
+        selected.push({
+          id: extraId,
+          name: title,
+          qty: qty,
+          price: price,
+          total: price * qty
+        });
+      }
+    });
+
+    return selected;
+  }
+
+  function updatePostFields(extrasTotal, grandTotal) {
+    if (postRentalAmount) postRentalAmount.value = Number(rentalAmount).toFixed(2);
+    if (postSecurityDeposit) postSecurityDeposit.value = Number(securityDeposit).toFixed(2);
+    if (postExtrasTotal) postExtrasTotal.value = Number(extrasTotal).toFixed(2);
+    if (postGrandTotal) postGrandTotal.value = Number(grandTotal).toFixed(2);
+    if (postExtras) postExtras.value = JSON.stringify(getSelectedExtras());
+  }
+
+  function calcTotals() {
+    let extrasTotal = 0;
+
+    checks.forEach((check) => {
+      const label = check.closest(".extraOption");
+      const qtyInput = label.querySelector(".js-extra-qty");
+      const qty = qtyInput ? parseInt(qtyInput.value, 10) || 1 : 1;
+      const price = parseFloat(check.getAttribute("data-price") || "0");
+
+      if (check.checked) {
+        extrasTotal += price * qty;
+      }
+
+      updateExtraCard(label);
+    });
+
+    if (extrasTotal > 0) {
+      extrasSummary.style.display = "";
+      extrasTotalEl.textContent = money(extrasTotal);
+    } else {
+      extrasSummary.style.display = "none";
+      extrasTotalEl.textContent = money(0);
+    }
+
+    const grandTotal = baseTotal + extrasTotal;
+    grandTotalEl.textContent = money(grandTotal);
+
+    updatePostFields(extrasTotal, grandTotal);
+  }
+
+  checks.forEach((check) => {
+    check.addEventListener("change", calcTotals);
+
+    const label = check.closest(".extraOption");
+    const minusBtn = label.querySelector(".js-extra-minus");
+    const plusBtn = label.querySelector(".js-extra-plus");
+    const qtyInput = label.querySelector(".js-extra-qty");
+
+    if (minusBtn && qtyInput) {
+      minusBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        let val = parseInt(qtyInput.value, 10) || 1;
+        val = Math.max(1, val - 1);
+        qtyInput.value = val;
+        calcTotals();
+      });
+    }
+
+    if (plusBtn && qtyInput) {
+      plusBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        let val = parseInt(qtyInput.value, 10) || 1;
+        if (val < 3) {
+          qtyInput.value = val + 1;
+          calcTotals();
+        }
+      });
+    }
+  });
+
+  calcTotals();
+});
+</script>\';
+
+$out .= \'<script>
+function openVehicleInfoModal() {
+  var modal = document.getElementById("vehicleInfoModal");
+  if (!modal) return;
+  modal.classList.add("is-active");
+  modal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+}
+
+function closeVehicleInfoModal() {
+  var modal = document.getElementById("vehicleInfoModal");
+  if (!modal) return;
+  modal.classList.remove("is-active");
+  modal.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+}
+
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Escape") {
+    closeVehicleInfoModal();
+  }
+});
+</script>\';
+$out .= \'<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const modal = document.getElementById("rentalConditionsModal");
+  const openBtn = document.getElementById("openRentalConditions");
+  const closeBtns = modal ? modal.querySelectorAll("[data-close-modal]") : [];
+
+  function openModal() {
+    if (!modal) return;
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeModal() {
+    if (!modal) return;
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+
+  if (openBtn) {
+    openBtn.addEventListener("click", openModal);
+  }
+
+  closeBtns.forEach((btn) => {
+    btn.addEventListener("click", closeModal);
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      closeModal();
+    }
+  });
+});
+</script>\';
+
+$out .= \'<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const checks = document.querySelectorAll(".js-extra-check");
+  const extrasSummary = document.getElementById("js-extras-summary");
+  const extrasTotalEl = document.getElementById("js-extras-total");
+  const grandTotalEl = document.getElementById("js-grand-total");
+  const baseTotal = \' . json_encode((float)($baseTotal !== \'\' ? $baseTotal : 0)) . \';
+
+  function money(val) {
+    return "€" + Number(val).toFixed(2);
+  }
+
+  function updateExtraCard(label) {
+    const check = label.querySelector(".js-extra-check");
+    const qtyWrap = label.querySelector(".js-extra-qty-wrap");
+    if (check.checked) {
+      label.classList.add("is-selected");
+      if (qtyWrap) qtyWrap.style.display = "flex";
+    } else {
+      label.classList.remove("is-selected");
+      if (qtyWrap) qtyWrap.style.display = "none";
+    }
+  }
+
+  function calcTotals() {
+    let extrasTotal = 0;
+
+    checks.forEach((check) => {
+      const label = check.closest(".extraOption");
+      const qtyInput = label.querySelector(".js-extra-qty");
+      const qty = qtyInput ? parseInt(qtyInput.value, 10) || 1 : 1;
+      const price = parseFloat(check.getAttribute("data-price") || "0");
+
+      if (check.checked) {
+        extrasTotal += price * qty;
+      }
+
+      updateExtraCard(label);
+    });
+
+    if (extrasTotal > 0) {
+      extrasSummary.style.display = "";
+      extrasTotalEl.textContent = money(extrasTotal);
+    } else {
+      extrasSummary.style.display = "none";
+      extrasTotalEl.textContent = money(0);
+    }
+
+    grandTotalEl.textContent = money(baseTotal + extrasTotal);
+  }
+
+  checks.forEach((check) => {
+    check.addEventListener("change", calcTotals);
+
+    const label = check.closest(".extraOption");
+    const minusBtn = label.querySelector(".js-extra-minus");
+    const plusBtn = label.querySelector(".js-extra-plus");
+    const qtyInput = label.querySelector(".js-extra-qty");
+
+    if (minusBtn && qtyInput) {
+      minusBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        let val = parseInt(qtyInput.value, 10) || 1;
+        val = Math.max(1, val - 1);
+        qtyInput.value = val;
+        calcTotals();
+      });
+    }
+
+    if (plusBtn && qtyInput) {
+      plusBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        let val = parseInt(qtyInput.value, 10) || 1;
+        if (val < 3) {
+          qtyInput.value = val + 1;
+          calcTotals();
+        }
+      });
+    }
+  });
+
+  calcTotals();
+});
+</script>\';
+
+return $out;',
+        ),
+        'policies' => 
+        array (
+        ),
+        'source' => 
+        array (
+          'id' => 1,
+          'name' => 'Filesystem',
+          'description' => '',
+          'class_key' => 'MODX\\Revolution\\Sources\\modFileMediaSource',
+          'properties' => 
+          array (
+          ),
+          'is_stream' => true,
+        ),
+      ),
     ),
     'MODX\\Revolution\\modTemplateVar' => 
     array (

@@ -1956,9 +1956,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         ),
         'policies' => 
         array (
-          'web' => 
-          array (
-          ),
         ),
         'source' => 
         array (
@@ -2413,9 +2410,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         ),
         'policies' => 
         array (
-          'web' => 
-          array (
-          ),
         ),
         'source' => 
         array (
@@ -2510,9 +2504,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         ),
         'policies' => 
         array (
-          'web' => 
-          array (
-          ),
         ),
         'source' => 
         array (
@@ -2789,9 +2780,6 @@ document.addEventListener(\'DOMContentLoaded\', () => {
         ),
         'policies' => 
         array (
-          'web' => 
-          array (
-          ),
         ),
         'source' => 
         array (
@@ -2849,19 +2837,25 @@ if ($_SERVER[\'REQUEST_METHOD\'] === \'POST\') {
         \'dropoff_datetime\' => trim($_POST[\'dropoff_datetime\'] ?? \'\'),
     ];
 
-    // Coming from home search => remove old discount
+    // Coming from home search => remove old offer discount + vehicle
     if ($searchSource === \'home\') {
-        unset($_SESSION[\'rent_discount\']);
+        unset($_SESSION[\'rent_discount\'], $_SESSION[\'rent_offer_vehicle_id\']);
     }
 
-    // Coming from offer => store discount
-    if ($searchSource === \'offer\' && isset($_POST[\'discount\']) && trim($_POST[\'discount\']) !== \'\') {
-        $_SESSION[\'rent_discount\'] = trim($_POST[\'discount\']);
+    // Coming from offer => store discount + selected vehicle
+    if ($searchSource === \'offer\') {
+        if (isset($_POST[\'discount\']) && trim($_POST[\'discount\']) !== \'\') {
+            $_SESSION[\'rent_discount\'] = trim($_POST[\'discount\']);
+        }
+
+        if (isset($_POST[\'vehicle_id\']) && (int)$_POST[\'vehicle_id\'] > 0) {
+            $_SESSION[\'rent_offer_vehicle_id\'] = (int)$_POST[\'vehicle_id\'];
+        }
     }
 
     // Explicit remove
     if (isset($_POST[\'clear_discount\']) && $_POST[\'clear_discount\'] === \'1\') {
-        unset($_SESSION[\'rent_discount\']);
+        unset($_SESSION[\'rent_discount\'], $_SESSION[\'rent_offer_vehicle_id\']);
     }
 }
 
@@ -3185,19 +3179,25 @@ if ($_SERVER[\'REQUEST_METHOD\'] === \'POST\') {
         \'dropoff_datetime\' => trim($_POST[\'dropoff_datetime\'] ?? \'\'),
     ];
 
-    // Coming from home search => remove old discount
+    // Coming from home search => remove old offer discount + vehicle
     if ($searchSource === \'home\') {
-        unset($_SESSION[\'rent_discount\']);
+        unset($_SESSION[\'rent_discount\'], $_SESSION[\'rent_offer_vehicle_id\']);
     }
 
-    // Coming from offer => store discount
-    if ($searchSource === \'offer\' && isset($_POST[\'discount\']) && trim($_POST[\'discount\']) !== \'\') {
-        $_SESSION[\'rent_discount\'] = trim($_POST[\'discount\']);
+    // Coming from offer => store discount + selected vehicle
+    if ($searchSource === \'offer\') {
+        if (isset($_POST[\'discount\']) && trim($_POST[\'discount\']) !== \'\') {
+            $_SESSION[\'rent_discount\'] = trim($_POST[\'discount\']);
+        }
+
+        if (isset($_POST[\'vehicle_id\']) && (int)$_POST[\'vehicle_id\'] > 0) {
+            $_SESSION[\'rent_offer_vehicle_id\'] = (int)$_POST[\'vehicle_id\'];
+        }
     }
 
     // Explicit remove
     if (isset($_POST[\'clear_discount\']) && $_POST[\'clear_discount\'] === \'1\') {
-        unset($_SESSION[\'rent_discount\']);
+        unset($_SESSION[\'rent_discount\'], $_SESSION[\'rent_offer_vehicle_id\']);
     }
 }
 
@@ -3488,9 +3488,6 @@ return $out;',
         ),
         'policies' => 
         array (
-          'web' => 
-          array (
-          ),
         ),
         'source' => 
         array (
@@ -3662,9 +3659,6 @@ return $out;',
         ),
         'policies' => 
         array (
-          'web' => 
-          array (
-          ),
         ),
         'source' => 
         array (

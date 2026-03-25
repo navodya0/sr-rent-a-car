@@ -3576,9 +3576,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         ),
         'policies' => 
         array (
-          'web' => 
-          array (
-          ),
         ),
         'source' => 
         array (
@@ -4033,9 +4030,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         ),
         'policies' => 
         array (
-          'web' => 
-          array (
-          ),
         ),
         'source' => 
         array (
@@ -4155,9 +4149,10 @@ $featuredOne = $featured[0] ?? null;
                     // leave as is
                 }
 
-                $offerLink = rtrim($ctaLink, \'?&\')
-                    . (strpos($ctaLink, \'?\') !== false ? \'&\' : \'?\')
-                    . \'discount=\' . rawurlencode($p[\'discount_text\'] ?? \'\');
+$offerLink = rtrim($ctaLink, \'?&\')
+    . (strpos($ctaLink, \'?\') !== false ? \'&\' : \'?\')
+    . \'discount=\' . rawurlencode($p[\'discount_text\'] ?? \'\')
+    . \'&vehicle_id=\' . (int)($p[\'vehicle_id\'] ?? 0);
                 ?>
                 
                 <div class="<?= $promoCol ?> mb-4">
@@ -4184,7 +4179,7 @@ $featuredOne = $featured[0] ?? null;
                                     <input type="hidden" name="pickup_datetime" value="<?= htmlspecialchars($pickupDatetime, ENT_QUOTES, \'UTF-8\') ?>">
                                     <input type="hidden" name="dropoff_datetime" value="<?= htmlspecialchars($dropoffDatetime, ENT_QUOTES, \'UTF-8\') ?>">
                                     <input type="hidden" name="discount" value="<?= htmlspecialchars($p[\'discount_text\'] ?? \'\', ENT_QUOTES, \'UTF-8\') ?>">
-
+<input type="hidden" name="vehicle_id" value="<?= (int)($p[\'vehicle_id\'] ?? 0) ?>">
                                     <button type="submit" class="promo50-btn">
                                         <?= htmlspecialchars($p[\'cta_text\'] ?? \'Book Now\', ENT_QUOTES, \'UTF-8\') ?>
                                     </button>
@@ -4298,9 +4293,10 @@ $featuredOne = $featured[0] ?? null;
                     // leave as is
                 }
 
-                $offerLink = rtrim($ctaLink, \'?&\')
-                    . (strpos($ctaLink, \'?\') !== false ? \'&\' : \'?\')
-                    . \'discount=\' . rawurlencode($p[\'discount_text\'] ?? \'\');
+$offerLink = rtrim($ctaLink, \'?&\')
+    . (strpos($ctaLink, \'?\') !== false ? \'&\' : \'?\')
+    . \'discount=\' . rawurlencode($p[\'discount_text\'] ?? \'\')
+    . \'&vehicle_id=\' . (int)($p[\'vehicle_id\'] ?? 0);
                 ?>
                 
                 <div class="<?= $promoCol ?> mb-4">
@@ -4327,7 +4323,7 @@ $featuredOne = $featured[0] ?? null;
                                     <input type="hidden" name="pickup_datetime" value="<?= htmlspecialchars($pickupDatetime, ENT_QUOTES, \'UTF-8\') ?>">
                                     <input type="hidden" name="dropoff_datetime" value="<?= htmlspecialchars($dropoffDatetime, ENT_QUOTES, \'UTF-8\') ?>">
                                     <input type="hidden" name="discount" value="<?= htmlspecialchars($p[\'discount_text\'] ?? \'\', ENT_QUOTES, \'UTF-8\') ?>">
-
+<input type="hidden" name="vehicle_id" value="<?= (int)($p[\'vehicle_id\'] ?? 0) ?>">
                                     <button type="submit" class="promo50-btn">
                                         <?= htmlspecialchars($p[\'cta_text\'] ?? \'Book Now\', ENT_QUOTES, \'UTF-8\') ?>
                                     </button>
@@ -4346,9 +4342,6 @@ $featuredOne = $featured[0] ?? null;
         ),
         'policies' => 
         array (
-          'web' => 
-          array (
-          ),
         ),
         'source' => 
         array (

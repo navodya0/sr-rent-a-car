@@ -105,21 +105,40 @@ if (isset($_GET['edit_extra'])) {
 }
 
 /* -----------------------------
+   FETCH VEHICLES FOR DROPDOWN
+   Adjust table/column names if needed
+----------------------------- */
+try {
+    $vehiclesStmt = $pdo->query("
+        SELECT id, car_model, car_category, car_code
+        FROM vehicles
+        ORDER BY car_model ASC
+    ");
+    $vehicles = $vehiclesStmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (Exception $e) {
+    $vehicles = [];
+    $error = "Failed to load vehicles: " . $e->getMessage();
+}
+
+/* -----------------------------
    SAVE OFFER
 ----------------------------- */
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_offer'])) {
     $id = (int)($_POST['id'] ?? 0);
+    $vehicle_id = (int)($_POST['vehicle_id'] ?? 0);
+    // $car_code = trim($_POST['car_code'] ?? '');
     $layout = trim($_POST['layout'] ?? '');
     $title = trim($_POST['title'] ?? '');
     $subtitle = trim($_POST['subtitle'] ?? '');
-    $discount_text = trim($_POST['discount_text'] ?? '');
+    $discount_number = (int)($_POST['discount_text'] ?? 0);
+    $discount_text = $discount_number > 0 ? $discount_number . '% OFF' : '';
     $cta_text = trim($_POST['cta_text'] ?? '');
     $cta_link = trim($_POST['cta_link'] ?? '');
     $sort_order = (int)($_POST['sort_order'] ?? 0);
     $is_active = isset($_POST['is_active']) ? 1 : 0;
 
-    if ($layout === '' || $title === '') {
-        $error = "Offer layout and title are required.";
+    if ($layout === '' || $title === '' || $vehicle_id <= 0) {
+        $error = "Offer layout, title, and vehicle are required.";
     } else {
         try {
             $imagePath = $editOffer['image_path'] ?? '';
@@ -142,6 +161,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_offer'])) {
             if ($id > 0) {
                 $stmt = $pdo->prepare("
                     UPDATE offers SET
+                        vehicle_id = ?,
                         layout = ?,
                         title = ?,
                         subtitle = ?,
@@ -155,6 +175,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_offer'])) {
                     WHERE id = ?
                 ");
                 $stmt->execute([
+                    $vehicle_id,
                     $layout,
                     $title,
                     $subtitle,
@@ -172,11 +193,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_offer'])) {
             } else {
                 $stmt = $pdo->prepare("
                     INSERT INTO offers (
-                        layout, title, subtitle, discount_text, cta_text, cta_link,
+                        vehicle_id, layout, title, subtitle, discount_text, cta_text, cta_link,
                         image_path, sort_order, is_active, created_at, updated_at
-                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())
                 ");
                 $stmt->execute([
+                    $vehicle_id,
+                    // $car_code,
                     $layout,
                     $title,
                     $subtitle,
@@ -242,7 +265,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_extra'])) {
 /* -----------------------------
    FETCH DATA
 ----------------------------- */
-$offers = $pdo->query("SELECT * FROM offers ORDER BY sort_order ASC, id DESC")->fetchAll(PDO::FETCH_ASSOC);
+$offers = $pdo->query("
+    SELECT o.*, v.car_model, v.car_category, v.car_code AS vehicle_car_code
+    FROM offers o
+    LEFT JOIN vehicles v ON o.vehicle_id = v.id
+    ORDER BY o.sort_order ASC, o.id DESC
+")->fetchAll(PDO::FETCH_ASSOC);
+
 $extras = $pdo->query("SELECT * FROM extras ORDER BY extra_id DESC")->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
@@ -252,6 +281,7 @@ $extras = $pdo->query("SELECT * FROM extras ORDER BY extra_id DESC")->fetchAll(P
 <title>Offers & Extras | SR Rent A Car</title>
 <link rel="icon" type="image/png" href="assets/images/favicon.ico">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
 <style>
 * {
@@ -484,6 +514,25 @@ textarea {
         padding: 20px;
     }
 }
+
+.select2-container--default .select2-selection--single {
+    height: 42px;
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+    padding: 6px 10px;
+}
+
+.select2-container--default .select2-selection--single:focus {
+    border-color: #031c45;
+}
+
+.select2-container--default .select2-selection__rendered {
+    line-height: 28px;
+}
+
+.select2-container--default .select2-selection__arrow {
+    height: 42px;
+}
 </style>
 </head>
 <body>
@@ -511,8 +560,26 @@ textarea {
             <form method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="save_offer" value="1">
                 <input type="hidden" name="id" value="<?php echo htmlspecialchars($editOffer['id'] ?? '0'); ?>">
+                <input type="hidden" name="car_code" id="car_code" value="<?php echo htmlspecialchars($editOffer['car_code'] ?? ''); ?>">
 
                 <div class="form-grid">
+                    <div class="form-group">
+                        <label>Vehicle <span class="text-danger">*</span></label>
+                        <select name="vehicle_id" id="vehicle_id" required>
+                            <option value="">Select Vehicle</option>
+                            <?php foreach ($vehicles as $vehicle): ?>
+                                <option 
+                                    value="<?php echo (int)$vehicle['id']; ?>"
+                                    data-car-code="<?php echo htmlspecialchars($vehicle['car_code']); ?>"
+                                    <?php echo ((int)($editOffer['vehicle_id'] ?? 0) === (int)$vehicle['id']) ? 'selected' : ''; ?>
+                                >
+                                    <?php echo htmlspecialchars($vehicle['car_model'] . ' - ' . $vehicle['car_category']); ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                        <small class="muted-text">Shows car model and car category.</small>
+                    </div>
+
                     <div class="form-group">
                         <label>Layout</label>
                         <input type="text" value="<?php echo htmlspecialchars($editOffer['layout'] ?? 'promo50'); ?>" disabled>
@@ -529,11 +596,22 @@ textarea {
                         <input type="text" name="subtitle" value="<?php echo htmlspecialchars($editOffer['subtitle'] ?? ''); ?>" required>
                     </div>
 
-                    <div class="form-group">
-                        <label>Discount Text <span class="text-danger">*</span></label>
-                        <input type="text" name="discount_text" value="<?php echo htmlspecialchars($editOffer['discount_text'] ?? ''); ?>">
-                        <small class="muted-text">Example: 50% OFF, SAVE 20%</small>
-                    </div>
+                   <div class="form-group">
+    <label>Discount <span class="text-danger">*</span></label>
+    <div style="display:flex; align-items:center; gap:8px;">
+        <input 
+            type="number" 
+            name="discount_text" 
+            min="0" 
+            step="1"
+            placeholder="50"
+            value="<?php echo htmlspecialchars(isset($editOffer['discount_text']) ? preg_replace('/[^0-9]/', '', $editOffer['discount_text']) : ''); ?>"
+            style="max-width:120px;"
+        >
+        <span style="font-weight:600; color:#374151;">% OFF</span>
+    </div>
+    <small class="muted-text">Enter only the number. Example: 50</small>
+</div>
 
                     <div class="form-group">
                         <label>Text <span class="text-danger">*</span></label>
@@ -585,6 +663,7 @@ textarea {
                     <thead>
                         <tr>
                             <th>ID</th>
+                            <th>Vehicle</th>
                             <th>Image</th>
                             <th>Layout</th>
                             <th>Title</th>
@@ -599,6 +678,13 @@ textarea {
                             <?php foreach ($offers as $offer): ?>
                                 <tr>
                                     <td><?php echo (int)$offer['id']; ?></td>
+                                    <td>
+                                        <?php
+                                            echo htmlspecialchars(
+                                                ($offer['car_model'] ?? 'N/A') . ' - ' . ($offer['car_category'] ?? 'N/A')
+                                            );
+                                        ?>
+                                    </td>
                                     <td>
                                         <?php if (!empty($offer['image_path'])): ?>
                                             <img src="<?php echo htmlspecialchars($offer['image_path']); ?>" alt="Offer image" class="thumb">
@@ -625,7 +711,7 @@ textarea {
                             <?php endforeach; ?>
                         <?php else: ?>
                             <tr>
-                                <td colspan="8" style="text-align:center; color:#6b7280;">No offers found.</td>
+                                <td colspan="10" style="text-align:center; color:#6b7280;">No offers found.</td>
                             </tr>
                         <?php endif; ?>
                     </tbody>
@@ -705,6 +791,39 @@ textarea {
         </div>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Select2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#vehicle_id').select2({
+            placeholder: "Select Vehicle",
+            allowClear: true,
+            width: '100%'
+        });
+    });
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const vehicleSelect = document.getElementById('vehicle_id');
+    // const carCodeInput = document.getElementById('car_code');
+
+    function updateCarCode() {
+        const selectedOption = vehicleSelect.options[vehicleSelect.selectedIndex];
+        const carCode = selectedOption.getAttribute('data-car-code') || '';
+        carCodeInput.value = carCode;
+    }
+
+    if (vehicleSelect) {
+        updateCarCode();
+        vehicleSelect.addEventListener('change', updateCarCode);
+    }
+});
+</script>
 
 </body>
 </html>
