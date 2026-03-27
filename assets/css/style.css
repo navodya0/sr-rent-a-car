@@ -19254,6 +19254,10 @@ color : #fff;
   margin-bottom: 4px;
 }
 
+.discount {
+  color: red !important;
+}
+
 .coverageHeroSummary__amount strong {
   font-size: 26px;
   font-weight: 800;
@@ -21027,4 +21031,198 @@ input[type="file"].driverForm__control {
   .rentExtraInfo__mobileToggle {
     display: none !important;
   }
+}
+
+
+.offer-hero-section {
+    padding: 30px 0 10px;
+    background: #ffffffa1;
+}
+
+.offer-card-modern {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 280px;
+    border: 2px solid #6196cb;
+
+    background: 
+        linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)),
+        url('../images/offer-bg.png') no-repeat center;
+
+    background-size: cover;
+
+    overflow: hidden;
+    padding: 16px;
+    box-shadow: 0 18px 35px rgba(135, 95, 120, 0.10);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.offer-card-modern:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 45px rgba(135, 95, 120, 0.16);
+}
+
+.offer-card-modern::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at top right, rgba(214, 151, 182, 0.14), transparent 32%),
+        radial-gradient(circle at bottom left, rgba(230, 205, 216, 0.20), transparent 28%);
+    pointer-events: none;
+}
+
+.offer-card-modern__content {
+    position: relative;
+    z-index: 2;
+    width: 52%;
+    padding-right: 20px;
+}
+
+.offer-card-modern__badge {
+    display: inline-block;
+    margin-bottom: 14px;
+    padding: 4px 20px;
+    background: #950000;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: 999px;
+    letter-spacing: 0.3px;
+    box-shadow: 0 8px 18px rgba(194, 92, 148, 0.22);
+}
+
+.offer-card-modern__title {
+    margin: 0 0 10px;
+    font-size: 28px;
+    line-height: 1.15;
+    font-weight: 800;
+    color: #044177;
+    letter-spacing: -0.4px;
+}
+
+.offer-card-modern__subtitle {
+    margin: 0 0 16px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #6b5b66;
+    max-width: 520px;
+}
+
+.offer-card-modern__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.offer-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: #d9eef8;
+    color: #93496f;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.offer-chip--light {
+    background: #cdcdcd;
+    color: #6b7280;
+    font-weight: 600;
+}
+
+.offer-card-modern__form {
+    margin-top: 8px;
+}
+
+.offer-card-modern__btn {
+    border: none;
+    background: #08284f ;
+    color: #fff;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 4px 16px;
+    box-shadow: 0 12px 24px rgba(193, 91, 146, 0.26);
+    transition: all 0.25s ease;
+}
+
+.offer-card-modern__btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 28px rgba(193, 91, 146, 0.32);
+}
+
+.offer-card-modern__image-wrap {
+    position: relative;
+    z-index: 2;
+    width: 48%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    min-height: 220px;
+}
+
+.offer-card-modern__image {
+    max-width: 100%;
+    max-height: 240px;
+    object-fit: contain;
+    transform: scale(1);
+    transition: transform 0.35s ease;
+    filter: drop-shadow(0 16px 24px rgba(0, 0, 0, 0.10));
+}
+
+/* .offer-card-modern::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url('../images/offer-bg.png') no-repeat center right;
+    background-size: contain;
+    opacity: 0.15; /* adjust visibility */
+    z-index: 1;
+    pointer-events: none;
+} */
+
+.offer-card-modern:hover .offer-card-modern__image {
+    transform: scale(1.05);
+}
+
+@media (max-width: 991px) {
+    .offer-card-modern {
+        min-height: auto;
+        padding: 24px;
+    }
+
+    .offer-card-modern__title {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 767px) {
+    .offer-card-modern {
+        flex-direction: column;
+        text-align: center;
+        padding: 22px;
+    }
+
+    .offer-card-modern__content,
+    .offer-card-modern__image-wrap {
+        width: 100%;
+        padding-right: 0;
+    }
+
+    .offer-card-modern__meta {
+        justify-content: center;
+    }
+
+    .offer-card-modern__image-wrap {
+        margin-top: 18px;
+        min-height: auto;
+    }
+
+    .offer-card-modern__image {
+        max-height: 180px;
+    }
 }

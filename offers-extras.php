@@ -669,7 +669,7 @@ textarea {
 
                     <div class="form-group">
                         <label>Image <span class="text-danger">*</span></label>
-                        <input type="file" name="image_path" accept="image/*" required>
+                        <input type="file" name="image_path" accept="image/*" >
                     </div>
 
                     <div class="form-group full">

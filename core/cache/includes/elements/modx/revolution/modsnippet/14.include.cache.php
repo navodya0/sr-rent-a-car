@@ -16,9 +16,7 @@ $sql = "
 SELECT *
 FROM offers
 WHERE is_active = 1
-  AND (start_date IS NULL OR start_date <= NOW())
-  AND (end_date IS NULL OR end_date >= NOW())
-ORDER BY layout, sort_order ASC
+ORDER BY sort_order ASC, id DESC
 ";
 $offers = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
@@ -55,25 +53,21 @@ $featuredOne = $featured[0] ?? null;
         case 3:
             $promoCol = 'col-lg-4 col-md-6 col-12';
             break;
-        case 4:
-            $promoCol = 'col-lg-3 col-md-6 col-12';
-            break;
         default:
-            $promoCol = 'col-lg-3 col-md-6 col-12';
+            $promoCol = 'col-lg-4 col-md-6 col-12';
             break;
     }
 ?>
-<section class="promo50-section">
+<section class="offer-hero-section">
     <div class="container">
-
         <div class="row">
             <div class="col-12 text-center mb-4">
                 <h2 class="priority-badge">Special Offers</h2>
                 <p class="fleet-heading mt-0">Grab the best deals for your ride</p>
             </div>
         </div>
-        <div class="row justify-content-center">
 
+        <div class="row justify-content-center">
             <?php foreach ($promo50 as $p): ?>
                 <?php
                 $ctaLink = trim($p['cta_link'] ?? '');
@@ -82,63 +76,81 @@ $featuredOne = $featured[0] ?? null;
                     $ctaLink = 'index.php?id=39';
                 }
 
-                // Case 1: [[~39]]
                 if (preg_match('/\[\[\~(\d+)\]\]/', $ctaLink, $matches)) {
                     $pageId = (int)$matches[1];
                     $ctaLink = $modx->getOption('site_url') . 'index.php?id=' . $pageId;
-                }
-                // Case 2: /39 or 39 or full URL ending with /39
-                elseif (preg_match('~(?:^|/)(\d+)$~', rtrim($ctaLink, '/'), $matches)) {
+                } elseif (preg_match('~(?:^|/)(\d+)$~', rtrim($ctaLink, '/'), $matches)) {
                     $pageId = (int)$matches[1];
                     $ctaLink = $modx->getOption('site_url') . 'index.php?id=' . $pageId;
-                }
-                // Case 3: already index.php?id=...
-                elseif (strpos($ctaLink, 'index.php?id=') !== false) {
+                } elseif (strpos($ctaLink, 'index.php?id=') !== false) {
                     // leave as is
                 }
 
-$offerLink = rtrim($ctaLink, '?&')
-    . (strpos($ctaLink, '?') !== false ? '&' : '?')
-    . 'discount=' . rawurlencode($p['discount_text'] ?? '')
-    . '&car_category=' . rawurlencode($p['car_category'] ?? '');
+                $offerLink = rtrim($ctaLink, '?&')
+                    . (strpos($ctaLink, '?') !== false ? '&' : '?')
+                    . 'discount=' . rawurlencode($p['discount_text'] ?? '')
+                    . '&car_category=' . rawurlencode($p['car_category'] ?? '');
+
+                $startDate = !empty($p['offer_start_date']) ? date('d M Y', strtotime($p['offer_start_date'])) : '';
+                $endDate   = !empty($p['offer_end_date']) ? date('d M Y', strtotime($p['offer_end_date'])) : '';
+                $dateRange = ($startDate && $endDate) ? $startDate . ' - ' . $endDate : '';
                 ?>
                 
                 <div class="<?= $promoCol ?> mb-4">
-                    <article class="promo50-card">
-                        <img
-                            class="promo50-bg"
-                            src="<?= htmlspecialchars($p['image_path'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
-                            alt="<?= htmlspecialchars($p['title'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
-                        >
-
-                        <div class="promo50-overlay">
-                            <div class="promo50-content">
-                                <div class="promo50-title">
-                                    <?= nl2br(htmlspecialchars(str_replace(' ', "\n", $p['discount_text'] ?? ''), ENT_QUOTES, 'UTF-8')) ?>
+                    <article class="offer-card-modern">
+                        <div class="offer-card-modern__content">
+                            <?php if (!empty($p['discount_text'])): ?>
+                                <div class="offer-card-modern__badge">
+                                    <?= htmlspecialchars($p['discount_text'], ENT_QUOTES, 'UTF-8') ?>
                                 </div>
+                            <?php endif; ?>
 
-                                <div class="promo50-sub">
-                                    <?= htmlspecialchars($p['subtitle'] ?? '', ENT_QUOTES, 'UTF-8') ?>
-                                </div>
+                            <h3 class="offer-card-modern__title">
+                                <?= htmlspecialchars($p['title'] ?? '', ENT_QUOTES, 'UTF-8') ?>
+                            </h3>
 
-                                <form action="<?= htmlspecialchars($offerLink, ENT_QUOTES, 'UTF-8') ?>" method="post" class="promo50-form style="text-align: right;">
-                                    <input type="hidden" name="pickup_location" value="<?= htmlspecialchars($pickupLocation, ENT_QUOTES, 'UTF-8') ?>">
-                                    <input type="hidden" name="dropoff_location" value="<?= htmlspecialchars($dropoffLocation, ENT_QUOTES, 'UTF-8') ?>">
-                                    <input type="hidden" name="pickup_datetime" value="<?= htmlspecialchars($pickupDatetime, ENT_QUOTES, 'UTF-8') ?>">
-                                    <input type="hidden" name="dropoff_datetime" value="<?= htmlspecialchars($dropoffDatetime, ENT_QUOTES, 'UTF-8') ?>">
-                                    <input type="hidden" name="discount" value="<?= htmlspecialchars($p['discount_text'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
-<input type="hidden" name="car_category" value="<?= htmlspecialchars($p['car_category'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
-                                    <button type="submit" class="promo50-btn">
-                                        <?= htmlspecialchars($p['cta_text'] ?? 'Book Now', ENT_QUOTES, 'UTF-8') ?>
-                                    </button>
-                                </form>
+                            <div class="offer-card-modern__meta">
+                                <?php if (!empty($p['car_category'])): ?>
+                                    <span class="offer-chip">
+                                        <?= htmlspecialchars($p['car_category'], ENT_QUOTES, 'UTF-8') ?>
+                                    </span>
+                                <?php endif; ?>
+
+                                <?php if ($dateRange !== ''): ?>
+                                    <span class="offer-chip offer-chip--light">
+                                        Valid : <?= htmlspecialchars($dateRange, ENT_QUOTES, 'UTF-8') ?>
+                                    </span>
+                                <?php endif; ?>
                             </div>
+
+                            <form action="<?= htmlspecialchars($offerLink, ENT_QUOTES, 'UTF-8') ?>" method="post" class="offer-card-modern__form">
+                                <input type="hidden" name="pickup_location" value="<?= htmlspecialchars($pickupLocation, ENT_QUOTES, 'UTF-8') ?>">
+                                <input type="hidden" name="dropoff_location" value="<?= htmlspecialchars($dropoffLocation, ENT_QUOTES, 'UTF-8') ?>">
+                                <input type="hidden" name="pickup_datetime" value="<?= htmlspecialchars($pickupDatetime, ENT_QUOTES, 'UTF-8') ?>">
+                                <input type="hidden" name="dropoff_datetime" value="<?= htmlspecialchars($dropoffDatetime, ENT_QUOTES, 'UTF-8') ?>">
+                                <input type="hidden" name="discount" value="<?= htmlspecialchars($p['discount_text'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
+                                <input type="hidden" name="car_category" value="<?= htmlspecialchars($p['car_category'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
+<input type="hidden" name="search_source" value="offer">
+<input type="hidden" name="offer_start_date" value="<?= htmlspecialchars($p['offer_start_date'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
+<input type="hidden" name="offer_end_date" value="<?= htmlspecialchars($p['offer_end_date'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
+                                <button type="submit" class="offer-card-modern__btn">
+                                    <?= htmlspecialchars($p['cta_text'] ?? 'Shop Now', ENT_QUOTES, 'UTF-8') ?>
+                                </button>
+                            </form>
+                        </div>
+
+                        <div class="offer-card-modern__image-wrap">
+                            <?php if (!empty($p['image_path'])): ?>
+                                <img
+                                    class="offer-card-modern__image"
+                                    src="<?= htmlspecialchars($p['image_path'], ENT_QUOTES, 'UTF-8') ?>"
+                                    alt="<?= htmlspecialchars($p['title'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
+                                >
+                            <?php endif; ?>
                         </div>
                     </article>
                 </div>
-
             <?php endforeach; ?>
-
         </div>
     </div>
 </section>

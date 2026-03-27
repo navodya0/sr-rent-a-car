@@ -70,3 +70,11 @@
 [2026-03-27 06:08:50] (ERROR @ C:\xampp\htdocs\srilankarentacar.com\core\cache\includes\elements\modx\revolution\modsnippet\10.include.cache.php : 56) PHP warning: Undefined variable $baseRentalOriginal
 [2026-03-27 06:11:02] (ERROR @ C:\xampp\htdocs\srilankarentacar.com\core\vendor\xpdo\xpdo\src\xPDO\Cache\xPDOCacheManager.php : 319) PHP warning: mkdir(): File exists
 [2026-03-27 06:11:02] (ERROR @ C:\xampp\htdocs\srilankarentacar.com\core\vendor\xpdo\xpdo\src\xPDO\Cache\xPDOCacheManager.php : 324) PHP warning: mkdir(): File exists
+[2026-03-27 07:14:05] (ERROR @ C:\xampp\htdocs\srilankarentacar.com\core\vendor\xpdo\xpdo\src\xPDO\Cache\xPDOCacheManager.php : 319) PHP warning: mkdir(): File exists
+[2026-03-27 07:14:05] (ERROR @ C:\xampp\htdocs\srilankarentacar.com\core\vendor\xpdo\xpdo\src\xPDO\Cache\xPDOCacheManager.php : 324) PHP warning: mkdir(): File exists
+[2026-03-27 07:25:52] (ERROR @ C:\xampp\htdocs\srilankarentacar.com\core\cache\includes\elements\modx\revolution\modsnippet\10.include.cache.php : 49) PHP warning: Undefined variable $baseRental
+[2026-03-27 07:25:52] (ERROR @ C:\xampp\htdocs\srilankarentacar.com\core\cache\includes\elements\modx\revolution\modsnippet\10.include.cache.php : 54) PHP warning: Undefined variable $discountAppliesToThisVehicle
+[2026-03-27 07:25:52] (ERROR @ C:\xampp\htdocs\srilankarentacar.com\core\cache\includes\elements\modx\revolution\modsnippet\10.include.cache.php : 55) PHP warning: Undefined variable $discountAppliesToThisVehicle
+[2026-03-27 07:25:52] (ERROR @ C:\xampp\htdocs\srilankarentacar.com\core\cache\includes\elements\modx\revolution\modsnippet\10.include.cache.php : 56) PHP warning: Undefined variable $baseRentalOriginal
+[2026-03-27 07:27:41] (ERROR @ C:\xampp\htdocs\srilankarentacar.com\core\vendor\xpdo\xpdo\src\xPDO\Cache\xPDOCacheManager.php : 319) PHP warning: mkdir(): File exists
+[2026-03-27 07:27:41] (ERROR @ C:\xampp\htdocs\srilankarentacar.com\core\vendor\xpdo\xpdo\src\xPDO\Cache\xPDOCacheManager.php : 324) PHP warning: mkdir(): File exists

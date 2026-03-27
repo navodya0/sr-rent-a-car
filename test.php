@@ -1,240 +1,363 @@
 <?php
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
+require "assets/includes/db_connect.php";
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+$tpl      = $modx->getOption('tpl', $scriptProperties, 'VehicleCategoryCardTpl');
+$tplItem  = $modx->getOption('tplItem', $scriptProperties, 'VehicleListItemTpl');
+$limit    = (int)$modx->getOption('limit', $scriptProperties, 20);
+$table    = $modx->getOption('table', $scriptProperties, 'vehicles');
+$groupBy  = (int)$modx->getOption('groupByCategory', $scriptProperties, 1);
+$mode     = $modx->getOption('mode', $scriptProperties, 'cards');
+$step2PageId = (int)$modx->getOption('step2PageId', $scriptProperties, 41);
+
+/*
+|--------------------------------------------------------------------------
+| Handle incoming search source
+|--------------------------------------------------------------------------
+*/
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $searchSource = trim($_POST['search_source'] ?? '');
+
+    $_SESSION['rent_search'] = [
+        'pickup_location'  => trim($_POST['pickup_location'] ?? ''),
+        'dropoff_location' => trim($_POST['dropoff_location'] ?? ''),
+        'pickup_datetime'  => trim($_POST['pickup_datetime'] ?? ''),
+        'dropoff_datetime' => trim($_POST['dropoff_datetime'] ?? ''),
+    ];
+
+// Coming from home search => remove old offer discount + category
+if ($searchSource === 'home') {
+    unset($_SESSION['rent_discount'], $_SESSION['rent_offer_category']);
+}
+
+// Coming from offer => store discount + selected category
+if ($searchSource === 'offer') {
+    if (isset($_POST['discount']) && trim($_POST['discount']) !== '') {
+        $_SESSION['rent_discount'] = trim($_POST['discount']);
     }
 
-    $bookingSuccess = $_SESSION['booking_success'] ?? null;
+    if (isset($_POST['car_category']) && trim($_POST['car_category']) !== '') {
+        $_SESSION['rent_offer_category'] = trim($_POST['car_category']);
+    }
+}
 
-    if (empty($bookingSuccess) || empty($bookingSuccess['booking_id'])) {
-        return '';
+// Explicit remove
+if (isset($_POST['clear_discount']) && $_POST['clear_discount'] === '1') {
+    unset($_SESSION['rent_discount'], $_SESSION['rent_offer_category']);
+}
+}
+
+$search = $_SESSION['rent_search'] ?? [];
+
+/*
+|--------------------------------------------------------------------------
+| Read discount + category from GET first, otherwise session
+|--------------------------------------------------------------------------
+*/
+if (isset($_GET['discount']) && trim($_GET['discount']) !== '') {
+    $discountRaw = trim($_GET['discount']);
+    $_SESSION['rent_discount'] = $discountRaw;
+} else {
+    $discountRaw = trim($_SESSION['rent_discount'] ?? '');
+}
+
+if (isset($_GET['car_category']) && trim($_GET['car_category']) !== '') {
+    $offerCategory = trim($_GET['car_category']);
+    $_SESSION['rent_offer_category'] = $offerCategory;
+} else {
+    $offerCategory = trim($_SESSION['rent_offer_category'] ?? '');
+}
+
+$discountPercent = 0;
+if ($discountRaw !== '') {
+    $discountPercent = (int)preg_replace('/[^0-9]/', '', $discountRaw);
+}
+
+$pickupRaw  = trim($search['pickup_datetime'] ?? '');
+$dropoffRaw = trim($search['dropoff_datetime'] ?? '');
+$currentCat = isset($_REQUEST['cat']) ? trim((string)$_REQUEST['cat']) : '';
+
+$pickupLocation  = trim($search['pickup_location'] ?? '');
+$dropoffLocation = trim($search['dropoff_location'] ?? '');
+
+$pickupDate  = ($pickupRaw !== '' && strtotime($pickupRaw)) ? date('Y-m-d', strtotime($pickupRaw)) : '';
+$dropoffDate = ($dropoffRaw !== '' && strtotime($dropoffRaw)) ? date('Y-m-d', strtotime($dropoffRaw)) : '';
+
+if (!function_exists('getRentalDays')) {
+    function getRentalDays($pickupDate, $dropoffDate) {
+        if (!$pickupDate || !$dropoffDate) return 0;
+
+        $start = strtotime($pickupDate);
+        $end   = strtotime($dropoffDate);
+
+        if (!$start || !$end || $end < $start) return 0;
+
+        return max(1, (int)(($end - $start) / 86400) + 1);
+    }
+}
+
+if (!function_exists('calculateRentalPrice')) {
+    function calculateRentalPrice($modx, $carCode, $pickupDate, $dropoffDate) {
+        $days = getRentalDays($pickupDate, $dropoffDate);
+        if ($days <= 0 || $carCode === '') return '';
+
+        $sql = "SELECT duration, rate
+                FROM car_rental
+                WHERE car_code = :car_code
+                  AND :pickup_date >= DATE(start_date)
+                  AND :dropoff_date <= DATE(end_date)
+                ORDER BY duration ASC";
+
+        $stmt = $modx->prepare($sql);
+        if (!$stmt) return '';
+
+        $stmt->bindValue(':car_code', $carCode, PDO::PARAM_STR);
+        $stmt->bindValue(':pickup_date', $pickupDate, PDO::PARAM_STR);
+        $stmt->bindValue(':dropoff_date', $dropoffDate, PDO::PARAM_STR);
+
+        if (!$stmt->execute()) return '';
+
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if (!$rows) return '';
+
+        $rates = [];
+        foreach ($rows as $row) {
+            $duration = (int)($row['duration'] ?? 0);
+            $rate     = (float)($row['rate'] ?? 0);
+
+            if ($duration > 0) {
+                $rates[$duration] = $rate;
+            }
+        }
+
+        if (!$rates) return '';
+
+        ksort($rates);
+
+        $maxDuration = max(array_keys($rates));
+        $lastRate    = (float)$rates[$maxDuration];
+        $total       = 0;
+
+        for ($d = 1; $d <= $days; $d++) {
+            if (isset($rates[$d])) {
+                $total += (float)$rates[$d];
+            } elseif ($d > $maxDuration) {
+                $total += $lastRate;
+            } else {
+                return '';
+            }
+        }
+
+        return number_format($total, 2, '.', '');
+    }
+}
+
+$days = getRentalDays($pickupDate, $dropoffDate);
+
+/**
+ * MODE 1: category cards
+ */
+if ($mode === 'cards') {
+    if ($groupBy) {
+        $sql = "SELECT
+                    v1.id,
+                    v1.image,
+                    v1.car_category,
+                    v1.car_model,
+                    v1.car_code,
+                    v1.pax_count,
+                    v1.luggage_count
+                FROM {$table} v1
+                INNER JOIN (
+                    SELECT car_category, MIN(id) AS first_id
+                    FROM {$table}
+                    GROUP BY car_category
+                ) v2 ON v1.id = v2.first_id
+                ORDER BY v1.car_category ASC
+                LIMIT :limit";
+    } else {
+        $sql = "SELECT
+                    v.id,
+                    v.image,
+                    v.car_category,
+                    v.car_model,
+                    v.car_code,
+                    v.pax_count,
+                    v.luggage_count
+                FROM {$table} v
+                ORDER BY v.id DESC
+                LIMIT :limit";
     }
 
-    $bookingId = (int)$bookingSuccess['booking_id'];
-    $homeUrl   = $modx->makeUrl(1);
+    $stmt = $modx->prepare($sql);
+    if (!$stmt) return '<p>Could not prepare vehicles query.</p>';
 
-    unset($_SESSION['booking_success']);
+    $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+    if (!$stmt->execute()) return '<p>Could not load vehicles.</p>';
 
-    $out = '';
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if (!$rows) return '<p>No vehicles found.</p>';
+
+    $uid = 'vehRow_' . substr(md5(uniqid('', true)), 0, 8);
+
+    $out  = '<div class="vehicleScroller" data-scroller="' . $uid . '">';
+    $out .= '<button class="vehicleScroller__btn vehicleScroller__btn--left" type="button" aria-label="Scroll left" data-dir="-1">‹</button>';
+    $out .= '<div class="vehicleRow mt-4 mt-lg-0" id="' . $uid . '">';
+
+    foreach ($rows as $row) {
+        $cat = (string)($row['car_category'] ?? '');
 
 
-    $out .= '<style>
-        .bookingSuccessModal{
-            position:fixed;
-            inset:0;
-            background:rgba(15,23,42,.55);
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            z-index:99999;
-            padding:20px;
-        }
-        .bookingSuccessModal__box{
-            width:100%;
-            max-width:520px;
-            background:#fff;
-            border-radius:20px;
-            padding:32px 24px;
-            text-align:center;
-            box-shadow:0 20px 50px rgba(0,0,0,.18);
-        }
-        .bookingSuccessModal__icon{
-            width:72px;
-            height:72px;
-            border-radius:50%;
-            background:#dcfce7;
-            color:#16a34a;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            margin:0 auto 16px;
-            font-size:34px;
-            font-weight:700;
-        }
-        .bookingSuccessModal__title{
-            margin:0 0 10px;
-            font-size:28px;
-            font-weight:700;
-            color:#166534;
-        }
-        .bookingSuccessModal__text{
-            margin:0 0 8px;
-            color:#475569;
-            line-height:1.6;
-        }
-        .bookingSuccessModal__meta{
-            margin-top:14px;
-            padding:14px 16px;
-            border-radius:14px;
-            background:#f8fafc;
-            border:1px solid #e2e8f0;
-            font-size:15px;
-            color:#334155;
-        }
-        .bookingSuccessModal__actions{
-            display:flex;
-            gap:12px;
-            justify-content:center;
-            flex-wrap:wrap;
-            margin-top:22px;
-        }
-        .bookingSuccessModal__btn{
-            display:inline-flex;
-            align-items:center;
-            justify-content:center;
-            min-height:48px;
-            padding:0 20px;
-            border-radius:12px;
-            text-decoration:none;
-            font-weight:700;
-            cursor:pointer;
-            border:none;
-        }
-        .bookingSuccessModal__btn--primary{
-            background:#000080;
-            color:#fff;
-        }
-        .bookingSuccessModal__btn--secondary{
-            background:#fff;
-            color:#0284c7;
-            border:1px solid #cbd5e1;
-        }
-        .downloadBookingPdfBtn{
-            display:inline-flex;
-            align-items:center;
-            justify-content:center;
-            min-height:48px;
-            padding:0 20px;
-            border-radius:12px;
-            text-decoration:none;
-            font-weight:700;
-            cursor:pointer;
-            border:none;
-            color:#fff;
-            background:#023074;
-        }
-        .bookingPdfStatus{
-            margin-top:12px;
-            font-size:14px;
-            color:#475569;
-        }
-    </style>';
 
-    $out .= '<div id="bookingSuccessModal" class="bookingSuccessModal">';
-    $out .= '  <div class="bookingSuccessModal__box">';
-    $out .= '      <div class="bookingSuccessModal__icon">✓</div>';
-    $out .= '      <h3 class="bookingSuccessModal__title">Booking Confirmed</h3>';
-    $out .= '      <p class="bookingSuccessModal__text">Your booking is confirmed and a vehicle is currently being allocated for your reservation.</p>';
-    $out .= '      <div class="bookingSuccessModal__meta"><strong>Booking ID:</strong> #' . $bookingId . '</div>';
-    $out .= '      <div id="bookingPdfStatus" class="bookingPdfStatus">Generating your invoice PDF...</div>';
-    $out .= '      <p class="bookingSuccessModal__note" style="margin-top:10px; font-size:13px; color:#6b7280;">A confirmation email with the invoice will be sent to the provided email address.</p>';
-    $out .= '      <div class="bookingSuccessModal__actions" id="bookingSuccessActions">';
-    $out .= '      </div>';
-    $out .= '  </div>';
+$formAction = $modx->makeUrl($step2PageId);
+
+$ph = [
+    'image'         => $row['image'] ?? '',
+    'car_category'  => $cat,
+    'car_model'     => $row['car_model'] ?? '',
+    'car_code'      => $row['car_code'] ?? '',
+    'pax_count'     => (int)($row['pax_count'] ?? 0),
+    'luggage_count' => (int)($row['luggage_count'] ?? 0),
+    'price'         => calculateRentalPrice($modx, $row['car_code'] ?? '', $pickupDate, $dropoffDate),
+    'days'          => $days,
+    'deal_link'     => '',
+    'form_action'   => $formAction,
+    'vehicle_id'    => (int)$row['id'],
+    'is_active'     => ($currentCat !== '' && strcasecmp($currentCat, $cat) === 0) ? 1 : 0,
+];
+
+        $out .= $modx->getChunk($tpl, $ph);
+    }
+
+    $out .= '</div>';
+    $out .= '<button class="vehicleScroller__btn vehicleScroller__btn--right" type="button" aria-label="Scroll right" data-dir="1">›</button>';
     $out .= '</div>';
 
-    $out .= '<script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var actions = document.getElementById("bookingSuccessActions");
-            var statusBox = document.getElementById("bookingPdfStatus");
-            var bookingId = ' . json_encode($bookingId) . ';
-            var homeUrl = ' . json_encode($homeUrl) . ';
-            var pdfAjaxUrl = ' . json_encode(MODX_SITE_URL . 'assets/includes/generate-booking-pdf-ajax.php') . ';
-            var emailAjaxUrl = ' . json_encode(MODX_SITE_URL . 'assets/includes/send-booking-pdf-email-ajax.php') . ';
-
-            if (!bookingId || !statusBox || !actions) {
-                return;
-            }
-
-            var downloadBtn = document.createElement("button");
-            downloadBtn.type = "button";
-            downloadBtn.id = "downloadBookingPdfBtn";
-            downloadBtn.className = "downloadBookingPdfBtn";
-            downloadBtn.textContent = "Generate PDF";
-
-            actions.appendChild(downloadBtn);
-            statusBox.textContent = "Click the button below to generate your PDF.";
-
-            downloadBtn.addEventListener("click", function () {
-                downloadBtn.disabled = true;
-                downloadBtn.textContent = "Generating...";
-                statusBox.textContent = "Generating your PDF...";
-
-                fetch(pdfAjaxUrl, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/x-www-form-urlencoded"
-                    },
-                    body: "booking_id=" + encodeURIComponent(bookingId)
-                })
-                .then(function (response) {
-                    return response.text();
-                })
-                .then(function (text) {
-                    var data;
-
-                    try {
-                        data = JSON.parse(text);
-                    } catch (e) {
-                        statusBox.textContent = "Invalid PDF response: " + text;
-                        downloadBtn.disabled = false;
-                        downloadBtn.textContent = "Generate PDF";
-                        return;
-                    }
-
-                    if (data.success && data.pdf_url) {
-                        statusBox.textContent = "Your PDF is ready.";
-
-                        var linkBtn = document.createElement("a");
-                        linkBtn.href = data.pdf_url;
-                        linkBtn.id = "downloadBookingPdfBtn";
-                        linkBtn.className = "downloadBookingPdfBtn";
-                        linkBtn.setAttribute("download", "");
-                        linkBtn.textContent = "Download PDF";
-
-                        linkBtn.addEventListener("click", function () {
-                            setTimeout(function () {
-                                window.location.href = homeUrl;
-                            }, 800);
-                        });
-
-                        downloadBtn.replaceWith(linkBtn);
-
-                        fetch(emailAjaxUrl, {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/x-www-form-urlencoded"
-                            },
-                            body: "booking_id=" + encodeURIComponent(bookingId)
-                        })
-                        .then(function (response) {
-                            return response.text();
-                        })
-                        .then(function (emailText) {
-                            try {
-                                var emailData = JSON.parse(emailText);
-                                console.log(emailData.message || "Email request finished.");
-                            } catch (e) {
-                                console.log("Invalid email response:", emailText);
-                            }
-                        })
-                        .catch(function (error) {
-                            console.log("Email request failed:", error);
-                        });
-
-                    } else {
-                        statusBox.textContent = data.message ? data.message : "Could not generate PDF.";
-                        downloadBtn.disabled = false;
-                        downloadBtn.textContent = "Generate PDF";
-                    }
-                })
-                .catch(function (error) {
-                    statusBox.textContent = "Something went wrong while generating the PDF.";
-                    downloadBtn.disabled = false;
-                    downloadBtn.textContent = "Generate PDF";
-                    console.log(error);
-                });
-            });
-        });
-    </script>';
-
     return $out;
+}
+
+/**
+ * MODE 2: vehicle list
+ */
+$sql = "SELECT
+            v.id,
+            v.image,
+            v.car_category,
+            v.car_model,
+            v.car_code,
+            v.transmission_type,
+            v.pax_count,
+            v.luggage_count
+        FROM {$table} v";
+
+$params = [];
+if ($currentCat !== '') {
+    $sql .= " WHERE v.car_category = :current_cat";
+    $params[':current_cat'] = $currentCat;
+}
+
+$sql .= " ORDER BY v.car_category ASC, v.id ASC";
+
+$stmt = $modx->prepare($sql);
+if (!$stmt) return '<p>Could not prepare vehicles query.</p>';
+
+foreach ($params as $key => $val) {
+    $stmt->bindValue($key, $val, PDO::PARAM_STR);
+}
+
+if (!$stmt->execute()) return '<p>Could not load vehicles.</p>';
+
+$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+if (!$rows) return '<p>No vehicles found.</p>';
+
+$grouped = [];
+foreach ($rows as $row) {
+    $cat = trim((string)($row['car_category'] ?? 'Uncategorized'));
+    if (!isset($grouped[$cat])) $grouped[$cat] = [];
+
+    $originalPrice = (float) calculateRentalPrice(
+        $modx,
+        $row['car_code'] ?? '',
+        $pickupDate,
+        $dropoffDate
+    );
+
+    $discountedPrice = $originalPrice;
+
+$rowCategory = trim((string)($row['car_category'] ?? ''));
+
+$discountAppliesToThisVehicle = (
+    $discountPercent > 0 &&
+    $originalPrice > 0 &&
+    $offerCategory !== '' &&
+    strcasecmp($rowCategory, $offerCategory) === 0
+);
+
+$discountedPrice = $originalPrice;
+
+if ($discountAppliesToThisVehicle) {
+    $discountedPrice = $originalPrice - (($originalPrice * $discountPercent) / 100);
+}
+
+$row['calculated_price'] = $discountedPrice > 0 ? number_format($discountedPrice, 2, '.', '') : '';
+$row['original_price'] = $originalPrice > 0 ? number_format($originalPrice, 2, '.', '') : '';
+$row['discount_percent'] = $discountAppliesToThisVehicle ? $discountPercent : 0;
+$row['discount_raw'] = $discountAppliesToThisVehicle ? $discountRaw : '';
+
+    $row['form_action'] = $modx->makeUrl($step2PageId);
+    $row['vehicle_id']  = (int)$row['id'];
+
+    $grouped[$cat][] = $row;
+}
+
+if ($offerCategory !== '') {
+    foreach ($grouped as $groupCat => $groupItems) {
+        if (strcasecmp($groupCat, $offerCategory) === 0) {
+            $priorityGroup = [$groupCat => $groupItems];
+            unset($grouped[$groupCat]);
+            $grouped = $priorityGroup + $grouped;
+            break;
+        }
+    }
+}
+
+$out = '<div id="vehicleGroups">';
+
+
+
+foreach ($grouped as $cat => $items) {
+    $safeCat = htmlspecialchars($cat, ENT_QUOTES, 'UTF-8');
+    $out .= '<div class="vehicleGroup" data-category="' . $safeCat . '">';
+    foreach ($items as $index => $row) {
+$ph = [
+    'id'               => (int)($row['id'] ?? 0),
+    'image'            => $row['image'] ?? '',
+    'car_model'        => $row['car_model'] ?? '',
+    'car_category'     => $cat,
+    'car_code'         => $row['car_code'] ?? '',
+    'pax_count'        => (int)($row['pax_count'] ?? 0),
+    'luggage_count'    => (int)($row['luggage_count'] ?? 0),
+    'transmission_type'         => $row['transmission_type'] ?? '',
+    'price'            => $row['calculated_price'] ?? '',
+    'original_price'   => $row['original_price'] ?? '',
+    'discount_percent' => $row['discount_percent'] ?? 0,
+    'discount_raw'     => $discountRaw,
+    'days'             => $days,
+    'form_action'      => $row['form_action'] ?? '',
+    'vehicle_id'       => $row['vehicle_id'] ?? 0,
+    'is_first'         => $index === 0 ? 1 : 0,
+];
+
+        $out .= '<div class="vehicleItem" data-first="' . ($index === 0 ? '1' : '0') . '">';
+        $out .= $modx->getChunk($tplItem, $ph);
+        $out .= '</div>';
+    }
+
+    $out .= '</div>';
+}
+
+$out .= '</div>';
+
+return $out;

@@ -28,7 +28,12 @@ if ($_SERVER[\'REQUEST_METHOD\'] === \'POST\') {
 
 // Coming from home search => remove old offer discount + category
 if ($searchSource === \'home\') {
-    unset($_SESSION[\'rent_discount\'], $_SESSION[\'rent_offer_category\']);
+   unset(
+    $_SESSION[\'rent_discount\'],
+    $_SESSION[\'rent_offer_category\'],
+    $_SESSION[\'rent_offer_start_date\'],
+    $_SESSION[\'rent_offer_end_date\']
+);
 }
 
 // Coming from offer => store discount + selected category
@@ -40,11 +45,24 @@ if ($searchSource === \'offer\') {
     if (isset($_POST[\'car_category\']) && trim($_POST[\'car_category\']) !== \'\') {
         $_SESSION[\'rent_offer_category\'] = trim($_POST[\'car_category\']);
     }
+
+    if (isset($_POST[\'offer_start_date\']) && trim($_POST[\'offer_start_date\']) !== \'\') {
+        $_SESSION[\'rent_offer_start_date\'] = trim($_POST[\'offer_start_date\']);
+    }
+
+    if (isset($_POST[\'offer_end_date\']) && trim($_POST[\'offer_end_date\']) !== \'\') {
+        $_SESSION[\'rent_offer_end_date\'] = trim($_POST[\'offer_end_date\']);
+    }
 }
 
 // Explicit remove
 if (isset($_POST[\'clear_discount\']) && $_POST[\'clear_discount\'] === \'1\') {
-    unset($_SESSION[\'rent_discount\'], $_SESSION[\'rent_offer_category\']);
+    unset(
+    $_SESSION[\'rent_discount\'],
+    $_SESSION[\'rent_offer_category\'],
+    $_SESSION[\'rent_offer_start_date\'],
+    $_SESSION[\'rent_offer_end_date\']
+);
 }
 }
 
@@ -80,7 +98,8 @@ $currentCat = isset($_REQUEST[\'cat\']) ? trim((string)$_REQUEST[\'cat\']) : \'\
 
 $pickupLocation  = trim($search[\'pickup_location\'] ?? \'\');
 $dropoffLocation = trim($search[\'dropoff_location\'] ?? \'\');
-
+$offerStartDate = trim($_SESSION[\'rent_offer_start_date\'] ?? \'\');
+$offerEndDate   = trim($_SESSION[\'rent_offer_end_date\'] ?? \'\');
 $pickupDate  = ($pickupRaw !== \'\' && strtotime($pickupRaw)) ? date(\'Y-m-d\', strtotime($pickupRaw)) : \'\';
 $dropoffDate = ($dropoffRaw !== \'\' && strtotime($dropoffRaw)) ? date(\'Y-m-d\', strtotime($dropoffRaw)) : \'\';
 
@@ -287,11 +306,23 @@ foreach ($rows as $row) {
 
 $rowCategory = trim((string)($row[\'car_category\'] ?? \'\'));
 
+$datesWithinOfferRange = false;
+
+if (
+    $pickupDate !== \'\' &&
+    $dropoffDate !== \'\' &&
+    $offerStartDate !== \'\' &&
+    $offerEndDate !== \'\'
+) {
+    $datesWithinOfferRange = ($pickupDate >= $offerStartDate && $dropoffDate <= $offerEndDate);
+}
+
 $discountAppliesToThisVehicle = (
     $discountPercent > 0 &&
     $originalPrice > 0 &&
     $offerCategory !== \'\' &&
-    strcasecmp($rowCategory, $offerCategory) === 0
+    strcasecmp($rowCategory, $offerCategory) === 0 &&
+    $datesWithinOfferRange
 );
 
 $discountedPrice = $originalPrice;
