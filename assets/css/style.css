@@ -21174,17 +21174,6 @@ input[type="file"].driverForm__control {
     filter: drop-shadow(0 16px 24px rgba(0, 0, 0, 0.10));
 }
 
-/* .offer-card-modern::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: url('../images/offer-bg.png') no-repeat center right;
-    background-size: contain;
-    opacity: 0.15; /* adjust visibility */
-    z-index: 1;
-    pointer-events: none;
-} */
-
 .offer-card-modern:hover .offer-card-modern__image {
     transform: scale(1.05);
 }
