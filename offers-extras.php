@@ -136,6 +136,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_offer'])) {
     $cta_link = trim($_POST['cta_link'] ?? '');
     $sort_order = (int)($_POST['sort_order'] ?? 0);
     $is_active = isset($_POST['is_active']) ? 1 : 0;
+    $offer_start_date = $_POST['offer_start_date'] ?? '';
+    $offer_end_date   = $_POST['offer_end_date'] ?? '';
+
+    if ($layout === '' || $title === '' || $car_category === '' || $offer_start_date === '' || $offer_end_date === '') {
+    $error = "Offer layout, title, car category, and dates are required.";
+    }
+    elseif ($offer_start_date > $offer_end_date) {
+        $error = "Start date cannot be after end date.";
+    }
 
     if ($layout === '' || $title === '' || $car_category === '') {
         $error = "Offer layout, title, and car category are required.";
@@ -160,7 +169,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_offer'])) {
             }
 
             if ($id > 0) {
-               $stmt = $pdo->prepare("
+                $stmt = $pdo->prepare("
                     UPDATE offers SET
                         car_category = ?,
                         layout = ?,
@@ -172,6 +181,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_offer'])) {
                         image_path = ?,
                         sort_order = ?,
                         is_active = ?,
+                        offer_start_date = ?,
+                        offer_end_date = ?,
                         updated_at = NOW()
                     WHERE id = ?
                 ");
@@ -186,6 +197,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_offer'])) {
                     $imagePath,
                     $sort_order,
                     $is_active,
+                    $offer_start_date,
+                    $offer_end_date,
                     $id
                 ]);
 
@@ -195,8 +208,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_offer'])) {
                 $stmt = $pdo->prepare("
                     INSERT INTO offers (
                         car_category, layout, title, subtitle, discount_text, cta_text, cta_link,
-                        image_path, sort_order, is_active, created_at, updated_at
-                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())
+                        image_path, sort_order, is_active,
+                        offer_start_date, offer_end_date,
+                        created_at, updated_at
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())
                 ");
                 $stmt->execute([
                     $car_category,
@@ -208,7 +223,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_offer'])) {
                     $cta_link,
                     $imagePath,
                     $sort_order,
-                    $is_active
+                    $is_active,
+                    $offer_start_date,
+                    $offer_end_date
                 ]);
 
                 header("Location: offers-extras.php?success=offer_created");
@@ -588,6 +605,30 @@ textarea {
                     </div>
 
                     <div class="form-group">
+                        <label>Offer Start Date <span class="text-danger">*</span></label>
+                        <input 
+                            type="date" 
+                            id="start_date"
+                            name="offer_start_date" 
+                            min="<?php echo date('Y-m-d'); ?>"
+                            value="<?php echo htmlspecialchars($editOffer['offer_start_date'] ?? ''); ?>" 
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label>Offer End Date <span class="text-danger">*</span></label>
+                        <input 
+                            type="date" 
+                            id="end_date"
+                            name="offer_end_date" 
+                            min="<?php echo date('Y-m-d'); ?>"
+                            value="<?php echo htmlspecialchars($editOffer['offer_end_date'] ?? ''); ?>" 
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
                         <label>Subtitle <span class="text-danger">*</span></label>
                         <input type="text" name="subtitle" value="<?php echo htmlspecialchars($editOffer['subtitle'] ?? ''); ?>" required>
                     </div>
@@ -664,7 +705,7 @@ textarea {
                             <th>Layout</th>
                             <th>Title</th>
                             <th>Discount</th>
-                            <th>Sort</th>
+                            <th>Offer Dates</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -685,7 +726,14 @@ textarea {
                                     <td><?php echo htmlspecialchars($offer['layout']); ?></td>
                                     <td><?php echo htmlspecialchars($offer['title']); ?></td>
                                     <td><?php echo htmlspecialchars($offer['discount_text']); ?></td>
-                                    <td><?php echo (int)$offer['sort_order']; ?></td>
+                                    <td>
+                                        <?php 
+                                            $start = !empty($offer['offer_start_date']) ? date('d M Y', strtotime($offer['offer_start_date'])) : '';
+                                            $end = !empty($offer['offer_end_date']) ? date('d M Y', strtotime($offer['offer_end_date'])) : '';
+
+                                            echo htmlspecialchars($start . ' → ' . $end);
+                                        ?>
+                                    </td>
                                     <td>
                                         <?php if (!empty($offer['is_active'])): ?>
                                             <span class="status-badge status-active">Active</span>
@@ -793,6 +841,17 @@ textarea {
             placeholder: "Select Car Category",
             allowClear: true,
             width: '100%'
+        });
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const start = document.getElementById('start_date');
+        const end = document.getElementById('end_date');
+
+        start.addEventListener('change', function () {
+            end.min = this.value;
         });
     });
 </script>
