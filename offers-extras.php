@@ -621,10 +621,10 @@ textarea {
                         <input 
                             type="date" 
                             id="end_date"
+                            required
                             name="offer_end_date" 
                             min="<?php echo date('Y-m-d'); ?>"
                             value="<?php echo htmlspecialchars($editOffer['offer_end_date'] ?? ''); ?>" 
-                            required
                         >
                     </div>
 
@@ -641,6 +641,7 @@ textarea {
                                 name="discount_text" 
                                 min="0" 
                                 step="1"
+                                required
                                 placeholder="50"
                                 value="<?php echo htmlspecialchars(isset($editOffer['discount_text']) ? preg_replace('/[^0-9]/', '', $editOffer['discount_text']) : ''); ?>"
                                 style="max-width:120px;"
@@ -652,7 +653,7 @@ textarea {
 
                     <div class="form-group">
                         <label>Text <span class="text-danger">*</span></label>
-                        <input type="text" name="cta_text" value="<?php echo htmlspecialchars($editOffer['cta_text'] ?? ''); ?>">
+                        <input type="text" name="cta_text" required value="<?php echo htmlspecialchars($editOffer['cta_text'] ?? ''); ?>">
                         <small class="muted-text">Example: Book Now , Reserve Today</small>
                     </div>
 
@@ -662,13 +663,13 @@ textarea {
                     </div>
 
                     <div class="form-group">
-                        <label>Sort Order <span class="text-danger">*</span></label>
-                        <input type="number" name="sort_order" value="<?php echo htmlspecialchars($editOffer['sort_order'] ?? '0'); ?>">
+                        <label>Sort Order  <span class="text-danger">*</span></label>
+                        <input type="number" name="sort_order" value="<?php echo htmlspecialchars($editOffer['sort_order'] ?? '1'); ?>" required>
                     </div>
 
                     <div class="form-group">
                         <label>Image <span class="text-danger">*</span></label>
-                        <input type="file" name="image_path" accept="image/*">
+                        <input type="file" name="image_path" accept="image/*" required>
                     </div>
 
                     <div class="form-group full">
