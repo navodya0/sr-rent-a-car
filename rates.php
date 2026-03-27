@@ -560,6 +560,67 @@ button:hover {
         padding: 20px;
     }
 }
+
+.toast-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.45);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 20px;
+}
+
+.toast-overlay.active {
+    display: flex;
+}
+
+.toast-box {
+    width: 100%;
+    max-width: 420px;
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+    animation: fadeInUp 0.2s ease;
+}
+
+.toast-box h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #031c45;
+    font-size: 22px;
+}
+
+.toast-box p {
+    margin: 0 0 12px;
+    color: #475569;
+    font-size: 14px;
+}
+
+.toast-box input[type="text"] {
+    margin-top: 8px;
+}
+
+.toast-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 </style>
 </head>
 <body>
@@ -592,9 +653,9 @@ button:hover {
                 <h3>Step 1: Clear Existing Rates</h3>
                 <p>Use this only when you want to remove all current records from the car rental table.</p>
 
-                <form method="POST" onsubmit="return confirm('Are you sure you want to delete ALL car_rental records? This cannot be undone.');">
+                <form method="POST" id="truncateForm">
                     <input type="hidden" name="truncate_table" value="1">
-                    <button type="submit" class="btn-danger">Clear All Rates</button>
+                    <button type="button" class="btn-danger" id="openDeleteToast">Clear All Rates</button>
                 </form>
 
                 <div class="note">
@@ -717,46 +778,61 @@ button:hover {
         <?php endif; ?>
     </div>
 
-    <!-- <div class="card">
-        <h2 style="margin-top:0; color:#031c45;">Latest Imported Rates (Last 10 records)</h2>
-        <div class="table-wrapper">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Car Code</th>
-                        <th>Model</th>
-                        <th>Category</th>
-                        <th>Duration</th>
-                        <th>Rate</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php if (!empty($rates)): ?>
-                        <?php foreach ($rates as $rate): ?>
-                            <tr>
-                                <td><?php echo (int)$rate['id']; ?></td>
-                                <td><?php echo htmlspecialchars($rate['car_code']); ?></td>
-                                <td><?php echo htmlspecialchars($rate['car_model']); ?></td>
-                                <td><?php echo htmlspecialchars($rate['car_category']); ?></td>
-                                <td><?php echo htmlspecialchars($rate['duration']); ?></td>
-                                <td><?php echo number_format((float)$rate['rate'], 2); ?></td>
-                                <td><?php echo htmlspecialchars($rate['start_date']); ?></td>
-                                <td><?php echo htmlspecialchars($rate['end_date']); ?></td>
-                            </tr>
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        <tr>
-                            <td colspan="8" style="text-align:center; color:#6b7280;">No rates found.</td>
-                        </tr>
-                    <?php endif; ?>
-                </tbody>
-            </table>
+    <div id="deleteToastOverlay" class="toast-overlay">
+        <div class="toast-box">
+            <h3>Confirm Deletion</h3>
+            <p>This will permanently delete all rows from the <strong>car_rental</strong> table.</p>
+            <p>Please type <strong>DELETE</strong> to continue.</p>
+
+            <input type="text" id="deleteConfirmInput" placeholder="Type DELETE here">
+
+            <div class="toast-actions">
+                <button type="button" class="btn-secondary" id="cancelDeleteToast">Cancel</button>
+                <button type="button" class="btn-danger" id="confirmDeleteToast" disabled>Delete Now</button>
+            </div>
         </div>
-    </div> -->
+    </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const openBtn = document.getElementById('openDeleteToast');
+        const overlay = document.getElementById('deleteToastOverlay');
+        const cancelBtn = document.getElementById('cancelDeleteToast');
+        const confirmBtn = document.getElementById('confirmDeleteToast');
+        const input = document.getElementById('deleteConfirmInput');
+        const form = document.getElementById('truncateForm');
+
+        if (openBtn && overlay && cancelBtn && confirmBtn && input && form) {
+            openBtn.addEventListener('click', function () {
+                overlay.classList.add('active');
+                input.value = '';
+                confirmBtn.disabled = true;
+                setTimeout(() => input.focus(), 100);
+            });
+
+            cancelBtn.addEventListener('click', function () {
+                overlay.classList.remove('active');
+            });
+
+            overlay.addEventListener('click', function (e) {
+                if (e.target === overlay) {
+                    overlay.classList.remove('active');
+                }
+            });
+
+            input.addEventListener('input', function () {
+                confirmBtn.disabled = input.value.trim() !== 'DELETE';
+            });
+
+            confirmBtn.addEventListener('click', function () {
+                if (input.value.trim() === 'DELETE') {
+                    form.submit();
+                }
+            });
+        }
+    });
+</script>
 
 </body>
 </html>

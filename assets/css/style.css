@@ -13501,13 +13501,13 @@ font-size:14px;
 .heroRent__contentInner--left{
   max-width: 700px;
   text-align: left;
-  margin-top: -180px;
+  margin-top: -12rem;
   animation: heroFadeUp 1s ease both;
 }
 
 .heroRent__sub{
   display:block;
-  font-size: 70px;
+  font-size: 58px;
   color: #efc900 !important;
   font-weight: 600;
   font-family: "Great Vibes", cursive;
@@ -13517,7 +13517,7 @@ font-size:14px;
 }
 
 .heroRent__title{
-  font-size:48px;
+  font-size:44px;
   color: #fff;
   line-height: 1.18;
   font-family: "Playfair Display", serif;
@@ -13575,7 +13575,7 @@ font-size:14px;
   position:absolute;
   left:0;
   right:0;
-  top:56%;
+  top:59%;
   bottom:auto;
   transform: translateY(-50%);
   z-index:20;
@@ -16521,6 +16521,7 @@ font-size:14px;
   text-decoration: none;
   box-shadow: 0 12px 26px rgba(124,58,237,.28);
   transition: transform .2s ease, filter .2s ease;
+  border-color: transparent;
 }
 
 .promo50-btn:hover{
@@ -17181,6 +17182,7 @@ color : #fff;
   font-weight: 800;
   color: #0b1f3a;
   line-height: 1.2;
+  text-transform: capitalize;
 }
 
 .fleet-subtext {

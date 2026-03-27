@@ -4,7 +4,6 @@ require "assets/includes/db_connect.php";
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-
 $tpl      = $modx->getOption('tpl', $scriptProperties, 'VehicleCategoryCardTpl');
 $tplItem  = $modx->getOption('tplItem', $scriptProperties, 'VehicleListItemTpl');
 $limit    = (int)$modx->getOption('limit', $scriptProperties, 20);
@@ -28,30 +27,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'dropoff_datetime' => trim($_POST['dropoff_datetime'] ?? ''),
     ];
 
-    // Coming from home search => remove old offer discount + vehicle
-    if ($searchSource === 'home') {
-        unset($_SESSION['rent_discount'], $_SESSION['rent_offer_vehicle_id']);
+// Coming from home search => remove old offer discount + category
+if ($searchSource === 'home') {
+    unset($_SESSION['rent_discount'], $_SESSION['rent_offer_category']);
+}
+
+// Coming from offer => store discount + selected category
+if ($searchSource === 'offer') {
+    if (isset($_POST['discount']) && trim($_POST['discount']) !== '') {
+        $_SESSION['rent_discount'] = trim($_POST['discount']);
     }
 
-    // Coming from offer => store discount + selected vehicle
-    if ($searchSource === 'offer') {
-        if (isset($_POST['discount']) && trim($_POST['discount']) !== '') {
-            $_SESSION['rent_discount'] = trim($_POST['discount']);
-        }
-
-        if (isset($_POST['vehicle_id']) && (int)$_POST['vehicle_id'] > 0) {
-            $_SESSION['rent_offer_vehicle_id'] = (int)$_POST['vehicle_id'];
-        }
-    }
-
-    // Explicit remove
-    if (isset($_POST['clear_discount']) && $_POST['clear_discount'] === '1') {
-        unset($_SESSION['rent_discount'], $_SESSION['rent_offer_vehicle_id']);
+    if (isset($_POST['car_category']) && trim($_POST['car_category']) !== '') {
+        $_SESSION['rent_offer_category'] = trim($_POST['car_category']);
     }
 }
 
-$discountRaw = '';
+// Explicit remove
+if (isset($_POST['clear_discount']) && $_POST['clear_discount'] === '1') {
+    unset($_SESSION['rent_discount'], $_SESSION['rent_offer_category']);
+}
+}
 
+$search = $_SESSION['rent_search'] ?? [];
+
+/*
+|--------------------------------------------------------------------------
+| Read discount + category from GET first, otherwise session
+|--------------------------------------------------------------------------
+*/
 if (isset($_GET['discount']) && trim($_GET['discount']) !== '') {
     $discountRaw = trim($_GET['discount']);
     $_SESSION['rent_discount'] = $discountRaw;
@@ -59,16 +63,14 @@ if (isset($_GET['discount']) && trim($_GET['discount']) !== '') {
     $discountRaw = trim($_SESSION['rent_discount'] ?? '');
 }
 
-$discountPercent = 0;
-if ($discountRaw !== '') {
-    $discountPercent = (int)preg_replace('/[^0-9]/', '', $discountRaw);
+if (isset($_GET['car_category']) && trim($_GET['car_category']) !== '') {
+    $offerCategory = trim($_GET['car_category']);
+    $_SESSION['rent_offer_category'] = $offerCategory;
+} else {
+    $offerCategory = trim($_SESSION['rent_offer_category'] ?? '');
 }
 
-$search = $_SESSION['rent_search'] ?? [];
-
-$discountRaw = trim($_SESSION['rent_discount'] ?? '');
 $discountPercent = 0;
-
 if ($discountRaw !== '') {
     $discountPercent = (int)preg_replace('/[^0-9]/', '', $discountRaw);
 }
@@ -275,30 +277,55 @@ foreach ($rows as $row) {
     $cat = trim((string)($row['car_category'] ?? 'Uncategorized'));
     if (!isset($grouped[$cat])) $grouped[$cat] = [];
 
-$originalPrice = (float) calculateRentalPrice(
-    $modx,
-    $row['car_code'] ?? '',
-    $pickupDate,
-    $dropoffDate
+    $originalPrice = (float) calculateRentalPrice(
+        $modx,
+        $row['car_code'] ?? '',
+        $pickupDate,
+        $dropoffDate
+    );
+
+    $discountedPrice = $originalPrice;
+
+$rowCategory = trim((string)($row['car_category'] ?? ''));
+
+$discountAppliesToThisVehicle = (
+    $discountPercent > 0 &&
+    $originalPrice > 0 &&
+    $offerCategory !== '' &&
+    strcasecmp($rowCategory, $offerCategory) === 0
 );
 
 $discountedPrice = $originalPrice;
 
-if ($discountPercent > 0 && $originalPrice > 0) {
+if ($discountAppliesToThisVehicle) {
     $discountedPrice = $originalPrice - (($originalPrice * $discountPercent) / 100);
 }
 
 $row['calculated_price'] = $discountedPrice > 0 ? number_format($discountedPrice, 2, '.', '') : '';
 $row['original_price'] = $originalPrice > 0 ? number_format($originalPrice, 2, '.', '') : '';
-$row['discount_percent'] = $discountPercent;
+$row['discount_percent'] = $discountAppliesToThisVehicle ? $discountPercent : 0;
+$row['discount_raw'] = $discountAppliesToThisVehicle ? $discountRaw : '';
 
-$row['form_action'] = $modx->makeUrl($step2PageId);
-$row['vehicle_id']  = (int)$row['id'];
+    $row['form_action'] = $modx->makeUrl($step2PageId);
+    $row['vehicle_id']  = (int)$row['id'];
 
     $grouped[$cat][] = $row;
 }
 
+if ($offerCategory !== '') {
+    foreach ($grouped as $groupCat => $groupItems) {
+        if (strcasecmp($groupCat, $offerCategory) === 0) {
+            $priorityGroup = [$groupCat => $groupItems];
+            unset($grouped[$groupCat]);
+            $grouped = $priorityGroup + $grouped;
+            break;
+        }
+    }
+}
+
 $out = '<div id="vehicleGroups">';
+
+
 
 foreach ($grouped as $cat => $items) {
     $safeCat = htmlspecialchars($cat, ENT_QUOTES, 'UTF-8');
@@ -334,3 +361,4 @@ $ph = [
 $out .= '</div>';
 
 return $out;
+return;
