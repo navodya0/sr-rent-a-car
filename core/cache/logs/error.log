@@ -78,3 +78,25 @@
 [2026-03-27 07:25:52] (ERROR @ C:\xampp\htdocs\srilankarentacar.com\core\cache\includes\elements\modx\revolution\modsnippet\10.include.cache.php : 56) PHP warning: Undefined variable $baseRentalOriginal
 [2026-03-27 07:27:41] (ERROR @ C:\xampp\htdocs\srilankarentacar.com\core\vendor\xpdo\xpdo\src\xPDO\Cache\xPDOCacheManager.php : 319) PHP warning: mkdir(): File exists
 [2026-03-27 07:27:41] (ERROR @ C:\xampp\htdocs\srilankarentacar.com\core\vendor\xpdo\xpdo\src\xPDO\Cache\xPDOCacheManager.php : 324) PHP warning: mkdir(): File exists
+[2026-03-31 10:17:05] (ERROR in xPDO\xPDOConnection::connect @ C:\xampp\htdocs\srilankarentacar.com\core\vendor\xpdo\xpdo\src\xPDO\xPDOConnection.php : 89) SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[2026-03-31 10:17:05] (ERROR @ C:\xampp\htdocs\srilankarentacar.com\core\vendor\xpdo\xpdo\src\xPDO\Om\xPDOQuery.php : 670) Could not construct or prepare query because it is invalid or could not connect: SELECT `modExtensionPackage`.`id`, `modExtensionPackage`.`namespace`, `modExtensionPackage`.`name`, `modExtensionPackage`.`path`, `modExtensionPackage`.`table_prefix`, `modExtensionPackage`.`service_class`, `modExtensionPackage`.`service_name`, `modExtensionPackage`.`created_at`, `modExtensionPackage`.`updated_at`, Namespace.path AS namespace_path FROM `modx_extension_packages` AS `modExtensionPackage` JOIN `modx_namespaces` `Namespace` ON `modExtensionPackage`.`namespace` =  `Namespace`.`name` ORDER BY namespace ASC 
+[2026-03-31 10:17:07] (ERROR in xPDO\xPDOConnection::connect @ C:\xampp\htdocs\srilankarentacar.com\core\vendor\xpdo\xpdo\src\xPDO\xPDOConnection.php : 89) SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[2026-03-31 10:17:07] (ERROR @ C:\xampp\htdocs\srilankarentacar.com\core\vendor\xpdo\xpdo\src\xPDO\Om\xPDOQuery.php : 670) Could not construct or prepare query because it is invalid or could not connect: SELECT `modExtensionPackage`.`id`, `modExtensionPackage`.`namespace`, `modExtensionPackage`.`name`, `modExtensionPackage`.`path`, `modExtensionPackage`.`table_prefix`, `modExtensionPackage`.`service_class`, `modExtensionPackage`.`service_name`, `modExtensionPackage`.`created_at`, `modExtensionPackage`.`updated_at`, Namespace.path AS namespace_path FROM `modx_extension_packages` AS `modExtensionPackage` JOIN `modx_namespaces` `Namespace` ON `modExtensionPackage`.`namespace` =  `Namespace`.`name` ORDER BY namespace ASC 
+[2026-03-31 10:17:09] (ERROR in xPDO\xPDOConnection::connect @ C:\xampp\htdocs\srilankarentacar.com\core\vendor\xpdo\xpdo\src\xPDO\xPDOConnection.php : 89) SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[2026-03-31 10:17:09] (ERROR @ C:\xampp\htdocs\srilankarentacar.com\core\vendor\xpdo\xpdo\src\xPDO\Om\xPDOQuery.php : 670) Could not construct or prepare query because it is invalid or could not connect: SELECT `modSession`.`id` AS `modSession_id`, `modSession`.`access` AS `modSession_access`, `modSession`.`data` AS `modSession_data` FROM `modx_session` AS `modSession` WHERE `modSession`.`id` = ? 
+[2026-03-31 10:17:09] (ERROR in xPDO\xPDOConnection::connect @ C:\xampp\htdocs\srilankarentacar.com\core\vendor\xpdo\xpdo\src\xPDO\xPDOConnection.php : 89) SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[2026-03-31 10:17:09] (ERROR @ C:\xampp\htdocs\srilankarentacar.com\core\vendor\xpdo\xpdo\src\xPDO\Om\xPDOQuery.php : 670) Could not construct or prepare query because it is invalid or could not connect: SELECT `modSession`.`id` AS `modSession_id`, `modSession`.`access` AS `modSession_access`, `modSession`.`data` AS `modSession_data` FROM `modx_session` AS `modSession` WHERE `modSession`.`id` = ? 
+[2026-03-31 10:17:10] (ERROR @ C:\xampp\htdocs\srilankarentacar.com\core\vendor\xpdo\xpdo\src\xPDO\Om\xPDOObject.php : 250) Error preparing statement for query: SELECT `modSession`.`id` AS `modSession_id`, `modSession`.`access` AS `modSession_access`, `modSession`.`data` AS `modSession_data` FROM `modx_session` AS `modSession` WHERE `modSession`.`id` = ?  - Array
+(
+    [0] => 00000
+    [1] => 
+    [2] => 
+)
+
+[2026-03-31 10:17:10] (ERROR @ C:\xampp\htdocs\srilankarentacar.com\core\vendor\xpdo\xpdo\src\xPDO\Om\xPDOObject.php : 250) Error preparing statement for query: SELECT `modSession`.`id` AS `modSession_id`, `modSession`.`access` AS `modSession_access`, `modSession`.`data` AS `modSession_data` FROM `modx_session` AS `modSession` WHERE `modSession`.`id` = ?  - Array
+(
+    [0] => 00000
+    [1] => 
+    [2] => 
+)
+

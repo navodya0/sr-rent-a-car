@@ -21035,9 +21035,37 @@ input[type="file"].driverForm__control {
 
 
 .offer-hero-section {
+    position: relative;
     padding: 30px 0 10px;
-    background: #ffffffa1;
+    background: url('../images/offer-bg.png') no-repeat center;
+    background-size: cover;
+    overflow: hidden;
 }
+
+/* Overlay layer */
+.offer-hero-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgb(0 0 0 / 61%); /* adjust opacity here */
+    z-index: 1;
+}
+
+/* Ensure content stays above overlay */
+.offer-hero-section > * {
+    position: relative;
+    z-index: 2;
+}
+
+
+.fleet-heading1 {
+  color: white !important;
+    font-size: 2.4rem;
+  font-weight: 800;
+  line-height: 1.2;
+  text-transform: capitalize;
+}
+
 
 .offer-card-modern {
     position: relative;
@@ -21087,7 +21115,7 @@ input[type="file"].driverForm__control {
     padding: 4px 20px;
     background: #950000;
     color: #fff;
-    font-size: 13px;
+    font-size: 18px;
     font-weight: 700;
     border-radius: 999px;
     letter-spacing: 0.3px;
@@ -21101,6 +21129,7 @@ input[type="file"].driverForm__control {
     font-weight: 800;
     color: #044177;
     letter-spacing: -0.4px;
+    white-space: nowrap;
 }
 
 .offer-card-modern__subtitle {
@@ -21168,7 +21197,7 @@ input[type="file"].driverForm__control {
 .offer-card-modern__image {
     width: 100%;
     height: 240px;
-    object-fit: cover;
+    object-fit: contain;
     transform: scale(1);
     transition: transform 0.35s ease;
     filter: drop-shadow(0 16px 24px rgba(0, 0, 0, 0.10));

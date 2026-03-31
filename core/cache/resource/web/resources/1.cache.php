@@ -4100,7 +4100,7 @@ $featuredOne = $featured[0] ?? null;
         <div class="row">
             <div class="col-12 text-center mb-4">
                 <h2 class="priority-badge">Special Offers</h2>
-                <p class="fleet-heading mt-0">Grab the best deals for your ride</p>
+                <p class="fleet-heading1 mt-0">Grab the best deals for your ride</p>
             </div>
         </div>
 
@@ -4263,7 +4263,7 @@ $featuredOne = $featured[0] ?? null;
         <div class="row">
             <div class="col-12 text-center mb-4">
                 <h2 class="priority-badge">Special Offers</h2>
-                <p class="fleet-heading mt-0">Grab the best deals for your ride</p>
+                <p class="fleet-heading1 mt-0">Grab the best deals for your ride</p>
             </div>
         </div>
 
