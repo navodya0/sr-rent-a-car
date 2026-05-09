@@ -427,7 +427,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var bookingSubmitBtn = document.getElementById("bookingSubmitBtn");
 
     var payOnArrivalAction = "assets/includes/save_booking.php";
-    var payNowAction = "assets/includes/payhere_checkout.php";
+    var payNowAction = "assets/includes/webxpay_checkout.php";
 
     var chauffeurFeeInput = document.getElementById("chauffeur_fee");
     var licenseFeeInput = document.getElementById("license_fee");
@@ -654,3 +654,4 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>';
 
 return $out;
+return;

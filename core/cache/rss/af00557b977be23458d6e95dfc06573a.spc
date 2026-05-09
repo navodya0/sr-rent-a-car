@@ -114,8 +114,8 @@ a:6:{s:5:"child";a:1:{s:0:"";a:1:{s:3:"rss";a:1:{i:0;a:6:{s:4:"data";s:4:"
           
           
           
-        ";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:3:{s:0:"";a:7:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:51:"MODX Login Extra PHP Object Injection Vulnerability";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"category";a:1:{i:0;a:5:{s:4:"data";s:16:"Security Notices";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:4904:"
-            <h2><a name="p-33100-overview-1" class="anchor" href="https://community.modx.com#p-33100-overview-1"></a>Overview</h2>
+        ";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:3:{s:0:"";a:7:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:51:"MODX Login Extra PHP Object Injection Vulnerability";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"category";a:1:{i:0;a:5:{s:4:"data";s:16:"Security Notices";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:5216:"
+            <h2><a name="p-33100-overview-1" class="anchor" href="https://community.modx.com#p-33100-overview-1" aria-label="Heading link"></a>Overview</h2>
 <ul>
 <li><strong>Project</strong>: <a href="https://extras.modx.com/package/login">Login Extra</a></li>
 <li><strong>CVE ID</strong>: <a href="https://www.cve.org/CVERecord?id=CVE-2024-55039">CVE-2024-55039</a> (pending)</li>
@@ -126,19 +126,19 @@ a:6:{s:5:"child";a:1:{s:0:"";a:1:{s:3:"rss";a:1:{i:0;a:6:{s:4:"data";s:4:"
 <li><strong>CVSS v4.0 Score</strong>: 9.4</li>
 <li><strong>CVSS v4.0 Vector</strong>: CVSS:4.0/AV:N/AC:L/AT:N/PR:L/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H</li>
 </ul>
-<h2><a name="p-33100-vulnerability-details-2" class="anchor" href="https://community.modx.com#p-33100-vulnerability-details-2"></a>Vulnerability Details</h2>
-<h3><a name="p-33100-type-3" class="anchor" href="https://community.modx.com#p-33100-type-3"></a>Type</h3>
+<h2><a name="p-33100-vulnerability-details-2" class="anchor" href="https://community.modx.com#p-33100-vulnerability-details-2" aria-label="Heading link"></a>Vulnerability Details</h2>
+<h3><a name="p-33100-type-3" class="anchor" href="https://community.modx.com#p-33100-type-3" aria-label="Heading link"></a>Type</h3>
 <p>Remote Code Execution (RCE) via PHP Object Injection</p>
-<h3><a name="p-33100-description-4" class="anchor" href="https://community.modx.com#p-33100-description-4"></a>Description</h3>
+<h3><a name="p-33100-description-4" class="anchor" href="https://community.modx.com#p-33100-description-4" aria-label="Heading link"></a>Description</h3>
 <p>A critical vulnerability has been identified in the MODX Login Extra that allows arbitrary PHP code execution through PHP Object Injection. The vulnerability stems from unsafe deserialization of user-supplied data using PHP’s <code>unserialize()</code> function without proper sanitization.</p>
-<h3><a name="p-33100-attack-vector-5" class="anchor" href="https://community.modx.com#p-33100-attack-vector-5"></a>Attack Vector</h3>
+<h3><a name="p-33100-attack-vector-5" class="anchor" href="https://community.modx.com#p-33100-attack-vector-5" aria-label="Heading link"></a>Attack Vector</h3>
 <p>An authenticated user, regardless of their permission level, can exploit this vulnerability by submitting specially crafted data through the Login form. The vulnerability can be triggered when:</p>
 <ol>
 <li>The system processes user input through the Login form</li>
 <li>The malicious payload is passed to the unsafe <code>unserialize()</code> function</li>
 <li>The resulting PHP object injection leads to arbitrary code execution</li>
 </ol>
-<h2><a name="p-33100-affected-systems-6" class="anchor" href="https://community.modx.com#p-33100-affected-systems-6"></a>Affected Systems</h2>
+<h2><a name="p-33100-affected-systems-6" class="anchor" href="https://community.modx.com#p-33100-affected-systems-6" aria-label="Heading link"></a>Affected Systems</h2>
 <p>The vulnerability affects MODX Revolution installations that meet ALL of the following criteria:</p>
 <ol>
 <li>Have the Login Extra installed (versions 1.5.2 to 1.9.13)</li>
@@ -146,33 +146,33 @@ a:6:{s:5:"child";a:1:{s:0:"";a:1:{s:3:"rss";a:1:{i:0;a:6:{s:4:"data";s:4:"
 <li>Allow user authentication</li>
 </ol>
 <p><strong>Note</strong>: Systems with Registration forms using the Login Extra may be particularly vulnerable if user validation is not required.</p>
-<h2><a name="p-33100-mitigation-7" class="anchor" href="https://community.modx.com#p-33100-mitigation-7"></a>Mitigation</h2>
+<h2><a name="p-33100-mitigation-7" class="anchor" href="https://community.modx.com#p-33100-mitigation-7" aria-label="Heading link"></a>Mitigation</h2>
 <p><strong>Immediate Update Required</strong>: Upgrade <a href="https://extras.modx.com/package/login?version=1.9.14-pl">Login Extra to version 1.9.14</a> or later using the MODX Extras Installer in your MODX Revolution Projects.</p>
-<h2><a name="p-33100-technical-details-8" class="anchor" href="https://community.modx.com#p-33100-technical-details-8"></a>Technical Details</h2>
+<h2><a name="p-33100-technical-details-8" class="anchor" href="https://community.modx.com#p-33100-technical-details-8" aria-label="Heading link"></a>Technical Details</h2>
 <p>The vulnerability exists due to:</p>
 <ul>
 <li>Unsafe usage of PHP’s <code>unserialize()</code> function</li>
 <li>Lack of input validation before deserialization</li>
 <li>Insufficient permission checking in the login process</li>
 </ul>
-<h2><a name="p-33100-credits-9" class="anchor" href="https://community.modx.com#p-33100-credits-9"></a>Credits</h2>
+<h2><a name="p-33100-credits-9" class="anchor" href="https://community.modx.com#p-33100-credits-9" aria-label="Heading link"></a>Credits</h2>
 <ul>
 <li><strong>Discovery</strong>: <a href="https://www.mcdruid.co.uk">Drew Webber</a></li>
 <li><strong>Resolution</strong>: <a href="https://github.com/jako">Thomas Jakobi</a> and <a href="https://github.com/theboxer">John Peca</a></li>
 <li><strong>Coordination</strong>: MODX Security Team</li>
 </ul>
-<h2><a name="p-33100-timeline-10" class="anchor" href="https://community.modx.com#p-33100-timeline-10"></a>Timeline</h2>
+<h2><a name="p-33100-timeline-10" class="anchor" href="https://community.modx.com#p-33100-timeline-10" aria-label="Heading link"></a>Timeline</h2>
 <ul>
 <li><strong>Discovery Date</strong>: 2024-11-22</li>
 <li><strong>Fix Development</strong>: 2024-11-22</li>
 <li><strong>Public Disclosure</strong>: 2024-11-22</li>
 </ul>
-<h2><a name="p-33100-references-11" class="anchor" href="https://community.modx.com#p-33100-references-11"></a>References</h2>
+<h2><a name="p-33100-references-11" class="anchor" href="https://community.modx.com#p-33100-references-11" aria-label="Heading link"></a>References</h2>
 <ul>
 <li>MODX Security Team Contact: <a>Security Team</a></li>
 <li>Fixed Version Download: <a href="https://extras.modx.com/package/login?version=1.9.14-pl">Login 1.9.14</a></li>
 </ul>
-<h2><a name="p-33100-revision-history-12" class="anchor" href="https://community.modx.com#p-33100-revision-history-12"></a>Revision History</h2>
+<h2><a name="p-33100-revision-history-12" class="anchor" href="https://community.modx.com#p-33100-revision-history-12" aria-label="Heading link"></a>Revision History</h2>
 <ul>
 <li><strong>2024-11-22</strong>: Initial advisory publication</li>
 </ul>
@@ -436,10 +436,9 @@ a:6:{s:5:"child";a:1:{s:0:"";a:1:{s:3:"rss";a:1:{i:0;a:6:{s:4:"data";s:4:"
           
           
           
-        ";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:3:{s:0:"";a:7:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:35:"Revolution 3.0.1 and 2.8.4 Released";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"category";a:1:{i:0;a:5:{s:4:"data";s:8:"Releases";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:2429:"
+        ";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:3:{s:0:"";a:7:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:35:"Revolution 3.0.1 and 2.8.4 Released";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"category";a:1:{i:0;a:5:{s:4:"data";s:8:"Releases";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:2552:"
             <p>Today we’re delighted to announce two releases of MODX Revolution. The first patch of our month-old Revo 3, for those who’ve taken the leap, and the latest patch of Revo 2.</p>
-<h3>
-<a name="revo-301-1" class="anchor" href="https://community.modx.com#revo-301-1"></a>Revo 3.0.1</h3>
+<h3><a name="p-20139-revo-301-1" class="anchor" href="https://community.modx.com#p-20139-revo-301-1" aria-label="Heading link"></a>Revo 3.0.1</h3>
 <p>While our initial release of <a href="https://modx.com/blog/modx-revolution-3.0.0">MODX Revolution 3.0</a> has proven to be one of our best releases ever, there were some areas that needed attention. With that in mind, our first patch release is here, just under a month after its initial debut.</p>
 <p>Before upgrading from Revo 2.x to 3.0.1, please review the <a href="https://docs.modx.com/3.x/en/getting-started/upgrading-to-3.0">upgrade guide</a>.</p>
 <ul>
@@ -447,16 +446,14 @@ a:6:{s:5:"child";a:1:{s:0:"";a:1:{s:3:"rss";a:1:{i:0;a:6:{s:4:"data";s:4:"
 <li><a href="https://modx.com/download/other-versions?releaseKey=revolution-3.0.1-pl">Download Revo 3.0.1</a></li>
 <li><a href="https://dashboard.modxcloud.com/dashboard/cloud/new">Create a new Revo 3.0.1 Cloud</a></li>
 </ul>
-<h3>
-<a name="revo-284-2" class="anchor" href="https://community.modx.com#revo-284-2"></a>Revo 2.8.4</h3>
+<h3><a name="p-20139-revo-284-2" class="anchor" href="https://community.modx.com#p-20139-revo-284-2" aria-label="Heading link"></a>Revo 2.8.4</h3>
 <p>This 2.8.4 release focuses on a few bugs, updates dependencies, and improves compatibility with newer versions of PHP. All users of the 2.8.3 and earlier should upgrade to this release if you are not ready to upgrade to MODX Revolution 3.0.1, just yet.</p>
 <ul>
 <li><a href="https://modx.com/blog/modx-revolution-2.8.4">Read the Complete Revo 2.8.4 Release Announcement</a></li>
 <li><a href="https://modx.com/download/other-versions?releaseKey=revolution-2.8.4-pl">Download Revo 2.8.4</a></li>
 <li><a href="https://dashboard.modxcloud.com/dashboard/cloud/new">Create a new Revo 2.8.4 Cloud</a></li>
 </ul>
-<h3>
-<a name="need-help-upgrading-3" class="anchor" href="https://community.modx.com#need-help-upgrading-3"></a>Need Help Upgrading?</h3>
+<h3><a name="p-20139-need-help-upgrading-3" class="anchor" href="https://community.modx.com#p-20139-need-help-upgrading-3" aria-label="Heading link"></a>Need Help Upgrading?</h3>
 <p>If you’re not sure how to upgrade but would like to get your site onto the latest version of MODX Revolution, check out the <a href="https://modx.com/help">MODX Garage and Speed Shop</a> to contact the MODX team for expert assistance. We can advise you of your options.</p>
             <p><small>2 posts - 1 participant</small></p>
             <p><a href="https://community.modx.com/t/revolution-3-0-1-and-2-8-4-released/5284">Read full topic</a></p>
@@ -496,41 +493,35 @@ a:6:{s:5:"child";a:1:{s:0:"";a:1:{s:3:"rss";a:1:{i:0;a:6:{s:4:"data";s:4:"
           
           
           
-        ";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:3:{s:0:"";a:7:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:51:"MODX Revolution 2.8.3 is Now Available for Download";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"category";a:1:{i:0;a:5:{s:4:"data";s:8:"Releases";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:3924:"
+        ";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:3:{s:0:"";a:7:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:51:"MODX Revolution 2.8.3 is Now Available for Download";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"category";a:1:{i:0;a:5:{s:4:"data";s:8:"Releases";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:4222:"
             <p>MODX contributors and the integration team are proud to announce MODX Revolution 2.8.3. MODX Revolution 2.8.3 adds additional compatibility for PHP 8 and fixes a number of bugs and security issues.</p>
 <p><strong>Note: Sites that use rich text editors such as <em>TinyMCE RTE</em>, <em>TinyMCE Wrapper</em>, and similar will have issues with 2.8.2 related to the <em>media browser</em>. 2.8.3 provides resolution for these issues.</strong></p>
-<h2>
-<a name="highlights-1" class="anchor" href="https://community.modx.com#highlights-1"></a>Highlights</h2>
+<h2><a name="p-15151-highlights-1" class="anchor" href="https://community.modx.com#p-15151-highlights-1" aria-label="Heading link"></a>Highlights</h2>
 <p>You can get a full list of changes by reviewing the <a href="https://github.com/modxcms/revolution/blob/9f34bc936bcfa604d462a3f8b8fa3a36586b4395/core/docs/changelog.txt">changelog</a>, but below are some of the significant revisions in this release.</p>
-<h3>
-<a name="security-2" class="anchor" href="https://community.modx.com#security-2"></a>Security</h3>
+<h3><a name="p-15151-security-2" class="anchor" href="https://community.modx.com#p-15151-security-2" aria-label="Heading link"></a>Security</h3>
 <ul>
-<li>XSS issues reported by Solar Security (<span class="hashtag">#15720</span>)</li>
-<li>Adjust filtering of placeholders and accessible options for <code>@SELECT</code> (<span class="hashtag">#15714</span>)</li>
-<li>Pass auth token to Browser controller config (<span class="hashtag">#15692</span>)</li>
-<li>Update to PHPMailer 6.4.1 (<span class="hashtag">#15693</span>)</li>
+<li>XSS issues reported by Solar Security (<span class="hashtag-raw">#15720</span>)</li>
+<li>Adjust filtering of placeholders and accessible options for <code>@SELECT</code> (<span class="hashtag-raw">#15714</span>)</li>
+<li>Pass auth token to Browser controller config (<span class="hashtag-raw">#15692</span>)</li>
+<li>Update to PHPMailer 6.4.1 (<span class="hashtag-raw">#15693</span>)</li>
 </ul>
-<h3>
-<a name="other-changes-3" class="anchor" href="https://community.modx.com#other-changes-3"></a>Other Changes</h3>
+<h3><a name="p-15151-other-changes-3" class="anchor" href="https://community.modx.com#p-15151-other-changes-3" aria-label="Heading link"></a>Other Changes</h3>
 <ul>
-<li>Patch MagpieRSS for basic use in PHP 8 (<span class="hashtag">#15721</span>)</li>
-<li>Avoid setting headers for modStaticResource when returning content (<span class="hashtag">#15715</span>)</li>
-<li>Fix incorrect id format (<span class="hashtag">#15709</span>)</li>
-<li>Fix filesize() calculation for static resources (<span class="hashtag">#15697</span>)</li>
-<li>Return content from non-binary static resources (<span class="hashtag">#15702</span>)</li>
-<li>Fix PHP 8 compatibility with phpThumb (<span class="hashtag">#15706</span>)</li>
-<li>Fix PHP 8 warnings in modPhpThumb (<span class="hashtag">#15705</span>)</li>
-<li>Fix PHPMailer version display (<span class="hashtag">#15704</span>)</li>
-<li>PHP 8 compatibility (<span class="hashtag">#15699</span>)</li>
+<li>Patch MagpieRSS for basic use in PHP 8 (<span class="hashtag-raw">#15721</span>)</li>
+<li>Avoid setting headers for modStaticResource when returning content (<span class="hashtag-raw">#15715</span>)</li>
+<li>Fix incorrect id format (<span class="hashtag-raw">#15709</span>)</li>
+<li>Fix filesize() calculation for static resources (<span class="hashtag-raw">#15697</span>)</li>
+<li>Return content from non-binary static resources (<span class="hashtag-raw">#15702</span>)</li>
+<li>Fix PHP 8 compatibility with phpThumb (<span class="hashtag-raw">#15706</span>)</li>
+<li>Fix PHP 8 warnings in modPhpThumb (<span class="hashtag-raw">#15705</span>)</li>
+<li>Fix PHPMailer version display (<span class="hashtag-raw">#15704</span>)</li>
+<li>PHP 8 compatibility (<span class="hashtag-raw">#15699</span>)</li>
 </ul>
-<h2>
-<a name="security-is-a-habit-4" class="anchor" href="https://community.modx.com#security-is-a-habit-4"></a>Security is a Habit</h2>
+<h2><a name="p-15151-security-is-a-habit-4" class="anchor" href="https://community.modx.com#p-15151-security-is-a-habit-4" aria-label="Heading link"></a>Security is a Habit</h2>
 <p>Staying up-to-date with new releases is a good habit to keep your MODX-powered websites secure. The security issues addressed in this release are limited to users that have a valid login to access the MODX Manager. A couple of the issues allowed changes or access beyond limited Manager users’ permissions. As such <strong>we recommend you upgrade as soon as possible</strong>.</p>
-<h2>
-<a name="special-notes-on-upgrading-to-283-5" class="anchor" href="https://community.modx.com#special-notes-on-upgrading-to-283-5"></a>Special Notes on Upgrading to 2.8.3</h2>
+<h2><a name="p-15151-special-notes-on-upgrading-to-283-5" class="anchor" href="https://community.modx.com#p-15151-special-notes-on-upgrading-to-283-5" aria-label="Heading link"></a>Special Notes on Upgrading to 2.8.3</h2>
 <p>Some of the security improvements in 2.8.3 will affect certain site configurations. Read about these changes and how to make any appropriate adjustments when <a href="https://docs.modx.com/current/en/getting-started/maintenance/upgrading/2.8.2">upgrading to 2.8.3</a>.</p>
-<h2>
-<a name="it-takes-a-village-6" class="anchor" href="https://community.modx.com#it-takes-a-village-6"></a>It Takes a Village…</h2>
+<h2><a name="p-15151-it-takes-a-village-6" class="anchor" href="https://community.modx.com#p-15151-it-takes-a-village-6" aria-label="Heading link"></a>It Takes a Village…</h2>
 <p>The release would not be possible without the attention and effort of our community contributors including wfoojjaec, Jason Coward, Mark Hamstra, MODX Bot, Murray Wood, Ivan Bochkarev Ivan and many more.</p>
 <p><a href="https://modx.com/download">Download MODX Revolution 2.8.3</a><br>
 <a href="https://modx.com/content-management-framework#hosting">Try it in MODX Cloud</a></p>
@@ -548,40 +539,34 @@ a:6:{s:5:"child";a:1:{s:0:"";a:1:{s:3:"rss";a:1:{i:0;a:6:{s:4:"data";s:4:"
           
           
           
-        ";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:3:{s:0:"";a:7:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:51:"MODX Revolution 2.8.2 is Now Available for Download";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"category";a:1:{i:0;a:5:{s:4:"data";s:8:"Releases";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:3901:"
+        ";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:3:{s:0:"";a:7:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:51:"MODX Revolution 2.8.2 is Now Available for Download";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"category";a:1:{i:0;a:5:{s:4:"data";s:8:"Releases";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:4191:"
             <p>MODX contributors and the integration team are proud to announce MODX Revolution 2.8.2. MODX Revolution 2.8.2 adds compatibility for PHP 8 and fixes a number of bugs and security issues.</p>
 <p><strong>Note: Sites that use rich text editors such as TinyMCE RTE, TinyMCE Wrapper and similar will have issues with 2.8.2 related to the media browser. We’re integrating a fix and 2.8.3 will be available in the next week.</strong></p>
-<h2>
-<a name="highlights-1" class="anchor" href="https://community.modx.com#highlights-1"></a>Highlights</h2>
+<h2><a name="p-14652-highlights-1" class="anchor" href="https://community.modx.com#p-14652-highlights-1" aria-label="Heading link"></a>Highlights</h2>
 <p>You can get a full list of changes by reviewing the <a href="https://github.com/modxcms/revolution/blob/440488414a73fe16cc6cae31b52c9449ea41e558/core/docs/changelog.txt">changelog</a>, but below are some of the significant revisions in this release.</p>
-<h3>
-<a name="security-2" class="anchor" href="https://community.modx.com#security-2"></a>Security</h3>
+<h3><a name="p-14652-security-2" class="anchor" href="https://community.modx.com#p-14652-security-2" aria-label="Heading link"></a>Security</h3>
 <ul>
-<li>Prevent access to sensitive user data [<span class="hashtag">#15678</span>]</li>
-<li>Add permissions to enforce access to specific resource types [<span class="hashtag">#15655</span>]</li>
-<li>Flatten nested lexicon parameters by dot notation [<span class="hashtag">#15490</span>]</li>
-<li>Restrict static resources to predefined path [<span class="hashtag">#15656</span>]</li>
-<li>Prevent XSSI access to <code>MODx.config</code> by requiring auth token [<span class="hashtag">#15644</span>]</li>
+<li>Prevent access to sensitive user data [<span class="hashtag-raw">#15678</span>]</li>
+<li>Add permissions to enforce access to specific resource types [<span class="hashtag-raw">#15655</span>]</li>
+<li>Flatten nested lexicon parameters by dot notation [<span class="hashtag-raw">#15490</span>]</li>
+<li>Restrict static resources to predefined path [<span class="hashtag-raw">#15656</span>]</li>
+<li>Prevent XSSI access to <code>MODx.config</code> by requiring auth token [<span class="hashtag-raw">#15644</span>]</li>
 </ul>
-<h3>
-<a name="other-changes-3" class="anchor" href="https://community.modx.com#other-changes-3"></a>Other Changes</h3>
+<h3><a name="p-14652-other-changes-3" class="anchor" href="https://community.modx.com#p-14652-other-changes-3" aria-label="Heading link"></a>Other Changes</h3>
 <ul>
-<li>PHP 8 Compatibility [<span class="hashtag">#15335</span>]</li>
-<li>Fix Plugin and Template name validation [<span class="hashtag">#15349</span>]</li>
-<li>Support SameSite attribute in session cookies [<span class="hashtag">#15666</span>]</li>
-<li>Fix bug with special chars in directory or file names [<span class="hashtag">#15505</span>]</li>
-<li>Update PHPMailer to 6.4.0 [<span class="hashtag">#15618</span>]</li>
+<li>PHP 8 Compatibility [<span class="hashtag-raw">#15335</span>]</li>
+<li>Fix Plugin and Template name validation [<span class="hashtag-raw">#15349</span>]</li>
+<li>Support SameSite attribute in session cookies [<span class="hashtag-raw">#15666</span>]</li>
+<li>Fix bug with special chars in directory or file names [<span class="hashtag-raw">#15505</span>]</li>
+<li>Update PHPMailer to 6.4.0 [<span class="hashtag-raw">#15618</span>]</li>
 <li>Update xPDO to version 2.8.3-pl</li>
-<li>Update Smarty to 3.1.39 [<span class="hashtag">#15566</span>]</li>
+<li>Update Smarty to 3.1.39 [<span class="hashtag-raw">#15566</span>]</li>
 </ul>
-<h2>
-<a name="security-is-a-habit-4" class="anchor" href="https://community.modx.com#security-is-a-habit-4"></a>Security is a Habit</h2>
+<h2><a name="p-14652-security-is-a-habit-4" class="anchor" href="https://community.modx.com#p-14652-security-is-a-habit-4" aria-label="Heading link"></a>Security is a Habit</h2>
 <p>Staying up-to-date with new releases is a good habit to keep your MODX-powered websites secure. The security issues addressed in this release are limited to users that have a valid login to access the MODX Manager. A couple of the issues allowed changes or access beyond limited Manager users’ permissions. As such <strong>we recommend you upgrade as soon as possible</strong>.</p>
-<h2>
-<a name="special-notes-on-upgrading-to-282-5" class="anchor" href="https://community.modx.com#special-notes-on-upgrading-to-282-5"></a>Special Notes on Upgrading to 2.8.2</h2>
+<h2><a name="p-14652-special-notes-on-upgrading-to-282-5" class="anchor" href="https://community.modx.com#p-14652-special-notes-on-upgrading-to-282-5" aria-label="Heading link"></a>Special Notes on Upgrading to 2.8.2</h2>
 <p>Some of the security improvements in 2.8.2 will affect certain site configurations. Read about these changes and how to make any appropriate adjustments when <a href="https://docs.modx.com/current/en/getting-started/maintenance/upgrading/2.8.2">upgrading to 2.8.2</a>.</p>
-<h2>
-<a name="it-takes-a-village-6" class="anchor" href="https://community.modx.com#it-takes-a-village-6"></a>It Takes a Village…</h2>
+<h2><a name="p-14652-it-takes-a-village-6" class="anchor" href="https://community.modx.com#p-14652-it-takes-a-village-6" aria-label="Heading link"></a>It Takes a Village…</h2>
 <p>The release would not be possible without the attention and effort of our community contributors including Mark Hamstra, Jason Coward, Thomas Jakobi, Bochkarev Ivan, Ivan Klimchuk, Ruslan Aleev, Sergey Shlokov, Raffy, Bruno17, wfoojjaec, and many more.</p>
 <p><a href="https://bullpen.modx.com/download/other-versions?releaseKey=revolution-2.8.2-pl">Download MODX Revolution 2.8.2</a><br>
 <a href="https://modx.com/content-management-framework#hosting">Try it in MODX Cloud</a></p>
@@ -759,4 +744,4 @@ Finally, you should run a malware scanner to make sure other exploits haven’t 
 If your web host, developer or sysadmin is not able to help, you can open a commercial support ticket directly with MODX by visiting <a href="https://support.modx.com/">https://support.modx.com</a> and clicking the blue “Submit a request” link in the header (please mention this post and provide your site URL). In order to assist we will need access to your server, most likely via your cPanel login.</p>
             <p><small>1 post - 1 participant</small></p>
             <p><a href="https://community.modx.com/t/modx-setup-directory-site-exploit/648">Read full topic</a></p>
-          ";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:66:"https://community.modx.com/t/modx-setup-directory-site-exploit/648";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Wed, 24 Apr 2019 15:36:05 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:28:"community.modx.com-topic-648";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:6:"source";a:1:{i:0;a:5:{s:4:"data";s:34:"MODX setup/ Directory Site Exploit";s:7:"attribs";a:1:{s:0:"";a:1:{s:3:"url";s:70:"https://community.modx.com/t/modx-setup-directory-site-exploit/648.rss";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:7:"rthrash";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:25:"http://www.discourse.org/";a:3:{s:11:"topicPinned";a:1:{i:0;a:5:{s:4:"data";s:2:"No";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"topicClosed";a:1:{i:0;a:5:{s:4:"data";s:2:"No";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:13:"topicArchived";a:1:{i:0;a:5:{s:4:"data";s:2:"No";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}}}s:27:"http://www.w3.org/2005/Atom";a:1:{s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:0:"";s:7:"attribs";a:1:{s:0:"";a:3:{s:4:"href";s:48:"https://community.modx.com/c/announcements/5.rss";s:3:"rel";s:4:"self";s:4:"type";s:19:"application/rss+xml";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}}}}}}}}s:4:"type";i:128;s:7:"headers";a:19:{s:12:"content-type";s:23:"text/xml; charset=utf-8";s:4:"vary";s:46:"Sec-Fetch-Dest, Sec-Fetch-Mode, Sec-Fetch-Site";s:13:"last-modified";s:29:"Sun, 22 Mar 2026 19:55:18 GMT";s:13:"cache-control";s:46:"no-cache, no-store, max-age=0, must-revalidate";s:6:"pragma";s:8:"no-cache";s:7:"expires";s:29:"Mon, 01 Jan 1990 00:00:00 GMT";s:4:"date";s:29:"Fri, 27 Mar 2026 05:08:14 GMT";s:23:"content-security-policy";s:243:"require-trusted-types-for 'script';report-uri /_/RaichuFeedServer/cspreport, script-src 'report-sample' 'nonce-K8UioEAblLO52vHmpxY0hg' 'unsafe-inline';object-src 'none';base-uri 'self';report-uri /_/RaichuFeedServer/cspreport;worker-src 'self'";s:18:"permissions-policy";s:174:"ch-ua-arch=*, ch-ua-bitness=*, ch-ua-full-version=*, ch-ua-full-version-list=*, ch-ua-model=*, ch-ua-wow64=*, ch-ua-form-factors=*, ch-ua-platform=*, ch-ua-platform-version=*";s:28:"cross-origin-resource-policy";s:9:"same-site";s:9:"accept-ch";s:192:"Sec-CH-UA-Arch, Sec-CH-UA-Bitness, Sec-CH-UA-Full-Version, Sec-CH-UA-Full-Version-List, Sec-CH-UA-Model, Sec-CH-UA-WoW64, Sec-CH-UA-Form-Factors, Sec-CH-UA-Platform, Sec-CH-UA-Platform-Version";s:26:"cross-origin-opener-policy";s:11:"same-origin";s:19:"reporting-endpoints";s:170:"default=/_/RaichuFeedServer/web-reports?context=eJzj4tDikmII1pBiEOLh2Ldwxjk2gQNL9q5mVrJMyi-MTyxNyczXLShNyskszkgtKtYFCuoWJWYmZ5TqpqWmphSnFpWlFsUbGRiZGRgbmeoZmMUXGAAAVOUbOA";s:16:"content-encoding";s:4:"gzip";s:6:"server";s:3:"ESF";s:16:"x-xss-protection";s:1:"0";s:15:"x-frame-options";s:10:"SAMEORIGIN";s:22:"x-content-type-options";s:7:"nosniff";s:7:"alt-svc";s:42:"h3=:443; ma=2592000,h3-29=:443; ma=2592000";}s:5:"build";i:1772100615;s:21:"cache_expiration_time";i:1774591723;s:23:"__cache_expiration_time";i:1774591723;}
+          ";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:66:"https://community.modx.com/t/modx-setup-directory-site-exploit/648";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Wed, 24 Apr 2019 15:36:05 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:28:"community.modx.com-topic-648";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:6:"source";a:1:{i:0;a:5:{s:4:"data";s:34:"MODX setup/ Directory Site Exploit";s:7:"attribs";a:1:{s:0:"";a:1:{s:3:"url";s:70:"https://community.modx.com/t/modx-setup-directory-site-exploit/648.rss";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:7:"rthrash";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:25:"http://www.discourse.org/";a:3:{s:11:"topicPinned";a:1:{i:0;a:5:{s:4:"data";s:2:"No";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"topicClosed";a:1:{i:0;a:5:{s:4:"data";s:2:"No";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:13:"topicArchived";a:1:{i:0;a:5:{s:4:"data";s:2:"No";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}}}s:27:"http://www.w3.org/2005/Atom";a:1:{s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:0:"";s:7:"attribs";a:1:{s:0:"";a:3:{s:4:"href";s:48:"https://community.modx.com/c/announcements/5.rss";s:3:"rel";s:4:"self";s:4:"type";s:19:"application/rss+xml";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}}}}}}}}s:4:"type";i:128;s:7:"headers";a:19:{s:12:"content-type";s:23:"text/xml; charset=utf-8";s:4:"vary";s:46:"Sec-Fetch-Dest, Sec-Fetch-Mode, Sec-Fetch-Site";s:13:"last-modified";s:28:"Sat, 2 May 2026 23:48:56 GMT";s:13:"cache-control";s:46:"no-cache, no-store, max-age=0, must-revalidate";s:6:"pragma";s:8:"no-cache";s:7:"expires";s:29:"Mon, 01 Jan 1990 00:00:00 GMT";s:4:"date";s:29:"Mon, 04 May 2026 04:26:41 GMT";s:23:"content-security-policy";s:243:"script-src 'report-sample' 'nonce-d76x-mQ3SvaWAjye0SPvzQ' 'unsafe-inline';object-src 'none';base-uri 'self';report-uri /_/RaichuFeedServer/cspreport;worker-src 'self', require-trusted-types-for 'script';report-uri /_/RaichuFeedServer/cspreport";s:9:"accept-ch";s:192:"Sec-CH-UA-Arch, Sec-CH-UA-Bitness, Sec-CH-UA-Full-Version, Sec-CH-UA-Full-Version-List, Sec-CH-UA-Model, Sec-CH-UA-WoW64, Sec-CH-UA-Form-Factors, Sec-CH-UA-Platform, Sec-CH-UA-Platform-Version";s:18:"permissions-policy";s:174:"ch-ua-arch=*, ch-ua-bitness=*, ch-ua-full-version=*, ch-ua-full-version-list=*, ch-ua-model=*, ch-ua-wow64=*, ch-ua-form-factors=*, ch-ua-platform=*, ch-ua-platform-version=*";s:26:"cross-origin-opener-policy";s:11:"same-origin";s:28:"cross-origin-resource-policy";s:9:"same-site";s:19:"reporting-endpoints";s:168:"default=/_/RaichuFeedServer/web-reports?context=eJzj4tDikmJw0ZBiEOLhaDzw4DybwIutay8xK1km5RfGJ5amZObrFpQm5WQWZ6QWFesCBXWLEjOTM0p101JTU4pTi8pSi-KNDIzMDEyMDfQMzOILDABu-huh";s:16:"content-encoding";s:4:"gzip";s:6:"server";s:3:"ESF";s:16:"x-xss-protection";s:1:"0";s:15:"x-frame-options";s:10:"SAMEORIGIN";s:22:"x-content-type-options";s:7:"nosniff";s:7:"alt-svc";s:42:"h3=:443; ma=2592000,h3-29=:443; ma=2592000";}s:5:"build";i:1772100615;s:21:"cache_expiration_time";i:1777872425;s:23:"__cache_expiration_time";i:1777872425;}

@@ -29,20 +29,22 @@ if (!function_exists('generateBookingPdfFile')) {
             $mail = new PHPMailer(true);
 
             try {
-                $mail->isSMTP();
-                $mail->Host       = 'smtp.gmail.com';
-                $mail->SMTPAuth   = true;
-                $mail->Username   = 'navodyadivyanjali2@gmail.com';
-                $mail->Password   = 'hmdn xouu ecxf vait';
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-                $mail->Port       = 587;
+            $mail->isSMTP();
+            $mail->Host       = 'server3.nsconfigure.com';
+            $mail->SMTPAuth   = true;
+            $mail->Username   = 'bookings@srilankarentacar.com';
+            $mail->Password   = 'a,=c%Jxd=%KEh-P5'; 
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // try STARTTLS if needed
+            $mail->Port       = 465;
 
-                $mail->setFrom('navodyadivyanjali2@gmail.com', 'SR Rent A Car');
-                $mail->addAddress($customerEmail, $customerName);
-                $mail->addReplyTo('info@srilankarentacar.com', 'SR Rent A Car');
+            // EMAIL SETTINGS
+            $mail->setFrom('bookings@srilankarentacar.com', 'SR Rent A Car');
+            $mail->addAddress($customerEmail, $customerName);
+            $mail->addReplyTo('bookings@srilankarentacar.com', 'SR Rent A Car');
 
-                $mail->isHTML(true);
-                $mail->Subject = 'Your Booking Invoice - SR/RENT - ' . $bookingId;
+            $mail->isHTML(true);
+            $mail->Subject = 'Your Booking Invoice - SR/RENT - ' . $bookingId;
+
 
                 $mail->Body = '
                     <p>Dear ' . htmlspecialchars($customerName, ENT_QUOTES, 'UTF-8') . ',</p>

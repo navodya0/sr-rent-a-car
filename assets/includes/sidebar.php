@@ -28,6 +28,12 @@
         </li>
 
         <li>
+            <a href="booking-stats.php" class="<?php echo ($currentPage == 'booking-stats.php') ? 'active' : ''; ?>">
+                Booking Stats
+            </a>
+        </li>
+
+        <li>
             <a href="rates.php" class="<?php echo ($currentPage == 'rates.php') ? 'active' : ''; ?>">
                 Rates
             </a>

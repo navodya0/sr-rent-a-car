@@ -1,0 +1,48 @@
+2026-05-04 09:35:02 - ==== NEW WEBXPAY TEST ====
+2026-05-04 09:35:02 - Order ID: TEST1777880102
+2026-05-04 09:35:02 - Amount: 100
+2026-05-04 09:35:02 - Public key preview: -----BEGIN PUBLIC KEY-----
+MIGfMA0GCSqGSIb3DQEBAQ
+2026-05-04 09:35:02 - Plaintext: TEST1777880102|100
+2026-05-04 09:35:02 - Encryption success
+2026-05-04 09:35:02 - Encrypted length: 128
+2026-05-04 09:35:02 - Payment length: 172
+2026-05-04 09:35:02 - Payment preview: p2KOI5TKEQsWKYTItDtVNCJQqAoifd/143Nu4ENV00cN+PSr0nROQimu2MJ7
+2026-05-04 09:35:02 - Secret key length: 36
+2026-05-04 09:35:02 - Sending to: https://stagingxpay.info/index.php?route=checkout/billing
+2026-05-04 09:35:20 - ==== NEW WEBXPAY TEST ====
+2026-05-04 09:35:20 - Order ID: TEST1777880120
+2026-05-04 09:35:20 - Amount: 100
+2026-05-04 09:35:20 - Public key preview: -----BEGIN PUBLIC KEY-----
+MIGfMA0GCSqGSIb3DQEBAQ
+2026-05-04 09:35:20 - Plaintext: TEST1777880120|100
+2026-05-04 09:35:20 - Encryption success
+2026-05-04 09:35:20 - Encrypted length: 128
+2026-05-04 09:35:20 - Payment length: 172
+2026-05-04 09:35:20 - Payment preview: MpL+ZGCob1eu2F50iePHngnYnc3mYsgo9EDVw7Y/aedMEnAIyXDlLzPbazHf
+2026-05-04 09:35:20 - Secret key length: 36
+2026-05-04 09:35:20 - Sending to: https://stagingxpay.info/index.php?route=checkout/billing
+2026-05-04 09:35:41 - ==== NEW WEBXPAY TEST ====
+2026-05-04 09:35:41 - Order ID: TEST1777880141
+2026-05-04 09:35:41 - Amount: 100
+2026-05-04 09:35:41 - Public key preview: -----BEGIN PUBLIC KEY-----
+MIGfMA0GCSqGSIb3DQEBAQ
+2026-05-04 09:35:41 - Plaintext: TEST1777880141|100
+2026-05-04 09:35:41 - Encryption success
+2026-05-04 09:35:41 - Encrypted length: 128
+2026-05-04 09:35:41 - Payment length: 172
+2026-05-04 09:35:41 - Payment preview: q1M7zpZEyo/+GyQfbFUH4jXpY+sPOoogrqVNM6asTx6l/uPCXplbdgjdU+F/
+2026-05-04 09:35:41 - Secret key length: 36
+2026-05-04 09:35:41 - Sending to: https://stagingxpay.info/index.php?route=checkout/billing
+2026-05-04 09:35:48 - ==== NEW WEBXPAY TEST ====
+2026-05-04 09:35:48 - Order ID: TEST1777880148
+2026-05-04 09:35:48 - Amount: 100
+2026-05-04 09:35:48 - Public key preview: -----BEGIN PUBLIC KEY-----
+MIGfMA0GCSqGSIb3DQEBAQ
+2026-05-04 09:35:48 - Plaintext: TEST1777880148|100
+2026-05-04 09:35:48 - Encryption success
+2026-05-04 09:35:48 - Encrypted length: 128
+2026-05-04 09:35:48 - Payment length: 172
+2026-05-04 09:35:48 - Payment preview: Hbrlc9M5UptUAz4+NAlFyAEniqw5k/O1tjOXMutxrWj1OyaPXHe9HwtLRudS
+2026-05-04 09:35:48 - Secret key length: 36
+2026-05-04 09:35:48 - Sending to: https://stagingxpay.info/index.php?route=checkout/billing
