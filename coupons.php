@@ -22,11 +22,19 @@ $pdo->exec("
         id          INT AUTO_INCREMENT PRIMARY KEY,
         code        VARCHAR(50)  NOT NULL UNIQUE,
         discount    DECIMAL(5,2) NOT NULL,
+        valid_from  DATE         NULL,
+        valid_until DATE         NULL,
         is_active   TINYINT(1)   NOT NULL DEFAULT 1,
         created_at  DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
         updated_at  DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
 ");
+
+// Add columns if table already existed without them
+$stmt = $pdo->query("SHOW COLUMNS FROM coupons LIKE 'valid_from'");
+if ($stmt->rowCount() == 0) {
+    $pdo->exec("ALTER TABLE coupons ADD COLUMN valid_from DATE NULL AFTER discount, ADD COLUMN valid_until DATE NULL AFTER valid_from");
+}
 
 /* ─────────────────────────────────
    SUCCESS MESSAGES
@@ -92,21 +100,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $code      = strtoupper(trim($_POST['code'] ?? ''));
     $discount  = floatval($_POST['discount'] ?? 0);
     $isActive  = isset($_POST['is_active']) ? 1 : 0;
+    $validFrom = !empty($_POST['valid_from']) ? $_POST['valid_from'] : null;
+    $validUntil= !empty($_POST['valid_until']) ? $_POST['valid_until'] : null;
 
-    if ($code === '' || $discount <= 0 || $discount > 100) {
-        $error = "Please enter a valid coupon code and discount (1–100%).";
+    if ($code === '' || $discount <= 0 || $discount > 100 || !$validFrom || !$validUntil) {
+        $error = "Please enter a valid coupon code, discount (1–100%), and validity dates.";
     } else {
         try {
             if ($couponId > 0) {
                 // UPDATE
-                $stmt = $pdo->prepare("UPDATE coupons SET code = ?, discount = ?, is_active = ? WHERE id = ?");
-                $stmt->execute([$code, $discount, $isActive, $couponId]);
+                $stmt = $pdo->prepare("UPDATE coupons SET code = ?, discount = ?, valid_from = ?, valid_until = ?, is_active = ? WHERE id = ?");
+                $stmt->execute([$code, $discount, $validFrom, $validUntil, $isActive, $couponId]);
                 header("Location: coupons.php?success=updated");
                 exit;
             } else {
                 // CREATE
-                $stmt = $pdo->prepare("INSERT INTO coupons (code, discount, is_active) VALUES (?, ?, ?)");
-                $stmt->execute([$code, $discount, $isActive]);
+                $stmt = $pdo->prepare("INSERT INTO coupons (code, discount, valid_from, valid_until, is_active) VALUES (?, ?, ?, ?, ?)");
+                $stmt->execute([$code, $discount, $validFrom, $validUntil, $isActive]);
                 header("Location: coupons.php?success=created");
                 exit;
             }
@@ -121,7 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Preserve form values on error
     if ($error && $couponId > 0) {
-        $editCoupon = ['id' => $couponId, 'code' => $code, 'discount' => $discount, 'is_active' => $isActive];
+        $editCoupon = ['id' => $couponId, 'code' => $code, 'discount' => $discount, 'valid_from' => $validFrom, 'valid_until' => $validUntil, 'is_active' => $isActive];
     }
 }
 
@@ -348,6 +358,22 @@ $coupons = $pdo->query("SELECT * FROM coupons ORDER BY created_at DESC")->fetchA
                        required style="width:120px;">
             </div>
 
+            <div class="form-group">
+                <label for="valid_from">Valid From</label>
+                <input type="date" id="valid_from" name="valid_from"
+                       value="<?php echo htmlspecialchars($editCoupon['valid_from'] ?? ''); ?>"
+                       min="<?php echo ($editCoupon && !empty($editCoupon['valid_from']) && $editCoupon['valid_from'] < date('Y-m-d')) ? htmlspecialchars($editCoupon['valid_from']) : date('Y-m-d'); ?>"
+                       required style="width:150px;">
+            </div>
+
+            <div class="form-group">
+                <label for="valid_until">Valid Until</label>
+                <input type="date" id="valid_until" name="valid_until"
+                       value="<?php echo htmlspecialchars($editCoupon['valid_until'] ?? ''); ?>"
+                       min="<?php echo ($editCoupon && !empty($editCoupon['valid_until']) && $editCoupon['valid_until'] < date('Y-m-d')) ? htmlspecialchars($editCoupon['valid_until']) : date('Y-m-d'); ?>"
+                       required style="width:150px;">
+            </div>
+
             <div class="checkbox-group">
                 <input type="checkbox" id="is_active" name="is_active"
                        <?php echo (!$editCoupon || !empty($editCoupon['is_active'])) ? 'checked' : ''; ?>>
@@ -375,6 +401,7 @@ $coupons = $pdo->query("SELECT * FROM coupons ORDER BY created_at DESC")->fetchA
                     <th>#</th>
                     <th>Coupon Code</th>
                     <th>Discount</th>
+                    <th>Validity Period</th>
                     <th>Status</th>
                     <th>Created</th>
                     <th>Actions</th>
@@ -386,6 +413,9 @@ $coupons = $pdo->query("SELECT * FROM coupons ORDER BY created_at DESC")->fetchA
                     <td><?php echo $i + 1; ?></td>
                     <td><strong><?php echo htmlspecialchars($coupon['code']); ?></strong></td>
                     <td><span class="discount-badge"><?php echo number_format($coupon['discount'], 2); ?>%</span></td>
+                    <td>
+                        <?php echo htmlspecialchars($coupon['valid_from'] ?? '') . ' to ' . htmlspecialchars($coupon['valid_until'] ?? ''); ?>
+                    </td>
                     <td>
                         <span class="badge <?php echo $coupon['is_active'] ? 'badge-active' : 'badge-inactive'; ?>">
                             <?php echo $coupon['is_active'] ? 'Active' : 'Inactive'; ?>
@@ -410,6 +440,18 @@ $coupons = $pdo->query("SELECT * FROM coupons ORDER BY created_at DESC")->fetchA
     </div>
 
 </div>
+
+<script>
+    // Remove alerts after 3 seconds
+    setTimeout(() => {
+        const alerts = document.querySelectorAll('.alert');
+        alerts.forEach(alert => {
+            alert.style.transition = 'opacity 0.5s ease';
+            alert.style.opacity = '0';
+            setTimeout(() => alert.remove(), 500);
+        });
+    }, 3000);
+</script>
 
 </body>
 </html>
