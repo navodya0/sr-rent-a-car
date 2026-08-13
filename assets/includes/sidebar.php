@@ -22,6 +22,12 @@
         </li>
 
         <li>
+            <a href="coupons.php" class="<?php echo ($currentPage == 'coupons.php') ? 'active' : ''; ?>">
+                Coupons
+            </a>
+        </li>
+
+        <li>
             <a href="inquiries.php" class="<?php echo ($currentPage == 'inquiries.php') ? 'active' : ''; ?>">
                 Inquiries
             </a>

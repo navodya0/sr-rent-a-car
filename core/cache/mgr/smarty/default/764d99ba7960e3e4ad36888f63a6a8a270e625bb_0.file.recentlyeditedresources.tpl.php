@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 4.5.2, created on 2026-03-26 04:56:27
+/* Smarty version 4.5.2, created on 2026-08-12 12:09:32
   from 'C:\xampp\htdocs\srilankarentacar.com\manager\templates\default\dashboard\recentlyeditedresources.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.5.2',
-  'unifunc' => 'content_69c4ae6bd21461_78602831',
+  'unifunc' => 'content_6a7c465c587450_17611036',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_69c4ae6bd21461_78602831 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6a7c465c587450_17611036 (Smarty_Internal_Template $_smarty_tpl) {
 ?><p><?php echo $_smarty_tpl->tpl_vars['_lang']->value['activity_message'];?>
 </p>
 <br/>

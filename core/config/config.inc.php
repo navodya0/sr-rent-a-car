@@ -3,13 +3,13 @@
  *  MODX Configuration file
  */
 $database_type = 'mysql';
-$database_server = 'localhost';
+$database_server = 'localhost:3307';
 $database_user = 'root';
 $database_password = '';
 $database_connection_charset = 'utf8mb4';
 $dbase = 'rentacar';
 $table_prefix = 'modx_';
-$database_dsn = 'mysql:host=localhost;dbname=rentacar;charset=utf8mb4';
+$database_dsn = 'mysql:host=localhost;port=3307;dbname=rentacar;charset=utf8mb4';
 $config_options = array (
 );
 $driver_options = array (

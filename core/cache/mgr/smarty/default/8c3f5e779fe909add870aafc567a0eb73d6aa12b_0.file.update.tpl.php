@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 4.5.2, created on 2026-03-27 09:35:11
+/* Smarty version 4.5.2, created on 2026-08-12 12:09:55
   from 'C:\xampp\htdocs\srilankarentacar.com\manager\templates\default\resource\update.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.5.2',
-  'unifunc' => 'content_69c6413f9c12d8_07969955',
+  'unifunc' => 'content_6a7c4673e5c0f4_09200590',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_69c6413f9c12d8_07969955 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6a7c4673e5c0f4_09200590 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div id="modx-panel-resource-div"></div>
 <div id="modx-resource-tvs-div"><?php echo (($tmp = $_smarty_tpl->tpl_vars['tvOutput']->value ?? null)===null||$tmp==='' ? '' ?? null : $tmp);?>
 </div>

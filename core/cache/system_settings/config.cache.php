@@ -218,7 +218,7 @@
   'upload_media' => 'mp3,wav,au,wmv,avi,mpg,mpeg',
   'upload_translit' => '1',
   'user_nav_parent' => 'usernav',
-  'use_alias_path' => '0',
+  'use_alias_path' => '1',
   'use_context_resource_table' => '1',
   'use_editor' => '1',
   'use_frozen_parent_uris' => '',

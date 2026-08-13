@@ -47,6 +47,10 @@ $days            = isset($sessionBooking[\'days\']) ? (int)$sessionBooking[\'day
 
 $rentalAmount    = isset($sessionBooking[\'rental_amount\']) ? (float)$sessionBooking[\'rental_amount\'] : 0;
 $securityDeposit = isset($sessionBooking[\'security_deposit\']) ? (float)$sessionBooking[\'security_deposit\'] : 0;
+
+
+
+
 $extrasTotal     = isset($sessionBooking[\'extras_total\']) ? (float)$sessionBooking[\'extras_total\'] : 0;
 $grandTotal      = isset($sessionBooking[\'grand_total\']) ? (float)$sessionBooking[\'grand_total\'] : 0;
 $selectedExtras  = isset($sessionBooking[\'extras\']) && is_array($sessionBooking[\'extras\'])
@@ -145,6 +149,11 @@ if (!$stmt->execute()) {
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 if (!$row) return \'<p>Vehicle not found.</p>\';
 
+$driverOnlyCategories = [\'luxury couch\', \'super luxury couch\'];
+$requiresDriver = in_array(strtolower(trim((string)($row[\'car_category\'] ?? \'\'))), $driverOnlyCategories, true);
+
+
+
 $pickupText  = $pickupDateTime && strtotime($pickupDateTime) ? date(\'d M Y, H:i\', strtotime($pickupDateTime)) : \'\';
 $dropoffText = $dropoffDateTime && strtotime($dropoffDateTime) ? date(\'d M Y, H:i\', strtotime($dropoffDateTime)) : \'\';
 
@@ -230,7 +239,20 @@ $out .= \'            </div>\';
 $out .= \'            <div class="col-md-6 mb-0">\';
 $out .= \'              <label class="driverForm__label">Country of residence <span class="text-danger">*</span></label>\';
 $out .= \'              <select name="country_of_residence" id="country_of_residence" class="form-control driverForm__control" required>\';
-$out .= \'                <option value="">Loading countries...</option>\';
+$out .= \'                <option value="">Select country</option>\';
+
+foreach ($countryCodes as $cc) {
+    $countryName = trim((string)($cc[\'country_name\'] ?? \'\'));
+
+    if ($countryName === \'\') {
+        continue;
+    }
+
+    $out .= \'                <option value="\' . htmlspecialchars($countryName, ENT_QUOTES, \'UTF-8\') . \'">\'
+         . htmlspecialchars($countryName, ENT_QUOTES, \'UTF-8\')
+         . \'</option>\';
+}
+
 $out .= \'              </select>\';
 $out .= \'            </div>\';
 
@@ -251,14 +273,27 @@ $out .= \'              <hr>\';
 $out .= \'          <div class="driverFormSection mt-4">\';
 $out .= \'            <h3 class="driverFormSection__title">Driver options </h3>\';
 $out .= \'            <div class="row">\';
+
 $out .= \'              <div class="col-md-6 mb-3">\';
 $out .= \'                <label class="driverForm__label">Do you need a chauffeur? <span class="text-danger">*</span></label>\';
-$out .= \'                <select name="need_chauffeur" id="need_chauffeur" class="form-control driverForm__control" required>\';
-$out .= \'                  <option value="">Select</option>\';
-$out .= \'                  <option value="yes">Yes</option>\';
-$out .= \'                  <option value="no">No</option>\';
-$out .= \'                </select>\';
+
+if ($requiresDriver) {
+    $out .= \'                <select name="need_chauffeur" id="need_chauffeur" class="form-control driverForm__control" disabled>\';
+    $out .= \'                  <option value="yes" selected>Yes</option>\';
+    $out .= \'                </select>\';
+    // Disabled selects don\'t submit, so post the value via a hidden input
+    $out .= \'                <input type="hidden" name="need_chauffeur" value="yes">\';
+    $out .= \'                <small class="text-danger" style="display:block; margin-top:4px; font-weight:600;">A chauffeur is mandatory for this vehicle category.</small>\';
+} else {
+    $out .= \'                <select name="need_chauffeur" id="need_chauffeur" class="form-control driverForm__control" required>\';
+    $out .= \'                  <option value="">Select</option>\';
+    $out .= \'                  <option value="yes">Yes</option>\';
+    $out .= \'                  <option value="no">No</option>\';
+    $out .= \'                </select>\';
+}
+
 $out .= \'              </div>\';
+
 $out .= \'            </div>\';
 $out .= \'          </div>\';
 
@@ -332,7 +367,7 @@ $out .= \'              <div class="col-md-6 mb-3">\';
 $out .= \'                <label class="driverForm__label">Choose payment option <span class="text-danger">*</span></label>\';
 $out .= \'                <select name="payment_option" id="payment_option" class="form-control driverForm__control" required>\';
 $out .= \'                  <option value="pay_on_arrival" selected>Pay at Counter</option>\';
-$out .= \'                  <option value="pay_now">Pay now</option>\';
+// $out .= \'                  <option value="pay_now">Pay now</option>\';
 $out .= \'                </select>\';
 $out .= \'              </div>\';
 $out .= \'            </div>\';
@@ -426,7 +461,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var bookingSubmitBtn = document.getElementById("bookingSubmitBtn");
 
     var payOnArrivalAction = "assets/includes/save_booking.php";
-    var payNowAction = "assets/includes/webxpay_checkout.php";
+    var payNowAction = "assets/includes/payhere_checkout.php";
 
     var chauffeurFeeInput = document.getElementById("chauffeur_fee");
     var licenseFeeInput = document.getElementById("license_fee");
@@ -502,9 +537,7 @@ document.addEventListener("DOMContentLoaded", function () {
         var subtotal = baseTotal + chauffeurFee + licenseFee;
         var payNowDiscount = 0;
 
-        if (paymentOption && paymentOption.value === "pay_now") {
-            payNowDiscount = subtotal * (payNowDiscountPercent / 100);
-        }
+        var payNowDiscount = 0;
 
         var finalTotal = subtotal - payNowDiscount;
 
@@ -532,22 +565,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         var paymentMsg = ensurePaymentMessageBox();
         if (paymentMsg) {
-            if (paymentOption && paymentOption.value === "pay_on_arrival") {
-                var savingAmount = subtotal * (payNowDiscountPercent / 100);
-                paymentMsg.style.display = "block";
-                paymentMsg.style.background = "#F9F9F9";
-                paymentMsg.style.border = "1px solid #880808";
-                paymentMsg.style.color = "#880808";
-                paymentMsg.innerHTML = "Get 5% discount by paying now and save <strong>" + formatEuro(savingAmount) + "</strong>.";
-            } else if (paymentOption && paymentOption.value === "pay_now") {
-                paymentMsg.style.display = "block";
-                paymentMsg.style.background = "#fff7e8";
-                paymentMsg.style.border = "1px solid #f2d089";
-                paymentMsg.style.color = "#6b4a00";
-                paymentMsg.innerHTML = "5% discount applied to your total.";
-            } else {
-                paymentMsg.style.display = "none";
-            }
+            paymentMsg.style.display = "none";
         }
     }
 
@@ -581,39 +599,6 @@ document.addEventListener("DOMContentLoaded", function () {
         updatePricing();
     }
 
-    function loadCountries() {
-        if (!countrySelect) return;
-
-        fetch("https://restcountries.com/v3.1/all?fields=name")
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (countries) {
-                if (!Array.isArray(countries)) return;
-
-                countries.sort(function (a, b) {
-                    var nameA = (a.name && a.name.common ? a.name.common : "").toLowerCase();
-                    var nameB = (b.name && b.name.common ? b.name.common : "").toLowerCase();
-                    return nameA.localeCompare(nameB);
-                });
-
-                countrySelect.innerHTML = "<option value=\\"\\">Select country</option>";
-
-                countries.forEach(function (country) {
-                    var name = country.name && country.name.common ? country.name.common : "";
-                    if (!name) return;
-
-                    var option = document.createElement("option");
-                    option.value = name;
-                    option.textContent = name;
-                    countrySelect.appendChild(option);
-                });
-            })
-            .catch(function () {
-                countrySelect.innerHTML = "<option value=\\"\\">Could not load countries</option>";
-            });
-    }
-
     function toggleUploads() {
         if (!needSlLicense || !uploadSection) return;
 
@@ -627,15 +612,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function togglePaymentButton() {
-        if (!paymentOption || !bookingSubmitBtn || !driverDetailsForm) return;
+        if (!bookingSubmitBtn || !driverDetailsForm) return;
 
-        if (paymentOption.value === "pay_on_arrival") {
-            bookingSubmitBtn.textContent = "Make Reservation";
-            driverDetailsForm.action = payOnArrivalAction;
-        } else if (paymentOption.value === "pay_now") {
-            bookingSubmitBtn.textContent = "Pay Now";
-            driverDetailsForm.action = payNowAction;
-        }
+        bookingSubmitBtn.textContent = "Make Reservation";
+        driverDetailsForm.action = payOnArrivalAction;
 
         updatePricing();
     }
@@ -648,7 +628,6 @@ document.addEventListener("DOMContentLoaded", function () {
     toggleUploads();
     togglePaymentButton();
     updatePricing();
-    loadCountries();
 });
 </script>\';
 

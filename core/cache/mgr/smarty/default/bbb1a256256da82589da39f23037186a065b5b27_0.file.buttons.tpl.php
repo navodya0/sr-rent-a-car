@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 4.5.2, created on 2026-03-26 04:56:18
+/* Smarty version 4.5.2, created on 2026-08-12 12:09:26
   from 'C:\xampp\htdocs\srilankarentacar.com\manager\templates\default\dashboard\buttons.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.5.2',
-  'unifunc' => 'content_69c4ae6258c850_19370661',
+  'unifunc' => 'content_6a7c4656d66f32_72290091',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_69c4ae6258c850_19370661 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6a7c4656d66f32_72290091 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="dashboard-block headless <?php echo $_smarty_tpl->tpl_vars['size']->value;?>
 " id="dashboard-block-<?php echo $_smarty_tpl->tpl_vars['id']->value;?>
 " data-id="<?php echo $_smarty_tpl->tpl_vars['id']->value;?>

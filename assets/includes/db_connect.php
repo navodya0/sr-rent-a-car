@@ -3,7 +3,7 @@ $host = "localhost";
 $db_name = "rentacar";
 $username = "root";
 $password = "";
-$port = 3306;
+$port = 3307;
 $charset = "utf8mb4";
 
 $dsn = "mysql:host={$host};port={$port};dbname={$db_name};charset={$charset}";
