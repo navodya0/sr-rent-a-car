@@ -13500,13 +13500,13 @@ font-size:14px;
 .heroRent__contentInner--left{
   max-width: 700px;
   text-align: left;
-  margin-top: -12rem;
+  margin-top: -16rem;
   animation: heroFadeUp 1s ease both;
 }
 
 .heroRent__sub{
   display:block;
-  font-size: 58px;
+  font-size: 46px;
   color: #efc900 !important;
   font-weight: 600;
   font-family: "Great Vibes", cursive;
@@ -13516,7 +13516,7 @@ font-size:14px;
 }
 
 .heroRent__title{
-  font-size:44px;
+  font-size:33px;
   color: #fff;
   line-height: 1.18;
   font-family: "Playfair Display", serif;
@@ -13574,7 +13574,7 @@ font-size:14px;
   position:absolute;
   left:0;
   right:0;
-  top:59%;
+  top:52%;
   bottom:auto;
   transform: translateY(-50%);
   z-index:20;

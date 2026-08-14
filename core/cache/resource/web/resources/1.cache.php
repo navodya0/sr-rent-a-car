@@ -726,7 +726,6 @@
     .heroRentForm__field--check {
       flex: 0 0 auto;
       white-space: nowrap;
-      margin-bottom: 12px;
     }
     .heroRentForm__field--submit {
       flex: 0 0 auto;
@@ -749,7 +748,7 @@
 .heroResults {
     display: none;
     pointer-events: auto;
-    background: #fff;
+    background: #ffffff00;
     border-radius: 12px;
     box-shadow: 0 10px 40px rgba(0,0,0,0.35);
     padding: 0;
@@ -772,7 +771,7 @@
   margin: 0;
   background: linear-gradient(135deg, #023f75, #a30707);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: #ffffff;
   display: inline-block;
   letter-spacing: 0.5px;
 }
@@ -914,7 +913,6 @@
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  margin-top: 2px;
   flex-wrap: wrap;
 }
 
@@ -1101,71 +1099,88 @@ body.heroModalOpen {
 
 .heroResultCard {
   background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.12);
-  padding: 6px;
-  max-height: none;
-  overflow: visible;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  padding: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   height: 100%;
+  box-sizing: border-box;
 }
 
-.heroResultCard__row img {
-  width: 36px;
-  height: 36px;
-  object-fit: cover;
-  border-radius: 6px;
+.heroResultCard__row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.heroResultCard__image {
+  width: 56px;
+  height: 48px;
+  object-fit: contain;
   flex-shrink: 0;
 }
 
 .heroResultCard__name {
   font-weight: 700;
-  font-size: 11px;
+  font-size: 13px;
   color: #1a1a1a;
-  white-space: normal;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.heroResultCard__priceRow {
   display: flex;
-  flex-direction: column;
-  gap: 2px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 6px;
 }
 
 .heroResultCard__price {
   font-weight: 700;
-  font-size: 13px;
-  color: #a30707;
-  margin-top: 1px;
+  font-size: 16px;
+  color: #c70101 !important;
 }
 
 .heroResultCard__price--empty {
-  font-size: 10px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #888;
 }
 
 .heroResultCard__capacity {
-  font-size: 10px;
-  gap: 6px;
-  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #333;
+  white-space: nowrap;
+}
+
+.heroResultCard__capacity i {
+  color: #023f75;
+  margin-right: 3px;
 }
 
 .heroResultCard__btn {
-  padding: 5px 8px;
-  font-size: 11px;
-  margin-top: 6px;
-  display: block;
   width: 100%;
-  background: #023f75;
+  background: #002656;
   color: #fff;
   border: none;
-  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 13px;
+  font-weight: 700;
   cursor: pointer;
-  font-weight: 600;
-  transition: background 0.2s ease;
+  margin-top: auto;
 }
 
 .heroResultCard__btn:hover {
-  background: #a30707;
+  background: #043c68;
 }
-
 
 
 .heroResultCard__row {
@@ -1235,7 +1250,7 @@ body.heroModalOpen {
     flex-shrink: 0;
     position: relative;
     z-index: 2;
-    margin-top: 6px;
+ 
 }
 
 
@@ -1246,9 +1261,8 @@ body.heroModalOpen {
    ========================================================= */
 
 .heroResultCard {
-    background: #fff;
-    border: 1px solid #e8e8e8;
-    border-radius: 9px;
+    background: #ffffffe6;
+
     padding: 7px;
     box-shadow: 0 2px 7px rgba(0, 0, 0, 0.14);
 
@@ -1270,11 +1284,12 @@ body.heroModalOpen {
     align-items: center;
     gap: 7px;
     min-width: 0;
+justify-content: space-between;
 }
 
 /* Vehicle image */
 .heroResultCard__row img {
-    width: 52px;
+    width: 90px;
     height: 48px;
     object-fit: contain;
     flex-shrink: 0;
@@ -1306,7 +1321,6 @@ body.heroModalOpen {
     align-items: center;
     justify-content: space-between;
     gap: 5px;
-    margin-top: 5px;
     width: 100%;
 }
 
@@ -1319,7 +1333,7 @@ body.heroModalOpen {
     gap: 6px;
 
     color: #222;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 600;
 
     white-space: nowrap;
@@ -1336,16 +1350,14 @@ body.heroModalOpen {
     height: 25px;
 
     padding: 0 8px;
-    margin-top: 5px;
+ 
 
     border: 0;
-    border-radius: 5px;
 
-    background: #064d84;
+    background: #022c4d;
     color: #fff;
 
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 700;
 
     cursor: pointer;
@@ -1927,34 +1939,30 @@ document.addEventListener(\'DOMContentLoaded\', () => {
     return \'€ \' + n.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   }
 
-  function buildCard(v) {
-    const card = document.createElement(\'div\');
-    card.className = \'heroResultCard\';
+function buildCard(v) {
+  const card = document.createElement(\'div\');
+  card.className = \'heroResultCard\';
 
-    const priceHtml = v.price
-      ? \'<div class="heroResultCard__price">\' + formatEuro(v.price) + \'</div>\'
-      : \'<div class="heroResultCard__price heroResultCard__price--empty">Price on request</div>\';
+  const priceHtml = v.price
+    ? \'<span class="heroResultCard__price">€ \' + parseFloat(v.price).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + \'</span>\'
+    : \'<span class="heroResultCard__price heroResultCard__price--empty">Price on request</span>\';
 
-    card.innerHTML = `
-      <div class="heroResultCard__row">
-        <img src="${v.image || \'\'}" alt="${v.car_category || \'Vehicle\'}">
-        <div class="heroResultCard__info">
-          <div class="heroResultCard__name">
-            ${v.car_category || \'\'}
-            <div class="heroResultCard__capacity">
-              <span><i class="fas fa-user"></i> ${v.pax_count || 0}</span>
-              <span><i class="fas fa-suitcase"></i> ${v.luggage_count || 0}</span>
-            </div>
-          </div>
-          <div class="heroResultCard__priceRow">
-            ${priceHtml}
-          </div>
-        </div>
+  card.innerHTML = `
+    <div class="heroResultCard__row">
+      <img class="heroResultCard__image" src="${v.image || \'\'}" alt="${v.car_model || v.car_category || \'Vehicle\'}">
+      <div class="heroResultCard__name">${v.car_model || v.car_category || \'\'}</div>
+    </div>
+    <div class="heroResultCard__priceRow">
+      ${priceHtml}
+      <div class="heroResultCard__capacity">
+        <span><i class="fas fa-user"></i> ${v.pax_count || 0}</span>
+        <span><i class="fas fa-suitcase"></i> ${v.luggage_count || 0}</span>
       </div>
-      <button type="button" class="heroResultCard__btn" data-vehicle-id="${v.id}" data-car-code="${v.car_code}">Book Now</button>
-    `;
-    return card;
-  }
+    </div>
+    <button type="button" class="heroResultCard__btn" data-vehicle-id="${v.id}" data-car-code="${v.car_code}">Book Now</button>
+  `;
+  return card;
+}
 
   function attachBookNow(grid) {
     grid.querySelectorAll(\'.heroResultCard__btn\').forEach(function (btn) {
@@ -2148,7 +2156,7 @@ document.addEventListener(\'DOMContentLoaded\', () => {
     'createdby' => 1,
     'createdon' => 1723316876,
     'editedby' => 1,
-    'editedon' => 1786698782,
+    'editedon' => 1786720452,
     'deleted' => 0,
     'deletedon' => 0,
     'deletedby' => 0,
@@ -3099,7 +3107,6 @@ document.addEventListener("DOMContentLoaded", function () {
     .heroRentForm__field--check {
       flex: 0 0 auto;
       white-space: nowrap;
-      margin-bottom: 12px;
     }
     .heroRentForm__field--submit {
       flex: 0 0 auto;
@@ -3122,7 +3129,7 @@ document.addEventListener("DOMContentLoaded", function () {
 .heroResults {
     display: none;
     pointer-events: auto;
-    background: #fff;
+    background: #ffffff00;
     border-radius: 12px;
     box-shadow: 0 10px 40px rgba(0,0,0,0.35);
     padding: 0;
@@ -3145,7 +3152,7 @@ document.addEventListener("DOMContentLoaded", function () {
   margin: 0;
   background: linear-gradient(135deg, #023f75, #a30707);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: #ffffff;
   display: inline-block;
   letter-spacing: 0.5px;
 }
@@ -3287,7 +3294,6 @@ document.addEventListener("DOMContentLoaded", function () {
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  margin-top: 2px;
   flex-wrap: wrap;
 }
 
@@ -3474,71 +3480,88 @@ body.heroModalOpen {
 
 .heroResultCard {
   background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.12);
-  padding: 6px;
-  max-height: none;
-  overflow: visible;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  padding: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   height: 100%;
+  box-sizing: border-box;
 }
 
-.heroResultCard__row img {
-  width: 36px;
-  height: 36px;
-  object-fit: cover;
-  border-radius: 6px;
+.heroResultCard__row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.heroResultCard__image {
+  width: 56px;
+  height: 48px;
+  object-fit: contain;
   flex-shrink: 0;
 }
 
 .heroResultCard__name {
   font-weight: 700;
-  font-size: 11px;
+  font-size: 13px;
   color: #1a1a1a;
-  white-space: normal;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.heroResultCard__priceRow {
   display: flex;
-  flex-direction: column;
-  gap: 2px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 6px;
 }
 
 .heroResultCard__price {
   font-weight: 700;
-  font-size: 13px;
-  color: #a30707;
-  margin-top: 1px;
+  font-size: 16px;
+  color: #c70101 !important;
 }
 
 .heroResultCard__price--empty {
-  font-size: 10px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #888;
 }
 
 .heroResultCard__capacity {
-  font-size: 10px;
-  gap: 6px;
-  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #333;
+  white-space: nowrap;
+}
+
+.heroResultCard__capacity i {
+  color: #023f75;
+  margin-right: 3px;
 }
 
 .heroResultCard__btn {
-  padding: 5px 8px;
-  font-size: 11px;
-  margin-top: 6px;
-  display: block;
   width: 100%;
-  background: #023f75;
+  background: #002656;
   color: #fff;
   border: none;
-  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 13px;
+  font-weight: 700;
   cursor: pointer;
-  font-weight: 600;
-  transition: background 0.2s ease;
+  margin-top: auto;
 }
 
 .heroResultCard__btn:hover {
-  background: #a30707;
+  background: #043c68;
 }
-
 
 
 .heroResultCard__row {
@@ -3608,7 +3631,7 @@ body.heroModalOpen {
     flex-shrink: 0;
     position: relative;
     z-index: 2;
-    margin-top: 6px;
+ 
 }
 
 
@@ -3619,9 +3642,8 @@ body.heroModalOpen {
    ========================================================= */
 
 .heroResultCard {
-    background: #fff;
-    border: 1px solid #e8e8e8;
-    border-radius: 9px;
+    background: #ffffffe6;
+
     padding: 7px;
     box-shadow: 0 2px 7px rgba(0, 0, 0, 0.14);
 
@@ -3643,11 +3665,12 @@ body.heroModalOpen {
     align-items: center;
     gap: 7px;
     min-width: 0;
+justify-content: space-between;
 }
 
 /* Vehicle image */
 .heroResultCard__row img {
-    width: 52px;
+    width: 90px;
     height: 48px;
     object-fit: contain;
     flex-shrink: 0;
@@ -3679,7 +3702,6 @@ body.heroModalOpen {
     align-items: center;
     justify-content: space-between;
     gap: 5px;
-    margin-top: 5px;
     width: 100%;
 }
 
@@ -3692,7 +3714,7 @@ body.heroModalOpen {
     gap: 6px;
 
     color: #222;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 600;
 
     white-space: nowrap;
@@ -3709,16 +3731,14 @@ body.heroModalOpen {
     height: 25px;
 
     padding: 0 8px;
-    margin-top: 5px;
+ 
 
     border: 0;
-    border-radius: 5px;
 
-    background: #064d84;
+    background: #022c4d;
     color: #fff;
 
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 700;
 
     cursor: pointer;
@@ -4300,34 +4320,30 @@ document.addEventListener(\'DOMContentLoaded\', () => {
     return \'€ \' + n.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   }
 
-  function buildCard(v) {
-    const card = document.createElement(\'div\');
-    card.className = \'heroResultCard\';
+function buildCard(v) {
+  const card = document.createElement(\'div\');
+  card.className = \'heroResultCard\';
 
-    const priceHtml = v.price
-      ? \'<div class="heroResultCard__price">\' + formatEuro(v.price) + \'</div>\'
-      : \'<div class="heroResultCard__price heroResultCard__price--empty">Price on request</div>\';
+  const priceHtml = v.price
+    ? \'<span class="heroResultCard__price">€ \' + parseFloat(v.price).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + \'</span>\'
+    : \'<span class="heroResultCard__price heroResultCard__price--empty">Price on request</span>\';
 
-    card.innerHTML = `
-      <div class="heroResultCard__row">
-        <img src="${v.image || \'\'}" alt="${v.car_category || \'Vehicle\'}">
-        <div class="heroResultCard__info">
-          <div class="heroResultCard__name">
-            ${v.car_category || \'\'}
-            <div class="heroResultCard__capacity">
-              <span><i class="fas fa-user"></i> ${v.pax_count || 0}</span>
-              <span><i class="fas fa-suitcase"></i> ${v.luggage_count || 0}</span>
-            </div>
-          </div>
-          <div class="heroResultCard__priceRow">
-            ${priceHtml}
-          </div>
-        </div>
+  card.innerHTML = `
+    <div class="heroResultCard__row">
+      <img class="heroResultCard__image" src="${v.image || \'\'}" alt="${v.car_model || v.car_category || \'Vehicle\'}">
+      <div class="heroResultCard__name">${v.car_model || v.car_category || \'\'}</div>
+    </div>
+    <div class="heroResultCard__priceRow">
+      ${priceHtml}
+      <div class="heroResultCard__capacity">
+        <span><i class="fas fa-user"></i> ${v.pax_count || 0}</span>
+        <span><i class="fas fa-suitcase"></i> ${v.luggage_count || 0}</span>
       </div>
-      <button type="button" class="heroResultCard__btn" data-vehicle-id="${v.id}" data-car-code="${v.car_code}">Book Now</button>
-    `;
-    return card;
-  }
+    </div>
+    <button type="button" class="heroResultCard__btn" data-vehicle-id="${v.id}" data-car-code="${v.car_code}">Book Now</button>
+  `;
+  return card;
+}
 
   function attachBookNow(grid) {
     grid.querySelectorAll(\'.heroResultCard__btn\').forEach(function (btn) {

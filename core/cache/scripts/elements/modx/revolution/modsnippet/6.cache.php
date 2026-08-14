@@ -303,9 +303,16 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 if (!$rows) return \'<p>No vehicles found.</p>\';
 
 $grouped = [];
+$categoryLabels = []; // normalized key => original display label
+
 foreach ($rows as $row) {
-    $cat = trim((string)($row[\'car_category\'] ?? \'Uncategorized\'));
-    if (!isset($grouped[$cat])) $grouped[$cat] = [];
+    $catRaw = trim((string)($row[\'car_category\'] ?? \'Uncategorized\'));
+    $cat = strtolower($catRaw); // normalized grouping key
+
+    if (!isset($grouped[$cat])) {
+        $grouped[$cat] = [];
+        $categoryLabels[$cat] = $catRaw; // remember original casing for display
+    }
 
     $originalPrice = (float) calculateRentalPrice(
         $modx,
@@ -368,76 +375,83 @@ if ($offerCategory !== \'\') {
 $out = \'<div id="vehicleGroups">\';
 
 $selectedVehicleId = (int)($search[\'selected_vehicle_id\'] ?? 0);
-$selectedVehicleData = null;
+$selectedCategory = null;
 
 if ($selectedVehicleId > 0) {
-    foreach ($grouped as $cat => &$items) {
-        foreach ($items as $index => $row) {
+    foreach ($grouped as $cat => $items) {
+        foreach ($items as $row) {
             if ((int)$row[\'vehicle_id\'] === $selectedVehicleId) {
-                $selectedVehicleData = $row;
-                $selectedVehicleData[\'car_category\'] = $cat;
-                unset($items[$index]);
+                $selectedCategory = $cat;
                 break 2;
             }
         }
     }
 }
 
-if ($selectedVehicleData) {
-    $out .= \'<div class="vehicleGroup selected-vehicle-group">\';
-    $cat = $selectedVehicleData[\'car_category\'];
-    $row = $selectedVehicleData;
-    $ph = [
-        \'id\'               => (int)($row[\'id\'] ?? 0),
-        \'image\'            => $row[\'image\'] ?? \'\',
-        \'car_model\'        => $row[\'car_model\'] ?? \'\',
-        \'car_category\'     => $cat,
-        \'car_code\'         => $row[\'car_code\'] ?? \'\',
-        \'pax_count\'        => (int)($row[\'pax_count\'] ?? 0),
-        \'luggage_count\'    => (int)($row[\'luggage_count\'] ?? 0),
-        \'transmission_type\'         => $row[\'transmission_type\'] ?? \'\',
-        \'price\'            => $row[\'calculated_price\'] ?? \'\',
-        \'original_price\'   => $row[\'original_price\'] ?? \'\',
-        \'discount_percent\' => $row[\'discount_percent\'] ?? 0,
-        \'discount_raw\'     => $discountRaw,
-        \'days\'             => $days,
-        \'form_action\'      => $row[\'form_action\'] ?? \'\',
-        \'vehicle_id\'       => $row[\'vehicle_id\'] ?? 0,
-        \'is_first\'         => 1,
-        \'requires_driver\'  => isDriverOnlyCategory($cat, $driverOnlyCategories) ? 1 : 0,
-    ];
-    $out .= \'<div class="vehicleItem" data-first="1">\';
-    $out .= $modx->getChunk($tplItem, $ph);
-    $out .= \'</div>\';
+if ($selectedCategory !== null && isset($grouped[$selectedCategory])) {
+    $selectedDisplayCat = $categoryLabels[$selectedCategory] ?? $selectedCategory;
+
+    $out .= \'<div class="vehicleGroup selected-vehicle-group" data-category="\' . htmlspecialchars($selectedDisplayCat, ENT_QUOTES, \'UTF-8\') . \'">\';
+
+    foreach ($grouped[$selectedCategory] as $index => $row) {
+        $ph = [
+            \'id\'                => (int)($row[\'id\'] ?? 0),
+            \'image\'             => $row[\'image\'] ?? \'\',
+            \'car_model\'         => $row[\'car_model\'] ?? \'\',
+            \'car_category\'      => $selectedDisplayCat,
+            \'car_code\'          => $row[\'car_code\'] ?? \'\',
+            \'pax_count\'         => (int)($row[\'pax_count\'] ?? 0),
+            \'luggage_count\'     => (int)($row[\'luggage_count\'] ?? 0),
+            \'transmission_type\' => $row[\'transmission_type\'] ?? \'\',
+            \'price\'             => $row[\'calculated_price\'] ?? \'\',
+            \'original_price\'    => $row[\'original_price\'] ?? \'\',
+            \'discount_percent\'  => $row[\'discount_percent\'] ?? 0,
+            \'discount_raw\'      => $discountRaw,
+            \'days\'              => $days,
+            \'form_action\'       => $row[\'form_action\'] ?? \'\',
+            \'vehicle_id\'        => $row[\'vehicle_id\'] ?? 0,
+            \'is_first\'          => $index === 0 ? 1 : 0,
+            \'requires_driver\'   => isDriverOnlyCategory($selectedDisplayCat, $driverOnlyCategories) ? 1 : 0,
+        ];
+
+        $out .= \'<div class="vehicleItem" data-first="\' . ($index === 0 ? \'1\' : \'0\') . \'">\';
+        $out .= $modx->getChunk($tplItem, $ph);
+        $out .= \'</div>\';
+    }
+
     $out .= \'</div>\';
     $out .= \'<hr class="selected-vehicle-separator" style="margin: 2rem 0; border-top: 2px solid #ddd;">\';
+
+    // Remove this category from $grouped so it doesn\'t render twice below
+    unset($grouped[$selectedCategory]);
 }
 
 
 foreach ($grouped as $cat => $items) {
     if (empty($items)) continue;
-    $safeCat = htmlspecialchars($cat, ENT_QUOTES, \'UTF-8\');
+    $displayCat = $categoryLabels[$cat] ?? $cat;
+    $safeCat = htmlspecialchars($displayCat, ENT_QUOTES, \'UTF-8\');
     $out .= \'<div class="vehicleGroup" data-category="\' . $safeCat . \'">\';
     foreach ($items as $index => $row) {
-$ph = [
-    \'id\'               => (int)($row[\'id\'] ?? 0),
-    \'image\'            => $row[\'image\'] ?? \'\',
-    \'car_model\'        => $row[\'car_model\'] ?? \'\',
-    \'car_category\'     => $cat,
-    \'car_code\'         => $row[\'car_code\'] ?? \'\',
-    \'pax_count\'        => (int)($row[\'pax_count\'] ?? 0),
-    \'luggage_count\'    => (int)($row[\'luggage_count\'] ?? 0),
-    \'transmission_type\'         => $row[\'transmission_type\'] ?? \'\',
-    \'price\'            => $row[\'calculated_price\'] ?? \'\',
-    \'original_price\'   => $row[\'original_price\'] ?? \'\',
-    \'discount_percent\' => $row[\'discount_percent\'] ?? 0,
-    \'discount_raw\'     => $discountRaw,
-    \'days\'             => $days,
-    \'form_action\'      => $row[\'form_action\'] ?? \'\',
-    \'vehicle_id\'       => $row[\'vehicle_id\'] ?? 0,
-    \'is_first\'         => $index === 0 ? 1 : 0,
-\'requires_driver\'  => isDriverOnlyCategory($cat, $driverOnlyCategories) ? 1 : 0,
-];
+        $ph = [
+            \'id\'                => (int)($row[\'id\'] ?? 0),
+            \'image\'             => $row[\'image\'] ?? \'\',
+            \'car_model\'         => $row[\'car_model\'] ?? \'\',
+            \'car_category\'      => $displayCat,
+            \'car_code\'          => $row[\'car_code\'] ?? \'\',
+            \'pax_count\'         => (int)($row[\'pax_count\'] ?? 0),
+            \'luggage_count\'     => (int)($row[\'luggage_count\'] ?? 0),
+            \'transmission_type\' => $row[\'transmission_type\'] ?? \'\',
+            \'price\'             => $row[\'calculated_price\'] ?? \'\',
+            \'original_price\'    => $row[\'original_price\'] ?? \'\',
+            \'discount_percent\'  => $row[\'discount_percent\'] ?? 0,
+            \'discount_raw\'      => $discountRaw,
+            \'days\'              => $days,
+            \'form_action\'       => $row[\'form_action\'] ?? \'\',
+            \'vehicle_id\'        => $row[\'vehicle_id\'] ?? 0,
+            \'is_first\'          => $index === 0 ? 1 : 0,
+            \'requires_driver\'   => isDriverOnlyCategory($displayCat, $driverOnlyCategories) ? 1 : 0,
+        ];
 
         $out .= \'<div class="vehicleItem" data-first="\' . ($index === 0 ? \'1\' : \'0\') . \'">\';
         $out .= $modx->getChunk($tplItem, $ph);
