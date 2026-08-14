@@ -163,6 +163,73 @@ $passportImage  = uploadBookingFile('passport_image', $customerFolder, 'passport
 $idpImage       = uploadBookingFile('idp_image', $customerFolder, 'idp_copy', 'idp');
 $applicantPhoto = uploadBookingFile('applicant_photo', $customerFolder, 'applicant_photo', 'applicant');
 
+/*
+|--------------------------------------------------------------------------
+| Re-validate coupon server-side (never trust posted discount values)
+|--------------------------------------------------------------------------
+*/
+$postedCouponCode = trim($_POST['coupon_code'] ?? '');
+
+$couponId              = null;
+$couponCode            = null;
+$couponDiscountPercent = null;
+$couponDiscountAmount  = 0.00;
+
+if ($postedCouponCode !== '') {
+    $couponStmt = $modx->prepare("
+        SELECT id, code, discount, valid_from, valid_until, is_active
+        FROM coupons
+        WHERE UPPER(code) = UPPER(:code)
+        LIMIT 1
+    ");
+
+    if ($couponStmt) {
+        $couponStmt->bindValue(':code', $postedCouponCode, PDO::PARAM_STR);
+
+        if ($couponStmt->execute()) {
+            $couponRow = $couponStmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($couponRow && (int)$couponRow['is_active'] === 1) {
+                $validFromTs  = !empty($couponRow['valid_from'])  ? strtotime($couponRow['valid_from'])  : null;
+                $validUntilTs = !empty($couponRow['valid_until']) ? strtotime($couponRow['valid_until']) : null;
+
+                $pickupTs  = $pickupDateTime  ? strtotime($pickupDateTime)  : null;
+                $dropoffTs = $dropoffDateTime ? strtotime($dropoffDateTime) : null;
+
+                $withinRange = true;
+                if ($validFromTs !== null && $pickupTs !== null && $pickupTs < $validFromTs) {
+                    $withinRange = false;
+                }
+                if ($validUntilTs !== null && $dropoffTs !== null && $dropoffTs > $validUntilTs) {
+                    $withinRange = false;
+                }
+
+                if ($withinRange && (float)$couponRow['discount'] > 0) {
+                    $couponId              = (int)$couponRow['id'];
+                    $couponCode            = $couponRow['code'];
+                    $couponDiscountPercent = (float)$couponRow['discount'];
+                }
+            }
+        }
+    }
+}
+
+/*
+|--------------------------------------------------------------------------
+| Recompute totals server-side using the validated coupon (ignore posted grand_total for the coupon portion)
+|--------------------------------------------------------------------------
+*/
+$subtotalBeforeCoupon = $rentalAmount + $extrasTotal + $coverageTotal + $chauffeurFee + $licenseFee;
+
+if ($couponDiscountPercent !== null) {
+    $couponDiscountAmount = round($subtotalBeforeCoupon * ($couponDiscountPercent / 100), 2);
+}
+
+$finalGrandTotal = round($subtotalBeforeCoupon - $couponDiscountAmount, 2);
+
+// Overwrite the posted grand_total with the trusted, server-computed one
+$grandTotal = $finalGrandTotal;
+
 if (!empty($errors)) {
     $_SESSION['booking_submit_errors'] = $errors;
     $_SESSION['booking_submit_old'] = $_POST;
@@ -180,6 +247,7 @@ if ($paymentOption === 'pay_on_arrival') {
         coverage_id, coverage_db_id, coverage_name, coverage_day_price, coverage_total,
         rental_amount, security_deposit, extras_total, grand_total,
         discount_raw, discount_percent, original_rental_amount, discounted_rental_amount,
+        coupon_id, coupon_code, coupon_discount_percent, coupon_discount_amount,
         full_name, email, whatsapp_country_code, whatsapp_number, country_of_residence, passengers, flight_number,
         need_chauffeur, need_sl_license, payment_option,
         passport_image, idp_image, applicant_photo, remarks, extras_json,
@@ -189,6 +257,7 @@ if ($paymentOption === 'pay_on_arrival') {
         :coverage_id, :coverage_db_id, :coverage_name, :coverage_day_price, :coverage_total,
         :rental_amount, :security_deposit, :extras_total, :grand_total,
         :discount_raw, :discount_percent, :original_rental_amount, :discounted_rental_amount,
+        :coupon_id, :coupon_code, :coupon_discount_percent, :coupon_discount_amount,
         :full_name, :email, :whatsapp_country_code, :whatsapp_number, :country_of_residence, :passengers, :flight_number,
         :need_chauffeur, :need_sl_license, :payment_option,
         :passport_image, :idp_image, :applicant_photo, :remarks, :extras_json,
@@ -225,6 +294,11 @@ if ($paymentOption === 'pay_on_arrival') {
     $stmt->bindValue(':discount_percent', $discountPercent, PDO::PARAM_INT);
     $stmt->bindValue(':original_rental_amount', number_format($originalRentalAmount, 2, '.', ''), PDO::PARAM_STR);
     $stmt->bindValue(':discounted_rental_amount', number_format($discountedRentalAmount, 2, '.', ''), PDO::PARAM_STR);
+
+    $stmt->bindValue(':coupon_id', $couponId, $couponId !== null ? PDO::PARAM_INT : PDO::PARAM_NULL);
+    $stmt->bindValue(':coupon_code', $couponCode, $couponCode !== null ? PDO::PARAM_STR : PDO::PARAM_NULL);
+    $stmt->bindValue(':coupon_discount_percent', $couponDiscountPercent !== null ? number_format($couponDiscountPercent, 2, '.', '') : null, $couponDiscountPercent !== null ? PDO::PARAM_STR : PDO::PARAM_NULL);
+    $stmt->bindValue(':coupon_discount_amount', number_format($couponDiscountAmount, 2, '.', ''), PDO::PARAM_STR);
 
     $stmt->bindValue(':full_name', $fullName, PDO::PARAM_STR);
     $stmt->bindValue(':email', $email, PDO::PARAM_STR);
@@ -298,6 +372,8 @@ if ($paymentOption === 'pay_on_arrival') {
     //     'discount_percent'         => $discountPercent,
     //     'original_rental_amount'   => $originalRentalAmount,
     //     'discounted_rental_amount' => $discountedRentalAmount,
+    //     'coupon_code'              => $couponCode,
+    //     'coupon_discount_amount'   => $couponDiscountAmount,
     // ]);
 
     // if ($pdfPath) {
@@ -372,6 +448,8 @@ $_SESSION['booking_payment_payload'] = [
     'discount_percent'         => $discountPercent,
     'original_rental_amount'   => $originalRentalAmount,
     'discounted_rental_amount' => $discountedRentalAmount,
+    'coupon_code'              => $couponCode,
+    'coupon_discount_amount'   => $couponDiscountAmount,
 ];
 
 redirectTo($modx->makeUrl($paymentPageId, '', '', 'full'));

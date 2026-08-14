@@ -103,6 +103,8 @@ try {
         'discount_percent'         => $row['discount_percent'],
         'original_rental_amount'   => $row['original_rental_amount'],
         'discounted_rental_amount' => $row['discounted_rental_amount'],
+        'coupon_code'              => $row['coupon_code'],
+        'coupon_discount_amount'   => $row['coupon_discount_amount'],
     ]);
 
     if (!$pdfPath) {

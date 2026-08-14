@@ -1504,9 +1504,6 @@ document.addEventListener("DOMContentLoaded", function () {
         ),
         'policies' => 
         array (
-          'web' => 
-          array (
-          ),
         ),
         'source' => 
         array (
@@ -1961,9 +1958,6 @@ document.addEventListener("DOMContentLoaded", function () {
         ),
         'policies' => 
         array (
-          'web' => 
-          array (
-          ),
         ),
         'source' => 
         array (
@@ -2146,6 +2140,8 @@ if (!$row) return \'<p>Vehicle not found.</p>\';
 $driverOnlyCategories = [\'luxury couch\', \'super luxury couch\'];
 $requiresDriver = in_array(strtolower(trim((string)($row[\'car_category\'] ?? \'\'))), $driverOnlyCategories, true);
 
+$couponEligibleCategories = [\'semi executive\', \'mini\', \'standard\',\'econ\',\'executive\', \'luxury\' , \'mini suv\' , \'large suv\'];
+$couponEligible = in_array(strtolower(trim((string)($row[\'car_category\'] ?? \'\'))), $couponEligibleCategories, true);
 
 
 $pickupText  = $pickupDateTime && strtotime($pickupDateTime) ? date(\'d M Y, H:i\', strtotime($pickupDateTime)) : \'\';
@@ -2186,7 +2182,10 @@ $out .= \'        </div>\';
 
 $out .= \'        <form action="\' . htmlspecialchars($formAction, ENT_QUOTES, \'UTF-8\') . \'" method="post" enctype="multipart/form-data" class="driverForm" id="driverDetailsForm">\';
 
+
+
 $out .= \'          <div class="row">\';
+
 $out .= \'            <div class="col-md-6 mb-0">\';
 $out .= \'              <label class="driverForm__label">Full Name <span class="text-danger">*</span></label>\';
 $out .= \'              <input type="text" name="full_name" class="form-control driverForm__control" placeholder="Full name" required>\';
@@ -2286,6 +2285,9 @@ if ($requiresDriver) {
     $out .= \'                </select>\';
 }
 
+
+
+
 $out .= \'              </div>\';
 
 $out .= \'            </div>\';
@@ -2352,6 +2354,9 @@ $out .= \'          <input type="hidden" name="original_rental_amount" value="\'
 $out .= \'          <input type="hidden" name="chauffeur_fee" id="chauffeur_fee" value="0">\';
 $out .= \'          <input type="hidden" name="license_fee" id="license_fee" value="0">\';
 $out .= \'          <input type="hidden" name="pay_now_discount" id="pay_now_discount" value="0">\';
+$out .= \'          <input type="hidden" name="coupon_code" id="coupon_code_hidden" value="">\';
+$out .= \'          <input type="hidden" name="coupon_discount_percent" id="coupon_discount_percent_hidden" value="0">\';
+
 $out .= \'              <hr>\';
 
 $out .= \'          <div class="driverFormSection mt-4">\';
@@ -2415,7 +2420,25 @@ if (!empty($selectedExtras)) {
 
 $out .= \'        <div class="driverSummaryCard__block mb-3">\';
 $out .= \'          <h5 class="driverSummaryCard__blockTitle">Price summary</h5>\';
+
+
+
+if ($couponEligible) {
+    $out .= \'          <div class="couponBox mb-3" id="couponSection">\';
+    $out .= \'            <div class="d-flex align-items-stretch" style="gap:8px;">\';
+    $out .= \'              <input type="text" id="coupon_code_input" class="form-control driverForm__control" placeholder="Coupon code (Optional)" style="text-transform:uppercase; height:44px;">\';
+    $out .= \'              <button type="button" id="applyCouponBtn" class="btn" style="white-space:nowrap; padding:0 18px; background:#d62828; color:#fff; border:none; border-radius:6px; font-weight:600;">Apply</button>\';
+    $out .= \'            </div>\';
+    $out .= \'            <div id="couponMessage" style="margin-top:6px; font-size:13px; display:none;"></div>\';
+    $out .= \'          </div>\';
+}
+
+
 $out .= \'          <div class="driverSummaryRow"><span>Coverage price</span><strong>€ \' . number_format($coverageTotal, 2, \'.\', \',\') . \'</strong></div>\';
+
+
+
+
 $out .= \'          <div class="driverSummaryRow"><span>Extras price</span><strong>€ \' . number_format($extrasTotal, 2, \'.\', \',\') . \'</strong></div>\';
 if ($discountPercent > 0 && $originalRentalAmount > 0 && $rentalAmount > 0) {
     $out .= \'          <div class="driverSummaryRow">\';
@@ -2434,6 +2457,14 @@ if ($discountPercent > 0 && $originalRentalAmount > 0 && $rentalAmount > 0) {
 }
 $out .= \'          <div class="driverSummaryRow"><span>Chauffeur fee (€50 × \' . (int)$days . \' days)</span><strong id="chauffeurFeeText">€ 0.00</strong></div>\';
 $out .= \'          <div class="driverSummaryRow"><span>License fee</span><strong id="licenseFeeText">€ 0.00</strong></div>\';
+
+
+
+if ($couponEligible) {
+    $out .= \'          <div class="driverSummaryRow" id="couponDiscountRow" style="display:none;"><span>Coupon discount</span><strong id="couponDiscountText" style="color:#2e7d32;">-€ 0.00</strong></div>\';
+}
+
+
 $out .= \'          <div class="driverSummaryRow driverSummaryRow--total">\';
 $out .= \'              <span>Total for \' . (int)$days . \' \' . ($days === 1 ? \'day\' : \'days\') . \'</span>\';
 $out .= \'              <strong class="driverSummaryTotalPrice" id="driverSummaryTotalPrice">€ \' . number_format($totalForTrip, 2, \'.\', \',\') . \'</strong>\';
@@ -2468,6 +2499,18 @@ document.addEventListener("DOMContentLoaded", function () {
     var countrySelect = document.getElementById("country_of_residence");
     var driverDetailsForm = document.getElementById("driverDetailsForm");
     var bookingSubmitMessage = document.getElementById("bookingSubmitMessage");
+
+
+
+var couponInput = document.getElementById("coupon_code_input");
+var applyCouponBtn = document.getElementById("applyCouponBtn");
+var couponMessage = document.getElementById("couponMessage");
+var couponCodeHidden = document.getElementById("coupon_code_hidden");
+var couponDiscountHidden = document.getElementById("coupon_discount_percent_hidden");
+var couponDiscountRow = document.getElementById("couponDiscountRow");
+var couponDiscountText = document.getElementById("couponDiscountText");
+var appliedCouponDiscount = 0;
+
 
     var baseTotal = \' . json_encode((float)$totalForTrip) . \';
     var days = \' . (int)$days . \';
@@ -2516,52 +2559,128 @@ document.addEventListener("DOMContentLoaded", function () {
         return row;
     }
 
-    function updatePricing() {
-        var chauffeurFee = 0;
-        var licenseFee = 0;
 
-        if (needChauffeur && needChauffeur.value === "yes") {
-            chauffeurFee = chauffeurFeePerDay * days;
+if (applyCouponBtn) {
+    applyCouponBtn.addEventListener("click", function () {
+        var code = couponInput.value.trim();
+
+        if (!code) {
+            couponMessage.style.display = "block";
+            couponMessage.style.color = "#d62828";
+            couponMessage.textContent = "Please enter a coupon code.";
+            return;
         }
 
-        if (needSlLicense && needSlLicense.value === "yes") {
-            licenseFee = licenseFeeAmount;
-        }
+        applyCouponBtn.disabled = true;
+        applyCouponBtn.textContent = "Checking...";
 
-        var subtotal = baseTotal + chauffeurFee + licenseFee;
-        var payNowDiscount = 0;
+fetch("assets/includes/validate_coupon.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+        coupon_code: code,
+        pickup_date: \' . json_encode($pickupDate) . \',
+        dropoff_date: \' . json_encode($dropoffDate) . \',
+        car_category: \' . json_encode($row[\'car_category\'] ?? \'\') . \'
+    })
+})
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+            applyCouponBtn.disabled = false;
+            couponMessage.style.display = "block";
 
-        var payNowDiscount = 0;
-
-        var finalTotal = subtotal - payNowDiscount;
-
-        if (chauffeurFeeInput) chauffeurFeeInput.value = chauffeurFee.toFixed(2);
-        if (licenseFeeInput) licenseFeeInput.value = licenseFee.toFixed(2);
-
-        if (chauffeurFeeText) chauffeurFeeText.textContent = formatEuro(chauffeurFee);
-        if (licenseFeeText) licenseFeeText.textContent = formatEuro(licenseFee);
-
-        if (grandTotalInput) grandTotalInput.value = finalTotal.toFixed(2);
-        if (totalPriceText) totalPriceText.textContent = formatEuro(finalTotal);
-
-        var discountRow = ensurePayNowDiscountRow();
-        var discountText = document.getElementById("payNowDiscountText");
-
-        if (discountRow && discountText) {
-            if (payNowDiscount > 0) {
-                discountRow.style.display = "flex";
-                discountText.textContent = "- " + formatEuro(payNowDiscount);
+            if (data.valid) {
+                appliedCouponDiscount = parseFloat(data.discount_percent) || 0;
+                couponCodeHidden.value = code;
+                couponDiscountHidden.value = appliedCouponDiscount;
+                couponMessage.style.color = "#2e7d32";
+                couponMessage.textContent = data.message || ("Coupon applied: " + appliedCouponDiscount + "% off.");
+                couponInput.disabled = true;
+                applyCouponBtn.textContent = "Applied";
+                applyCouponBtn.disabled = true;
+                applyCouponBtn.style.background = "#2e7d32";
             } else {
-                discountRow.style.display = "none";
-                discountText.textContent = "- " + formatEuro(0);
+                appliedCouponDiscount = 0;
+                couponCodeHidden.value = "";
+                couponDiscountHidden.value = 0;
+                couponMessage.style.color = "#d62828";
+                couponMessage.textContent = data.message || "Invalid or expired coupon code.";
+                applyCouponBtn.textContent = "Apply";
             }
-        }
 
-        var paymentMsg = ensurePaymentMessageBox();
-        if (paymentMsg) {
-            paymentMsg.style.display = "none";
+            updatePricing();
+        })
+        .catch(function (err) {
+    applyCouponBtn.disabled = false;
+    applyCouponBtn.textContent = "Apply";
+    couponMessage.style.display = "block";
+    couponMessage.style.color = "#d62828";
+    couponMessage.textContent = "Debug error: " + err.message;
+    console.error("Coupon fetch error:", err);
+});
+    });
+}
+
+
+
+function updatePricing() {
+    var chauffeurFee = 0;
+    var licenseFee = 0;
+
+    if (needChauffeur && needChauffeur.value === "yes") {
+        chauffeurFee = chauffeurFeePerDay * days;
+    }
+
+    if (needSlLicense && needSlLicense.value === "yes") {
+        licenseFee = licenseFeeAmount;
+    }
+
+    var subtotal = baseTotal + chauffeurFee + licenseFee;
+
+    var couponAmount = 0;
+    if (appliedCouponDiscount > 0) {
+        couponAmount = subtotal * (appliedCouponDiscount / 100);
+    }
+
+    var payNowDiscount = 0;
+    var finalTotal = subtotal - couponAmount - payNowDiscount;
+
+    if (chauffeurFeeInput) chauffeurFeeInput.value = chauffeurFee.toFixed(2);
+    if (licenseFeeInput) licenseFeeInput.value = licenseFee.toFixed(2);
+
+    if (chauffeurFeeText) chauffeurFeeText.textContent = formatEuro(chauffeurFee);
+    if (licenseFeeText) licenseFeeText.textContent = formatEuro(licenseFee);
+
+    if (couponDiscountRow && couponDiscountText) {
+        if (couponAmount > 0) {
+            couponDiscountRow.style.display = "flex";
+            couponDiscountText.textContent = "-" + formatEuro(couponAmount);
+        } else {
+            couponDiscountRow.style.display = "none";
         }
     }
+
+    if (grandTotalInput) grandTotalInput.value = finalTotal.toFixed(2);
+    if (totalPriceText) totalPriceText.textContent = formatEuro(finalTotal);
+
+    var discountRow = ensurePayNowDiscountRow();
+    var discountText = document.getElementById("payNowDiscountText");
+
+    if (discountRow && discountText) {
+        if (payNowDiscount > 0) {
+            discountRow.style.display = "flex";
+            discountText.textContent = "- " + formatEuro(payNowDiscount);
+        } else {
+            discountRow.style.display = "none";
+            discountText.textContent = "- " + formatEuro(0);
+        }
+    }
+
+    var paymentMsg = ensurePaymentMessageBox();
+    if (paymentMsg) {
+        paymentMsg.style.display = "none";
+    }
+}
 
     if (driverDetailsForm && bookingSubmitBtn) {
         driverDetailsForm.addEventListener("submit", function () {
@@ -2787,6 +2906,8 @@ if (!$row) return \'<p>Vehicle not found.</p>\';
 $driverOnlyCategories = [\'luxury couch\', \'super luxury couch\'];
 $requiresDriver = in_array(strtolower(trim((string)($row[\'car_category\'] ?? \'\'))), $driverOnlyCategories, true);
 
+$couponEligibleCategories = [\'semi executive\', \'mini\', \'standard\',\'econ\',\'executive\', \'luxury\' , \'mini suv\' , \'large suv\'];
+$couponEligible = in_array(strtolower(trim((string)($row[\'car_category\'] ?? \'\'))), $couponEligibleCategories, true);
 
 
 $pickupText  = $pickupDateTime && strtotime($pickupDateTime) ? date(\'d M Y, H:i\', strtotime($pickupDateTime)) : \'\';
@@ -2827,7 +2948,10 @@ $out .= \'        </div>\';
 
 $out .= \'        <form action="\' . htmlspecialchars($formAction, ENT_QUOTES, \'UTF-8\') . \'" method="post" enctype="multipart/form-data" class="driverForm" id="driverDetailsForm">\';
 
+
+
 $out .= \'          <div class="row">\';
+
 $out .= \'            <div class="col-md-6 mb-0">\';
 $out .= \'              <label class="driverForm__label">Full Name <span class="text-danger">*</span></label>\';
 $out .= \'              <input type="text" name="full_name" class="form-control driverForm__control" placeholder="Full name" required>\';
@@ -2927,6 +3051,9 @@ if ($requiresDriver) {
     $out .= \'                </select>\';
 }
 
+
+
+
 $out .= \'              </div>\';
 
 $out .= \'            </div>\';
@@ -2993,6 +3120,9 @@ $out .= \'          <input type="hidden" name="original_rental_amount" value="\'
 $out .= \'          <input type="hidden" name="chauffeur_fee" id="chauffeur_fee" value="0">\';
 $out .= \'          <input type="hidden" name="license_fee" id="license_fee" value="0">\';
 $out .= \'          <input type="hidden" name="pay_now_discount" id="pay_now_discount" value="0">\';
+$out .= \'          <input type="hidden" name="coupon_code" id="coupon_code_hidden" value="">\';
+$out .= \'          <input type="hidden" name="coupon_discount_percent" id="coupon_discount_percent_hidden" value="0">\';
+
 $out .= \'              <hr>\';
 
 $out .= \'          <div class="driverFormSection mt-4">\';
@@ -3056,7 +3186,25 @@ if (!empty($selectedExtras)) {
 
 $out .= \'        <div class="driverSummaryCard__block mb-3">\';
 $out .= \'          <h5 class="driverSummaryCard__blockTitle">Price summary</h5>\';
+
+
+
+if ($couponEligible) {
+    $out .= \'          <div class="couponBox mb-3" id="couponSection">\';
+    $out .= \'            <div class="d-flex align-items-stretch" style="gap:8px;">\';
+    $out .= \'              <input type="text" id="coupon_code_input" class="form-control driverForm__control" placeholder="Coupon code (Optional)" style="text-transform:uppercase; height:44px;">\';
+    $out .= \'              <button type="button" id="applyCouponBtn" class="btn" style="white-space:nowrap; padding:0 18px; background:#d62828; color:#fff; border:none; border-radius:6px; font-weight:600;">Apply</button>\';
+    $out .= \'            </div>\';
+    $out .= \'            <div id="couponMessage" style="margin-top:6px; font-size:13px; display:none;"></div>\';
+    $out .= \'          </div>\';
+}
+
+
 $out .= \'          <div class="driverSummaryRow"><span>Coverage price</span><strong>€ \' . number_format($coverageTotal, 2, \'.\', \',\') . \'</strong></div>\';
+
+
+
+
 $out .= \'          <div class="driverSummaryRow"><span>Extras price</span><strong>€ \' . number_format($extrasTotal, 2, \'.\', \',\') . \'</strong></div>\';
 if ($discountPercent > 0 && $originalRentalAmount > 0 && $rentalAmount > 0) {
     $out .= \'          <div class="driverSummaryRow">\';
@@ -3075,6 +3223,14 @@ if ($discountPercent > 0 && $originalRentalAmount > 0 && $rentalAmount > 0) {
 }
 $out .= \'          <div class="driverSummaryRow"><span>Chauffeur fee (€50 × \' . (int)$days . \' days)</span><strong id="chauffeurFeeText">€ 0.00</strong></div>\';
 $out .= \'          <div class="driverSummaryRow"><span>License fee</span><strong id="licenseFeeText">€ 0.00</strong></div>\';
+
+
+
+if ($couponEligible) {
+    $out .= \'          <div class="driverSummaryRow" id="couponDiscountRow" style="display:none;"><span>Coupon discount</span><strong id="couponDiscountText" style="color:#2e7d32;">-€ 0.00</strong></div>\';
+}
+
+
 $out .= \'          <div class="driverSummaryRow driverSummaryRow--total">\';
 $out .= \'              <span>Total for \' . (int)$days . \' \' . ($days === 1 ? \'day\' : \'days\') . \'</span>\';
 $out .= \'              <strong class="driverSummaryTotalPrice" id="driverSummaryTotalPrice">€ \' . number_format($totalForTrip, 2, \'.\', \',\') . \'</strong>\';
@@ -3109,6 +3265,18 @@ document.addEventListener("DOMContentLoaded", function () {
     var countrySelect = document.getElementById("country_of_residence");
     var driverDetailsForm = document.getElementById("driverDetailsForm");
     var bookingSubmitMessage = document.getElementById("bookingSubmitMessage");
+
+
+
+var couponInput = document.getElementById("coupon_code_input");
+var applyCouponBtn = document.getElementById("applyCouponBtn");
+var couponMessage = document.getElementById("couponMessage");
+var couponCodeHidden = document.getElementById("coupon_code_hidden");
+var couponDiscountHidden = document.getElementById("coupon_discount_percent_hidden");
+var couponDiscountRow = document.getElementById("couponDiscountRow");
+var couponDiscountText = document.getElementById("couponDiscountText");
+var appliedCouponDiscount = 0;
+
 
     var baseTotal = \' . json_encode((float)$totalForTrip) . \';
     var days = \' . (int)$days . \';
@@ -3157,52 +3325,128 @@ document.addEventListener("DOMContentLoaded", function () {
         return row;
     }
 
-    function updatePricing() {
-        var chauffeurFee = 0;
-        var licenseFee = 0;
 
-        if (needChauffeur && needChauffeur.value === "yes") {
-            chauffeurFee = chauffeurFeePerDay * days;
+if (applyCouponBtn) {
+    applyCouponBtn.addEventListener("click", function () {
+        var code = couponInput.value.trim();
+
+        if (!code) {
+            couponMessage.style.display = "block";
+            couponMessage.style.color = "#d62828";
+            couponMessage.textContent = "Please enter a coupon code.";
+            return;
         }
 
-        if (needSlLicense && needSlLicense.value === "yes") {
-            licenseFee = licenseFeeAmount;
-        }
+        applyCouponBtn.disabled = true;
+        applyCouponBtn.textContent = "Checking...";
 
-        var subtotal = baseTotal + chauffeurFee + licenseFee;
-        var payNowDiscount = 0;
+fetch("assets/includes/validate_coupon.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+        coupon_code: code,
+        pickup_date: \' . json_encode($pickupDate) . \',
+        dropoff_date: \' . json_encode($dropoffDate) . \',
+        car_category: \' . json_encode($row[\'car_category\'] ?? \'\') . \'
+    })
+})
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+            applyCouponBtn.disabled = false;
+            couponMessage.style.display = "block";
 
-        var payNowDiscount = 0;
-
-        var finalTotal = subtotal - payNowDiscount;
-
-        if (chauffeurFeeInput) chauffeurFeeInput.value = chauffeurFee.toFixed(2);
-        if (licenseFeeInput) licenseFeeInput.value = licenseFee.toFixed(2);
-
-        if (chauffeurFeeText) chauffeurFeeText.textContent = formatEuro(chauffeurFee);
-        if (licenseFeeText) licenseFeeText.textContent = formatEuro(licenseFee);
-
-        if (grandTotalInput) grandTotalInput.value = finalTotal.toFixed(2);
-        if (totalPriceText) totalPriceText.textContent = formatEuro(finalTotal);
-
-        var discountRow = ensurePayNowDiscountRow();
-        var discountText = document.getElementById("payNowDiscountText");
-
-        if (discountRow && discountText) {
-            if (payNowDiscount > 0) {
-                discountRow.style.display = "flex";
-                discountText.textContent = "- " + formatEuro(payNowDiscount);
+            if (data.valid) {
+                appliedCouponDiscount = parseFloat(data.discount_percent) || 0;
+                couponCodeHidden.value = code;
+                couponDiscountHidden.value = appliedCouponDiscount;
+                couponMessage.style.color = "#2e7d32";
+                couponMessage.textContent = data.message || ("Coupon applied: " + appliedCouponDiscount + "% off.");
+                couponInput.disabled = true;
+                applyCouponBtn.textContent = "Applied";
+                applyCouponBtn.disabled = true;
+                applyCouponBtn.style.background = "#2e7d32";
             } else {
-                discountRow.style.display = "none";
-                discountText.textContent = "- " + formatEuro(0);
+                appliedCouponDiscount = 0;
+                couponCodeHidden.value = "";
+                couponDiscountHidden.value = 0;
+                couponMessage.style.color = "#d62828";
+                couponMessage.textContent = data.message || "Invalid or expired coupon code.";
+                applyCouponBtn.textContent = "Apply";
             }
-        }
 
-        var paymentMsg = ensurePaymentMessageBox();
-        if (paymentMsg) {
-            paymentMsg.style.display = "none";
+            updatePricing();
+        })
+        .catch(function (err) {
+    applyCouponBtn.disabled = false;
+    applyCouponBtn.textContent = "Apply";
+    couponMessage.style.display = "block";
+    couponMessage.style.color = "#d62828";
+    couponMessage.textContent = "Debug error: " + err.message;
+    console.error("Coupon fetch error:", err);
+});
+    });
+}
+
+
+
+function updatePricing() {
+    var chauffeurFee = 0;
+    var licenseFee = 0;
+
+    if (needChauffeur && needChauffeur.value === "yes") {
+        chauffeurFee = chauffeurFeePerDay * days;
+    }
+
+    if (needSlLicense && needSlLicense.value === "yes") {
+        licenseFee = licenseFeeAmount;
+    }
+
+    var subtotal = baseTotal + chauffeurFee + licenseFee;
+
+    var couponAmount = 0;
+    if (appliedCouponDiscount > 0) {
+        couponAmount = subtotal * (appliedCouponDiscount / 100);
+    }
+
+    var payNowDiscount = 0;
+    var finalTotal = subtotal - couponAmount - payNowDiscount;
+
+    if (chauffeurFeeInput) chauffeurFeeInput.value = chauffeurFee.toFixed(2);
+    if (licenseFeeInput) licenseFeeInput.value = licenseFee.toFixed(2);
+
+    if (chauffeurFeeText) chauffeurFeeText.textContent = formatEuro(chauffeurFee);
+    if (licenseFeeText) licenseFeeText.textContent = formatEuro(licenseFee);
+
+    if (couponDiscountRow && couponDiscountText) {
+        if (couponAmount > 0) {
+            couponDiscountRow.style.display = "flex";
+            couponDiscountText.textContent = "-" + formatEuro(couponAmount);
+        } else {
+            couponDiscountRow.style.display = "none";
         }
     }
+
+    if (grandTotalInput) grandTotalInput.value = finalTotal.toFixed(2);
+    if (totalPriceText) totalPriceText.textContent = formatEuro(finalTotal);
+
+    var discountRow = ensurePayNowDiscountRow();
+    var discountText = document.getElementById("payNowDiscountText");
+
+    if (discountRow && discountText) {
+        if (payNowDiscount > 0) {
+            discountRow.style.display = "flex";
+            discountText.textContent = "- " + formatEuro(payNowDiscount);
+        } else {
+            discountRow.style.display = "none";
+            discountText.textContent = "- " + formatEuro(0);
+        }
+    }
+
+    var paymentMsg = ensurePaymentMessageBox();
+    if (paymentMsg) {
+        paymentMsg.style.display = "none";
+    }
+}
 
     if (driverDetailsForm && bookingSubmitBtn) {
         driverDetailsForm.addEventListener("submit", function () {
@@ -3270,9 +3514,6 @@ return $out;',
         ),
         'policies' => 
         array (
-          'web' => 
-          array (
-          ),
         ),
         'source' => 
         array (
@@ -3800,9 +4041,6 @@ return $out;',
         ),
         'policies' => 
         array (
-          'web' => 
-          array (
-          ),
         ),
         'source' => 
         array (
