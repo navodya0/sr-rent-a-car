@@ -44,6 +44,17 @@
       </div>
     </div>
 
+    <!-- Content -->
+    <div class="heroRent__content">
+      <div class="container-fluid" style="padding: 0 2%;">
+        <div class="heroRent__contentInner heroRent__contentInner--left">
+          <span class="heroRent__sub">Affordable</span>
+          <h1 class="heroRent__title">Sri Lanka Rent A Car</h1>
+          <p class="heroRent__lead">Premium vehicles • Chauffeur services • Airport pickup</p>
+        </div>
+      </div>
+    </div>
+
     <!-- Booking Bar -->
     <div class="heroRent__bar">
       <div class="container-fluid" style="padding: 0 2%; position: relative;">
@@ -54,107 +65,121 @@
           <span class="heroRentAcc__icon" aria-hidden="true"></span>
         </button>
 
-        <!-- Accordion Panel -->
-        <div class="heroRentAcc__panel" id="heroRentAccPanel" hidden>
-          <form class="heroRentForm" action="[[~39]]" method="post">
-            <input type="hidden" name="id" value="39">
-            <input type="hidden" name="search_source" value="home">
-
-            <div class="heroRentForm__grid">
-
-              <!-- Pickup -->
-              <div class="heroRentForm__field heroRentForm__field--wide">
-                <label class="heroRentForm__label" for="heroRent_pickup">Vehicle Pickup location</label>
-                <input class="heroRentForm__input" id="heroRent_pickup" type="text" name="pickup_location" placeholder="e.g., Colombo" required>
+        <!-- Accordion Panel / Booking Card -->
+        <div class="heroRentAcc__panel" id="heroRentAccPanel">
+          <div class="heroRentCard">
+            <!-- Header Banner -->
+            <div class="heroRentCard__header">
+              <div class="heroRentCard__badge">
+                <svg class="heroRentCard__tagIcon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#ffc107" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                  <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                </svg>
               </div>
-
-              <!-- Same location checkbox -->
-              <div class="heroRentForm__field heroRentForm__field--check">
-                <label class="heroRentForm__checkLabel" for="heroRent_sameLocation">
-                  <input type="checkbox" id="heroRent_sameLocation" checked>
-                  <span class="text-white">Return to same location</span>
-                </label>
+              <div class="heroRentCard__headerText">
+                <h2 class="heroRentCard__title">Check Your Rates Before Booking</h2>
+                <p class="heroRentCard__subtitle">Enter your trip details to view available vehicles and rates.</p>
               </div>
-
-              <!-- Drop-off -->
-              <div class="heroRentForm__field heroRentForm__field--wide" id="heroRent_dropWrap" style="display:none;">
-                <label class="heroRentForm__label" for="heroRent_dropInput">Vehicle Drop-off location</label>
-                <input class="heroRentForm__input" type="text" name="dropoff_location" id="heroRent_dropInput" placeholder="e.g., Kandy">
-              </div>
-
-              <!-- Pickup datetime -->
-              <div class="heroRentForm__field">
-                <label class="heroRentForm__label" for="heroRent_pickupDT">Pickup date & time</label>
-                <input class="heroRentForm__input heroRentDT" id="heroRent_pickupDT" type="text" name="pickup_datetime" placeholder="Pickup Date & Time" required>
-              </div>
-
-              <!-- Dropoff datetime -->
-              <div class="heroRentForm__field">
-                <label class="heroRentForm__label" for="heroRent_dropDT">Drop-off date & time</label>
-                <input class="heroRentForm__input heroRentDT" id="heroRent_dropDT" type="text" name="dropoff_datetime" placeholder="Drop-off Date & Time" required>
-              </div>
-
-              <!-- Submit -->
-<div class="heroRentForm__field heroRentForm__field--submit">
-    <button type="submit" class="heroRentForm__btn">
-        <i class="fas fa-search"></i>
-        <span style="color:white;">Search</span>
-    </button>
-</div>
-
             </div>
-          </form>
+
+            <!-- Form -->
+            <form class="heroRentForm" action="[[~39]]" method="post">
+              <input type="hidden" name="id" value="39">
+              <input type="hidden" name="search_source" value="home">
+
+              <div class="heroRentForm__grid">
+
+                <!-- Pickup -->
+                <div class="heroRentForm__field heroRentForm__field--pickup">
+                  <label class="heroRentForm__label" for="heroRent_pickup">Vehicle Pickup Location</label>
+                  <div class="heroRentForm__inputBox">
+                    <i class="fas fa-map-marker-alt heroRentForm__icon" aria-hidden="true"></i>
+                    <input class="heroRentForm__input" id="heroRent_pickup" type="text" name="pickup_location" placeholder="Colombo Bandaranaike Airport" value="Colombo Bandaranaike International Airport (CMB)" required>
+                    <i class="fas fa-chevron-down heroRentForm__arrow" aria-hidden="true"></i>
+                  </div>
+                </div>
+
+                <!-- Return to same location tick mark (in between) -->
+                <div class="heroRentForm__field heroRentForm__field--same">
+                  <div class="heroRentForm__checkWrap">
+                    <label class="heroRentForm__checkLabel" for="heroRent_sameLocation">
+                      <input type="checkbox" id="heroRent_sameLocation" checked>
+                      <span>Return to same location</span>
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Drop-off (shown if not same location) -->
+                <div class="heroRentForm__field heroRentForm__field--drop" id="heroRent_dropWrap" style="display:none;">
+                  <label class="heroRentForm__label" for="heroRent_dropInput">Vehicle Drop-off Location</label>
+                  <div class="heroRentForm__inputBox">
+                    <i class="fas fa-map-marker-alt heroRentForm__icon" aria-hidden="true"></i>
+                    <input class="heroRentForm__input" type="text" name="dropoff_location" id="heroRent_dropInput" placeholder="e.g., Kandy">
+                  </div>
+                </div>
+
+                <!-- Pickup datetime -->
+                <div class="heroRentForm__field heroRentForm__field--datetime">
+                  <label class="heroRentForm__label" for="heroRent_pickupDT">Pickup Date & Time</label>
+                  <div class="heroRentForm__inputBox">
+                    <i class="far fa-calendar-alt heroRentForm__icon" aria-hidden="true"></i>
+                    <input class="heroRentForm__input heroRentDT" id="heroRent_pickupDT" type="text" name="pickup_datetime" placeholder="Pickup Date & Time" required>
+                  </div>
+                </div>
+
+                <!-- Dropoff datetime -->
+                <div class="heroRentForm__field heroRentForm__field--datetime">
+                  <label class="heroRentForm__label" for="heroRent_dropDT">Drop-off Date & Time</label>
+                  <div class="heroRentForm__inputBox">
+                    <i class="far fa-calendar-alt heroRentForm__icon" aria-hidden="true"></i>
+                    <input class="heroRentForm__input heroRentDT" id="heroRent_dropDT" type="text" name="dropoff_datetime" placeholder="Drop-off Date & Time" required>
+                  </div>
+                </div>
+
+                <!-- Submit -->
+                <div class="heroRentForm__field heroRentForm__field--submit">
+                  <button type="submit" class="heroRentForm__btn">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                    <span>Check Rates</span>
+                  </button>
+                </div>
+
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="heroResultsWrap">
+          <div style="width: 100%;">
+            <section id="heroResultsSection" class="heroResults">
+              <div class="heroResults__header pb-0 pt-0">
+                <h3 class="heroResults__title"><i class="fas fa-car-side" style="color: #ffc107; margin-right: 8px;"></i> Vehicles matching your search</h3>
+                <button type="button" class="heroResults__close" aria-label="Close">&times;</button>
+              </div>
+              <div id="heroResultsLoading" class="heroResults__loading" style="display:none;">Searching vehicles...</div>
+              <div id="heroResultsEmpty" class="heroResults__empty" style="display:none;">No vehicles matched your search. Try different dates.</div>
+              <div id="heroResultsGrid" class="heroResults__grid"></div>
+            </section>
+          </div>
         </div>
 
 
-
-<div class="heroResultsWrap">
-  <div style="width: 100%;">
-    <section id="heroResultsSection" class="heroResults">
-      <div class="heroResults__header pb-0 pt-0">
-        <h3 class="heroResults__title">Vehicles matching your search</h3>
-        <button type="button" class="heroResults__close" aria-label="Close">&times;</button>
-      </div>
-      <div id="heroResultsLoading" class="heroResults__loading" style="display:none;">Searching vehicles...</div>
-      <div id="heroResultsEmpty" class="heroResults__empty" style="display:none;">No vehicles matched your search. Try different dates or fewer passengers.</div>
-      <div id="heroResultsGrid" class="heroResults__grid"></div>
-    </section>
-  </div>
-</div>
-
-
-<!-- Mobile results modal -->
-<div id="heroResultsModal" class="heroResultsModal" hidden>
-  <div class="heroResultsModal__backdrop"></div>
-  <div class="heroResultsModal__panel">
-    <div class="heroResultsModal__header">
-      <h3>Vehicles matching your search</h3>
-      <button type="button" class="heroResultsModal__close" aria-label="Close">&times;</button>
-    </div>
-    <div class="heroResultsModal__body">
-      <div id="heroResultsModalLoading" class="heroResults__loading" style="display:none;">Searching vehicles...</div>
-      <div id="heroResultsModalEmpty" class="heroResults__empty" style="display:none;">No vehicles matched your search. Try different dates or fewer passengers.</div>
-      <div id="heroResultsModalGrid" class="heroResultsModal__grid"></div>
-    </div>
-  </div>
-</div>
-
-
-      </div>
-    </div>
-
-
-
-
-
-    <!-- Content -->
-    <div class="heroRent__content">
-      <div class="container">
-        <div class="heroRent__contentInner heroRent__contentInner--left">
-          <span class="heroRent__sub">Affordable</span>
-          <h1 class="heroRent__title">Sri Lanka Rent A Car</h1>
-          <p class="heroRent__lead">Premium vehicles • Chauffeur services • Airport pickup</p>
+        <!-- Mobile results modal -->
+        <div id="heroResultsModal" class="heroResultsModal" hidden>
+          <div class="heroResultsModal__backdrop"></div>
+          <div class="heroResultsModal__panel">
+            <div class="heroResultsModal__header">
+              <h3>Vehicles matching your search</h3>
+              <button type="button" class="heroResultsModal__close" aria-label="Close">&times;</button>
+            </div>
+            <div class="heroResultsModal__body">
+              <div id="heroResultsModalLoading" class="heroResults__loading" style="display:none;">Searching vehicles...</div>
+              <div id="heroResultsModalEmpty" class="heroResults__empty" style="display:none;">No vehicles matched your search. Try different dates.</div>
+              <div id="heroResultsModalGrid" class="heroResultsModal__grid"></div>
+            </div>
+          </div>
         </div>
+
       </div>
     </div>
 
@@ -711,127 +736,578 @@
 </section>
 	
 <style>
-  @media (min-width: 992px) {
-    .heroRentForm__grid {
-      display: flex !important;
-      flex-wrap: nowrap !important;
-      align-items: flex-end !important;
-      gap: 10px !important;
-      width: 100% !important;
-    }
-    .heroRentForm__field {
-      flex: 1;
-      min-width: 120px;
-    }
-    .heroRentForm__field--check {
-      flex: 0 0 auto;
-      white-space: nowrap;
-    }
-    .heroRentForm__field--submit {
-      flex: 0 0 auto;
-    }
-  }
+/* =========================================================
+   HERO BOOKING CARD & SEARCH RESULTS (DESKTOP & RESPONSIVE)
+   ========================================================= */
 
-
-
-
-.heroResultsWrap {
-  position: absolute;
-  top: 100%;
-  left: 2%;
-  right: 2%;
-  z-index: 20;
-  margin-top: 8px;
-  pointer-events: none;
+/* Hero Container */
+.heroRent,
+.heroRent__frame,
+.heroRent__bar {
+  overflow: visible !important;
 }
 
-.heroResults {
-    display: none;
-    pointer-events: auto;
-    background: #ffffff00;
-    border-radius: 12px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.35);
-    padding: 0;
-    overflow: hidden;
-    max-height: calc(100vh - 360px);
-    flex-direction: column;
+.heroRentCard {
+  max-width: 1340px;
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  border: 1px solid #143254;
 }
 
-.heroResults__header {
+/* Swiper Background */
+.heroRent--yacht .heroRent__swiper {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 1 !important;
+}
+
+.heroRent--yacht .heroRent__slide {
+  background-size: cover !important;
+  background-position: center !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Card Header Banner */
+.heroRentCard__header {
+  background: #08203e;
+  padding: 12px 20px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 14px 16px;
-  border-bottom: 1px solid #eee;
+  gap: 14px;
 }
 
-.heroResults__title {
-  font-size: 18px;
-  font-weight: 800;
-  margin: 0;
-  background: linear-gradient(135deg, #023f75, #a30707);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: #ffffff;
-  display: inline-block;
-  letter-spacing: 0.5px;
-}
-
-.heroResults__close {
-  background: rgba(0,0,0,0.05);
-  border: none;
-  font-size: 20px;
-  line-height: 1;
-  color: #333;
-  cursor: pointer;
-  padding: 6px 10px;
-  border-radius: 50%;
-  transition: all 0.3s ease;
+.heroRentCard__badge {
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  border: 1.5px solid #ffc107;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
-}
-.heroResults__close:hover {
-  background: rgba(163, 7, 7, 0.1);
-  color: #a30707;
-  transform: rotate(90deg);
+  background: rgba(255, 193, 7, 0.08);
 }
 
-.heroResults__grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-auto-rows: auto;
-  gap: 10px;
-  flex: 1;
-  min-height: 0;
-  overflow-y: auto;
-  padding: 12px 12px 24px 12px;
-  scroll-behavior: smooth;
+.heroRentCard__title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffc107 !important;
+  margin: 0;
+  line-height: 1.2;
+  letter-spacing: 0.2px;
 }
 
-@media (max-width: 1400px) {
+.heroRentCard__subtitle {
+  font-size: 12.5px;
+  color: #ffffff !important;
+  margin: 2px 0 0 0;
+  opacity: 0.92;
+}
+
+/* Form Container */
+.heroRentForm {
+  background: #ffffff;
+  padding: 14px 20px 10px 20px;
+  position: relative;
+}
+
+.heroRentForm__labelRow {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin-bottom: 5px !important;
+  gap: 8px !important;
+  width: 100% !important;
+}
+
+.heroRentForm__labelRow .heroRentForm__label {
+  margin-bottom: 0 !important;
+}
+
+.heroRentForm__label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #111827 !important;
+  margin-bottom: 5px;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+.heroRentForm__inputBox {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.heroRentForm__icon {
+  position: absolute;
+  left: 10px;
+  color: #374151;
+  font-size: 13px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.heroRentForm__arrow {
+  position: absolute;
+  right: 10px;
+  color: #4b5563;
+  font-size: 11px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.heroRentForm__input,
+.heroRentForm__select {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 6px 26px 6px 30px;
+  font-size: 12.5px;
+  color: #111827;
+  background: #ffffff;
+  outline: none;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.heroRentForm__select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.heroRentForm__input:focus,
+.heroRentForm__select:focus {
+  border-color: #ffc107;
+  box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.25);
+  background: #ffffff;
+}
+
+.heroRentForm__checkWrap {
+  margin-top: 5px;
+}
+
+.heroRentForm__checkLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #111827 !important;
+  cursor: pointer;
+  margin: 0;
+  user-select: none;
+  line-height: 1.2;
+}
+
+.heroRentForm__checkLabel span {
+  color: #111827 !important;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.heroRentForm__checkLabel input[type="checkbox"] {
+  accent-color: #ffc107;
+  width: 14px;
+  height: 14px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.heroRentForm__btn {
+  width: 100%;
+  height: 40px;
+  background: #ffc107 !important;
+  color: #0c2340 !important;
+  font-weight: 800;
+  font-size: 13.5px;
+  border: none;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+  transition: background 0.2s, transform 0.15s;
+  text-transform: none;
+}
+
+.heroRentForm__btn span {
+  color: #0c2340 !important;
+  font-weight: 800;
+}
+
+.heroRentForm__btn i {
+  color: #0c2340 !important;
+  font-size: 13px;
+}
+
+.heroRentForm__btn:hover {
+  background: #e5ac00 !important;
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   DESKTOP FORM & RESULTS LAYOUT (>= 768px)
+   ========================================================= */
+@media (min-width: 768px) {
+  .heroRent--yacht .heroRent__frame {
+    height: auto !important;
+    min-height: 100vh !important;
+    padding-top: 100px !important;
+    padding-bottom: 70px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    position: relative !important;
+  }
+
+  .heroRent__content {
+    position: relative !important;
+    inset: auto !important;
+    z-index: 15 !important;
+    display: block !important;
+    pointer-events: auto !important;
+    margin-bottom: 16px !important;
+  }
+
+  .heroRent__content .container,
+  .heroRent__content .container-fluid {
+    padding-left: 2% !important;
+    padding-right: 2% !important;
+    max-width: 1340px !important;
+    margin: 0 auto !important;
+  }
+
+  .heroRent__contentInner--left {
+    margin-top: 6rem !important;
+    text-align: left !important;
+    max-width: 850px !important;
+  }
+
+  .heroRent__sub {
+    display: block !important;
+    font-size: 40px !important;
+    color: #efc900 !important;
+    font-weight: 600 !important;
+    font-family: "Great Vibes", cursive !important;
+    margin-bottom: 2px !important;
+    line-height: 1 !important;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.5) !important;
+  }
+
+  .heroRent__title {
+    font-size: 34px !important;
+    color: #ffffff !important;
+    line-height: 1.15 !important;
+    font-family: "Playfair Display", serif !important;
+    letter-spacing: 2px !important;
+    text-transform: uppercase !important;
+    font-weight: 700 !important;
+    margin-bottom: 4px !important;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.5) !important;
+  }
+
+  .heroRent__lead {
+    color: rgba(255,255,255,0.92) !important;
+    font-size: 14.5px !important;
+    letter-spacing: 0.4px !important;
+    font-weight: 600 !important;
+    margin-bottom: 0 !important;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5) !important;
+  }
+
+  .heroRent--yacht .heroRent__bar {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    transform: none !important;
+    z-index: 20 !important;
+    margin-top: 0 !important;
+  }
+
+  .heroRentForm__grid {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: flex-end !important;
+    gap: 12px !important;
+    width: 100% !important;
+  }
+
+  .heroRentForm__field {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .heroRentForm__field--pickup {
+    flex: 3.2;
+    min-width: 200px;
+  }
+
+  .heroRentForm__field--same {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    margin-bottom: 0;
+  }
+
+  .heroRentForm__field--same .heroRentForm__checkWrap {
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  .heroRentForm__field--drop {
+    flex: 3.2;
+    min-width: 200px;
+  }
+
+  .heroRentForm__field--datetime {
+    flex: 2.2;
+    min-width: 160px;
+  }
+
+  .heroRentForm__field--submit {
+    flex: 1.4;
+    min-width: 130px;
+    margin-top: 0;
+  }
+
+  .heroResultsWrap {
+    position: relative;
+    max-width: 1340px;
+    width: 100%;
+    margin: 8px auto 0 auto;
+    z-index: 9999;
+  }
+
+  .heroResults {
+    display: none;
+    flex-direction: column;
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0;
+    overflow: visible;
+  }
+
+  .heroResults__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 0 8px 0;
+    border-bottom: none;
+  }
+
+  .heroResults__title {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: #ffffff !important;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+    letter-spacing: 0.3px;
+  }
+
+  .heroResults__close {
+    background: rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 15px;
+    transition: background 0.2s;
+  }
+
+  .heroResults__close:hover {
+    background: rgba(255, 255, 255, 0.35);
+    color: #ffffff;
+  }
+
   .heroResults__grid {
-    grid-template-columns: repeat(6, 1fr);
+    display: grid !important;
+    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+    grid-auto-rows: 1fr;
+    align-items: stretch;
+    max-height: calc(100vh - 420px);
+    min-height: 0;
+    overflow-y: auto;
+    padding: 2px 2px 14px 2px;
+    scroll-behavior: smooth;
+  }
+
+  /* Desktop Vehicle Card - Auto Adjusting */
+  .heroResultCard {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    padding: 6px 7px 0 7px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    min-height: 90px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .heroResultCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.14);
+  }
+
+  .heroResultCard__main {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .heroResultCard__imgWrap {
+    width: 58px;
+    max-width: 35%;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .heroResultCard__image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .heroResultCard__info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+  }
+
+  .heroResultCard__name {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: #111827 !important;
+    line-height: 1.15;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+  }
+
+  .heroResultCard__priceRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3px;
+    flex-wrap: wrap;
+    margin-top: 1px;
+  }
+
+  .heroResultCard__price {
+    color: #b81114 !important;
+    font-size: 16px;
+    font-weight: 700;
+    white-space: nowrap;
+  
+  }
+
+  .heroResultCard__price--empty {
+    font-size: 10px;
+    font-weight: 500;
+    color: #6b7280 !important;
+  }
+
+  .heroResultCard__capacity {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #374151 !important;
+    white-space: nowrap;
+  }
+
+  .heroResultCard__capacity span {
+    color: #374151 !important;
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .heroResultCard__capacity i {
+    color: #023f75 !important;
+    font-size: 9.5px;
+  }
+
+  .heroResultCard__btn {
+    width: calc(100% + 14px);
+    margin: 5px -7px 0 -7px;
+    background: #061d38;
+    color: #ffffff !important;
+    border: none;
+    font-size: 11px;
+    font-weight: 700;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    cursor: pointer;
+    
+    transition: background 0.15s;
+    display: block;
+    padding: 0;
+  }
+
+  .heroResultCard__btn:hover {
+    background: #023f75;
+    color: #ffffff !important;
+  }
+
+  .heroResultsModal {
+    display: none !important;
   }
 }
 
-@media (max-width: 1200px) {
-  .heroResults__grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
+/* Custom Scrollbar for results */
 .heroResults__grid::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 .heroResults__grid::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
 }
 .heroResults__grid::-webkit-scrollbar-thumb {
   background: #002656;
-  border-radius: 8px;
+  border-radius: 6px;
 }
 .heroResults__grid::-webkit-scrollbar-thumb:hover {
   background: #023f75;
@@ -840,126 +1316,198 @@
 .heroResults__loading,
 .heroResults__empty {
   text-align: center;
-  padding: 20px 16px;
-  color: #666;
+  padding: 16px;
+  color: #ffffff;
   font-size: 13px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
 }
 
-/* Inline panel: desktop/large screens only */
-@media (max-width: 767px) {
+/* =========================================================
+   MOBILE ACCORDION & MODAL RULES (< 768px) - PRESERVED
+   ========================================================= */
+@media (max-width: 767.98px) {
+  .heroRentCard__header {
+    display: none;
+  }
+
+  .heroRentCard {
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    background: transparent;
+  }
+
+  .heroRentForm {
+    background: linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.08));
+    border: 1px solid rgba(255,255,255,.16);
+    box-shadow: 0 24px 80px rgba(0,0,0,.28);
+    backdrop-filter: blur(18px);
+    border-radius: 12px;
+    padding: 16px;
+  }
+
+  .heroRentForm__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .heroRentForm__label {
+    color: #ffffff !important;
+  }
+
+  .heroRentForm__checkLabel span {
+    color: #ffffff !important;
+  }
+
+  .heroRentForm__input,
+  .heroRentForm__select {
+    background: rgba(255, 255, 255, 0.95);
+    height: 44px;
+  }
+
   .heroResultsWrap {
     display: none !important;
   }
-}
 
-/* Modal: mobile only */
-@media (min-width: 768px) {
   .heroResultsModal {
-    display: none !important;
-  }
-}
-
-@media (max-width: 1200px) {
-  .heroResults__grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (max-width: 767px) {
-  .heroResultsWrap {
-    top: 100%;
-    margin-top: 8px;
-  }
-
-  .heroResults__grid {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
     display: flex;
-    flex-wrap: nowrap;
-    grid-template-columns: none; /* override the desktop grid */
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .heroResultsModal[hidden] {
+    display: none;
+  }
+
+  .heroResultsModal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+  }
+
+  .heroResultsModal__panel {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    max-height: 80vh;
+    background: #fff;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    animation: heroModalPopIn 0.2s ease-out;
+    overflow: hidden;
+  }
+
+  .heroResultsModal__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .heroResultsModal__header h3 {
+    font-size: 18px;
+    font-weight: 800;
+    margin: 0;
+    background: linear-gradient(135deg, #023f75, #a30707);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    letter-spacing: 0.5px;
+  }
+
+  .heroResultsModal__close {
+    background: rgba(0,0,0,0.05);
+    border: none;
+    font-size: 20px;
+    line-height: 1;
+    color: #333;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+  }
+
+  .heroResultsModal__close:hover {
+    background: rgba(163, 7, 7, 0.1);
+    color: #a30707;
+    transform: rotate(90deg);
+  }
+
+  .heroResultsModal__body {
+    overflow-y: auto;
+    padding: 14px 16px 30px;
+  }
+
+  .heroResultsModal__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 1fr;
     gap: 10px;
-    max-height: none;
-    padding-bottom: 6px; /* room for scrollbar */
-    -webkit-overflow-scrolling: touch;
   }
 
-  .heroResults__grid::-webkit-scrollbar {
-    height: 6px;
-    width: auto;
+  .heroResultsModal__grid .heroResultCard {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
-  .heroResultCard {
-    flex: 0 0 78%;      /* one big card at a time, next one peeks in */
-    max-width: 78%;
-    scroll-snap-align: start;
-    max-height: none;   /* no internal scrolling needed anymore */
-    overflow: visible;
+  .heroResultsModal__grid .heroResultCard__main {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  .heroResultCard__name {
-    font-size: 13px;
+  .heroResultsModal__grid .heroResultCard__imgWrap {
+    width: 100%;
+    height: 80px;
   }
 
-  .heroResultCard__price {
-    font-size: 14px;
+  .heroResultsModal__grid .heroResultCard__imgWrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
-}
 
+  .heroResultsModal__grid .heroResultCard__name {
+    font-size: 12px;
+    font-weight: 700;
+    margin-top: 4px;
+  }
 
+  .heroResultsModal__grid .heroResultCard__price {
+    font-size: 16px;
+    font-weight: 700;
+    color: #dd1c1c !important;
+  }
 
-.heroResultCard__priceRow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.heroResultCard__capacity {
-  display: flex;
-  gap: 8px;
-  font-size: 11px;
-  color: #666;
-  white-space: nowrap;
-}
-
-.heroResultCard__capacity i {
-  margin-right: 3px;
-  color: #023f75;
-}
-
-.heroResultsModal {
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-
-.heroResultsModal[hidden] {
-  display: none;
-}
-
-.heroResultsModal__backdrop {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-}
-
-.heroResultsModal__panel {
-  position: relative;
-  width: 100%;
-  max-width: 420px;
-  max-height: 80vh;
-  background: #fff;
-  border-radius: 16px;
-  display: flex;
-  flex-direction: column;
-  animation: heroModalPopIn 0.2s ease-out;
-  overflow: hidden;
+  .heroResultsModal__grid .heroResultCard__btn {
+    width: 100%;
+    margin-top: 6px;
+    background: #002656;
+    color: #fff;
+    border: none;
+    padding: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 4px;
+  }
 }
 
 @keyframes heroModalPopIn {
@@ -973,428 +1521,17 @@
   }
 }
 
-@keyframes heroModalSlideDown {
-  from { transform: translateY(-100%); }
-  to { transform: translateY(0); }
-}
-
-@keyframes heroModalSlideUp {
-  from { transform: translateY(100%); }
-  to { transform: translateY(0); }
-}
-
-.heroResultsModal__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 16px;
-  border-bottom: 1px solid #eee;
-}
-
-.heroResultsModal__header h3 {
-  font-size: 18px;
-  font-weight: 800;
-  margin: 0;
-  background: linear-gradient(135deg, #023f75, #a30707);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: inline-block;
-  letter-spacing: 0.5px;
-}
-
-.heroResultsModal__close {
-  background: rgba(0,0,0,0.05);
-  border: none;
-  font-size: 20px;
-  line-height: 1;
-  color: #333;
-  cursor: pointer;
-  padding: 6px 10px;
-  border-radius: 50%;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-}
-.heroResultsModal__close:hover {
-  background: rgba(163, 7, 7, 0.1);
-  color: #a30707;
-  transform: rotate(90deg);
-}
-
-.heroResultsModal__body {
-  overflow-y: auto;
-  padding: 14px 16px 30px;
-}
-
-.heroResultsModal__grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-auto-rows: 1fr;
-  gap: 10px;
-}
-
-.heroResultsModal__grid .heroResultCard {
-  max-height: none;
-  overflow: visible;
-  padding: 8px;
-}
-
-.heroResultsModal__grid .heroResultCard__row {
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.heroResultsModal__grid .heroResultCard__row img {
-  width: 100%;
-  height: 90px;
-  object-fit: cover;
-}
-
-.heroResultsModal__grid .heroResultCard__name {
-  font-size: 12px;
-}
-
-.heroResultsModal__grid .heroResultCard__price {
-  font-size: 13px;
-}
-
 body.heroModalOpen {
   overflow: hidden;
 }
 
-@media (min-width: 768px) {
-  .heroResultsModal__panel {
-    max-width: 700px;
-  }
 
-  .heroResultsModal__grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .heroResultsModal__grid .heroResultCard__row {
-    flex-direction: row; /* image beside text again on wider cards */
-    align-items: center;
-  }
-
-  .heroResultsModal__grid .heroResultCard__row img {
-    width: 60px;
-    height: 60px;
-  }
+@media (min-width: 1400px) {
+    .heroRentForm {
+        max-width: none;
+        margin: 0 auto;
+    }
 }
-
-@media (min-width: 1200px) {
-  .heroResultsModal__panel {
-    max-width: 900px;
-  }
-
-  .heroResultsModal__grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-
-
-.heroResultCard {
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  box-sizing: border-box;
-}
-
-.heroResultCard__row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.heroResultCard__image {
-  width: 56px;
-  height: 48px;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-
-.heroResultCard__name {
-  font-weight: 700;
-  font-size: 13px;
-  color: #1a1a1a;
-  line-height: 1.2;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  min-width: 0;
-}
-
-.heroResultCard__priceRow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  gap: 6px;
-}
-
-.heroResultCard__price {
-  font-weight: 700;
-  font-size: 16px;
-  color: #c70101 !important;
-}
-
-.heroResultCard__price--empty {
-  font-size: 11px;
-  font-weight: 500;
-  color: #888;
-}
-
-.heroResultCard__capacity {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 11px;
-  font-weight: 600;
-  color: #333;
-  white-space: nowrap;
-}
-
-.heroResultCard__capacity i {
-  color: #023f75;
-  margin-right: 3px;
-}
-
-.heroResultCard__btn {
-  width: 100%;
-  background: #002656;
-  color: #fff;
-  border: none;
-  padding: 8px 10px;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-  margin-top: auto;
-}
-
-.heroResultCard__btn:hover {
-  background: #043c68;
-}
-
-
-.heroResultCard__row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.heroResultCard__info {
-  flex: 1;
-  min-width: 0;
-}
-
-
-
-/* =========================================================
-   FIX: Vehicle search results - prevent last row clipping
-   ========================================================= */
-
-/* Allow the results dropdown to extend outside the hero */
-.heroRent,
-.heroRent__frame,
-.heroRent__bar {
-    overflow: visible !important;
-}
-
-/* Keep results above the hero wave / following content */
-.heroResultsWrap {
-    z-index: 9999 !important;
-}
-
-/* Give the results panel a real height constraint */
-.heroResults {
-    display: none;
-    flex-direction: column;
-    max-height: calc(100vh - 360px) !important;
-    overflow: hidden;
-}
-
-/* Make the vehicle area scroll instead of clipping the last row */
-.heroResults__grid {
-    display: grid;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    grid-auto-rows: auto !important;
-    align-items: stretch;
-    gap: 10px;
-
-    flex: 1 1 auto;
-    min-height: 0;
-    overflow-y: auto !important;
-
-    padding: 12px 12px 20px !important;
-}
-
-/* Cards must be allowed to show their complete content */
-.heroResultCard {
-    height: auto !important;
-    min-height: 135px;
-    overflow: visible !important;
-    display: flex !important;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-/* Always keep Book Now inside the card */
-.heroResultCard__btn {
-    flex-shrink: 0;
-    position: relative;
-    z-index: 2;
- 
-}
-
-
-
-
-/* =========================================================
-   VEHICLE CARD - COMPACT STYLE
-   ========================================================= */
-
-.heroResultCard {
-    background: #ffffffe6;
-
-    padding: 7px;
-    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.14);
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    width: 100%;
-    min-height: 100px;
-    height: 132px;
-
-    overflow: hidden;
-    box-sizing: border-box;
-}
-
-/* Top section */
-.heroResultCard__row {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    min-width: 0;
-justify-content: space-between;
-}
-
-/* Vehicle image */
-.heroResultCard__row img {
-    width: 90px;
-    height: 48px;
-    object-fit: contain;
-    flex-shrink: 0;
-    border-radius: 5px;
-}
-
-/* Text section */
-.heroResultCard__info {
-    flex: 1;
-    min-width: 0;
-}
-
-/* Vehicle name */
-.heroResultCard__name {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 12px;
-    font-weight: 700;
-    line-height: 1.15;
-    color: #222;
-
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-/* Price + capacity */
-.heroResultCard__priceRow {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 5px;
-    width: 100%;
-}
-
-
-
-/* Passenger / luggage */
-.heroResultCard__capacity {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-
-    color: #222;
-    font-size: 12px;
-    font-weight: 600;
-
-    white-space: nowrap;
-}
-
-.heroResultCard__capacity i {
-    color: #07528d;
-    margin-right: 2px;
-}
-
-/* Book Now button */
-.heroResultCard__btn {
-    width: 100%;
-    height: 25px;
-
-    padding: 0 8px;
- 
-
-    border: 0;
-
-    background: #022c4d;
-    color: #fff;
-
-    font-size: 12px;
-    font-weight: 700;
-
-    cursor: pointer;
-
-    box-shadow: 0 1px 2px rgba(0,0,0,.15);
-
-    transition:
-        background .2s ease,
-        transform .15s ease;
-}
-
-.heroResultCard__btn:hover {
-    background: #043c68;
-}
-
-.heroResultCard__btn:active {
-    transform: translateY(1px);
-}
-
-.heroRentForm__btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    color: #fff;
-
-}
-
-.heroRentForm__btn span {
-  color: #fff   !important;
-}
-
-.heroRentForm__btn i {
-    font-size: 14px;
-}
-
-
 </style>
 
 <style>
@@ -1685,9 +1822,9 @@ AIzaSyC-USaecnlmdi2fOMcDQl8BhId3-eYcg-Y&libraries=places"></script>
 
       let dropPicker;
 
-        const now = new Date();
+      const now = new Date();
 
-        flatpickr(pickupEl, {
+      flatpickr(pickupEl, {
         enableTime: true,
         dateFormat: "Y-m-d H:i",
         minDate: now,              
@@ -1696,88 +1833,32 @@ AIzaSyC-USaecnlmdi2fOMcDQl8BhId3-eYcg-Y&libraries=places"></script>
         minuteIncrement: 15,
         disableMobile: true,
         onChange: function(selectedDates) {
-            if (dropPicker && selectedDates[0]) {
+          if (dropPicker && selectedDates[0]) {
             dropPicker.set("minDate", selectedDates[0]);
 
             // reset invalid drop
             const d = dropPicker.selectedDates[0];
             if (d && d <= selectedDates[0]) {
-                dropPicker.clear();
+              dropPicker.clear();
             }
-            }
+          }
         }
-        });
+      });
 
-        dropPicker = flatpickr(dropEl, {
+      dropPicker = flatpickr(dropEl, {
         enableTime: true,
         dateFormat: "Y-m-d H:i",
         minDate: new Date(),  
         time_24hr: true,
         minuteIncrement: 15,
         disableMobile: true
-        });
+      });
 
       fpInitialized = true;
     }
     if (!mq.matches) initFlatpickr();
 
   });
-</script>
-
-<script>
-    document.addEventListener(\'DOMContentLoaded\', () => {
-    const form = document.querySelector(\'.heroRentForm\');
-
-    if (!form) return;
-
-    form.addEventListener(\'submit\', function(e) {
-        const pickup = document.getElementById("heroRent_pickupDT");
-        const drop   = document.getElementById("heroRent_dropDT");
-
-        let hasError = false;
-
-        // Reset styles
-        [pickup, drop].forEach(el => {
-        if (el) el.style.border = \'\';
-        });
-
-        // Validate pickup
-        if (!pickup.value.trim()) {
-        pickup.style.border = \'2px solid red\';
-        hasError = true;
-        }
-
-        // Validate dropoff
-        if (!drop.value.trim()) {
-        drop.style.border = \'2px solid red\';
-        hasError = true;
-        }
-
-        // Validate date logic
-        if (!hasError) {
-        const pickupDate = new Date(pickup.value);
-        const dropDate   = new Date(drop.value);
-
-        if (dropDate <= pickupDate) {
-            drop.style.border = \'2px solid red\';
-            alert("Drop-off must be after pickup date.");
-            hasError = true;
-        }
-        }
-
-        if (hasError) {
-        e.preventDefault();
-
-        // scroll to form nicely
-        form.scrollIntoView({ behavior: \'smooth\', block: \'center\' });
-
-        // optional message
-        if (!pickup.value || !drop.value) {
-            alert("Please select pickup and drop-off date & time.");
-        }
-        }
-    });
-    });
 </script>
 
 <script>
@@ -1948,15 +2029,19 @@ function buildCard(v) {
     : \'<span class="heroResultCard__price heroResultCard__price--empty">Price on request</span>\';
 
   card.innerHTML = `
-    <div class="heroResultCard__row">
-      <img class="heroResultCard__image" src="${v.image || \'\'}" alt="${v.car_model || v.car_category || \'Vehicle\'}">
-      <div class="heroResultCard__name">${v.car_model || v.car_category || \'\'}</div>
-    </div>
-    <div class="heroResultCard__priceRow">
-      ${priceHtml}
-      <div class="heroResultCard__capacity">
-        <span><i class="fas fa-user"></i> ${v.pax_count || 0}</span>
-        <span><i class="fas fa-suitcase"></i> ${v.luggage_count || 0}</span>
+    <div class="heroResultCard__main">
+      <div class="heroResultCard__imgWrap">
+        <img class="heroResultCard__image" src="${v.image || \'\'}" alt="${v.car_model || v.car_category || \'Vehicle\'}">
+      </div>
+      <div class="heroResultCard__info">
+        <div class="heroResultCard__name" title="${v.car_model || v.car_category || \'\'}">${v.car_model || v.car_category || \'\'}</div>
+        <div class="heroResultCard__priceRow">
+          ${priceHtml}
+          <div class="heroResultCard__capacity">
+            <span><i class="fas fa-user"></i> ${v.pax_count || 0}</span>
+            <span><i class="fas fa-suitcase"></i> ${v.luggage_count || 0}</span>
+          </div>
+        </div>
       </div>
     </div>
     <button type="button" class="heroResultCard__btn" data-vehicle-id="${v.id}" data-car-code="${v.car_code}">Book Now</button>
@@ -2127,10 +2212,8 @@ function buildCard(v) {
         const msg = data.message || \'No vehicles matched your search. Try different dates or fewer passengers.\';
         if (isMobile) {
           closeModal();
-          alert(msg);
         } else {
           resultsSection.style.display = \'none\';
-          alert(msg);
         }
       }
     })
@@ -2138,11 +2221,9 @@ function buildCard(v) {
       if (isMobile) {
         modalLoading.style.display = \'none\';
         closeModal();
-        alert(\'Could not load vehicles. Please try again.\');
       } else {
         resultsLoading.style.display = \'none\';
         resultsSection.style.display = \'none\';
-        alert(\'Could not load vehicles. Please try again.\');
       }
     });
   });
@@ -2156,7 +2237,7 @@ function buildCard(v) {
     'createdby' => 1,
     'createdon' => 1723316876,
     'editedby' => 1,
-    'editedon' => 1786720452,
+    'editedon' => 1786725871,
     'deleted' => 0,
     'deletedon' => 0,
     'deletedby' => 0,
@@ -2425,6 +2506,17 @@ document.addEventListener("DOMContentLoaded", function () {
       </div>
     </div>
 
+    <!-- Content -->
+    <div class="heroRent__content">
+      <div class="container-fluid" style="padding: 0 2%;">
+        <div class="heroRent__contentInner heroRent__contentInner--left">
+          <span class="heroRent__sub">Affordable</span>
+          <h1 class="heroRent__title">Sri Lanka Rent A Car</h1>
+          <p class="heroRent__lead">Premium vehicles • Chauffeur services • Airport pickup</p>
+        </div>
+      </div>
+    </div>
+
     <!-- Booking Bar -->
     <div class="heroRent__bar">
       <div class="container-fluid" style="padding: 0 2%; position: relative;">
@@ -2435,107 +2527,121 @@ document.addEventListener("DOMContentLoaded", function () {
           <span class="heroRentAcc__icon" aria-hidden="true"></span>
         </button>
 
-        <!-- Accordion Panel -->
-        <div class="heroRentAcc__panel" id="heroRentAccPanel" hidden>
-          <form class="heroRentForm" action="index.php?id=39" method="post">
-            <input type="hidden" name="id" value="39">
-            <input type="hidden" name="search_source" value="home">
-
-            <div class="heroRentForm__grid">
-
-              <!-- Pickup -->
-              <div class="heroRentForm__field heroRentForm__field--wide">
-                <label class="heroRentForm__label" for="heroRent_pickup">Vehicle Pickup location</label>
-                <input class="heroRentForm__input" id="heroRent_pickup" type="text" name="pickup_location" placeholder="e.g., Colombo" required>
+        <!-- Accordion Panel / Booking Card -->
+        <div class="heroRentAcc__panel" id="heroRentAccPanel">
+          <div class="heroRentCard">
+            <!-- Header Banner -->
+            <div class="heroRentCard__header">
+              <div class="heroRentCard__badge">
+                <svg class="heroRentCard__tagIcon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#ffc107" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                  <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                </svg>
               </div>
-
-              <!-- Same location checkbox -->
-              <div class="heroRentForm__field heroRentForm__field--check">
-                <label class="heroRentForm__checkLabel" for="heroRent_sameLocation">
-                  <input type="checkbox" id="heroRent_sameLocation" checked>
-                  <span class="text-white">Return to same location</span>
-                </label>
+              <div class="heroRentCard__headerText">
+                <h2 class="heroRentCard__title">Check Your Rates Before Booking</h2>
+                <p class="heroRentCard__subtitle">Enter your trip details to view available vehicles and rates.</p>
               </div>
-
-              <!-- Drop-off -->
-              <div class="heroRentForm__field heroRentForm__field--wide" id="heroRent_dropWrap" style="display:none;">
-                <label class="heroRentForm__label" for="heroRent_dropInput">Vehicle Drop-off location</label>
-                <input class="heroRentForm__input" type="text" name="dropoff_location" id="heroRent_dropInput" placeholder="e.g., Kandy">
-              </div>
-
-              <!-- Pickup datetime -->
-              <div class="heroRentForm__field">
-                <label class="heroRentForm__label" for="heroRent_pickupDT">Pickup date & time</label>
-                <input class="heroRentForm__input heroRentDT" id="heroRent_pickupDT" type="text" name="pickup_datetime" placeholder="Pickup Date & Time" required>
-              </div>
-
-              <!-- Dropoff datetime -->
-              <div class="heroRentForm__field">
-                <label class="heroRentForm__label" for="heroRent_dropDT">Drop-off date & time</label>
-                <input class="heroRentForm__input heroRentDT" id="heroRent_dropDT" type="text" name="dropoff_datetime" placeholder="Drop-off Date & Time" required>
-              </div>
-
-              <!-- Submit -->
-<div class="heroRentForm__field heroRentForm__field--submit">
-    <button type="submit" class="heroRentForm__btn">
-        <i class="fas fa-search"></i>
-        <span style="color:white;">Search</span>
-    </button>
-</div>
-
             </div>
-          </form>
+
+            <!-- Form -->
+            <form class="heroRentForm" action="index.php?id=39" method="post">
+              <input type="hidden" name="id" value="39">
+              <input type="hidden" name="search_source" value="home">
+
+              <div class="heroRentForm__grid">
+
+                <!-- Pickup -->
+                <div class="heroRentForm__field heroRentForm__field--pickup">
+                  <label class="heroRentForm__label" for="heroRent_pickup">Vehicle Pickup Location</label>
+                  <div class="heroRentForm__inputBox">
+                    <i class="fas fa-map-marker-alt heroRentForm__icon" aria-hidden="true"></i>
+                    <input class="heroRentForm__input" id="heroRent_pickup" type="text" name="pickup_location" placeholder="Colombo Bandaranaike Airport" value="Colombo Bandaranaike International Airport (CMB)" required>
+                    <i class="fas fa-chevron-down heroRentForm__arrow" aria-hidden="true"></i>
+                  </div>
+                </div>
+
+                <!-- Return to same location tick mark (in between) -->
+                <div class="heroRentForm__field heroRentForm__field--same">
+                  <div class="heroRentForm__checkWrap">
+                    <label class="heroRentForm__checkLabel" for="heroRent_sameLocation">
+                      <input type="checkbox" id="heroRent_sameLocation" checked>
+                      <span>Return to same location</span>
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Drop-off (shown if not same location) -->
+                <div class="heroRentForm__field heroRentForm__field--drop" id="heroRent_dropWrap" style="display:none;">
+                  <label class="heroRentForm__label" for="heroRent_dropInput">Vehicle Drop-off Location</label>
+                  <div class="heroRentForm__inputBox">
+                    <i class="fas fa-map-marker-alt heroRentForm__icon" aria-hidden="true"></i>
+                    <input class="heroRentForm__input" type="text" name="dropoff_location" id="heroRent_dropInput" placeholder="e.g., Kandy">
+                  </div>
+                </div>
+
+                <!-- Pickup datetime -->
+                <div class="heroRentForm__field heroRentForm__field--datetime">
+                  <label class="heroRentForm__label" for="heroRent_pickupDT">Pickup Date & Time</label>
+                  <div class="heroRentForm__inputBox">
+                    <i class="far fa-calendar-alt heroRentForm__icon" aria-hidden="true"></i>
+                    <input class="heroRentForm__input heroRentDT" id="heroRent_pickupDT" type="text" name="pickup_datetime" placeholder="Pickup Date & Time" required>
+                  </div>
+                </div>
+
+                <!-- Dropoff datetime -->
+                <div class="heroRentForm__field heroRentForm__field--datetime">
+                  <label class="heroRentForm__label" for="heroRent_dropDT">Drop-off Date & Time</label>
+                  <div class="heroRentForm__inputBox">
+                    <i class="far fa-calendar-alt heroRentForm__icon" aria-hidden="true"></i>
+                    <input class="heroRentForm__input heroRentDT" id="heroRent_dropDT" type="text" name="dropoff_datetime" placeholder="Drop-off Date & Time" required>
+                  </div>
+                </div>
+
+                <!-- Submit -->
+                <div class="heroRentForm__field heroRentForm__field--submit">
+                  <button type="submit" class="heroRentForm__btn">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                    <span>Check Rates</span>
+                  </button>
+                </div>
+
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="heroResultsWrap">
+          <div style="width: 100%;">
+            <section id="heroResultsSection" class="heroResults">
+              <div class="heroResults__header pb-0 pt-0">
+                <h3 class="heroResults__title"><i class="fas fa-car-side" style="color: #ffc107; margin-right: 8px;"></i> Vehicles matching your search</h3>
+                <button type="button" class="heroResults__close" aria-label="Close">&times;</button>
+              </div>
+              <div id="heroResultsLoading" class="heroResults__loading" style="display:none;">Searching vehicles...</div>
+              <div id="heroResultsEmpty" class="heroResults__empty" style="display:none;">No vehicles matched your search. Try different dates.</div>
+              <div id="heroResultsGrid" class="heroResults__grid"></div>
+            </section>
+          </div>
         </div>
 
 
-
-<div class="heroResultsWrap">
-  <div style="width: 100%;">
-    <section id="heroResultsSection" class="heroResults">
-      <div class="heroResults__header pb-0 pt-0">
-        <h3 class="heroResults__title">Vehicles matching your search</h3>
-        <button type="button" class="heroResults__close" aria-label="Close">&times;</button>
-      </div>
-      <div id="heroResultsLoading" class="heroResults__loading" style="display:none;">Searching vehicles...</div>
-      <div id="heroResultsEmpty" class="heroResults__empty" style="display:none;">No vehicles matched your search. Try different dates or fewer passengers.</div>
-      <div id="heroResultsGrid" class="heroResults__grid"></div>
-    </section>
-  </div>
-</div>
-
-
-<!-- Mobile results modal -->
-<div id="heroResultsModal" class="heroResultsModal" hidden>
-  <div class="heroResultsModal__backdrop"></div>
-  <div class="heroResultsModal__panel">
-    <div class="heroResultsModal__header">
-      <h3>Vehicles matching your search</h3>
-      <button type="button" class="heroResultsModal__close" aria-label="Close">&times;</button>
-    </div>
-    <div class="heroResultsModal__body">
-      <div id="heroResultsModalLoading" class="heroResults__loading" style="display:none;">Searching vehicles...</div>
-      <div id="heroResultsModalEmpty" class="heroResults__empty" style="display:none;">No vehicles matched your search. Try different dates or fewer passengers.</div>
-      <div id="heroResultsModalGrid" class="heroResultsModal__grid"></div>
-    </div>
-  </div>
-</div>
-
-
-      </div>
-    </div>
-
-
-
-
-
-    <!-- Content -->
-    <div class="heroRent__content">
-      <div class="container">
-        <div class="heroRent__contentInner heroRent__contentInner--left">
-          <span class="heroRent__sub">Affordable</span>
-          <h1 class="heroRent__title">Sri Lanka Rent A Car</h1>
-          <p class="heroRent__lead">Premium vehicles • Chauffeur services • Airport pickup</p>
+        <!-- Mobile results modal -->
+        <div id="heroResultsModal" class="heroResultsModal" hidden>
+          <div class="heroResultsModal__backdrop"></div>
+          <div class="heroResultsModal__panel">
+            <div class="heroResultsModal__header">
+              <h3>Vehicles matching your search</h3>
+              <button type="button" class="heroResultsModal__close" aria-label="Close">&times;</button>
+            </div>
+            <div class="heroResultsModal__body">
+              <div id="heroResultsModalLoading" class="heroResults__loading" style="display:none;">Searching vehicles...</div>
+              <div id="heroResultsModalEmpty" class="heroResults__empty" style="display:none;">No vehicles matched your search. Try different dates.</div>
+              <div id="heroResultsModalGrid" class="heroResultsModal__grid"></div>
+            </div>
+          </div>
         </div>
+
       </div>
     </div>
 
@@ -3092,127 +3198,578 @@ document.addEventListener("DOMContentLoaded", function () {
 </section>
 	
 <style>
-  @media (min-width: 992px) {
-    .heroRentForm__grid {
-      display: flex !important;
-      flex-wrap: nowrap !important;
-      align-items: flex-end !important;
-      gap: 10px !important;
-      width: 100% !important;
-    }
-    .heroRentForm__field {
-      flex: 1;
-      min-width: 120px;
-    }
-    .heroRentForm__field--check {
-      flex: 0 0 auto;
-      white-space: nowrap;
-    }
-    .heroRentForm__field--submit {
-      flex: 0 0 auto;
-    }
-  }
+/* =========================================================
+   HERO BOOKING CARD & SEARCH RESULTS (DESKTOP & RESPONSIVE)
+   ========================================================= */
 
-
-
-
-.heroResultsWrap {
-  position: absolute;
-  top: 100%;
-  left: 2%;
-  right: 2%;
-  z-index: 20;
-  margin-top: 8px;
-  pointer-events: none;
+/* Hero Container */
+.heroRent,
+.heroRent__frame,
+.heroRent__bar {
+  overflow: visible !important;
 }
 
-.heroResults {
-    display: none;
-    pointer-events: auto;
-    background: #ffffff00;
-    border-radius: 12px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.35);
-    padding: 0;
-    overflow: hidden;
-    max-height: calc(100vh - 360px);
-    flex-direction: column;
+.heroRentCard {
+  max-width: 1340px;
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  border: 1px solid #143254;
 }
 
-.heroResults__header {
+/* Swiper Background */
+.heroRent--yacht .heroRent__swiper {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 1 !important;
+}
+
+.heroRent--yacht .heroRent__slide {
+  background-size: cover !important;
+  background-position: center !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Card Header Banner */
+.heroRentCard__header {
+  background: #08203e;
+  padding: 12px 20px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 14px 16px;
-  border-bottom: 1px solid #eee;
+  gap: 14px;
 }
 
-.heroResults__title {
-  font-size: 18px;
-  font-weight: 800;
-  margin: 0;
-  background: linear-gradient(135deg, #023f75, #a30707);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: #ffffff;
-  display: inline-block;
-  letter-spacing: 0.5px;
-}
-
-.heroResults__close {
-  background: rgba(0,0,0,0.05);
-  border: none;
-  font-size: 20px;
-  line-height: 1;
-  color: #333;
-  cursor: pointer;
-  padding: 6px 10px;
-  border-radius: 50%;
-  transition: all 0.3s ease;
+.heroRentCard__badge {
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  border: 1.5px solid #ffc107;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
-}
-.heroResults__close:hover {
-  background: rgba(163, 7, 7, 0.1);
-  color: #a30707;
-  transform: rotate(90deg);
+  background: rgba(255, 193, 7, 0.08);
 }
 
-.heroResults__grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-auto-rows: auto;
-  gap: 10px;
-  flex: 1;
-  min-height: 0;
-  overflow-y: auto;
-  padding: 12px 12px 24px 12px;
-  scroll-behavior: smooth;
+.heroRentCard__title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffc107 !important;
+  margin: 0;
+  line-height: 1.2;
+  letter-spacing: 0.2px;
 }
 
-@media (max-width: 1400px) {
+.heroRentCard__subtitle {
+  font-size: 12.5px;
+  color: #ffffff !important;
+  margin: 2px 0 0 0;
+  opacity: 0.92;
+}
+
+/* Form Container */
+.heroRentForm {
+  background: #ffffff;
+  padding: 14px 20px 10px 20px;
+  position: relative;
+}
+
+.heroRentForm__labelRow {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin-bottom: 5px !important;
+  gap: 8px !important;
+  width: 100% !important;
+}
+
+.heroRentForm__labelRow .heroRentForm__label {
+  margin-bottom: 0 !important;
+}
+
+.heroRentForm__label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #111827 !important;
+  margin-bottom: 5px;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+.heroRentForm__inputBox {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.heroRentForm__icon {
+  position: absolute;
+  left: 10px;
+  color: #374151;
+  font-size: 13px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.heroRentForm__arrow {
+  position: absolute;
+  right: 10px;
+  color: #4b5563;
+  font-size: 11px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.heroRentForm__input,
+.heroRentForm__select {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 6px 26px 6px 30px;
+  font-size: 12.5px;
+  color: #111827;
+  background: #ffffff;
+  outline: none;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.heroRentForm__select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.heroRentForm__input:focus,
+.heroRentForm__select:focus {
+  border-color: #ffc107;
+  box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.25);
+  background: #ffffff;
+}
+
+.heroRentForm__checkWrap {
+  margin-top: 5px;
+}
+
+.heroRentForm__checkLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #111827 !important;
+  cursor: pointer;
+  margin: 0;
+  user-select: none;
+  line-height: 1.2;
+}
+
+.heroRentForm__checkLabel span {
+  color: #111827 !important;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.heroRentForm__checkLabel input[type="checkbox"] {
+  accent-color: #ffc107;
+  width: 14px;
+  height: 14px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.heroRentForm__btn {
+  width: 100%;
+  height: 40px;
+  background: #ffc107 !important;
+  color: #0c2340 !important;
+  font-weight: 800;
+  font-size: 13.5px;
+  border: none;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+  transition: background 0.2s, transform 0.15s;
+  text-transform: none;
+}
+
+.heroRentForm__btn span {
+  color: #0c2340 !important;
+  font-weight: 800;
+}
+
+.heroRentForm__btn i {
+  color: #0c2340 !important;
+  font-size: 13px;
+}
+
+.heroRentForm__btn:hover {
+  background: #e5ac00 !important;
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   DESKTOP FORM & RESULTS LAYOUT (>= 768px)
+   ========================================================= */
+@media (min-width: 768px) {
+  .heroRent--yacht .heroRent__frame {
+    height: auto !important;
+    min-height: 100vh !important;
+    padding-top: 100px !important;
+    padding-bottom: 70px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    position: relative !important;
+  }
+
+  .heroRent__content {
+    position: relative !important;
+    inset: auto !important;
+    z-index: 15 !important;
+    display: block !important;
+    pointer-events: auto !important;
+    margin-bottom: 16px !important;
+  }
+
+  .heroRent__content .container,
+  .heroRent__content .container-fluid {
+    padding-left: 2% !important;
+    padding-right: 2% !important;
+    max-width: 1340px !important;
+    margin: 0 auto !important;
+  }
+
+  .heroRent__contentInner--left {
+    margin-top: 6rem !important;
+    text-align: left !important;
+    max-width: 850px !important;
+  }
+
+  .heroRent__sub {
+    display: block !important;
+    font-size: 40px !important;
+    color: #efc900 !important;
+    font-weight: 600 !important;
+    font-family: "Great Vibes", cursive !important;
+    margin-bottom: 2px !important;
+    line-height: 1 !important;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.5) !important;
+  }
+
+  .heroRent__title {
+    font-size: 34px !important;
+    color: #ffffff !important;
+    line-height: 1.15 !important;
+    font-family: "Playfair Display", serif !important;
+    letter-spacing: 2px !important;
+    text-transform: uppercase !important;
+    font-weight: 700 !important;
+    margin-bottom: 4px !important;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.5) !important;
+  }
+
+  .heroRent__lead {
+    color: rgba(255,255,255,0.92) !important;
+    font-size: 14.5px !important;
+    letter-spacing: 0.4px !important;
+    font-weight: 600 !important;
+    margin-bottom: 0 !important;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5) !important;
+  }
+
+  .heroRent--yacht .heroRent__bar {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    transform: none !important;
+    z-index: 20 !important;
+    margin-top: 0 !important;
+  }
+
+  .heroRentForm__grid {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: flex-end !important;
+    gap: 12px !important;
+    width: 100% !important;
+  }
+
+  .heroRentForm__field {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .heroRentForm__field--pickup {
+    flex: 3.2;
+    min-width: 200px;
+  }
+
+  .heroRentForm__field--same {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    margin-bottom: 0;
+  }
+
+  .heroRentForm__field--same .heroRentForm__checkWrap {
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  .heroRentForm__field--drop {
+    flex: 3.2;
+    min-width: 200px;
+  }
+
+  .heroRentForm__field--datetime {
+    flex: 2.2;
+    min-width: 160px;
+  }
+
+  .heroRentForm__field--submit {
+    flex: 1.4;
+    min-width: 130px;
+    margin-top: 0;
+  }
+
+  .heroResultsWrap {
+    position: relative;
+    max-width: 1340px;
+    width: 100%;
+    margin: 8px auto 0 auto;
+    z-index: 9999;
+  }
+
+  .heroResults {
+    display: none;
+    flex-direction: column;
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0;
+    overflow: visible;
+  }
+
+  .heroResults__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 0 8px 0;
+    border-bottom: none;
+  }
+
+  .heroResults__title {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: #ffffff !important;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+    letter-spacing: 0.3px;
+  }
+
+  .heroResults__close {
+    background: rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 15px;
+    transition: background 0.2s;
+  }
+
+  .heroResults__close:hover {
+    background: rgba(255, 255, 255, 0.35);
+    color: #ffffff;
+  }
+
   .heroResults__grid {
-    grid-template-columns: repeat(6, 1fr);
+    display: grid !important;
+    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+    grid-auto-rows: 1fr;
+    align-items: stretch;
+    max-height: calc(100vh - 420px);
+    min-height: 0;
+    overflow-y: auto;
+    padding: 2px 2px 14px 2px;
+    scroll-behavior: smooth;
+  }
+
+  /* Desktop Vehicle Card - Auto Adjusting */
+  .heroResultCard {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    padding: 6px 7px 0 7px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    min-height: 90px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .heroResultCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.14);
+  }
+
+  .heroResultCard__main {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .heroResultCard__imgWrap {
+    width: 58px;
+    max-width: 35%;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .heroResultCard__image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .heroResultCard__info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+  }
+
+  .heroResultCard__name {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: #111827 !important;
+    line-height: 1.15;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+  }
+
+  .heroResultCard__priceRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3px;
+    flex-wrap: wrap;
+    margin-top: 1px;
+  }
+
+  .heroResultCard__price {
+    color: #b81114 !important;
+    font-size: 16px;
+    font-weight: 700;
+    white-space: nowrap;
+  
+  }
+
+  .heroResultCard__price--empty {
+    font-size: 10px;
+    font-weight: 500;
+    color: #6b7280 !important;
+  }
+
+  .heroResultCard__capacity {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #374151 !important;
+    white-space: nowrap;
+  }
+
+  .heroResultCard__capacity span {
+    color: #374151 !important;
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .heroResultCard__capacity i {
+    color: #023f75 !important;
+    font-size: 9.5px;
+  }
+
+  .heroResultCard__btn {
+    width: calc(100% + 14px);
+    margin: 5px -7px 0 -7px;
+    background: #061d38;
+    color: #ffffff !important;
+    border: none;
+    font-size: 11px;
+    font-weight: 700;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    cursor: pointer;
+    
+    transition: background 0.15s;
+    display: block;
+    padding: 0;
+  }
+
+  .heroResultCard__btn:hover {
+    background: #023f75;
+    color: #ffffff !important;
+  }
+
+  .heroResultsModal {
+    display: none !important;
   }
 }
 
-@media (max-width: 1200px) {
-  .heroResults__grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
+/* Custom Scrollbar for results */
 .heroResults__grid::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 .heroResults__grid::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
 }
 .heroResults__grid::-webkit-scrollbar-thumb {
   background: #002656;
-  border-radius: 8px;
+  border-radius: 6px;
 }
 .heroResults__grid::-webkit-scrollbar-thumb:hover {
   background: #023f75;
@@ -3221,126 +3778,198 @@ document.addEventListener("DOMContentLoaded", function () {
 .heroResults__loading,
 .heroResults__empty {
   text-align: center;
-  padding: 20px 16px;
-  color: #666;
+  padding: 16px;
+  color: #ffffff;
   font-size: 13px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
 }
 
-/* Inline panel: desktop/large screens only */
-@media (max-width: 767px) {
+/* =========================================================
+   MOBILE ACCORDION & MODAL RULES (< 768px) - PRESERVED
+   ========================================================= */
+@media (max-width: 767.98px) {
+  .heroRentCard__header {
+    display: none;
+  }
+
+  .heroRentCard {
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    background: transparent;
+  }
+
+  .heroRentForm {
+    background: linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.08));
+    border: 1px solid rgba(255,255,255,.16);
+    box-shadow: 0 24px 80px rgba(0,0,0,.28);
+    backdrop-filter: blur(18px);
+    border-radius: 12px;
+    padding: 16px;
+  }
+
+  .heroRentForm__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .heroRentForm__label {
+    color: #ffffff !important;
+  }
+
+  .heroRentForm__checkLabel span {
+    color: #ffffff !important;
+  }
+
+  .heroRentForm__input,
+  .heroRentForm__select {
+    background: rgba(255, 255, 255, 0.95);
+    height: 44px;
+  }
+
   .heroResultsWrap {
     display: none !important;
   }
-}
 
-/* Modal: mobile only */
-@media (min-width: 768px) {
   .heroResultsModal {
-    display: none !important;
-  }
-}
-
-@media (max-width: 1200px) {
-  .heroResults__grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (max-width: 767px) {
-  .heroResultsWrap {
-    top: 100%;
-    margin-top: 8px;
-  }
-
-  .heroResults__grid {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
     display: flex;
-    flex-wrap: nowrap;
-    grid-template-columns: none; /* override the desktop grid */
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .heroResultsModal[hidden] {
+    display: none;
+  }
+
+  .heroResultsModal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+  }
+
+  .heroResultsModal__panel {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    max-height: 80vh;
+    background: #fff;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    animation: heroModalPopIn 0.2s ease-out;
+    overflow: hidden;
+  }
+
+  .heroResultsModal__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .heroResultsModal__header h3 {
+    font-size: 18px;
+    font-weight: 800;
+    margin: 0;
+    background: linear-gradient(135deg, #023f75, #a30707);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    letter-spacing: 0.5px;
+  }
+
+  .heroResultsModal__close {
+    background: rgba(0,0,0,0.05);
+    border: none;
+    font-size: 20px;
+    line-height: 1;
+    color: #333;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+  }
+
+  .heroResultsModal__close:hover {
+    background: rgba(163, 7, 7, 0.1);
+    color: #a30707;
+    transform: rotate(90deg);
+  }
+
+  .heroResultsModal__body {
+    overflow-y: auto;
+    padding: 14px 16px 30px;
+  }
+
+  .heroResultsModal__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 1fr;
     gap: 10px;
-    max-height: none;
-    padding-bottom: 6px; /* room for scrollbar */
-    -webkit-overflow-scrolling: touch;
   }
 
-  .heroResults__grid::-webkit-scrollbar {
-    height: 6px;
-    width: auto;
+  .heroResultsModal__grid .heroResultCard {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
-  .heroResultCard {
-    flex: 0 0 78%;      /* one big card at a time, next one peeks in */
-    max-width: 78%;
-    scroll-snap-align: start;
-    max-height: none;   /* no internal scrolling needed anymore */
-    overflow: visible;
+  .heroResultsModal__grid .heroResultCard__main {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  .heroResultCard__name {
-    font-size: 13px;
+  .heroResultsModal__grid .heroResultCard__imgWrap {
+    width: 100%;
+    height: 80px;
   }
 
-  .heroResultCard__price {
-    font-size: 14px;
+  .heroResultsModal__grid .heroResultCard__imgWrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
-}
 
+  .heroResultsModal__grid .heroResultCard__name {
+    font-size: 12px;
+    font-weight: 700;
+    margin-top: 4px;
+  }
 
+  .heroResultsModal__grid .heroResultCard__price {
+    font-size: 16px;
+    font-weight: 700;
+    color: #dd1c1c !important;
+  }
 
-.heroResultCard__priceRow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.heroResultCard__capacity {
-  display: flex;
-  gap: 8px;
-  font-size: 11px;
-  color: #666;
-  white-space: nowrap;
-}
-
-.heroResultCard__capacity i {
-  margin-right: 3px;
-  color: #023f75;
-}
-
-.heroResultsModal {
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-
-.heroResultsModal[hidden] {
-  display: none;
-}
-
-.heroResultsModal__backdrop {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-}
-
-.heroResultsModal__panel {
-  position: relative;
-  width: 100%;
-  max-width: 420px;
-  max-height: 80vh;
-  background: #fff;
-  border-radius: 16px;
-  display: flex;
-  flex-direction: column;
-  animation: heroModalPopIn 0.2s ease-out;
-  overflow: hidden;
+  .heroResultsModal__grid .heroResultCard__btn {
+    width: 100%;
+    margin-top: 6px;
+    background: #002656;
+    color: #fff;
+    border: none;
+    padding: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 4px;
+  }
 }
 
 @keyframes heroModalPopIn {
@@ -3354,428 +3983,17 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 }
 
-@keyframes heroModalSlideDown {
-  from { transform: translateY(-100%); }
-  to { transform: translateY(0); }
-}
-
-@keyframes heroModalSlideUp {
-  from { transform: translateY(100%); }
-  to { transform: translateY(0); }
-}
-
-.heroResultsModal__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 16px;
-  border-bottom: 1px solid #eee;
-}
-
-.heroResultsModal__header h3 {
-  font-size: 18px;
-  font-weight: 800;
-  margin: 0;
-  background: linear-gradient(135deg, #023f75, #a30707);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: inline-block;
-  letter-spacing: 0.5px;
-}
-
-.heroResultsModal__close {
-  background: rgba(0,0,0,0.05);
-  border: none;
-  font-size: 20px;
-  line-height: 1;
-  color: #333;
-  cursor: pointer;
-  padding: 6px 10px;
-  border-radius: 50%;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-}
-.heroResultsModal__close:hover {
-  background: rgba(163, 7, 7, 0.1);
-  color: #a30707;
-  transform: rotate(90deg);
-}
-
-.heroResultsModal__body {
-  overflow-y: auto;
-  padding: 14px 16px 30px;
-}
-
-.heroResultsModal__grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-auto-rows: 1fr;
-  gap: 10px;
-}
-
-.heroResultsModal__grid .heroResultCard {
-  max-height: none;
-  overflow: visible;
-  padding: 8px;
-}
-
-.heroResultsModal__grid .heroResultCard__row {
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.heroResultsModal__grid .heroResultCard__row img {
-  width: 100%;
-  height: 90px;
-  object-fit: cover;
-}
-
-.heroResultsModal__grid .heroResultCard__name {
-  font-size: 12px;
-}
-
-.heroResultsModal__grid .heroResultCard__price {
-  font-size: 13px;
-}
-
 body.heroModalOpen {
   overflow: hidden;
 }
 
-@media (min-width: 768px) {
-  .heroResultsModal__panel {
-    max-width: 700px;
-  }
 
-  .heroResultsModal__grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .heroResultsModal__grid .heroResultCard__row {
-    flex-direction: row; /* image beside text again on wider cards */
-    align-items: center;
-  }
-
-  .heroResultsModal__grid .heroResultCard__row img {
-    width: 60px;
-    height: 60px;
-  }
+@media (min-width: 1400px) {
+    .heroRentForm {
+        max-width: none;
+        margin: 0 auto;
+    }
 }
-
-@media (min-width: 1200px) {
-  .heroResultsModal__panel {
-    max-width: 900px;
-  }
-
-  .heroResultsModal__grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-
-
-.heroResultCard {
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  box-sizing: border-box;
-}
-
-.heroResultCard__row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.heroResultCard__image {
-  width: 56px;
-  height: 48px;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-
-.heroResultCard__name {
-  font-weight: 700;
-  font-size: 13px;
-  color: #1a1a1a;
-  line-height: 1.2;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  min-width: 0;
-}
-
-.heroResultCard__priceRow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  gap: 6px;
-}
-
-.heroResultCard__price {
-  font-weight: 700;
-  font-size: 16px;
-  color: #c70101 !important;
-}
-
-.heroResultCard__price--empty {
-  font-size: 11px;
-  font-weight: 500;
-  color: #888;
-}
-
-.heroResultCard__capacity {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 11px;
-  font-weight: 600;
-  color: #333;
-  white-space: nowrap;
-}
-
-.heroResultCard__capacity i {
-  color: #023f75;
-  margin-right: 3px;
-}
-
-.heroResultCard__btn {
-  width: 100%;
-  background: #002656;
-  color: #fff;
-  border: none;
-  padding: 8px 10px;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-  margin-top: auto;
-}
-
-.heroResultCard__btn:hover {
-  background: #043c68;
-}
-
-
-.heroResultCard__row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.heroResultCard__info {
-  flex: 1;
-  min-width: 0;
-}
-
-
-
-/* =========================================================
-   FIX: Vehicle search results - prevent last row clipping
-   ========================================================= */
-
-/* Allow the results dropdown to extend outside the hero */
-.heroRent,
-.heroRent__frame,
-.heroRent__bar {
-    overflow: visible !important;
-}
-
-/* Keep results above the hero wave / following content */
-.heroResultsWrap {
-    z-index: 9999 !important;
-}
-
-/* Give the results panel a real height constraint */
-.heroResults {
-    display: none;
-    flex-direction: column;
-    max-height: calc(100vh - 360px) !important;
-    overflow: hidden;
-}
-
-/* Make the vehicle area scroll instead of clipping the last row */
-.heroResults__grid {
-    display: grid;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    grid-auto-rows: auto !important;
-    align-items: stretch;
-    gap: 10px;
-
-    flex: 1 1 auto;
-    min-height: 0;
-    overflow-y: auto !important;
-
-    padding: 12px 12px 20px !important;
-}
-
-/* Cards must be allowed to show their complete content */
-.heroResultCard {
-    height: auto !important;
-    min-height: 135px;
-    overflow: visible !important;
-    display: flex !important;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-/* Always keep Book Now inside the card */
-.heroResultCard__btn {
-    flex-shrink: 0;
-    position: relative;
-    z-index: 2;
- 
-}
-
-
-
-
-/* =========================================================
-   VEHICLE CARD - COMPACT STYLE
-   ========================================================= */
-
-.heroResultCard {
-    background: #ffffffe6;
-
-    padding: 7px;
-    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.14);
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    width: 100%;
-    min-height: 100px;
-    height: 132px;
-
-    overflow: hidden;
-    box-sizing: border-box;
-}
-
-/* Top section */
-.heroResultCard__row {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    min-width: 0;
-justify-content: space-between;
-}
-
-/* Vehicle image */
-.heroResultCard__row img {
-    width: 90px;
-    height: 48px;
-    object-fit: contain;
-    flex-shrink: 0;
-    border-radius: 5px;
-}
-
-/* Text section */
-.heroResultCard__info {
-    flex: 1;
-    min-width: 0;
-}
-
-/* Vehicle name */
-.heroResultCard__name {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 12px;
-    font-weight: 700;
-    line-height: 1.15;
-    color: #222;
-
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-/* Price + capacity */
-.heroResultCard__priceRow {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 5px;
-    width: 100%;
-}
-
-
-
-/* Passenger / luggage */
-.heroResultCard__capacity {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-
-    color: #222;
-    font-size: 12px;
-    font-weight: 600;
-
-    white-space: nowrap;
-}
-
-.heroResultCard__capacity i {
-    color: #07528d;
-    margin-right: 2px;
-}
-
-/* Book Now button */
-.heroResultCard__btn {
-    width: 100%;
-    height: 25px;
-
-    padding: 0 8px;
- 
-
-    border: 0;
-
-    background: #022c4d;
-    color: #fff;
-
-    font-size: 12px;
-    font-weight: 700;
-
-    cursor: pointer;
-
-    box-shadow: 0 1px 2px rgba(0,0,0,.15);
-
-    transition:
-        background .2s ease,
-        transform .15s ease;
-}
-
-.heroResultCard__btn:hover {
-    background: #043c68;
-}
-
-.heroResultCard__btn:active {
-    transform: translateY(1px);
-}
-
-.heroRentForm__btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    color: #fff;
-
-}
-
-.heroRentForm__btn span {
-  color: #fff   !important;
-}
-
-.heroRentForm__btn i {
-    font-size: 14px;
-}
-
-
 </style>
 
 <style>
@@ -4066,9 +4284,9 @@ AIzaSyC-USaecnlmdi2fOMcDQl8BhId3-eYcg-Y&libraries=places"></script>
 
       let dropPicker;
 
-        const now = new Date();
+      const now = new Date();
 
-        flatpickr(pickupEl, {
+      flatpickr(pickupEl, {
         enableTime: true,
         dateFormat: "Y-m-d H:i",
         minDate: now,              
@@ -4077,88 +4295,32 @@ AIzaSyC-USaecnlmdi2fOMcDQl8BhId3-eYcg-Y&libraries=places"></script>
         minuteIncrement: 15,
         disableMobile: true,
         onChange: function(selectedDates) {
-            if (dropPicker && selectedDates[0]) {
+          if (dropPicker && selectedDates[0]) {
             dropPicker.set("minDate", selectedDates[0]);
 
             // reset invalid drop
             const d = dropPicker.selectedDates[0];
             if (d && d <= selectedDates[0]) {
-                dropPicker.clear();
+              dropPicker.clear();
             }
-            }
+          }
         }
-        });
+      });
 
-        dropPicker = flatpickr(dropEl, {
+      dropPicker = flatpickr(dropEl, {
         enableTime: true,
         dateFormat: "Y-m-d H:i",
         minDate: new Date(),  
         time_24hr: true,
         minuteIncrement: 15,
         disableMobile: true
-        });
+      });
 
       fpInitialized = true;
     }
     if (!mq.matches) initFlatpickr();
 
   });
-</script>
-
-<script>
-    document.addEventListener(\'DOMContentLoaded\', () => {
-    const form = document.querySelector(\'.heroRentForm\');
-
-    if (!form) return;
-
-    form.addEventListener(\'submit\', function(e) {
-        const pickup = document.getElementById("heroRent_pickupDT");
-        const drop   = document.getElementById("heroRent_dropDT");
-
-        let hasError = false;
-
-        // Reset styles
-        [pickup, drop].forEach(el => {
-        if (el) el.style.border = \'\';
-        });
-
-        // Validate pickup
-        if (!pickup.value.trim()) {
-        pickup.style.border = \'2px solid red\';
-        hasError = true;
-        }
-
-        // Validate dropoff
-        if (!drop.value.trim()) {
-        drop.style.border = \'2px solid red\';
-        hasError = true;
-        }
-
-        // Validate date logic
-        if (!hasError) {
-        const pickupDate = new Date(pickup.value);
-        const dropDate   = new Date(drop.value);
-
-        if (dropDate <= pickupDate) {
-            drop.style.border = \'2px solid red\';
-            alert("Drop-off must be after pickup date.");
-            hasError = true;
-        }
-        }
-
-        if (hasError) {
-        e.preventDefault();
-
-        // scroll to form nicely
-        form.scrollIntoView({ behavior: \'smooth\', block: \'center\' });
-
-        // optional message
-        if (!pickup.value || !drop.value) {
-            alert("Please select pickup and drop-off date & time.");
-        }
-        }
-    });
-    });
 </script>
 
 <script>
@@ -4329,15 +4491,19 @@ function buildCard(v) {
     : \'<span class="heroResultCard__price heroResultCard__price--empty">Price on request</span>\';
 
   card.innerHTML = `
-    <div class="heroResultCard__row">
-      <img class="heroResultCard__image" src="${v.image || \'\'}" alt="${v.car_model || v.car_category || \'Vehicle\'}">
-      <div class="heroResultCard__name">${v.car_model || v.car_category || \'\'}</div>
-    </div>
-    <div class="heroResultCard__priceRow">
-      ${priceHtml}
-      <div class="heroResultCard__capacity">
-        <span><i class="fas fa-user"></i> ${v.pax_count || 0}</span>
-        <span><i class="fas fa-suitcase"></i> ${v.luggage_count || 0}</span>
+    <div class="heroResultCard__main">
+      <div class="heroResultCard__imgWrap">
+        <img class="heroResultCard__image" src="${v.image || \'\'}" alt="${v.car_model || v.car_category || \'Vehicle\'}">
+      </div>
+      <div class="heroResultCard__info">
+        <div class="heroResultCard__name" title="${v.car_model || v.car_category || \'\'}">${v.car_model || v.car_category || \'\'}</div>
+        <div class="heroResultCard__priceRow">
+          ${priceHtml}
+          <div class="heroResultCard__capacity">
+            <span><i class="fas fa-user"></i> ${v.pax_count || 0}</span>
+            <span><i class="fas fa-suitcase"></i> ${v.luggage_count || 0}</span>
+          </div>
+        </div>
       </div>
     </div>
     <button type="button" class="heroResultCard__btn" data-vehicle-id="${v.id}" data-car-code="${v.car_code}">Book Now</button>
@@ -4508,10 +4674,8 @@ function buildCard(v) {
         const msg = data.message || \'No vehicles matched your search. Try different dates or fewer passengers.\';
         if (isMobile) {
           closeModal();
-          alert(msg);
         } else {
           resultsSection.style.display = \'none\';
-          alert(msg);
         }
       }
     })
@@ -4519,11 +4683,9 @@ function buildCard(v) {
       if (isMobile) {
         modalLoading.style.display = \'none\';
         closeModal();
-        alert(\'Could not load vehicles. Please try again.\');
       } else {
         resultsLoading.style.display = \'none\';
         resultsSection.style.display = \'none\';
-        alert(\'Could not load vehicles. Please try again.\');
       }
     });
   });
